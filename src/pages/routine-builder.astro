@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Plus, Trash2, Clock, Package, Save, ArrowLeft } from '@lucide/astro';
+import { Plus, Save, ArrowLeft } from '@lucide/astro';
 ---
 
 <Layout
@@ -282,6 +282,9 @@ import { Plus, Trash2, Clock, Package, Save, ArrowLeft } from '@lucide/astro';
     // Update step data on input change
     container.querySelectorAll('.routine-step').forEach((stepEl) => {
       const stepId = stepEl.getAttribute('data-step-id');
+      
+      // HIER WAR DER FEHLER: Der automatische Aufruf wurde entfernt.
+      
       const step = routine[type].find(s => s.id === stepId);
       if (!step) return;
 
@@ -308,7 +311,10 @@ import { Plus, Trash2, Clock, Package, Save, ArrowLeft } from '@lucide/astro';
       // Quick add button (show dropdown)
       const quickAddBtn = stepEl.querySelector('.quick-add-btn');
       quickAddBtn?.addEventListener('click', () => {
-        showQuickAddMenu(stepEl, type, stepId);
+        // Hier nutzen wir das ! (non-null assertion), da wir wissen, dass die ID existiert
+        if (stepId) {
+            showQuickAddMenu(stepEl, type, stepId);
+        }
       });
     });
   }
