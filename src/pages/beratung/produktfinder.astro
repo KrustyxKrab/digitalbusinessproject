@@ -416,7 +416,7 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
   }
 
   function getComplementaryProducts(primaryProduct: string, requestedTypes: string[], concern?: string) {
-    const complementary = [];
+   const complementary: any[] = [];
 
     if (requestedTypes.includes('mouthwash')) {
       if (concern === 'sensitivity') {

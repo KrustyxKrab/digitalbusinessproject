@@ -2,7 +2,7 @@ import { atom, map } from 'nanostores';
 import type { UserProfile } from '../types/models';
 
 // User Profile Store
-export const userProfile = map<UserProfile | null>(null);
+export const userProfile = atom<UserProfile | null>(null);
 
 // Helper functions
 export function setUserProfile(profile: UserProfile) {
