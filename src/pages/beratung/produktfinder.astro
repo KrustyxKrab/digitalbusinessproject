@@ -1,0 +1,741 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles } from '@lucide/astro';
+---
+
+<Layout
+  title="Produktfinder | elmex"
+  description="Finden Sie in wenigen Schritten die perfekte elmex Zahnpasta für Ihre Bedürfnisse"
+  keywords="Produktfinder, Zahnpasta, Empfehlung, Beratung, elmex"
+>
+  <div class="container mx-auto px-4 py-16 max-w-4xl">
+    <h1 class="text-4xl md:text-5xl font-brand font-bold text-center mb-4 text-neutral-900">
+      Produktfinder
+    </h1>
+    <p class="text-lg text-center text-neutral-600 mb-12">
+      Beantworten Sie 4 kurze Fragen für eine persönliche Empfehlung
+    </p>
+
+    <!-- Progress Bar -->
+    <div class="progress-container mb-12">
+      <div class="flex justify-between text-sm text-neutral-600 mb-2">
+        <span>Schritt <span id="current-step">1</span> von 4</span>
+        <span><span id="progress-percent">0</span>%</span>
+      </div>
+      <div class="w-full bg-neutral-200 rounded-full h-2">
+        <div id="progress-bar" class="bg-primary h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="min-h-[400px]">
+      <!-- Question 1: Altersgruppe -->
+      <div class="quiz-step active" data-step="1">
+        <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
+          Für wen suchen Sie ein Produkt?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button class="quiz-option" data-value="baby">
+            <span class="text-5xl mb-3">👶</span>
+            <span class="font-medium text-neutral-900">Baby/Kleinkind</span>
+            <span class="text-sm text-neutral-600">0-6 Jahre</span>
+          </button>
+          <button class="quiz-option" data-value="junior">
+            <span class="text-5xl mb-3">🧒</span>
+            <span class="font-medium text-neutral-900">Kind</span>
+            <span class="text-sm text-neutral-600">6-12 Jahre</span>
+          </button>
+          <button class="quiz-option" data-value="adult">
+            <span class="text-5xl mb-3">👤</span>
+            <span class="font-medium text-neutral-900">Erwachsener</span>
+            <span class="text-sm text-neutral-600">13-64 Jahre</span>
+          </button>
+          <button class="quiz-option" data-value="senior">
+            <span class="text-5xl mb-3">👴</span>
+            <span class="font-medium text-neutral-900">Senior</span>
+            <span class="text-sm text-neutral-600">65+ Jahre</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 2: Hauptanliegen -->
+      <div class="quiz-step" data-step="2">
+        <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
+          Was ist Ihr Hauptanliegen?
+        </h2>
+        <div class="grid grid-cols-1 gap-4">
+          <button class="quiz-option horizontal" data-value="cavity">
+            <ShieldCheck class="w-10 h-10 text-primary flex-shrink-0" />
+            <div class="text-left flex-1">
+              <span class="font-medium block text-neutral-900">Kariesschutz</span>
+              <span class="text-sm text-neutral-600">Vorbeugung von Zahnfäule</span>
+            </div>
+          </button>
+          <button class="quiz-option horizontal" data-value="gum">
+            <Heart class="w-10 h-10 text-red-500 flex-shrink-0" />
+            <div class="text-left flex-1">
+              <span class="font-medium block text-neutral-900">Zahnfleischgesundheit</span>
+              <span class="text-sm text-neutral-600">Stärkung und Schutz des Zahnfleischs</span>
+            </div>
+          </button>
+          <button class="quiz-option horizontal" data-value="sensitivity">
+            <Sparkles class="w-10 h-10 text-teal-500 flex-shrink-0" />
+            <div class="text-left flex-1">
+              <span class="font-medium block text-neutral-900">Empfindliche Zähne</span>
+              <span class="text-sm text-neutral-600">Schmerzlinderung bei Hitze/Kälte</span>
+            </div>
+          </button>
+          <button class="quiz-option horizontal" data-value="whitening">
+            <Sparkles class="w-10 h-10 text-yellow-500 flex-shrink-0" />
+            <div class="text-left flex-1">
+              <span class="font-medium block text-neutral-900">Weißere Zähne</span>
+              <span class="text-sm text-neutral-600">Sanfte Aufhellung</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 3: Produkttyp -->
+      <div class="quiz-step" data-step="3">
+        <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
+          Welche Produkte interessieren Sie?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <button class="quiz-option multi" data-value="toothpaste">
+            <span class="text-primary mb-3">
+              <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </span>
+            <span class="font-medium text-neutral-900">Zahnpasta</span>
+          </button>
+          <button class="quiz-option multi" data-value="mouthwash">
+            <span class="text-primary mb-3">
+              <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19c1.5 0 3-.5 4-2"></path>
+              </svg>
+            </span>
+            <span class="font-medium text-neutral-900">Mundspülung</span>
+          </button>
+          <button class="quiz-option multi" data-value="toothbrush">
+            <span class="text-primary mb-3">
+              <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </span>
+            <span class="font-medium text-neutral-900">Zahnbürste</span>
+          </button>
+        </div>
+        <p class="text-sm text-neutral-600 mt-4 text-center">
+          Mehrfachauswahl möglich
+        </p>
+      </div>
+
+      <!-- Question 4: Bildbasierte Analyse (Optional) -->
+      <div class="quiz-step" data-step="4">
+        <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
+          Möchten Sie ein Foto hochladen?
+        </h2>
+        <p class="text-neutral-600 mb-6">
+          Optional: Laden Sie ein Foto Ihrer Zähne oder aktuellen Zahnpasta hoch für genauere Empfehlungen.
+          <strong class="block mt-2 text-sm text-amber-600">
+            ⚠️ Hinweis: Dies ersetzt nicht die Diagnose durch einen Zahnarzt. Nur für Produktempfehlungen.
+          </strong>
+        </p>
+
+        <!-- Upload Area -->
+        <div id="upload-area" class="upload-area border-2 border-dashed border-neutral-300 rounded-xl p-8 text-center bg-neutral-50 hover:border-primary transition-colors cursor-pointer">
+          <input type="file" id="photo-upload" accept="image/*" class="hidden" />
+          <label for="photo-upload" class="cursor-pointer block">
+            <Upload class="w-16 h-16 mx-auto mb-4 text-neutral-400" />
+            <p class="font-medium mb-2 text-neutral-900">Foto hochladen oder hierher ziehen</p>
+            <p class="text-sm text-neutral-500">PNG, JPG bis 5MB</p>
+          </label>
+        </div>
+
+        <!-- Camera Capture (Mobile) -->
+        <div class="mt-4 text-center">
+          <button id="camera-capture" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-neutral-700 bg-white border border-neutral-300 rounded-full hover:bg-neutral-50:bg-neutral-700 transition-colors">
+            <Camera class="w-5 h-5" />
+            Kamera verwenden
+          </button>
+        </div>
+
+        <!-- Preview Area -->
+        <div id="photo-preview" class="hidden mt-6">
+          <p class="text-sm font-medium mb-2 text-neutral-900">Vorschau:</p>
+          <div class="relative inline-block">
+            <img id="preview-image" class="max-w-xs mx-auto rounded-lg shadow-md" alt="Vorschau" />
+            <button id="remove-photo" class="absolute top-2 right-2 bg-red-600 text-white rounded-full p-2 hover:bg-red-700 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Skip Button -->
+        <div class="mt-8 text-center">
+          <button class="quiz-skip text-neutral-600 hover:text-primary transition-colors">
+            Überspringen →
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Page -->
+      <div id="quiz-results" class="hidden">
+        <div class="text-center mb-8">
+          <CheckCircle class="w-16 h-16 mx-auto text-green-600 mb-4" />
+          <h2 class="text-3xl md:text-4xl font-brand font-bold mb-2 text-neutral-900">
+            Ihre persönliche Empfehlung
+          </h2>
+          <p class="text-neutral-600">
+            Basierend auf Ihren Angaben haben wir folgende Produkte für Sie ausgewählt
+          </p>
+        </div>
+
+        <!-- Primary Recommendation -->
+        <div id="primary-recommendation" class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 mb-6 border border-primary/20">
+          <!-- Dynamisch gefüllt via JavaScript -->
+        </div>
+
+        <!-- Complementary Products -->
+        <div id="complementary-products" class="mt-6">
+          <h3 class="text-xl font-semibold mb-4 text-neutral-900">Optimal kombiniert mit:</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <!-- Dynamisch gefüllt -->
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <button id="restart-quiz" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-full">
+            Neue Empfehlung
+          </button>
+          <button id="save-results" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors rounded-full">
+            Ergebnis speichern
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div id="quiz-navigation" class="flex justify-between mt-12">
+      <button id="prev-btn" class="inline-flex items-center px-6 py-3 text-base font-medium text-neutral-700 bg-white border border-neutral-300 rounded-full hover:bg-neutral-50:bg-neutral-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+        Zurück
+      </button>
+      <button id="next-btn" class="inline-flex items-center px-8 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-full disabled:opacity-50 disabled:cursor-not-allowed">
+        Weiter
+        <ChevronRight class="w-5 h-5 ml-2" />
+      </button>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .quiz-step {
+    display: none;
+  }
+
+  .quiz-step.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  .quiz-option {
+    background-color: white;
+    border: 2px solid #D4D4D4;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .quiz-option:hover {
+    border-color: #FF6000;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .quiz-option.horizontal {
+    flex-direction: row;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .quiz-option.selected {
+    border-color: #FF6000;
+    background-color: rgba(255, 96, 0, 0.05);
+  }
+
+  .quiz-option.multi {
+    position: relative;
+  }
+
+  .quiz-option.multi.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #FF6000;
+    color: white;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .upload-area.drag-over {
+    border-color: #FF6000;
+    background-color: rgba(255, 96, 0, 0.05);
+  }
+</style>
+
+<script>
+  // Product Finder Logic
+  interface QuizState {
+    currentStep: number;
+    answers: {
+      ageGroup?: string;
+      concern?: string;
+      productTypes: string[];
+      photo?: File;
+    };
+  }
+
+  const state: QuizState = {
+    currentStep: 1,
+    answers: {
+      productTypes: []
+    }
+  };
+
+  // Product Database
+  const productDatabase: Record<string, any> = {
+    'adult-cavity-toothpaste': {
+      name: 'elmex KARIESSCHUTZ Zahnpasta',
+      description: 'Hocheffektiver Kariesschutz durch Aminfluorid',
+      benefits: ['Remineralisiert den Zahnschmelz', '24h Schutzschild', 'Von Zahnärzten empfohlen'],
+      image: '/products/kariesschutz.jpg',
+      url: '/produkte/kariesschutz-zahnpasta'
+    },
+    'adult-sensitivity-toothpaste': {
+      name: 'elmex SENSITIVE Zahnpasta',
+      description: 'Sanfter Schutz für empfindliche Zähne',
+      benefits: ['Lindert Schmerzempfindlichkeit', 'Versiegelt offene Dentinkanälchen', 'Sanfte Formel'],
+      image: '/products/sensitive.jpg',
+      url: '/produkte/sensitive-zahnpasta'
+    },
+    'adult-gum-toothpaste': {
+      name: 'elmex ZAHNFLEISCH Zahnpasta',
+      description: 'Stärkung und Schutz für das Zahnfleisch',
+      benefits: ['Reduziert Zahnfleischbluten', 'Entzündungshemmend', 'Stärkt das Zahnfleisch'],
+      image: '/products/zahnfleisch.jpg',
+      url: '/produkte/zahnfleisch-zahnpasta'
+    },
+    'junior-toothpaste': {
+      name: 'elmex JUNIOR Zahnpasta',
+      description: 'Speziell für Kinder von 6-12 Jahren',
+      benefits: ['Altersgerechter Fluoridgehalt', 'Schützt die ersten bleibenden Zähne', 'Milder Geschmack'],
+      image: '/products/junior.jpg',
+      url: '/produkte/junior-zahnpasta'
+    },
+    'cavity-mouthwash': {
+      name: 'elmex KARIESSCHUTZ Mundspülung',
+      description: 'Ergänzender Schutz für Ihre Zähne',
+      benefits: ['Erreicht auch Zahnzwischenräume', 'Fluoridiert den gesamten Mundraum', 'Ohne Alkohol'],
+      image: '/products/mundspuelung-karies.jpg',
+      url: '/produkte/mundspuelung-karies'
+    },
+    'sensitive-mouthwash': {
+      name: 'elmex SENSITIVE Mundspülung',
+      description: 'Sanfte Pflege für empfindliche Zähne',
+      benefits: ['Lindert Schmerzempfindlichkeit', 'Fluoridiert sanft', 'Ohne Alkohol'],
+      image: '/products/mundspuelung-sensitive.jpg',
+      url: '/produkte/mundspuelung-sensitive'
+    },
+    'interx-toothbrush': {
+      name: 'elmex InterX Zahnbürste',
+      description: 'Effektive Reinigung der Zahnzwischenräume',
+      benefits: ['Spezielle X-Borsten', 'Entfernt bis zu 3x mehr Plaque', 'Verschiedene Härtegrade'],
+      image: '/products/zahnbuerste-interx.jpg',
+      url: '/produkte/zahnbuerste-interx'
+    },
+    'sensitive-toothbrush': {
+      name: 'elmex SENSITIVE Zahnbürste',
+      description: 'Extra sanft für empfindliche Zähne',
+      benefits: ['Weiche Borsten', 'Schonende Reinigung', 'Schützt das Zahnfleisch'],
+      image: '/products/zahnbuerste-sensitive.jpg',
+      url: '/produkte/zahnbuerste-sensitive'
+    }
+  };
+
+  function getRecommendation(answers: QuizState['answers']) {
+    const { ageGroup, concern, productTypes } = answers;
+
+    let recommendedProduct = '';
+
+    // Decision tree logic
+    if (ageGroup === 'junior' || ageGroup === 'baby') {
+      recommendedProduct = 'junior-toothpaste';
+    } else if (ageGroup === 'adult' || ageGroup === 'senior') {
+      if (concern === 'cavity') {
+        recommendedProduct = 'adult-cavity-toothpaste';
+      } else if (concern === 'sensitivity') {
+        recommendedProduct = 'adult-sensitivity-toothpaste';
+      } else if (concern === 'gum') {
+        recommendedProduct = 'adult-gum-toothpaste';
+      } else {
+        recommendedProduct = 'adult-cavity-toothpaste'; // Default
+      }
+    }
+
+    return {
+      primary: productDatabase[recommendedProduct],
+      complementary: getComplementaryProducts(recommendedProduct, productTypes, concern)
+    };
+  }
+
+  function getComplementaryProducts(primaryProduct: string, requestedTypes: string[], concern?: string) {
+    const complementary = [];
+
+    if (requestedTypes.includes('mouthwash')) {
+      if (concern === 'sensitivity') {
+        complementary.push(productDatabase['sensitive-mouthwash']);
+      } else {
+        complementary.push(productDatabase['cavity-mouthwash']);
+      }
+    }
+
+    if (requestedTypes.includes('toothbrush')) {
+      if (concern === 'sensitivity') {
+        complementary.push(productDatabase['sensitive-toothbrush']);
+      } else {
+        complementary.push(productDatabase['interx-toothbrush']);
+      }
+    }
+
+    return complementary;
+  }
+
+  // Event Handlers
+  document.addEventListener('DOMContentLoaded', () => {
+    const quizOptions = document.querySelectorAll('.quiz-option');
+    const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+    const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+    const progressBar = document.getElementById('progress-bar') as HTMLElement;
+
+    // Option Selection
+    quizOptions.forEach(option => {
+      option.addEventListener('click', function(this: HTMLElement) {
+        const step = this.closest('.quiz-step')?.getAttribute('data-step');
+        const value = this.getAttribute('data-value') || '';
+
+        if (this.classList.contains('multi')) {
+          // Multi-select
+          this.classList.toggle('selected');
+
+          if (this.classList.contains('selected')) {
+            if (!state.answers.productTypes.includes(value)) {
+              state.answers.productTypes.push(value);
+            }
+          } else {
+            state.answers.productTypes = state.answers.productTypes.filter(v => v !== value);
+          }
+
+          // Enable next if at least one selected
+          nextBtn.disabled = state.answers.productTypes.length === 0;
+        } else {
+          // Single select
+          this.closest('.quiz-step')?.querySelectorAll('.quiz-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          this.classList.add('selected');
+
+          // Save answer
+          if (step === '1') state.answers.ageGroup = value;
+          if (step === '2') state.answers.concern = value;
+
+          // Enable next button
+          nextBtn.disabled = false;
+        }
+      });
+    });
+
+    // Next Button
+    nextBtn?.addEventListener('click', () => {
+      if (state.currentStep < 4) {
+        state.currentStep++;
+        updateQuiz();
+      } else {
+        // Show results
+        showResults();
+      }
+    });
+
+    // Previous Button
+    prevBtn?.addEventListener('click', () => {
+      if (state.currentStep > 1) {
+        state.currentStep--;
+        updateQuiz();
+      }
+    });
+
+    // Photo Upload
+    const photoUpload = document.getElementById('photo-upload') as HTMLInputElement;
+    const photoPreview = document.getElementById('photo-preview') as HTMLElement;
+    const previewImage = document.getElementById('preview-image') as HTMLImageElement;
+    const uploadArea = document.getElementById('upload-area') as HTMLElement;
+
+    photoUpload?.addEventListener('change', (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        handlePhotoUpload(file);
+      }
+    });
+
+    // Drag and drop
+    uploadArea?.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('drag-over');
+    });
+
+    uploadArea?.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('drag-over');
+    });
+
+    uploadArea?.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+      const file = e.dataTransfer?.files[0];
+      if (file) {
+        handlePhotoUpload(file);
+      }
+    });
+
+    function handlePhotoUpload(file: File) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Datei ist zu groß. Maximale Größe: 5MB');
+        return;
+      }
+
+      state.answers.photo = file;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImage.src = e.target?.result as string;
+        photoPreview?.classList.remove('hidden');
+        uploadArea?.classList.add('hidden');
+      };
+      reader.readAsDataURL(file);
+
+      // Optional: Send to image analysis API in future
+      console.log('Photo uploaded:', file.name);
+    }
+
+    // Remove photo
+    document.getElementById('remove-photo')?.addEventListener('click', () => {
+      state.answers.photo = undefined;
+      photoPreview?.classList.add('hidden');
+      uploadArea?.classList.remove('hidden');
+      if (photoUpload) photoUpload.value = '';
+    });
+
+    // Camera capture (mobile)
+    document.getElementById('camera-capture')?.addEventListener('click', () => {
+      if (photoUpload) {
+        photoUpload.setAttribute('capture', 'environment');
+        photoUpload.click();
+      }
+    });
+
+    // Skip photo step
+    document.querySelector('.quiz-skip')?.addEventListener('click', () => {
+      showResults();
+    });
+
+    // Restart quiz
+    document.getElementById('restart-quiz')?.addEventListener('click', () => {
+      // Reset state
+      state.currentStep = 1;
+      state.answers = { productTypes: [] };
+
+      // Reset UI
+      document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+      document.getElementById('quiz-results')?.classList.add('hidden');
+      document.getElementById('quiz-container')?.classList.remove('hidden');
+      document.getElementById('quiz-navigation')?.classList.remove('hidden');
+      nextBtn.disabled = true;
+
+      updateQuiz();
+    });
+
+    // Save results
+    document.getElementById('save-results')?.addEventListener('click', () => {
+      const resultsData = {
+        timestamp: Date.now(),
+        answers: state.answers,
+        recommendation: getRecommendation(state.answers)
+      };
+
+      localStorage.setItem('elmex_quiz_results', JSON.stringify(resultsData));
+
+      // Create downloadable text
+      const text = `elmex Produktempfehlung\n\nIhre Empfehlung: ${resultsData.recommendation.primary.name}\n\n${resultsData.recommendation.primary.description}\n\nMehr Infos: ${window.location.origin}${resultsData.recommendation.primary.url}`;
+
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'elmex-empfehlung.txt';
+      a.click();
+
+      alert('Ihre Empfehlung wurde gespeichert!');
+    });
+  });
+
+  function updateQuiz() {
+    // Hide all steps
+    document.querySelectorAll('.quiz-step').forEach(step => {
+      step.classList.remove('active');
+    });
+
+    // Show current step
+    const currentStepEl = document.querySelector(`[data-step="${state.currentStep}"]`);
+    currentStepEl?.classList.add('active');
+
+    // Update progress
+    const progress = (state.currentStep / 4) * 100;
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) progressBar.style.width = `${progress}%`;
+    const currentStepText = document.getElementById('current-step');
+    if (currentStepText) currentStepText.textContent = state.currentStep.toString();
+    const progressPercent = document.getElementById('progress-percent');
+    if (progressPercent) progressPercent.textContent = Math.round(progress).toString();
+
+    // Update navigation buttons
+    const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+    const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+
+    if (prevBtn) prevBtn.disabled = state.currentStep === 1;
+
+    if (nextBtn) {
+      const nextBtnText = nextBtn.querySelector('span') || nextBtn;
+      if (state.currentStep === 4) {
+        nextBtn.innerHTML = 'Empfehlung anzeigen';
+        nextBtn.disabled = false; // Can skip photo
+      } else {
+        nextBtn.innerHTML = 'Weiter <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
+
+        // Check if current step has selection
+        const currentStep = document.querySelector(`[data-step="${state.currentStep}"]`);
+        const hasSelection = currentStep?.querySelector('.quiz-option.selected');
+        nextBtn.disabled = !hasSelection;
+      }
+    }
+  }
+
+  function showResults() {
+    // Hide quiz, show results
+    document.getElementById('quiz-container')?.classList.add('hidden');
+    document.getElementById('quiz-navigation')?.classList.add('hidden');
+    document.getElementById('quiz-results')?.classList.remove('hidden');
+
+    // Get recommendation
+    const recommendation = getRecommendation(state.answers);
+
+    // Render primary recommendation
+    const primaryEl = document.getElementById('primary-recommendation');
+    if (primaryEl && recommendation.primary) {
+      primaryEl.innerHTML = `
+        <div class="flex flex-col md:flex-row items-start gap-6">
+          <div class="w-40 h-40 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-24 h-24 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-2xl font-brand font-semibold mb-2 text-neutral-900">${recommendation.primary.name}</h3>
+            <p class="text-neutral-700 mb-4">${recommendation.primary.description}</p>
+            <ul class="space-y-2 mb-6">
+              ${recommendation.primary.benefits.map((benefit: string) => `
+                <li class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-sm text-neutral-700">${benefit}</span>
+                </li>
+              `).join('')}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="${recommendation.primary.url}" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-full">
+                Mehr erfahren
+              </a>
+              <a href="/beratung/wo-kaufen?product=${encodeURIComponent(recommendation.primary.name)}" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors rounded-full">
+                Wo kaufen
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render complementary products
+    const complementaryEl = document.getElementById('complementary-products');
+    if (complementaryEl && recommendation.complementary.length > 0) {
+      const gridEl = complementaryEl.querySelector('.grid');
+      if (gridEl) {
+        gridEl.innerHTML = recommendation.complementary.map((product: any) => `
+          <div class="bg-white rounded-xl p-6 border border-neutral-200">
+            <div class="flex items-start gap-4">
+              <div class="w-16 h-16 bg-neutral-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="font-semibold mb-1 text-neutral-900">${product.name}</h4>
+                <p class="text-sm text-neutral-600 mb-3">${product.description}</p>
+                <a href="${product.url}" class="text-sm text-primary hover:underline">Details →</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    } else if (complementaryEl) {
+      complementaryEl.classList.add('hidden');
+    }
+
+    // Track completion with analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'product_finder_complete', {
+        'age_group': state.answers.ageGroup,
+        'concern': state.answers.concern,
+        'product_types': state.answers.productTypes.join(','),
+        'used_photo': !!state.answers.photo
+      });
+    }
+
+    // Scroll to top of results
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  credentials: string;
+  image?: string;
+  bio: string;
+}
+
+const { name, title, credentials, image, bio } = Astro.props;
+---
+
+<div class="expert-profile flex items-start gap-4 bg-white p-6 rounded-xl shadow-md mb-6 border border-neutral-200">
+  {image && (
+    <img
+      src={image}
+      alt={name}
+      class="w-20 h-20 rounded-full object-cover flex-shrink-0"
+    />
+  )}
+  <div class="flex-1">
+    <h4 class="font-brand font-semibold text-lg text-neutral-900">{name}</h4>
+    <p class="text-sm text-primary font-medium">{title}</p>
+    <p class="text-xs text-neutral-600 mb-2">{credentials}</p>
+    <p class="text-sm text-neutral-700 leading-relaxed">{bio}</p>
+  </div>
+</div>

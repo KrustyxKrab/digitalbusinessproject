@@ -1,0 +1,251 @@
+---
+interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+  category: string;
+}
+
+interface Props {
+  faqs: FAQ[];
+}
+
+const { faqs } = Astro.props;
+---
+
+<div class="faq-search-container">
+  <!-- Search Input -->
+  <div class="search-box mb-8">
+    <div class="relative">
+      <input
+        type="search"
+        id="faq-search"
+        placeholder="Durchsuchen Sie häufig gestellte Fragen..."
+        class="w-full px-6 py-4 pl-12 rounded-xl border-2 border-neutral-300 bg-white text-neutral-900 focus:border-primary focus:outline-none transition-colors"
+      />
+      <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </div>
+    <p id="search-results-count" class="text-sm text-neutral-600 mt-2 hidden">
+      <span id="results-number">0</span> Ergebnisse gefunden
+    </p>
+  </div>
+
+  <!-- Category Filter (Optional) -->
+  <div class="category-filter mb-6">
+    <div class="flex flex-wrap gap-2">
+      <button class="category-btn active" data-category="all">
+        Alle
+      </button>
+      {Array.from(new Set(faqs.map(faq => faq.category))).map(category => (
+        <button class="category-btn" data-category={category}>
+          {category}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- No Results Message -->
+  <div id="no-results" class="hidden text-center py-12">
+    <svg class="w-16 h-16 mx-auto mb-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <p class="text-lg text-neutral-600">Keine passenden Fragen gefunden</p>
+    <p class="text-sm text-neutral-500 mt-2">Versuchen Sie es mit anderen Suchbegriffen</p>
+  </div>
+
+  <!-- FAQ List -->
+  <div class="faq-list space-y-4">
+    {faqs.map((faq) => (
+      <details
+        class="faq-item bg-white rounded-xl p-6 shadow-md border border-neutral-200 transition-all hover:shadow-lg"
+        data-category={faq.category}
+        data-question={faq.question.toLowerCase()}
+        data-answer={faq.answer.toLowerCase()}
+      >
+        <summary class="font-brand font-semibold text-lg cursor-pointer text-neutral-900 flex items-center justify-between">
+          <span>{faq.question}</span>
+          <svg class="w-5 h-5 text-neutral-400 transition-transform details-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="mt-4 text-neutral-600 leading-relaxed">
+          <p set:html={faq.answer} />
+        </div>
+      </details>
+    ))}
+  </div>
+</div>
+
+<style>
+  .category-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 2px solid #D4D4D4;
+    color: #525252;
+    transition: all 0.3s;
+  }
+
+  .category-btn:hover {
+    border-color: #FF6000;
+    color: #FF6000;
+  }
+
+  .category-btn.active {
+    background-color: #FF6000;
+    color: white;
+    border-color: #FF6000;
+  }
+
+  details[open] .details-arrow {
+    transform: rotate(180deg);
+  }
+
+  .faq-item mark {
+    background-color: #fef08a;
+    color: #222222;
+  }
+</style>
+
+<script>
+  // FAQ Search and Filter Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('faq-search') as HTMLInputElement;
+    const faqItems = document.querySelectorAll('.faq-item');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const noResults = document.getElementById('no-results');
+    const resultsCount = document.getElementById('search-results-count');
+    const resultsNumber = document.getElementById('results-number');
+
+    let currentCategory = 'all';
+    let currentQuery = '';
+
+    // Search functionality
+    searchInput?.addEventListener('input', (e) => {
+      currentQuery = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      filterFAQs();
+    });
+
+    // Category filter
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', function(this: HTMLElement) {
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        currentCategory = this.getAttribute('data-category') || 'all';
+        filterFAQs();
+      });
+    });
+
+    function filterFAQs() {
+      let visibleCount = 0;
+
+      faqItems.forEach(item => {
+        const element = item as HTMLElement;
+        const category = element.getAttribute('data-category') || '';
+        const question = element.getAttribute('data-question') || '';
+        const answer = element.getAttribute('data-answer') || '';
+
+        // Check category match
+        const categoryMatch = currentCategory === 'all' || category === currentCategory;
+
+        // Check search query match (fuzzy)
+        let queryMatch = true;
+        if (currentQuery) {
+          queryMatch = question.includes(currentQuery) || answer.includes(currentQuery);
+        }
+
+        // Show/hide based on filters
+        if (categoryMatch && queryMatch) {
+          element.style.display = 'block';
+          visibleCount++;
+
+          // Highlight search terms
+          if (currentQuery) {
+            highlightSearchTerm(element, currentQuery);
+          } else {
+            removeHighlights(element);
+          }
+        } else {
+          element.style.display = 'none';
+        }
+      });
+
+      // Update results count
+      if (currentQuery) {
+        resultsCount?.classList.remove('hidden');
+        if (resultsNumber) resultsNumber.textContent = visibleCount.toString();
+      } else {
+        resultsCount?.classList.add('hidden');
+      }
+
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults?.classList.remove('hidden');
+      } else {
+        noResults?.classList.add('hidden');
+      }
+    }
+
+    function highlightSearchTerm(element: HTMLElement, query: string) {
+      const summary = element.querySelector('summary span');
+      const content = element.querySelector('div p');
+
+      if (summary) {
+        const originalText = summary.getAttribute('data-original-text') || summary.textContent || '';
+        if (!summary.getAttribute('data-original-text')) {
+          summary.setAttribute('data-original-text', originalText);
+        }
+
+        const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+        const highlightedText = originalText.replace(regex, '<mark>$1</mark>');
+        summary.innerHTML = highlightedText;
+      }
+
+      if (content) {
+        const originalText = content.getAttribute('data-original-html') || content.innerHTML || '';
+        if (!content.getAttribute('data-original-html')) {
+          content.setAttribute('data-original-html', originalText);
+        }
+
+        const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+        const highlightedText = originalText.replace(regex, '<mark>$1</mark>');
+        content.innerHTML = highlightedText;
+      }
+    }
+
+    function removeHighlights(element: HTMLElement) {
+      const summary = element.querySelector('summary span');
+      const content = element.querySelector('div p');
+
+      if (summary && summary.getAttribute('data-original-text')) {
+        summary.textContent = summary.getAttribute('data-original-text') || '';
+      }
+
+      if (content && content.getAttribute('data-original-html')) {
+        content.innerHTML = content.getAttribute('data-original-html') || '';
+      }
+    }
+
+    function escapeRegex(string: string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // Auto-expand if single result
+    const observer = new MutationObserver(() => {
+      const visibleItems = Array.from(faqItems).filter(item => {
+        return (item as HTMLElement).style.display !== 'none';
+      });
+
+      if (visibleItems.length === 1 && currentQuery) {
+        (visibleItems[0] as HTMLDetailsElement).open = true;
+      }
+    });
+
+    // Initial call
+    filterFAQs();
+  });
+</script>

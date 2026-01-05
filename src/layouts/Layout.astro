@@ -1,0 +1,54 @@
+---
+import Meta from './Meta.astro';
+import StructuredData from "@/components/widgets/StructuredData.astro";
+import TopBg from "@/components/ui/TopBg.astro";
+import Footer from "@/components/sections/Footer.astro";
+import Header from "@/components/sections/Header.astro";
+import TrackGa from "@/components/widgets/TrackGa.astro";
+import CookieConsent from "@/components/widgets/CookieConsent.astro";
+interface Props {
+	title?: string | undefined;
+	description?: string | undefined;
+	keywords?: string | undefined;
+}
+
+const {
+	title,
+	description,
+	keywords
+} = Astro.props;
+
+
+import "../styles/global.css";
+import "aos/dist/aos.css";
+import "../styles/aos-custom.css";
+import '../styles/article.css';
+import '../styles/article-enhancements.css';
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <Meta
+      title = {title}
+      description = {description}
+      keywords = {keywords}
+    />
+    <StructuredData type="organization" />
+    <TrackGa />
+    <link rel="icon" type="image/x-icon" href="/favicon.png" />
+  </head>
+  <body class="antialiased bg-bg-primary max-w-full overflow-x-hidden">
+    <TopBg />
+    <a href="#main-content" class="skip-link">
+      Zum Hauptinhalt springen
+    </a>
+    <Header />
+    <main id="main-content" role="main">
+      <slot />
+    </main>
+    <Footer />
+    <CookieConsent />
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,455 @@
+---
+import { ShieldCheck, Eye, Code, Zap } from '@lucide/astro';
+import type { ProductDetail } from '@/types/models';
+
+interface Props {
+  product: ProductDetail;
+  iconComponent?: any;
+}
+
+const { product, iconComponent: ProductIcon = ShieldCheck } = Astro.props;
+
+// Generate Schema.org structured data
+const schemaProduct = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "brand": { "@type": "Brand", "name": "elmex" },
+  "sku": product.sku,
+  "offers": {
+    "@type": "Offer",
+    "price": product.price.toFixed(2),
+    "priceCurrency": "EUR",
+    "availability": product.availability
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": product.rating.value.toString(),
+    "reviewCount": product.rating.count.toString()
+  }
+};
+---
+
+<!-- Vision Switch -->
+<div class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 py-4 transition-all">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-center gap-4">
+      <div class="flex items-center gap-2 text-sm font-medium text-neutral-600">
+        <Eye class="w-4 h-4" />
+        <span>Human Focus</span>
+      </div>
+
+      <label class="relative inline-block w-16 h-8 cursor-pointer">
+        <input type="checkbox" id="vision-switch" class="sr-only peer" />
+        <div class="w-full h-full bg-gradient-to-r from-primary to-red-500 rounded-full peer-checked:from-gray-600 peer-checked:to-cyan-600 transition-all"></div>
+        <div class="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-lg transition-all peer-checked:translate-x-8 flex items-center justify-center">
+          <div class="w-2 h-2 bg-current rounded-full"></div>
+        </div>
+      </label>
+
+      <div class="flex items-center gap-2 text-sm font-medium text-neutral-600">
+        <Code class="w-4 h-4" />
+        <span>Crawler Focus</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HUMAN FOCUS MODE -->
+<div id="human-mode" class="transition-all">
+  <!-- Hero Section - Immersive -->
+  <section class="relative min-h-[80vh] bg-gradient-to-br from-neutral-50 via-orange-50/30 to-neutral-100 overflow-hidden">
+    <div class="container mx-auto px-4 py-24">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left: Product Visualization -->
+        <div class="relative">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-white to-orange-100 shadow-2xl">
+            <!-- 3D-Like Product Display -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="product-3d-container relative w-full h-full flex items-center justify-center">
+                <!-- Simulated 3D Fluid Effect -->
+                <div class="absolute inset-0 opacity-30">
+                  <div class="fluid-blob bg-gradient-to-br from-primary/40 to-orange-300/40 rounded-full blur-3xl animate-pulse"></div>
+                </div>
+
+                <!-- Product Icon -->
+                <div class="relative z-10 scale-150">
+                  <ProductIcon class="w-32 h-32 text-primary drop-shadow-2xl animate-float" />
+                </div>
+
+                <!-- Particle Effect Overlay -->
+                <div class="absolute inset-0 pointer-events-none">
+                  <div class="particle particle-1"></div>
+                  <div class="particle particle-2"></div>
+                  <div class="particle particle-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Info Cards -->
+          {product.features.map((feature, index) => (
+            <div
+              class={`absolute glass p-4 rounded-xl shadow-lg animate-slide-in-right ${index === 0 ? '-right-4 top-1/4' : 'hidden'}`}
+            >
+              <div class="flex items-center gap-2">
+                <Zap class="w-5 h-5 text-yellow-500" />
+                <span class="text-sm font-semibold">{feature.text}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Right: Content -->
+        <div class="space-y-6">
+          <div class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+            <span class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              {product.badge.text}
+            </span>
+          </div>
+
+          <h1 class="text-5xl md:text-6xl font-brand font-bold text-neutral-900 leading-tight">
+            {product.heroTitle}
+          </h1>
+
+          <p class="text-xl text-neutral-600 leading-relaxed">
+            {product.heroDescription}
+          </p>
+
+          <!-- AI Matching Score -->
+          {product.matchingScore && (
+            <div class="p-6 bg-gradient-to-r from-primary/5 to-orange-50 rounded-2xl border border-primary/20">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-semibold text-neutral-900">Passt das zu mir?</h3>
+                <div class="text-3xl font-bold gradient-title">{product.matchingScore.percentage}%</div>
+              </div>
+              <p class="text-sm text-neutral-600 mb-3">
+                {product.matchingScore.profile}
+              </p>
+              {product.matchingScore.note && product.matchingScore.alternativeProduct && (
+                <p class="text-xs text-neutral-500 flex items-start gap-2">
+                  <span class="text-orange-500">ⓘ</span>
+                  {product.matchingScore.note} <a href={product.matchingScore.alternativeProduct.url} class="text-primary hover:underline">{product.matchingScore.alternativeProduct.name}</a>
+                </p>
+              )}
+            </div>
+          )}
+
+          <!-- CTA -->
+          <div class="flex gap-4">
+            <button class="flex-1 px-8 py-4 bg-primary text-white rounded-full hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl font-medium">
+              In meine Morgenroutine aufnehmen
+            </button>
+            <button class="px-6 py-4 border-2 border-neutral-300 rounded-full hover:border-primary transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Wo kaufen Link -->
+          <div class="pt-4">
+            <a
+              href={`/wo-kaufen?product=${product.slug}`}
+              class="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-medium transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              Wo kaufen
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrollytelling Section -->
+  <section class="py-24 bg-neutral-900 text-white relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-brand font-bold mb-6">
+          {product.howItWorks.title}
+        </h2>
+        <p class="text-xl text-neutral-300">
+          {product.howItWorks.description}
+        </p>
+      </div>
+
+      <!-- Animation Container -->
+      <div class="relative h-[600px] flex items-center justify-center">
+        <div id="tooth-animation" class="relative w-full max-w-2xl">
+          <div class="relative aspect-square bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-3xl p-12">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="relative">
+                <!-- Tooth Icon -->
+                <div class="text-white filter drop-shadow-2xl">
+                  <svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  </svg>
+                </div>
+
+                <!-- Protection Layer Animation -->
+                <div class="absolute inset-0 animate-pulse-ring">
+                  <div class="absolute inset-0 border-4 border-primary rounded-full opacity-50"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info Labels -->
+            {product.howItWorks.steps.map((step, index) => (
+              <div
+                class={`absolute glass-dark p-4 rounded-xl animate-fade-in ${
+                  index === 0 ? 'top-8 left-8' :
+                  index === 1 ? 'bottom-8 right-8' :
+                  'top-1/2 right-8'
+                }`}
+                style={`animation-delay: ${index * 0.3}s`}
+              >
+                <p class="text-sm font-semibold mb-1">Schritt {step.number}</p>
+                <p class="text-xs text-neutral-400">{step.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expert Video Section -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-4xl font-brand font-bold text-neutral-900 mb-6">
+              {product.usage.title}
+            </h2>
+            <p class="text-lg text-neutral-600 mb-6">
+              {product.usage.expert.description}
+            </p>
+            <div class="space-y-3">
+              {product.usage.instructions.map((instruction) => (
+                <div class="flex items-center gap-3">
+                  <div class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
+                    <div class="w-2 h-2 bg-primary rounded-full"></div>
+                  </div>
+                  <span class="text-neutral-700">{instruction}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="relative aspect-video bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-white/30 transition-colors cursor-pointer">
+                  <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <p class="text-white text-sm">Video abspielen</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CRAWLER FOCUS MODE -->
+<div id="crawler-mode" class="hidden transition-all">
+  <div class="min-h-screen bg-gradient-to-br text-gray-500 font-mono p-8">
+    <div class="max-w-6xl mx-auto">
+      <!-- Terminal Header -->
+      <div class="mb-8 pb-4 border-b border-gray-400/30">
+        <pre class="text-xs text-gray-500">
+elmex.de/produkte/{product.slug}
+Last crawled: {new Date().toISOString()}
+        </pre>
+      </div>
+
+      <!-- Structured Data -->
+      <section class="mb-12">
+        <h1 class="text-2xl mb-4 text-gray-500">&lt;STRUCTURED DATA&gt;</h1>
+        <pre class="bg-neutral-900 p-6 rounded-lg text-xs overflow-x-auto text-gray-500 leading-relaxed border border-gray-400/20">
+{JSON.stringify(schemaProduct, null, 2)}
+        </pre>
+      </section>
+
+      <!-- HTML Structure -->
+      <section class="mb-12">
+        <h1 class="text-2xl mb-4 text-gray-500">&lt;HTML HIERARCHY&gt;</h1>
+        <div class="space-y-2 text-sm">
+          <div class="pl-0">&lt;h1&gt; {product.name} &lt;/h1&gt;</div>
+          <div class="pl-4">&lt;h2&gt; {product.howItWorks.title} &lt;/h2&gt;</div>
+          {product.howItWorks.steps.map((step) => (
+            <div class="pl-8">&lt;h3&gt; {step.title} &lt;/h3&gt;</div>
+          ))}
+          <div class="pl-4">&lt;h2&gt; {product.usage.title} &lt;/h2&gt;</div>
+          <div class="pl-4">&lt;h2&gt; Inhaltsstoffe &lt;/h2&gt;</div>
+        </div>
+      </section>
+
+      <!-- Benefits & Features -->
+      <section class="mb-12">
+        <h1 class="text-2xl mb-4 text-gray-500">&lt;KEY FEATURES&gt;</h1>
+        <div class="space-y-3 text-sm">
+          {product.benefits.map((benefit, index) => (
+            <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
+              <span class="text-gray-300">[BENEFIT_{index + 1}]</span>
+              <p class="text-gray-400/80 mt-2">{benefit}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Performance Metrics -->
+      <section>
+        <h1 class="text-2xl mb-4 text-gray-500">&lt;PERFORMANCE METRICS&gt;</h1>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
+            <div class="text-xs text-gray-500 mb-1">Load Time</div>
+            <div class="text-2xl font-bold">0.3s</div>
+          </div>
+          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
+            <div class="text-xs text-gray-500 mb-1">DOM Elements</div>
+            <div class="text-2xl font-bold">127</div>
+          </div>
+          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
+            <div class="text-xs text-gray-500 mb-1">Page Weight</div>
+            <div class="text-2xl font-bold">24KB</div>
+          </div>
+          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
+            <div class="text-xs text-gray-500 mb-1">Carbon</div>
+            <div class="text-2xl font-bold">0.1g</div>
+            <div class="text-xs text-gray-500 mt-1">CO₂</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Hidden Structured Data for Search Engines -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schemaProduct)} />
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.3;
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 2s ease-in-out infinite;
+  }
+
+  .fluid-blob {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 96, 0, 0.6);
+    border-radius: 50%;
+    animation: particle-float 4s ease-in-out infinite;
+  }
+
+  .particle-1 {
+    top: 20%;
+    left: 30%;
+    animation-delay: 0s;
+  }
+
+  .particle-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 1s;
+  }
+
+  .particle-3 {
+    bottom: 30%;
+    left: 25%;
+    animation-delay: 2s;
+  }
+
+  @keyframes particle-float {
+    0%, 100% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    50% {
+      transform: translate(20px, -40px);
+      opacity: 1;
+    }
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+</style>
+
+<script>
+  // Vision Switch
+  const visionSwitch = document.getElementById('vision-switch') as HTMLInputElement;
+  const humanMode = document.getElementById('human-mode');
+  const crawlerMode = document.getElementById('crawler-mode');
+
+  visionSwitch?.addEventListener('change', (e) => {
+    const target = e.target as HTMLInputElement;
+    if (target.checked) {
+      // Switch to Crawler mode
+      humanMode?.classList.add('hidden');
+      crawlerMode?.classList.remove('hidden');
+
+      // Digital glitch effect
+      document.body.style.animation = 'glitch 0.3s';
+      setTimeout(() => {
+        document.body.style.animation = '';
+      }, 300);
+    } else {
+      // Switch to Human mode
+      crawlerMode?.classList.add('hidden');
+      humanMode?.classList.remove('hidden');
+    }
+  });
+</script>

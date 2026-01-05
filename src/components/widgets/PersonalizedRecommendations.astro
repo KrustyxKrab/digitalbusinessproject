@@ -1,0 +1,337 @@
+---
+// Personalized Recommendations Widget
+// Uses localStorage data from quiz, browsing history, and user interactions
+---
+
+<div id="personalized-widget" class="hidden bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 my-12 border border-primary/20">
+  <div class="flex items-start justify-between mb-6">
+    <div>
+      <h3 class="text-2xl md:text-3xl font-brand font-bold text-neutral-900 mb-2">
+        Für Sie empfohlen
+      </h3>
+      <p id="personalization-reason" class="text-neutral-600">
+        Basierend auf Ihren bisherigen Besuchen
+      </p>
+    </div>
+    <button
+      id="dismiss-recommendations"
+      class="text-neutral-400 hover:text-neutral-600:text-neutral-300 transition-colors"
+      aria-label="Empfehlungen ausblenden"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div id="recommendations-container" class="grid md:grid-cols-3 gap-6">
+    <!-- Dynamically populated -->
+  </div>
+
+  <div class="mt-6 text-center">
+    <a
+      href="/beratung/produktfinder"
+      class="inline-flex items-center text-sm text-primary hover:text-primary-dark hover:underline transition-colors"
+    >
+      Neue Empfehlung erhalten →
+    </a>
+  </div>
+</div>
+
+<script>
+  interface VisitedProduct {
+    name: string;
+    url: string;
+    timestamp: number;
+  }
+
+  interface QuizResult {
+    timestamp: number;
+    answers: {
+      ageGroup?: string;
+      concern?: string;
+      productTypes: string[];
+    };
+    recommendation: {
+      primary: any;
+      complementary: any[];
+    };
+  }
+
+  interface UserProfile {
+    visitCount: number;
+    firstVisit: number;
+    lastVisit: number;
+    viewedProducts: VisitedProduct[];
+    quizCompleted: boolean;
+    quizResult?: QuizResult;
+    preferredCategory?: string;
+  }
+
+  // Icon library
+  const icons: Record<string, string> = {
+    'shield': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>',
+    'sparkles': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>',
+    'heart': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>',
+    'baby': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>',
+    'droplet': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19c1.5 0 3-.5 4-2"></path></svg>',
+    'waves': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
+    'brush': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>',
+    'flower': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>'
+  };
+
+  // Product database for recommendations
+  const productDatabase: Record<string, any> = {
+    'kariesschutz': {
+      name: 'elmex KARIESSCHUTZ',
+      description: 'Hocheffektiver Kariesschutz durch Aminfluorid',
+      url: '/produkte/kariesschutz-zahnpasta',
+      category: 'cavity',
+      icon: 'shield'
+    },
+    'sensitive': {
+      name: 'elmex SENSITIVE',
+      description: 'Sanfter Schutz für empfindliche Zähne',
+      url: '/produkte/sensitive-zahnpasta',
+      category: 'sensitivity',
+      icon: 'sparkles'
+    },
+    'zahnfleisch': {
+      name: 'elmex ZAHNFLEISCH',
+      description: 'Stärkung und Schutz für das Zahnfleisch',
+      url: '/produkte/zahnfleisch-zahnpasta',
+      category: 'gum',
+      icon: 'heart'
+    },
+    'junior': {
+      name: 'elmex JUNIOR',
+      description: 'Speziell für Kinder von 6-12 Jahren',
+      url: '/produkte/junior-zahnpasta',
+      category: 'junior',
+      icon: 'baby'
+    },
+    'mundspuelung-karies': {
+      name: 'elmex KARIESSCHUTZ Mundspülung',
+      description: 'Ergänzender Schutz für Ihre Zähne',
+      url: '/produkte/mundspuelung-karies',
+      category: 'cavity',
+      icon: 'droplet'
+    },
+    'mundspuelung-sensitive': {
+      name: 'elmex SENSITIVE Mundspülung',
+      description: 'Sanfte Pflege für empfindliche Zähne',
+      url: '/produkte/mundspuelung-sensitive',
+      category: 'sensitivity',
+      icon: 'waves'
+    },
+    'zahnbuerste-interx': {
+      name: 'elmex InterX Zahnbürste',
+      description: 'Effektive Reinigung der Zahnzwischenräume',
+      url: '/produkte/zahnbuerste-interx',
+      category: 'cavity',
+      icon: 'brush'
+    },
+    'zahnbuerste-sensitive': {
+      name: 'elmex SENSITIVE Zahnbürste',
+      description: 'Extra sanft für empfindliche Zähne',
+      url: '/produkte/zahnbuerste-sensitive',
+      category: 'sensitivity',
+      icon: 'flower'
+    }
+  };
+
+  function getUserProfile(): UserProfile {
+    const visitCount = parseInt(localStorage.getItem('elmex_visit_count') || '0');
+    const firstVisit = parseInt(localStorage.getItem('elmex_first_visit') || Date.now().toString());
+    const lastVisit = parseInt(localStorage.getItem('elmex_last_visit') || Date.now().toString());
+    const viewedProducts = JSON.parse(localStorage.getItem('elmex_viewed_products') || '[]');
+    const quizResultStr = localStorage.getItem('elmex_quiz_results');
+    const quizResult = quizResultStr ? JSON.parse(quizResultStr) : null;
+
+    return {
+      visitCount,
+      firstVisit,
+      lastVisit,
+      viewedProducts,
+      quizCompleted: !!quizResult,
+      quizResult
+    };
+  }
+
+  function getRecommendations(profile: UserProfile): any[] {
+    const recommendations: any[] = [];
+
+    // Strategy 1: Quiz-based recommendations
+    if (profile.quizCompleted && profile.quizResult) {
+      const concern = profile.quizResult.answers.concern;
+      const ageGroup = profile.quizResult.answers.ageGroup;
+
+      // Recommend complementary products
+      if (concern === 'sensitivity') {
+        recommendations.push(productDatabase['mundspuelung-sensitive']);
+        recommendations.push(productDatabase['zahnbuerste-sensitive']);
+      } else if (concern === 'cavity') {
+        recommendations.push(productDatabase['mundspuelung-karies']);
+        recommendations.push(productDatabase['zahnbuerste-interx']);
+      } else if (concern === 'gum') {
+        recommendations.push(productDatabase['zahnfleisch']);
+      }
+
+      if (ageGroup === 'junior' || ageGroup === 'baby') {
+        recommendations.push(productDatabase['junior']);
+      }
+    }
+
+    // Strategy 2: Browsing history-based
+    if (profile.viewedProducts.length > 0) {
+      // Get most recently viewed product
+      const recentProduct = profile.viewedProducts[profile.viewedProducts.length - 1];
+
+      // Find related products (same category or complementary)
+      Object.values(productDatabase).forEach(product => {
+        if (!recommendations.find(r => r.name === product.name)) {
+          recommendations.push(product);
+        }
+      });
+    }
+
+    // Strategy 3: Popular products (default)
+    if (recommendations.length < 3) {
+      recommendations.push(productDatabase['kariesschutz']);
+      recommendations.push(productDatabase['sensitive']);
+      recommendations.push(productDatabase['mundspuelung-karies']);
+    }
+
+    // Return max 3 recommendations
+    return recommendations.slice(0, 3);
+  }
+
+  function renderRecommendations(recommendations: any[], profile: UserProfile) {
+    const container = document.getElementById('recommendations-container');
+    const widget = document.getElementById('personalized-widget');
+    const reason = document.getElementById('personalization-reason');
+
+    if (!container || !widget || !reason) return;
+
+    // Determine personalization reason
+    let reasonText = 'Basierend auf Ihren bisherigen Besuchen';
+    if (profile.quizCompleted) {
+      reasonText = 'Basierend auf Ihren Produktfinder-Ergebnissen';
+    } else if (profile.viewedProducts.length > 0) {
+      reasonText = 'Basierend auf Ihren angesehenen Produkten';
+    }
+    reason.textContent = reasonText;
+
+    // Render product cards
+    container.innerHTML = recommendations.map(product => `
+      <a
+        href="${product.url}"
+        class="recommendation-card bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary hover:shadow-lg transition-all group"
+      >
+        <div class="mb-3 group-hover:scale-110 transition-transform text-primary">${icons[product.icon]}</div>
+        <h4 class="font-brand font-semibold text-lg mb-2 text-neutral-900">${product.name}</h4>
+        <p class="text-sm text-neutral-600 mb-4">${product.description}</p>
+        <div class="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
+          <span>Mehr erfahren</span>
+          <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </a>
+    `).join('');
+
+    // Show widget with animation
+    widget.classList.remove('hidden');
+    setTimeout(() => {
+      widget.style.opacity = '0';
+      widget.style.transform = 'translateY(20px)';
+      widget.style.transition = 'all 0.5s ease-out';
+      setTimeout(() => {
+        widget.style.opacity = '1';
+        widget.style.transform = 'translateY(0)';
+      }, 10);
+    }, 100);
+  }
+
+  function trackProductView(productName: string, productUrl: string) {
+    const viewedProducts: VisitedProduct[] = JSON.parse(localStorage.getItem('elmex_viewed_products') || '[]');
+
+    // Add new view (max 10 recent products)
+    viewedProducts.push({
+      name: productName,
+      url: productUrl,
+      timestamp: Date.now()
+    });
+
+    // Keep only last 10
+    const recentViews = viewedProducts.slice(-10);
+    localStorage.setItem('elmex_viewed_products', JSON.stringify(recentViews));
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Update visit tracking
+    const currentVisits = parseInt(localStorage.getItem('elmex_visit_count') || '0');
+    const newVisitCount = currentVisits + 1;
+    localStorage.setItem('elmex_visit_count', newVisitCount.toString());
+    localStorage.setItem('elmex_last_visit', Date.now().toString());
+
+    if (!localStorage.getItem('elmex_first_visit')) {
+      localStorage.setItem('elmex_first_visit', Date.now().toString());
+    }
+
+    // Track current page if it's a product page
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('/produkte/')) {
+      const productName = document.querySelector('h1')?.textContent || 'Produkt';
+      trackProductView(productName, currentPath);
+    }
+
+    // Show recommendations for returning visitors (2+ visits)
+    const profile = getUserProfile();
+    if (profile.visitCount >= 2) {
+      const recommendations = getRecommendations(profile);
+      renderRecommendations(recommendations, profile);
+    }
+
+    // Dismiss button
+    const dismissBtn = document.getElementById('dismiss-recommendations');
+    dismissBtn?.addEventListener('click', () => {
+      const widget = document.getElementById('personalized-widget');
+      if (widget) {
+        widget.style.opacity = '0';
+        widget.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+          widget.classList.add('hidden');
+        }, 300);
+      }
+
+      // Remember dismissal for this session
+      sessionStorage.setItem('elmex_recommendations_dismissed', 'true');
+    });
+
+    // Don't show if dismissed this session
+    if (sessionStorage.getItem('elmex_recommendations_dismissed')) {
+      const widget = document.getElementById('personalized-widget');
+      widget?.classList.add('hidden');
+    }
+  });
+
+  // Export tracking function for use in other pages
+  (window as any).trackElmexProductView = trackProductView;
+</script>
+
+<style>
+  #personalized-widget {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .recommendation-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .recommendation-card:hover {
+    transform: translateY(-4px);
+  }
+</style>

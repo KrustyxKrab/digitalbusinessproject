@@ -1,0 +1,674 @@
+================================================================================
+                    ELMEX WEBSITE PROTOTYPE - COMPLETE CONTEXT
+================================================================================
+
+PROJECT OVERVIEW
+----------------
+Project Name: elmex-prototype
+Type: Digital Business Project (Leuphana University - Semester 5)
+Framework: Astro v5.16.6
+Purpose: Prototype website for elmex dental care brand
+Language: German (de)
+Domain: https://elmex.de
+
+
+BRAND IDENTITY
+--------------
+Brand: elmex
+Tagline: "Wissenschaftlich fundierte Zahngesundheit für die ganze Familie"
+Founding Year: 1962
+Parent Organization: Colgate-Palmolive
+Unique Selling Proposition: Aminfluorid-based dental care products with
+                             scientifically proven cavity protection
+
+
+BRAND VALUES & POSITIONING
+--------------------------
+- Scientific credibility (60+ years of research, 500+ studies)
+- German quality (Made in Germany)
+- Dental professional recommendation (#1 recommended by dentists in Germany)
+- Family-oriented (products for all ages)
+- Sustainable production
+- Clinical testing and proven efficacy
+
+
+CORPORATE DESIGN SYSTEM
+-----------------------
+
+Color Palette:
+Primary Brand Colors:
+  - elmex Orange: #FF6000 (main brand color)
+  - elmex White: #FFFFFF
+
+Product Line Colors:
+  - Sensitive: #00A98F (turquoise/teal)
+  - Junior: #5BC2E7 (light blue)
+  - Professional: #1D4F91 (dark blue)
+
+Neutral Colors:
+  - Gray 100: #F9F9F9
+  - Gray 200: #EDEDED
+  - Gray 500: #9E9E9E
+  - Gray 800: #4A4A4A
+  - Black: #222222
+
+Functional Colors:
+  - Success: #28A745
+  - Warning: #FFC107
+  - Error: #DC3545
+
+Typography:
+  - Primary Font: 'Jost' (sans-serif for body text)
+  - Heading Font: 'Titillium Web' (for headlines)
+  - Fallbacks: Helvetica Neue, Helvetica, Arial, sans-serif
+
+Spacing System:
+  - xs: 4px
+  - sm: 8px
+  - md: 16px
+  - lg: 32px
+  - xl: 64px
+
+Border Radius:
+  - sm: 4px
+  - md: 8px
+  - pill: 50px (for buttons)
+
+Shadows:
+  - Card: 0 4px 12px rgba(0, 0, 0, 0.08)
+  - Hover: 0 8px 16px rgba(0, 0, 0, 0.12)
+
+
+WEBSITE STRUCTURE
+-----------------
+
+Main Navigation:
+1. Home (/)
+2. Produkte (/produkte)
+3. Wissen (/wissen)
+4. Beratung (/beratung/zahngesundheit-tipps)
+5. Über elmex (/ueber-elmex)
+6. Kontakt (/kontakt)
+
+
+PAGE BREAKDOWN
+--------------
+
+1. HOMEPAGE (/)
+   Purpose: Main landing page with personalized content
+
+   Sections:
+   a) Hero Section
+      - Dynamic content based on user segment (currently: 'family')
+      - Title: "Zahngesundheit für die ganze Familie"
+      - Subtitle: "Wissenschaftlich fundierter Kariesschutz für jedes Alter"
+      - CTAs: "Produkte entdecken", "Zahnpflege-Tipps"
+
+   b) Trust Bar
+      - Von Zahnärzten empfohlen (doctor icon)
+      - Klinisch getestet (flask icon)
+      - Made in Germany (flag icon)
+      - Nachhaltig produziert (leaf icon)
+
+   c) Personalized Product Recommendations
+      Featured Products:
+      - elmex KARIESSCHUTZ (Cavity Protection - Orange)
+      - elmex ZAHNFLEISCH (Gum Care - Red)
+      - elmex SENSITIVE (Sensitive Teeth - Sensitive color)
+
+   d) Interactive Tools Section
+      - Produktfinder (Product Finder) - Orange to Red gradient
+      - Zahngesundheits-Tipps (Dental Health Tips) - Sensitive to Junior gradient
+
+   e) Scientific Credibility
+      - 500+ Studies - Clinical confirmed efficacy
+      - #1 Recommendation - By dentists in Germany
+      - Aminfluorid - Unique formula
+
+   f) Blog Preview
+      Featured Articles:
+      - "Wie entsteht Karies und wie kann man sie verhindern?"
+      - "5 Anzeichen für Zahnfleischprobleme"
+      - "Richtige Zahnpflege von Anfang an"
+
+   Animations:
+   - Smooth scroll-triggered animations
+   - Slide-in effects for hero content
+   - Fade-in animations with delays
+   - Hover effects with lift and scale
+   - Gradient animations
+
+
+2. PRODUCTS PAGE (/produkte)
+   Purpose: Product catalog with filtering
+
+   Product Categories:
+   - Zahnpasta (Toothpaste)
+   - Mundspülung (Mouthwash)
+   - Zahnbürste (Toothbrush)
+
+   Complete Product List (8 products):
+
+   Toothpaste Category:
+   1. elmex KARIESSCHUTZ Zahnpasta
+      - Description: Hocheffektiver Kariesschutz durch Aminfluorid
+      - Benefits: Kariesschutz, Remineralisierung
+      - Gradient: Blue light to Blue
+
+   2. elmex ZAHNFLEISCH Zahnpasta
+      - Description: Stärkt das Zahnfleisch und beugt Entzündungen vor
+      - Benefits: Zahnfleischpflege, Entzündungsschutz
+      - Gradient: Red 300 to Red 500
+
+   3. elmex SENSITIVE Zahnpasta
+      - Description: Sanfter Schutz für empfindliche Zähne
+      - Benefits: Empfindlichkeit, Sanfter Schutz
+      - Gradient: Purple 300 to Purple 500
+
+   4. elmex JUNIOR Zahnpasta
+      - Description: Speziell für Kinder von 6-12 Jahren
+      - Benefits: Kinderzahnpflege, Altersgerecht
+      - Gradient: Yellow 300 to Yellow 500
+
+   Mouthwash Category:
+   5. elmex KARIESSCHUTZ Mundspülung
+      - Description: Ergänzender Schutz für die tägliche Zahnpflege
+      - Benefits: Kariesschutz, Frischer Atem
+      - Gradient: Cyan 300 to Cyan 500
+
+   6. elmex SENSITIVE Mundspülung
+      - Description: Sanfte Pflege für empfindliche Zähne
+      - Benefits: Empfindlichkeit, Sanfte Pflege
+      - Gradient: Indigo 300 to Indigo 500
+
+   Toothbrush Category:
+   7. elmex InterX Zahnbürste
+      - Description: Tiefenreinigung für schwer erreichbare Stellen
+      - Benefits: Tiefenreinigung, Zahnzwischenräume
+      - Gradient: Green 300 to Green 500
+
+   8. elmex SENSITIVE Zahnbürste
+      - Description: Extra weiche Borsten für empfindliche Zähne
+      - Benefits: Empfindlichkeit, Weiche Borsten
+      - Gradient: Pink 300 to Pink 500
+
+   Features:
+   - Category filter (Alle, Zahnpasta, Mundspülung, Zahnbürste)
+   - Sort options (Beliebt, Neu, A-Z, Z-A)
+   - Quick view on hover
+   - Product recommendations CTA
+
+   FAQ Section:
+   Q: Was macht Aminfluorid so besonders?
+   A: Forms protective layer, more effective than conventional sodium fluoride
+
+   Q: Ab welchem Alter können Kinder elmex Produkte verwenden?
+   A: Special products for different age groups, from first tooth onwards
+
+   Q: Kann ich verschiedene elmex Produkte kombinieren?
+   A: Yes, products are coordinated and can be optimally combined
+
+
+3. DENTAL HEALTH TIPS PAGE (/beratung/zahngesundheit-tipps)
+   Purpose: Educational content about dental care
+
+   Quick Stats Bar:
+   - 2x täglich putzen (brush twice daily)
+   - 2min pro Putzvorgang (2 minutes per brushing)
+   - 1x täglich Zahnseide (daily floss)
+   - 2x Zahnarzt pro Jahr (dentist twice yearly)
+
+   Six Tip Categories:
+
+   1. Putztechnik (Brushing Technique) - Blue
+      - Brush 2x daily for 2 minutes
+      - Use gentle circular motions
+      - Angle brush 45° to gum line
+      - Don't forget inner surfaces and chewing surfaces
+      - Brush your tongue
+
+   2. Ernährung (Nutrition) - Green
+      - Reduce sugary snacks and drinks
+      - Eat calcium-rich foods (milk, cheese)
+      - Drink water instead of soft drinks
+      - Enjoy sweets right after main meals
+      - Chew sugar-free gum for saliva production
+
+   3. Fluorid (Fluoride) - Purple
+      - Use fluoridated toothpaste (1450 ppm)
+      - Additionally use fluoride mouthwash
+      - Spit out toothpaste but don't rinse immediately
+      - For children: use age-appropriate fluoride toothpaste
+      - Ask dentist about fluoride varnish
+
+   4. Zahnzwischenräume (Interdental Spaces) - Pink
+      - Use dental floss daily
+      - Alternative: interdental brushes for larger spaces
+      - Guide floss gently in C-shape
+      - Clean each space individually
+      - Use water flossers as supplement
+
+   5. Zahnarztbesuche (Dental Visits) - Orange
+      - Visit dentist at least 2x yearly
+      - Get professional cleanings
+      - Speak openly about complaints
+      - Use early detection examinations
+      - Schedule appointments in advance
+
+   6. Zahnfleischpflege (Gum Care) - Red
+      - Watch for bleeding gums as warning sign
+      - Gently massage your gums
+      - Use special gum care products
+      - Avoid aggressive brushing
+      - For inflammation: see dentist immediately
+
+   Daily Routines:
+
+   Morning Routine:
+   1. Breakfast (healthy, tooth-friendly)
+   2. Wait 30 minutes (for acidic foods)
+   3. Brush teeth (2 minutes with fluoride toothpaste)
+   4. Mouthwash (optional, for extra protection)
+
+   Evening Routine:
+   1. Use dental floss (clean all interdental spaces)
+   2. Brush teeth (2 minutes, all surfaces)
+   3. Mouthwash (for overnight protection)
+   4. No more eating or drinking (except water)
+
+   FAQ Section:
+   Q: Wie lange sollte ich wirklich Zähne putzen?
+   A: At least 2 minutes, most people only brush 45-70 seconds
+
+   Q: Ist elektrische Zahnbürste besser als manuelle?
+   A: Can remove up to 21% more plaque, but technique is most important
+
+   Q: Wann sollte ich die Zahnbürste wechseln?
+   A: Every 3 months or when bristles are frayed, after illness
+
+   Q: Ist Zahnseide wirklich notwendig?
+   A: Yes! Toothbrush only reaches 60% of tooth surfaces
+
+
+4. KNOWLEDGE/BLOG SECTION (/wissen/[slug])
+   Purpose: Educational articles about dental health
+
+   Content Collection Schema:
+   - Title, subtitle
+   - Category (e.g., Kariesschutz, Zahnfleischpflege, Kinderzahnpflege)
+   - Author (name, role, image)
+   - Publish date, updated date
+   - Reading time
+   - Featured image
+   - Excerpt
+   - Tags
+   - Featured flag
+
+
+5. INDIVIDUAL PRODUCT PAGES (/produkte/[slug])
+   Purpose: Detailed product information
+
+   Product Schema includes:
+   - Name, subtitle, slug
+   - Category
+   - Description
+   - Price (optional)
+   - Rating and review count (optional)
+   - Benefits list
+   - Ingredients with descriptions (optional)
+   - Usage instructions (optional)
+   - Target audience
+   - Scientific evidence (optional)
+   - Color gradient
+   - Featured flag
+
+
+FOOTER STRUCTURE
+----------------
+Column 1 - About:
+  - elmex brand description
+  - "Wissenschaftlich fundierte Zahngesundheit für die ganze Familie seit 1962"
+
+Column 2 - Produkte:
+  - Alle Produkte
+  - Zahnpasta
+  - Mundspülung
+  - Zahnbürste
+
+Column 3 - Wissen:
+  - Alle Artikel
+  - Zahngesundheits-Tipps
+  - FAQ
+
+Column 4 - Kontakt:
+  - Über elmex
+  - Kontakt
+  - Impressum
+  - Datenschutz
+
+Footer Bottom:
+  - Copyright notice
+  - "© [Year] elmex - Eine Marke von Colgate-Palmolive. Alle Rechte vorbehalten."
+
+
+TECHNICAL STACK
+---------------
+
+Core Technologies:
+- Astro 5.16.6 (Static Site Generator)
+- Tailwind CSS 3.4.1 (Styling)
+- TypeScript (Type safety)
+
+Dependencies:
+- @astrojs/mdx: 4.3.13 (Markdown/MDX support)
+- @astrojs/sitemap: 3.6.0 (SEO)
+- @astrojs/tailwind: 6.0.2 (Tailwind integration)
+- astro-icon: 1.1.5 (Icon system using MDI icons)
+- @iconify-json/mdi: 1.2.3 (Material Design Icons)
+- @iconify/json: 2.2.423 (Icon collections)
+- schema-dts: 1.1.5 (TypeScript types for Schema.org)
+
+Development Server:
+- localhost:4321
+
+Build Output:
+- ./dist/
+
+Content Collections:
+- produkte (type: 'data') - Product information
+- wissen (type: 'content') - Knowledge base articles
+
+
+SEO & STRUCTURED DATA
+---------------------
+
+Meta Tags:
+- Title format: "[Page Title] | elmex"
+- Description (default): "Wissenschaftlich fundierte Zahngesundheit für die ganze Familie - elmex"
+- Open Graph tags (Facebook)
+- Twitter Card tags
+- Canonical URLs
+
+Schema.org Markup:
+1. Organization Schema
+   - Name: elmex
+   - URL: https://elmex.de
+   - Founding Date: 1962
+   - Parent Organization: Colgate-Palmolive
+   - Contact Point: +49-40-27174-0
+
+2. WebPage Schema
+   - Applied to all main pages
+
+3. CollectionPage Schema
+   - Applied to product listing page
+
+4. FAQPage Schema
+   - Applied to pages with FAQ sections
+
+
+ANIMATION SYSTEM
+----------------
+
+Animation Classes:
+- will-animate: Prepares element for animation
+- animate-slide-in-left: Slides content from left
+- animate-slide-in-right: Slides content from right
+- animate-fade-in: Fades in content
+- animate-fade-in-up: Fades in while moving up
+- scroll-animate: Triggers on scroll
+- hover-lift: Lifts element on hover
+- hover-scale: Scales element on hover
+- gradient-animate: Animates gradient backgrounds
+
+Timing:
+- Base transition: 300ms
+- Timing function: cubic-bezier(0.4, 0, 0.2, 1)
+- Delays: Staggered animations use 100-300ms delays
+
+Intersection Observer:
+- Threshold: 0.1
+- Root margin: 0px 0px -100px 0px (triggers before fully visible)
+
+
+INTERACTION FEATURES
+-------------------
+
+1. Smooth Scrolling
+   - Anchor link navigation
+   - Behavior: smooth
+   - Block: start
+
+2. Hover Effects
+   - Card elevation changes
+   - Color transitions
+   - Icon animations (rotate, scale, translate)
+   - Product quick view overlays
+
+3. Mobile Menu
+   - Hamburger icon toggle
+   - Hidden on desktop (md breakpoint)
+
+4. Collapsible Details/FAQ
+   - Accordion-style FAQ sections
+   - Rotating chevron indicators
+
+5. Interactive Filters
+   - Category selection
+   - Sort options
+   - Visual feedback on selection
+
+
+USER SEGMENTS
+-------------
+Current implementation supports user segmentation:
+- Family (default)
+- Potentially extendable for other segments
+
+
+CALL-TO-ACTION HIERARCHY
+-------------------------
+
+Primary CTAs:
+- "Produkte entdecken" (Discover Products)
+- "Produktfinder starten" (Start Product Finder)
+- "Zum Produktfinder" (To Product Finder)
+
+Secondary CTAs:
+- "Zahnpflege-Tipps" (Dental Care Tips)
+- "Tipps ansehen" (View Tips)
+- "Mehr erfahren" (Learn More)
+- "Weiterlesen" (Read More)
+- "Alle Artikel" (All Articles)
+
+Tertiary CTAs:
+- Product detail links
+- Navigation links
+- Footer links
+
+
+CONTENT STRATEGY
+----------------
+
+Tone of Voice:
+- Professional but accessible
+- Science-backed but easy to understand
+- Family-friendly
+- Trustworthy and authoritative
+- Educational focus
+
+Key Messages:
+1. Scientific credibility
+2. Aminfluorid effectiveness
+3. Dentist recommendations
+4. Family-oriented solutions
+5. German quality
+6. 60+ years of research
+
+Content Types:
+- Product information
+- Educational articles
+- Dental health tips
+- FAQ sections
+- Trust signals
+- User testimonials (potential)
+
+
+ACCESSIBILITY CONSIDERATIONS
+----------------------------
+- Semantic HTML structure
+- ARIA labels where needed
+- Keyboard navigation support
+- Color contrast ratios
+- Font scaling support
+- Alt text for images (to be implemented)
+- Screen reader friendly
+
+
+RESPONSIVE DESIGN
+-----------------
+
+Breakpoints (Tailwind defaults):
+- sm: 640px
+- md: 768px
+- lg: 1024px
+- xl: 1280px
+- 2xl: 1536px
+
+Mobile-First Approach:
+- Base styles for mobile
+- Progressive enhancement for larger screens
+- Hidden mobile menu above md breakpoint
+- Responsive grid layouts (1, 2, 3, 4 columns)
+
+
+PLACEHOLDERS & TODO ITEMS
+--------------------------
+Current placeholders requiring actual content:
+- Hero visual placeholder
+- Product images
+- Article images
+- Illustration placeholders
+- Favicon (favicon.svg)
+- OG image (og-image.jpg)
+- Logo (logo.svg)
+
+
+PLANNED/INCOMPLETE FEATURES
+---------------------------
+Based on links and references in the code:
+- /beratung/produktfinder (Product Finder tool)
+- /beratung/zahngesundheit-check (Dental Health Check)
+- /ueber-elmex (About elmex page)
+- /kontakt (Contact page)
+- /impressum (Legal notice)
+- /datenschutz (Privacy policy)
+- /faq (FAQ page)
+- Individual knowledge article pages
+- Interactive filters functionality
+- Mobile menu functionality
+- Quick view product overlays
+
+
+PROJECT COMMANDS
+----------------
+npm install          - Install dependencies
+npm run dev          - Start development server at localhost:4321
+npm run build        - Build production site to ./dist/
+npm run preview      - Preview production build locally
+npm run astro ...    - Run Astro CLI commands
+
+
+BRAND GUIDELINES COMPLIANCE
+---------------------------
+The website implements elmex corporate design including:
+- Official color palette
+- Typography hierarchy
+- Spacing system
+- Component styling
+- Brand messaging
+- Professional photography placeholders
+- Consistent visual language
+
+
+PERFORMANCE CONSIDERATIONS
+--------------------------
+- Static site generation for fast loading
+- Image optimization (to be implemented)
+- CSS purging via Tailwind
+- Component-based architecture
+- Lazy loading for animations
+- Minimal JavaScript footprint
+
+
+FUTURE ENHANCEMENTS
+-------------------
+Potential additions based on structure:
+- User authentication
+- Personalization engine
+- E-commerce integration
+- Product reviews and ratings
+- Interactive product finder quiz
+- Dental health assessment tool
+- Newsletter subscription
+- Social media integration
+- Video content
+- Professional area for dentists
+- Kids corner with gamification
+
+
+FILE STRUCTURE
+--------------
+/
+├── src/
+│   ├── content/
+│   │   ├── config.ts          (Content collection schemas)
+│   │   ├── produkte/          (Product data)
+│   │   └── wissen/            (Knowledge articles)
+│   ├── layouts/
+│   │   └── BaseLayout.astro   (Main layout template)
+│   ├── pages/
+│   │   ├── index.astro        (Homepage)
+│   │   ├── beratung/
+│   │   │   └── zahngesundheit-tipps.astro
+│   │   ├── produkte/
+│   │   │   ├── index.astro    (Product listing)
+│   │   │   └── [slug].astro   (Product detail)
+│   │   └── wissen/
+│   │       └── [slug].astro   (Article detail)
+│   └── styles/
+│       └── global.css         (Global styles)
+├── public/                     (Static assets)
+├── package.json
+├── tailwind.config.mjs
+├── tsconfig.json
+└── astro.config.mjs
+
+
+KEY SCIENTIFIC CLAIMS
+---------------------
+- 500+ clinical studies
+- 60+ years of research
+- #1 dentist recommendation in Germany
+- Aminfluorid more effective than sodium fluoride
+- Clinically tested products
+- Forms protective layer on teeth
+- Remineralizes tooth enamel
+- 21% more plaque removal (electric vs manual brush)
+- 40% of cavities start in interdental spaces
+
+
+CONTACT INFORMATION
+-------------------
+Phone: +49-40-27174-0
+Contact Type: Customer service
+Available Language: German
+
+
+================================================================================
+                              END OF CONTEXT FILE
+================================================================================
+
+Last Updated: 2026-01-03
+Document Version: 1.0
+Created for: Digital Business Project, Leuphana University

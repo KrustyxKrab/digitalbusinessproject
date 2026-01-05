@@ -1,0 +1,239 @@
+---
+/**
+ * Cookie Consent Banner
+ * GDPR-compliant cookie consent management
+ */
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t-2 border-primary p-6 z-[100] hidden transform transition-transform duration-300"
+  role="dialog"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-description"
+>
+  <div class="container mx-auto max-w-6xl">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="flex-1">
+        <h3 id="cookie-consent-title" class="font-brand font-semibold text-lg mb-2 text-neutral-900">
+          Cookie-Einstellungen
+        </h3>
+        <p id="cookie-consent-description" class="text-sm text-neutral-600">
+          Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Nur notwendige Cookies werden standardmäßig gespeichert.
+          <a href="/datenschutz" class="text-primary hover:underline ml-1">Mehr erfahren</a>
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+        <button
+          id="cookie-customize"
+          class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-200:bg-neutral-600 transition-colors rounded-lg"
+        >
+          Anpassen
+        </button>
+        <button
+          id="cookie-reject"
+          class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors rounded-lg"
+        >
+          Nur Notwendige
+        </button>
+        <button
+          id="cookie-accept"
+          class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-lg"
+        >
+          Alle akzeptieren
+        </button>
+      </div>
+    </div>
+
+    <!-- Cookie Details (Initially Hidden) -->
+    <div id="cookie-details" class="hidden mt-6 pt-6 border-t border-neutral-200">
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Essential Cookies -->
+        <div class="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="cookie-essential"
+            checked
+            disabled
+            class="mt-1 w-4 h-4 text-primary rounded"
+          />
+          <div class="flex-1">
+            <label for="cookie-essential" class="font-medium text-sm text-neutral-900 cursor-not-allowed">
+              Notwendige Cookies (erforderlich)
+            </label>
+            <p class="text-xs text-neutral-600 mt-1">
+              Ermöglichen grundlegende Funktionen wie Sprachwahl, Dark Mode und Sicherheit.
+            </p>
+          </div>
+        </div>
+
+        <!-- Analytics Cookies -->
+        <div class="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="cookie-analytics"
+            class="mt-1 w-4 h-4 text-primary rounded cursor-pointer"
+          />
+          <div class="flex-1">
+            <label for="cookie-analytics" class="font-medium text-sm text-neutral-900 cursor-pointer">
+              Analytische Cookies (optional)
+            </label>
+            <p class="text-xs text-neutral-600 mt-1">
+              Helfen uns zu verstehen, wie Sie unsere Website nutzen (Google Analytics).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 mt-6">
+        <button
+          id="cookie-save-preferences"
+          class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-lg"
+        >
+          Einstellungen speichern
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cookie Consent Logic
+  const COOKIE_CONSENT_KEY = 'elmex_cookie_consent';
+  const COOKIE_PREFERENCES_KEY = 'elmex_cookie_preferences';
+
+  interface CookiePreferences {
+    essential: boolean;
+    analytics: boolean;
+    timestamp: number;
+  }
+
+  function getCookieConsent(): CookiePreferences | null {
+    const stored = localStorage.getItem(COOKIE_PREFERENCES_KEY);
+    return stored ? JSON.parse(stored) : null;
+  }
+
+  function setCookieConsent(preferences: CookiePreferences) {
+    localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(preferences));
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'true');
+
+    // Apply preferences
+    if (preferences.analytics) {
+      enableAnalytics();
+    } else {
+      disableAnalytics();
+    }
+  }
+
+  function enableAnalytics() {
+    // Enable Google Analytics or other analytics tools
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
+    }
+    console.log('Analytics enabled');
+  }
+
+  function disableAnalytics() {
+    // Disable analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied'
+      });
+    }
+    console.log('Analytics disabled');
+  }
+
+  function showCookieBanner() {
+    const banner = document.getElementById('cookie-consent');
+    if (banner) {
+      banner.classList.remove('hidden');
+      setTimeout(() => {
+        banner.style.transform = 'translateY(0)';
+      }, 100);
+    }
+  }
+
+  function hideCookieBanner() {
+    const banner = document.getElementById('cookie-consent');
+    if (banner) {
+      banner.style.transform = 'translateY(100%)';
+      setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 300);
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const consent = getCookieConsent();
+
+    // Show banner if no consent exists
+    if (!consent) {
+      showCookieBanner();
+    } else {
+      // Apply saved preferences
+      if (consent.analytics) {
+        enableAnalytics();
+      }
+    }
+
+    // Accept all cookies
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      setCookieConsent({
+        essential: true,
+        analytics: true,
+        timestamp: Date.now()
+      });
+      hideCookieBanner();
+    });
+
+    // Reject optional cookies
+    document.getElementById('cookie-reject')?.addEventListener('click', () => {
+      setCookieConsent({
+        essential: true,
+        analytics: false,
+        timestamp: Date.now()
+      });
+      hideCookieBanner();
+    });
+
+    // Show cookie details
+    document.getElementById('cookie-customize')?.addEventListener('click', () => {
+      const details = document.getElementById('cookie-details');
+      details?.classList.toggle('hidden');
+    });
+
+    // Save custom preferences
+    document.getElementById('cookie-save-preferences')?.addEventListener('click', () => {
+      const analyticsCheckbox = document.getElementById('cookie-analytics') as HTMLInputElement;
+
+      setCookieConsent({
+        essential: true,
+        analytics: analyticsCheckbox?.checked || false,
+        timestamp: Date.now()
+      });
+      hideCookieBanner();
+    });
+  });
+</script>
+
+<style>
+  #cookie-consent {
+    transform: translateY(100%);
+  }
+
+  #cookie-consent:not(.hidden) {
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,447 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Plus, Trash2, Clock, Package, Save, ArrowLeft } from '@lucide/astro';
+---
+
+<Layout
+  title="Routine Builder | Mein elmex"
+  description="Erstellen Sie Ihre personalisierte Zahnpflege-Routine"
+>
+  <!-- Header -->
+  <section class="bg-gradient-to-br from-primary/5 to-primary/10 py-8">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/dashboard" class="inline-flex items-center gap-2 text-neutral-600 hover:text-neutral-900 mb-4 transition-colors">
+          <ArrowLeft class="w-4 h-4" />
+          Zurück zum Dashboard
+        </a>
+        <h1 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-2">
+          Ihre persönliche Routine
+        </h1>
+        <p class="text-neutral-600">
+          Passen Sie Ihre Morgen- und Abendroutine individuell an
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Morning Routine -->
+      <div class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </div>
+            <h2 class="text-2xl font-brand font-bold text-neutral-900">
+              Morgenroutine
+            </h2>
+          </div>
+          <button
+            id="add-morning-step"
+            class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 rounded-full transition-colors"
+          >
+            <Plus class="w-4 h-4" />
+            Schritt hinzufügen
+          </button>
+        </div>
+
+        <div id="morning-routine-steps" class="space-y-4">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Evening Routine -->
+      <div class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+            </div>
+            <h2 class="text-2xl font-brand font-bold text-neutral-900">
+              Abendroutine
+            </h2>
+          </div>
+          <button
+            id="add-evening-step"
+            class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 rounded-full transition-colors"
+          >
+            <Plus class="w-4 h-4" />
+            Schritt hinzufügen
+          </button>
+        </div>
+
+        <div id="evening-routine-steps" class="space-y-4">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="flex justify-center gap-4">
+        <button
+          id="save-routine"
+          class="flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors font-medium shadow-lg hover:shadow-xl"
+        >
+          <Save class="w-5 h-5" />
+          Routine speichern
+        </button>
+      </div>
+
+      <!-- Success Message -->
+      <div id="save-success" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl text-center">
+        <p class="text-green-800 font-medium">
+          Ihre Routine wurde erfolgreich gespeichert!
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  interface RoutineStep {
+    id: string;
+    action: string;
+    duration?: number; // in minutes
+    product?: string;
+    time?: string; // optional time like "7:00"
+  }
+
+  interface Routine {
+    morning: RoutineStep[];
+    evening: RoutineStep[];
+  }
+
+  // Available products
+  const availableProducts = [
+    { id: 'kariesschutz', name: 'elmex KARIESSCHUTZ Zahnpasta' },
+    { id: 'sensitive', name: 'elmex SENSITIVE Zahnpasta' },
+    { id: 'zahnfleisch', name: 'elmex ZAHNFLEISCH Zahnpasta' },
+    { id: 'mundspuelung-karies', name: 'elmex KARIESSCHUTZ Mundspülung' },
+    { id: 'mundspuelung-sensitive', name: 'elmex SENSITIVE Mundspülung' },
+    { id: 'zahnseide', name: 'elmex Zahnseide' },
+    { id: 'zahnbuerste-interx', name: 'elmex InterX Zahnbürste' },
+    { id: 'zahnbuerste-sensitive', name: 'elmex SENSITIVE Zahnbürste' }
+  ];
+
+  // Common routine steps
+  const commonSteps = [
+    { action: 'Zähne putzen', duration: 2, defaultProduct: 'kariesschutz' },
+    { action: 'Zahnseide verwenden', duration: 2 },
+    { action: 'Mundspülung', duration: 1, defaultProduct: 'mundspuelung-karies' },
+    { action: 'Zungenreinigung', duration: 1 },
+    { action: 'Zwischenräume reinigen', duration: 2 }
+  ];
+
+  let routine: Routine = {
+    morning: [],
+    evening: []
+  };
+
+  // Load routine from localStorage
+  function loadRoutine() {
+    const saved = localStorage.getItem('elmex-routine');
+    if (saved) {
+      routine = JSON.parse(saved);
+    } else {
+      // Default routine
+      routine = {
+        morning: [
+          { id: '1', action: 'Zähne putzen', duration: 2, product: 'kariesschutz' },
+          { id: '2', action: 'Zahnseide verwenden', duration: 2 },
+          { id: '3', action: 'Mundspülung', duration: 1, product: 'mundspuelung-karies' }
+        ],
+        evening: [
+          { id: '4', action: 'Zähne putzen', duration: 2, product: 'kariesschutz' },
+          { id: '5', action: 'Zahnseide verwenden', duration: 2 },
+          { id: '6', action: 'Mundspülung', duration: 1, product: 'mundspuelung-sensitive' }
+        ]
+      };
+    }
+    renderRoutine();
+  }
+
+  // Render routine
+  function renderRoutine() {
+    renderRoutineSection('morning', routine.morning);
+    renderRoutineSection('evening', routine.evening);
+  }
+
+  function renderRoutineSection(type: 'morning' | 'evening', steps: RoutineStep[]) {
+    const container = document.getElementById(`${type}-routine-steps`);
+    if (!container) return;
+
+    container.innerHTML = steps.map((step, index) => `
+      <div class="routine-step bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary/50 transition-all" data-step-id="${step.id}">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center font-semibold text-sm">
+            ${index + 1}
+          </div>
+
+          <div class="flex-1 space-y-4">
+            <!-- Action Input -->
+            <div>
+              <label class="block text-sm font-medium text-neutral-700 mb-2">
+                Aktion
+              </label>
+              <div class="flex gap-2">
+                <input
+                  type="text"
+                  value="${step.action}"
+                  data-field="action"
+                  class="flex-1 px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                  placeholder="z.B. Zähne putzen"
+                />
+                <button class="quick-add-btn p-2 hover:bg-neutral-100 rounded-lg transition-colors" title="Schnellauswahl">
+                  <svg class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Duration and Product Row -->
+            <div class="grid md:grid-cols-2 gap-4">
+              <!-- Duration -->
+              <div>
+                <label class="block text-sm font-medium text-neutral-700 mb-2">
+                  <Clock class="w-4 h-4 inline mr-1" />
+                  Dauer (Minuten)
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  max="10"
+                  value="${step.duration || 2}"
+                  data-field="duration"
+                  class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                />
+              </div>
+
+              <!-- Product -->
+              <div>
+                <label class="block text-sm font-medium text-neutral-700 mb-2">
+                  <Package class="w-4 h-4 inline mr-1" />
+                  Produkt (optional)
+                </label>
+                <select
+                  data-field="product"
+                  class="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-white"
+                >
+                  <option value="">Kein Produkt</option>
+                  ${availableProducts.map(p => `
+                    <option value="${p.id}" ${step.product === p.id ? 'selected' : ''}>
+                      ${p.name}
+                    </option>
+                  `).join('')}
+                </select>
+              </div>
+            </div>
+
+            <!-- Optional Time -->
+            <div>
+              <label class="block text-sm font-medium text-neutral-700 mb-2">
+                Uhrzeit (optional)
+              </label>
+              <input
+                type="time"
+                value="${step.time || ''}"
+                data-field="time"
+                class="px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+              />
+            </div>
+          </div>
+
+          <!-- Delete Button -->
+          <button
+            class="delete-step flex-shrink-0 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+            title="Schritt entfernen"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+
+    // Attach event listeners
+    attachStepListeners(type);
+  }
+
+  function attachStepListeners(type: 'morning' | 'evening') {
+    const container = document.getElementById(`${type}-routine-steps`);
+    if (!container) return;
+
+    // Update step data on input change
+    container.querySelectorAll('.routine-step').forEach((stepEl) => {
+      const stepId = stepEl.getAttribute('data-step-id');
+      const step = routine[type].find(s => s.id === stepId);
+      if (!step) return;
+
+      // Input listeners
+      stepEl.querySelectorAll('input, select').forEach((input) => {
+        input.addEventListener('change', (e) => {
+          const field = (e.target as HTMLElement).getAttribute('data-field');
+          const value = (e.target as HTMLInputElement).value;
+
+          if (field === 'action') step.action = value;
+          else if (field === 'duration') step.duration = parseInt(value);
+          else if (field === 'product') step.product = value || undefined;
+          else if (field === 'time') step.time = value || undefined;
+        });
+      });
+
+      // Delete button
+      const deleteBtn = stepEl.querySelector('.delete-step');
+      deleteBtn?.addEventListener('click', () => {
+        routine[type] = routine[type].filter(s => s.id !== stepId);
+        renderRoutine();
+      });
+
+      // Quick add button (show dropdown)
+      const quickAddBtn = stepEl.querySelector('.quick-add-btn');
+      quickAddBtn?.addEventListener('click', () => {
+        showQuickAddMenu(stepEl, type, stepId);
+      });
+    });
+  }
+
+  function showQuickAddMenu(stepEl: Element, type: 'morning' | 'evening', stepId: string) {
+    // Remove any existing menus
+    document.querySelectorAll('.quick-add-menu').forEach(m => m.remove());
+
+    const menu = document.createElement('div');
+    menu.className = 'quick-add-menu absolute bg-white border-2 border-neutral-200 rounded-xl shadow-xl p-2 z-10 mt-2';
+    menu.style.minWidth = '250px';
+
+    menu.innerHTML = commonSteps.map(s => `
+      <button class="quick-step w-full text-left px-4 py-2 hover:bg-primary/10 rounded-lg transition-colors" data-action="${s.action}" data-duration="${s.duration}" data-product="${s.defaultProduct || ''}">
+        <div class="font-medium text-neutral-900">${s.action}</div>
+        <div class="text-xs text-neutral-600">${s.duration} Min.</div>
+      </button>
+    `).join('');
+
+    const quickAddBtn = stepEl.querySelector('.quick-add-btn');
+    quickAddBtn?.parentElement?.appendChild(menu);
+
+    // Position menu
+    const rect = quickAddBtn?.getBoundingClientRect();
+    if (rect) {
+      menu.style.position = 'fixed';
+      menu.style.left = `${rect.left}px`;
+      menu.style.top = `${rect.bottom + 5}px`;
+    }
+
+    // Handle clicks
+    menu.querySelectorAll('.quick-step').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.getAttribute('data-action') || '';
+        const duration = parseInt(btn.getAttribute('data-duration') || '2');
+        const product = btn.getAttribute('data-product') || undefined;
+
+        const step = routine[type].find(s => s.id === stepId);
+        if (step) {
+          step.action = action;
+          step.duration = duration;
+          if (product) step.product = product;
+          renderRoutine();
+        }
+        menu.remove();
+      });
+    });
+
+    // Close on outside click
+    setTimeout(() => {
+      document.addEventListener('click', function closeMenu(e) {
+        if (!menu.contains(e.target as Node)) {
+          menu.remove();
+          document.removeEventListener('click', closeMenu);
+        }
+      });
+    }, 100);
+  }
+
+  // Add new step
+  function addStep(type: 'morning' | 'evening') {
+    const newStep: RoutineStep = {
+      id: Date.now().toString(),
+      action: '',
+      duration: 2
+    };
+    routine[type].push(newStep);
+    renderRoutine();
+  }
+
+  // Save routine
+  function saveRoutine() {
+    localStorage.setItem('elmex-routine', JSON.stringify(routine));
+
+    // Show success message
+    const successMsg = document.getElementById('save-success');
+    if (successMsg) {
+      successMsg.classList.remove('hidden');
+      successMsg.classList.add('animate-slide-up');
+
+      setTimeout(() => {
+        successMsg.classList.add('hidden');
+      }, 3000);
+    }
+
+    // Trigger animation
+    document.body.classList.add('bling-effect');
+    setTimeout(() => {
+      document.body.classList.remove('bling-effect');
+    }, 500);
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    loadRoutine();
+
+    // Add step buttons
+    document.getElementById('add-morning-step')?.addEventListener('click', () => addStep('morning'));
+    document.getElementById('add-evening-step')?.addEventListener('click', () => addStep('evening'));
+
+    // Save button
+    document.getElementById('save-routine')?.addEventListener('click', saveRoutine);
+  });
+</script>
+
+<style>
+  .routine-step {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .quick-add-menu {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

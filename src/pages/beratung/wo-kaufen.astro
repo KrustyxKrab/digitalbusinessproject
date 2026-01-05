@@ -1,0 +1,380 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { MapPin, ExternalLink, Store, ShoppingCart, Search } from '@lucide/astro';
+
+const retailers = [
+  {
+    name: 'Amazon',
+    logo: '/retailers/amazon.svg',
+    url: 'https://www.amazon.de/s?k=elmex',
+    type: 'online',
+    description: 'Schnelle Lieferung, große Auswahl'
+  },
+  {
+    name: 'dm-drogerie markt',
+    logo: '/retailers/dm.svg',
+    url: 'https://www.dm.de/search?query=elmex',
+    type: 'store',
+    description: 'Über 2.000 Filialen in Deutschland'
+  },
+  {
+    name: 'Rossmann',
+    logo: '/retailers/rossmann.svg',
+    url: 'https://www.rossmann.de/de/search?text=elmex',
+    type: 'store',
+    description: 'Deutschlandweit verfügbar'
+  },
+  {
+    name: 'Müller',
+    logo: '/retailers/mueller.svg',
+    url: 'https://www.mueller.de/suche/?q=elmex',
+    type: 'store',
+    description: 'In Ihrer Nähe'
+  },
+  {
+    name: 'DocMorris',
+    logo: '/retailers/docmorris.svg',
+    url: 'https://www.docmorris.de/elmex',
+    type: 'online',
+    description: 'Online-Apotheke'
+  },
+  {
+    name: 'Shop Apotheke',
+    logo: '/retailers/shop-apotheke.svg',
+    url: 'https://www.shop-apotheke.com/search/?text=elmex',
+    type: 'online',
+    description: 'Versandapotheke'
+  }
+];
+---
+
+<Layout
+  title="Wo kaufen | elmex"
+  description="Finden Sie elmex Produkte in Ihrer Nähe oder online. Verfügbar in Apotheken, Drogeriemärkten und Online-Shops."
+  keywords="elmex kaufen, Händler, Apotheke, dm, Rossmann, Müller, Amazon"
+>
+  <div class="container mx-auto px-4 py-16">
+    <!-- Hero Section -->
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-brand font-bold text-neutral-900 mb-4">
+        Wo Sie elmex kaufen können
+      </h1>
+      <p class="text-lg text-neutral-600 mb-8">
+        elmex Produkte sind deutschlandweit in Apotheken, Drogeriemärkten und online erhältlich
+      </p>
+    </div>
+
+    <!-- Store Locator -->
+    <div class="max-w-2xl mx-auto mb-16 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20">
+      <h2 class="text-2xl md:text-3xl font-brand font-bold mb-4 flex items-center gap-3 text-neutral-900">
+        <MapPin class="w-8 h-8 text-primary flex-shrink-0" />
+        Filiale in Ihrer Nähe finden
+      </h2>
+      <p class="text-neutral-600 mb-6">
+        Geben Sie Ihre Postleitzahl oder Ihren Ort ein, um die nächstgelegenen Geschäfte zu finden
+      </p>
+      <form id="store-locator-form" class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <input
+            type="text"
+            id="location-input"
+            placeholder="PLZ oder Ort eingeben (z.B. 10115 oder Berlin)"
+            class="w-full px-4 py-3 pl-12 rounded-lg border-2 border-neutral-300 bg-white text-neutral-900 focus:border-primary focus:outline-none transition-colors"
+            required
+          />
+          <Search class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+        </div>
+        <button type="submit" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-lg">
+          Suchen
+        </button>
+      </form>
+      <div id="location-results" class="hidden mt-6">
+        <h3 class="font-semibold mb-3 text-neutral-900">Geschäfte in Ihrer Nähe:</h3>
+        <div id="results-container" class="space-y-3">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <div class="flex flex-wrap justify-center gap-3">
+        <button class="filter-btn active" data-filter="all">
+          Alle anzeigen
+        </button>
+        <button class="filter-btn" data-filter="online">
+          <ShoppingCart class="w-4 h-4" />
+          Online
+        </button>
+        <button class="filter-btn" data-filter="store">
+          <Store class="w-4 h-4" />
+          Vor Ort
+        </button>
+      </div>
+    </div>
+
+    <!-- Retailer Grid -->
+    <div class="max-w-5xl mx-auto mb-16">
+      <h2 class="text-2xl md:text-3xl font-brand font-bold text-center mb-8 text-neutral-900">
+        Unsere Handelspartner
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {retailers.map(retailer => (
+          <a
+            href={retailer.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="retailer-card bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary hover:shadow-xl transition-all group"
+            data-type={retailer.type}
+          >
+            <div class="flex flex-col items-center text-center h-full">
+              {/* Logo Placeholder - Replace with actual logos */}
+              <div class="w-full h-20 bg-neutral-100 rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span class="text-2xl font-bold text-neutral-400">{retailer.name.substring(0, 2)}</span>
+              </div>
+              <h3 class="text-lg font-brand font-semibold mb-2 text-neutral-900">{retailer.name}</h3>
+              <p class="text-sm text-neutral-600 mb-4 flex-1">{retailer.description}</p>
+              <div class="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all">
+                <span>Jetzt kaufen</span>
+                <ExternalLink class="w-4 h-4" />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+      <!-- Online Shopping Benefits -->
+      <div class="bg-white rounded-xl p-6 border border-neutral-200">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+            <ShoppingCart class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h3 class="text-xl font-brand font-semibold mb-2 text-neutral-900">Online bestellen</h3>
+            <p class="text-neutral-600 mb-3">
+              Bequem von zu Hause aus einkaufen
+            </p>
+            <ul class="space-y-2 text-sm text-neutral-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Schnelle Lieferung
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Große Produktauswahl
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Bequem nach Hause
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Store Shopping Benefits -->
+      <div class="bg-white rounded-xl p-6 border border-neutral-200">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+            <Store class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h3 class="text-xl font-brand font-semibold mb-2 text-neutral-900">Vor Ort kaufen</h3>
+            <p class="text-neutral-600 mb-3">
+              Persönliche Beratung in Ihrer Nähe
+            </p>
+            <ul class="space-y-2 text-sm text-neutral-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Persönliche Beratung
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Sofort verfügbar
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Keine Versandkosten
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="max-w-3xl mx-auto mt-16 text-center bg-neutral-100 rounded-2xl p-8">
+      <h3 class="text-2xl font-brand font-bold mb-3 text-neutral-900">
+        Nicht sicher, welches Produkt Sie brauchen?
+      </h3>
+      <p class="text-neutral-600 mb-6">
+        Nutzen Sie unseren Produktfinder für eine persönliche Empfehlung
+      </p>
+      <a
+        href="/beratung/produktfinder"
+        class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-full"
+      >
+        Zum Produktfinder
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 2px solid #D4D4D4;
+    color: #525252;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-btn:hover {
+    border-color: #FF6000;
+    color: #FF6000;
+  }
+
+  .filter-btn.active {
+    background-color: #FF6000;
+    color: white;
+    border-color: #FF6000;
+  }
+
+  .retailer-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .retailer-card:hover {
+    transform: translateY(-4px);
+  }
+</style>
+
+<script>
+  // Category filtering
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const retailerCards = document.querySelectorAll('.retailer-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function(this: HTMLElement) {
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter retailers
+        const filter = this.getAttribute('data-filter');
+
+        retailerCards.forEach(card => {
+          const cardType = card.getAttribute('data-type');
+          const htmlCard = card as HTMLElement;
+
+          if (filter === 'all' || cardType === filter) {
+            htmlCard.style.display = 'block';
+            setTimeout(() => {
+              htmlCard.style.opacity = '1';
+              htmlCard.style.transform = 'translateY(0)';
+            }, 10);
+          } else {
+            htmlCard.style.opacity = '0';
+            htmlCard.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+              htmlCard.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+
+    // Store Locator Functionality
+    const storeLocatorForm = document.getElementById('store-locator-form');
+    const locationInput = document.getElementById('location-input') as HTMLInputElement;
+    const locationResults = document.getElementById('location-results');
+    const resultsContainer = document.getElementById('results-container');
+
+    storeLocatorForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const location = locationInput.value.trim();
+
+      if (!location) {
+        alert('Bitte geben Sie eine Postleitzahl oder einen Ort ein');
+        return;
+      }
+
+      // Show loading state
+      if (resultsContainer) {
+        resultsContainer.innerHTML = '<p class="text-neutral-600">Suche nach Geschäften...</p>';
+      }
+      locationResults?.classList.remove('hidden');
+
+      // Simulate API call (in real implementation, would call Google Places API or similar)
+      setTimeout(() => {
+        // Mock results
+        const mockStores = [
+          { name: 'dm-drogerie markt', address: 'Hauptstraße 123, ' + location, distance: '0.5 km', url: 'https://www.dm.de' },
+          { name: 'Rossmann', address: 'Bahnhofstraße 45, ' + location, distance: '1.2 km', url: 'https://www.rossmann.de' },
+          { name: 'Müller', address: 'Marktplatz 7, ' + location, distance: '1.8 km', url: 'https://www.mueller.de' }
+        ];
+
+        if (resultsContainer) {
+          resultsContainer.innerHTML = mockStores.map(store => `
+            <div class="bg-white rounded-lg p-4 border border-neutral-200 flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <h4 class="font-semibold text-neutral-900">${store.name}</h4>
+                <p class="text-sm text-neutral-600 mt-1">${store.address}</p>
+                <p class="text-xs text-primary font-medium mt-2">📍 ${store.distance} entfernt</p>
+              </div>
+              <a
+                href="${store.url}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-shrink-0 px-4 py-2 text-sm font-medium text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors rounded-lg"
+              >
+                Details
+              </a>
+            </div>
+          `).join('');
+        }
+
+        // Track search
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'store_locator_search', {
+            'search_term': location
+          });
+        }
+      }, 1000);
+    });
+
+    // Get product from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+
+    if (product) {
+      // Highlight that user is looking for a specific product
+      const heroSection = document.querySelector('.max-w-4xl.mx-auto.text-center.mb-16 p');
+      if (heroSection) {
+        heroSection.innerHTML = `Sie suchen nach: <strong class="text-primary">${decodeURIComponent(product)}</strong><br>Hier finden Sie alle Händler:`;
+      }
+    }
+  });
+</script>

@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Home",
+		"url": "/"
+	},
+	{
+		"name": "Produkte",
+		"url": "/produkte"
+	},
+	{
+		"name": "Wissen",
+		"url": "/wissen"
+	},
+	{
+		"name": "Beratung",
+		"url": "/beratung/zahngesundheit-tipps"
+	},
+	{
+		"name": "Dashboard",
+		"url": "/dashboard"
+	},
+	{
+		"name": "Über elmex",
+		"url": "/ueber-elmex"
+	},
+	{
+		"name": "Kontakt",
+		"url": "/kontakt"
+	}
+]

@@ -1,0 +1,250 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getTimeBasedGreeting, quizFlow } from "@/components/onboarding/quiz-config";
+
+const greeting = getTimeBasedGreeting();
+---
+
+<Layout
+  title="Willkommen bei elmex | Onboarding"
+  description="Finde die perfekten Produkte für deine Zahngesundheit"
+>
+  <div class="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 py-12 px-4">
+    <div class="max-w-2xl mx-auto">
+      <!-- Greeting -->
+      <div id="greeting-section" class="text-center mb-8 animate-fade-in">
+        <h1 class="text-4xl md:text-5xl font-brand font-bold gradient-title mb-4">
+          {greeting}
+        </h1>
+        <p class="text-lg text-neutral-600">
+          Lass uns gemeinsam die perfekte Zahnpflege für dich finden.
+        </p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div id="progress-section" class="mb-8">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-neutral-600">
+            Schritt <span id="current-step">1</span>
+          </span>
+          <span class="text-sm font-medium text-neutral-600">
+            <span id="progress-percent">0</span>%
+          </span>
+        </div>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Quiz Container -->
+      <div id="quiz-container" class="animate-slide-up">
+        <!-- Dynamically populated by JavaScript -->
+      </div>
+
+      <!-- Results Container (Hidden initially) -->
+      <div id="results-container" class="hidden">
+        <!-- Results will be shown here -->
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { quizFlow, getNextQuestion } from '../components/onboarding/quiz-config';
+
+  interface QuizAnswer {
+    questionId: string;
+    answer: string | string[];
+    timestamp: Date;
+  }
+
+  let currentQuestionId = 'start';
+  let answers: QuizAnswer[] = [];
+
+  // Initialize quiz
+  document.addEventListener('DOMContentLoaded', () => {
+    renderQuestion(currentQuestionId);
+  });
+
+  function renderQuestion(questionId: string) {
+    const question = quizFlow[questionId];
+    if (!question) return;
+
+    const container = document.getElementById('quiz-container');
+    if (!container) return;
+
+    // Update progress
+    updateProgress();
+
+    // Render question
+    container.innerHTML = `
+      <div class="card">
+        <div class="mb-8">
+          <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-2">
+            ${question.question}
+          </h2>
+        </div>
+
+        <div class="space-y-3" id="options-container">
+          ${question.options?.map(option => `
+            <button
+              data-value="${option.value}"
+              class="quiz-option w-full p-6 rounded-xl text-left transition-all transform border-2 hover:border-primary hover:shadow-lg hover:scale-[1.02] border-neutral-200 bg-white"
+              onclick="handleAnswer('${option.value}', '${question.type}')"
+            >
+              <div class="flex items-center gap-4">
+                ${option.icon ? `<span class="text-4xl transition-transform">${option.icon}</span>` : ''}
+                <div class="flex-1">
+                  <div class="font-semibold text-neutral-900">${option.label}</div>
+                  ${option.description ? `<div class="text-sm text-neutral-600 mt-1">${option.description}</div>` : ''}
+                </div>
+              </div>
+            </button>
+          `).join('') || ''}
+        </div>
+
+        <div class="flex justify-between mt-8">
+          ${answers.length > 0 ? `
+            <button
+              onclick="handleBack()"
+              class="px-6 py-3 text-neutral-600 hover:text-neutral-900 font-medium transition-colors"
+            >
+              ← Zurück
+            </button>
+          ` : '<div></div>'}
+        </div>
+      </div>
+    `;
+  }
+
+  (window as any).handleAnswer = function(value: string, type: string) {
+    // Save answer
+    const newAnswer: QuizAnswer = {
+      questionId: currentQuestionId,
+      answer: value,
+      timestamp: new Date()
+    };
+    answers.push(newAnswer);
+
+    // Add visual feedback
+    const button = document.querySelector(`[data-value="${value}"]`);
+    button?.classList.add('bling-effect', 'border-primary', 'bg-orange-50');
+
+    // Get next question
+    setTimeout(() => {
+      const nextId = getNextQuestion(currentQuestionId, value);
+
+      if (!nextId || nextId === 'results') {
+        showResults();
+      } else {
+        currentQuestionId = nextId;
+        renderQuestion(currentQuestionId);
+      }
+    }, 400);
+  };
+
+  (window as any).handleBack = function() {
+    if (answers.length === 0) return;
+
+    const lastAnswer = answers.pop();
+    if (lastAnswer) {
+      currentQuestionId = lastAnswer.questionId;
+      renderQuestion(currentQuestionId);
+    }
+  };
+
+  function updateProgress() {
+    const totalQuestions = Object.keys(quizFlow).length;
+    const progress = (answers.length / totalQuestions) * 100;
+
+    const progressFill = document.getElementById('progress-fill');
+    const currentStepEl = document.getElementById('current-step');
+    const progressPercent = document.getElementById('progress-percent');
+
+    if (progressFill) progressFill.style.width = `${progress}%`;
+    if (currentStepEl) currentStepEl.textContent = (answers.length + 1).toString();
+    if (progressPercent) progressPercent.textContent = Math.round(progress).toString();
+  }
+
+  function showResults() {
+    // Calculate health score
+    const healthScore = calculateHealthScore(answers);
+
+    // Save to localStorage
+    const profile = {
+      quizCompleted: true,
+      completedAt: new Date().toISOString(),
+      answers: answers,
+      healthScore: healthScore,
+    };
+    localStorage.setItem('elmex-user-profile', JSON.stringify(profile));
+
+    // Show results
+    const quizContainer = document.getElementById('quiz-container');
+    const resultsContainer = document.getElementById('results-container');
+    const progressSection = document.getElementById('progress-section');
+
+    if (quizContainer) quizContainer.classList.add('hidden');
+    if (progressSection) progressSection.classList.add('hidden');
+    if (resultsContainer) {
+      resultsContainer.classList.remove('hidden');
+      resultsContainer.innerHTML = `
+        <div class="text-center mb-12 animate-slide-up">
+          <div class="text-primary mb-4 bling-effect">
+            <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-brand font-bold gradient-title mb-4">
+            Perfekt! Dein persönliches Zahnpflege-Profil ist bereit.
+          </h1>
+          <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+            Wir haben deine Antworten analysiert und die perfekten Produkte für dich zusammengestellt.
+          </p>
+        </div>
+
+        <div class="card mb-8 animate-slide-up text-center bg-gradient-to-br from-white to-orange-50">
+          <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-6">
+            Dein Zahngesundheits-Score
+          </h2>
+          <div class="relative inline-block mb-4">
+            <svg class="w-32 h-32 transform -rotate-90">
+              <circle cx="64" cy="64" r="56" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200" />
+              <circle cx="64" cy="64" r="56" stroke="currentColor" stroke-width="8" fill="none"
+                stroke-dasharray="${(healthScore / 100) * 351.86} 351.86" class="text-primary transition-all duration-1000" />
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-3xl font-bold text-neutral-900">${healthScore}</span>
+            </div>
+          </div>
+          <p class="text-neutral-600 max-w-md mx-auto">
+            ${healthScore >= 90 ? 'Ausgezeichnet! Du hast bereits eine sehr gute Zahnpflege-Routine.' :
+              healthScore >= 70 ? 'Gut! Mit ein paar Optimierungen wird deine Routine noch besser.' :
+              'Lass uns gemeinsam deine Zahnpflege verbessern!'}
+          </p>
+        </div>
+
+        <div class="text-center animate-slide-up">
+          <a href="/dashboard"
+            class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-full shadow-lg hover:shadow-xl mb-4">
+            Zum Dashboard →
+          </a>
+        </div>
+      `;
+    }
+  }
+
+  function calculateHealthScore(answers: QuizAnswer[]): number {
+    let score = 70; // Base score
+
+    answers.forEach(answer => {
+      if (answer.questionId === 'brushingFrequency') {
+        if (answer.answer === '2') score += 20;
+        else if (answer.answer === '3+') score += 10;
+        else if (answer.answer === 'irregular') score -= 10;
+      }
+    });
+
+    return Math.min(100, Math.max(0, score));
+  }
+</script>

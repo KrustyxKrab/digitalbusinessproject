@@ -1,0 +1,116 @@
+---
+import { siteConfig } from "@/config/site.js";
+
+interface Props {
+  type?: 'organization' | 'product' | 'faq' | 'article';
+  data?: any;
+}
+
+const { type = 'organization', data } = Astro.props;
+
+const schemas = {
+  organization: {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "elmex",
+    "url": siteConfig.url || "https://elmex.de",
+    "logo": `${siteConfig.url}/logo.png`,
+    "foundingDate": "1962",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Colgate-Palmolive"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": siteConfig.phone || "+49-40-27174-0",
+      "contactType": "customer service",
+      "email": siteConfig.mail,
+      "availableLanguage": "de"
+    },
+    "sameAs": [
+      siteConfig.social?.facebook,
+      siteConfig.social?.instagram
+    ].filter(Boolean)
+  },
+  product: data ? {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": data.name,
+    "description": data.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "elmex"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Colgate-Palmolive"
+    },
+    "additionalProperty": data.properties ? data.properties.map((prop: any) => ({
+      "@type": "PropertyValue",
+      "name": prop.name,
+      "value": prop.value
+    })) : [
+      {
+        "@type": "PropertyValue",
+        "name": "Wirkstoff",
+        "value": "Aminfluorid (Olafluor)"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Fluoridgehalt",
+        "value": "1400 ppm"
+      }
+    ],
+    "aggregateRating": data.rating ? {
+      "@type": "AggregateRating",
+      "ratingValue": data.rating.value,
+      "reviewCount": data.rating.count,
+      "bestRating": "5",
+      "worstRating": "1"
+    } : null,
+    "category": data.category || "Zahnpflege",
+    "offers": data.offers ? {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": data.offers.price,
+      "priceCurrency": "EUR"
+    } : null
+  } : null,
+  faq: data ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": data.map((faq: any) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null,
+  article: data ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": data.title,
+    "author": {
+      "@type": "Person",
+      "name": data.author
+    },
+    "datePublished": data.publishDate,
+    "publisher": {
+      "@type": "Organization",
+      "name": "elmex",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteConfig.url}/logo.png`
+      }
+    }
+  } : null
+};
+
+const schemaData = schemas[type];
+---
+
+{schemaData && (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+)}

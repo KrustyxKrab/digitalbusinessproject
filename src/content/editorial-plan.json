@@ -1,0 +1,250 @@
+{
+  "contentStrategy": {
+    "description": "Redaktionsplan für elmex Website - Wissenschaftlich fundierte, familienfreundliche Content-Strategie",
+    "lastUpdated": "2026-01-04",
+    "targetAudience": [
+      "Eltern mit Kindern (0-12 Jahre)",
+      "Erwachsene mit Zahnproblemen (Karies, Empfindlichkeit, Zahnfleisch)",
+      "Gesundheitsbewusste Menschen",
+      "Dental-Professionals (Zahnärzte, Dentalhygieniker)"
+    ],
+    "contentGoals": [
+      "E-E-A-T Signale stärken (Expertise, Experience, Authority, Trust)",
+      "Wissenschaftliche Glaubwürdigkeit demonstrieren",
+      "Praktischen Mehrwert bieten",
+      "Familienfreundliche Kommunikation",
+      "SEO-Optimierung durch Featured Snippets"
+    ]
+  },
+
+  "contentPillars": [
+    {
+      "pillar": "Wissenschaft & Forschung",
+      "frequency": "1x monatlich",
+      "targetKeywords": ["Aminfluorid", "Kariesprävention", "Zahnschmelz-Remineralisierung", "klinische Studien"],
+      "contentTypes": ["Artikel", "Studienübersicht", "Infografiken"],
+      "nextTopics": [
+        {
+          "title": "Wie funktioniert Aminfluorid auf molekularer Ebene?",
+          "keywords": "Aminfluorid Wirkung, Fluorid Zähne, Zahnschmelz",
+          "targetDate": "2026-02-01",
+          "status": "geplant"
+        },
+        {
+          "title": "Neue Studien zu Kariesprävention 2026",
+          "keywords": "Kariesprävention Studie, Zahngesundheit Forschung",
+          "targetDate": "2026-03-01",
+          "status": "geplant"
+        },
+        {
+          "title": "Zahnschmelz-Remineralisierung: Der wissenschaftliche Prozess",
+          "keywords": "Remineralisierung, Zahnschmelz stärken",
+          "targetDate": "2026-04-01",
+          "status": "geplant"
+        }
+      ]
+    },
+    {
+      "pillar": "Familiengesundheit",
+      "frequency": "2x monatlich",
+      "targetKeywords": ["Kinderzähne", "Zahnpflege Baby", "Familie Zahngesundheit", "Zahnpflege Schwangerschaft"],
+      "contentTypes": ["Ratgeber", "How-to-Guides", "Checklisten"],
+      "nextTopics": [
+        {
+          "title": "Zahnpflege-Routine für jedes Alter: 0-99 Jahre",
+          "keywords": "Zahnpflege Alter, Zahnputz-Routine",
+          "targetDate": "2026-01-15",
+          "status": "geplant"
+        },
+        {
+          "title": "Kinderzähne: Vom ersten Zahn bis zur Zahnspange",
+          "keywords": "Kinderzähne putzen, erster Zahn Baby",
+          "targetDate": "2026-02-01",
+          "status": "geplant"
+        },
+        {
+          "title": "Zahngesundheit in der Schwangerschaft",
+          "keywords": "Zähne Schwangerschaft, Zahnfleisch schwanger",
+          "targetDate": "2026-02-15",
+          "status": "geplant"
+        },
+        {
+          "title": "5 Zahnpflege-Fehler, die Eltern vermeiden sollten",
+          "keywords": "Zahnpflege Fehler Kinder, richtig Zähne putzen",
+          "targetDate": "2026-03-01",
+          "status": "geplant"
+        }
+      ]
+    },
+    {
+      "pillar": "Praktische Tipps",
+      "frequency": "1x wöchentlich",
+      "targetKeywords": ["Zähne putzen", "Zahnpflege Tipps", "gesunde Zähne", "Mundpflege"],
+      "contentTypes": ["Quick-Tipps", "Video-Tutorials", "FAQs"],
+      "nextTopics": [
+        {
+          "title": "Die richtige Putztechnik in 5 Schritten",
+          "keywords": "richtig Zähne putzen, Putztechnik",
+          "targetDate": "2026-01-10",
+          "status": "geplant"
+        },
+        {
+          "title": "Ernährung für gesunde Zähne: Do's and Don'ts",
+          "keywords": "Ernährung Zähne, gesunde Ernährung Zahngesundheit",
+          "targetDate": "2026-01-17",
+          "status": "geplant"
+        },
+        {
+          "title": "Zahnpflege-Mythen vs. Fakten",
+          "keywords": "Zahnpflege Mythen, Zahnpflege Irrtümer",
+          "targetDate": "2026-01-24",
+          "status": "geplant"
+        },
+        {
+          "title": "3-Minuten Morgen-Routine für perfekte Zahnhygiene",
+          "keywords": "Zahnhygiene Routine, Morgenroutine Zähne",
+          "targetDate": "2026-01-31",
+          "status": "geplant"
+        }
+      ]
+    },
+    {
+      "pillar": "Produktwissen",
+      "frequency": "1x monatlich",
+      "targetKeywords": ["elmex Produkte", "Zahnpasta Test", "Mundspülung vergleich", "Zahnbürste"],
+      "contentTypes": ["Produktvergleiche", "Anwendungs-Guides", "Video-Demos"],
+      "nextTopics": [
+        {
+          "title": "elmex KARIESSCHUTZ vs. SENSITIVE: Welche ist die richtige für Sie?",
+          "keywords": "elmex Zahnpasta Vergleich, Kariesschutz oder Sensitive",
+          "targetDate": "2026-02-01",
+          "status": "geplant"
+        },
+        {
+          "title": "Warum Mundspülung? 5 wissenschaftliche Gründe",
+          "keywords": "Mundspülung sinnvoll, Mundspülung Wirkung",
+          "targetDate": "2026-03-01",
+          "status": "geplant"
+        },
+        {
+          "title": "Die perfekte Kombination: Zahnpasta + Mundspülung + Zahnbürste",
+          "keywords": "Zahnpflege Kombination, optimale Mundpflege",
+          "targetDate": "2026-04-01",
+          "status": "geplant"
+        }
+      ]
+    }
+  ],
+
+  "seoStrategy": {
+    "featuredSnippetTargets": [
+      "Wie oft sollte man Zähne putzen?",
+      "Was ist Aminfluorid?",
+      "Ab wann Zahnpasta für Baby?",
+      "Wie lange Zähne putzen?",
+      "Empfindliche Zähne was hilft?"
+    ],
+    "localSEO": [
+      "elmex kaufen Deutschland",
+      "elmex dm Rossmann Müller",
+      "Zahnpasta Apotheke"
+    ],
+    "longTailKeywords": [
+      "beste Zahnpasta für empfindliche Zähne Deutschland",
+      "Zahnpasta ohne Natriumfluorid",
+      "elmex Junior ab welchem Alter",
+      "Zahnfleischbluten stoppen Zahnpasta"
+    ]
+  },
+
+  "contentGuidelines": {
+    "tone": "Wissenschaftlich fundiert, aber verständlich. Familienfreundlich, vertrauenswürdig, nicht belehrend.",
+    "structure": [
+      "Einleitung mit Problem/Frage",
+      "Wissenschaftliche Erklärung (E-E-A-T)",
+      "Praktische Lösung/Tipps",
+      "CTA (Produktempfehlung oder Produktfinder)",
+      "Quellen/Studien (E-E-A-T)"
+    ],
+    "readability": {
+      "fleschScore": "60-70 (einfach verständlich)",
+      "sentenceLength": "Maximal 20 Wörter",
+      "paragraphLength": "Maximal 4-5 Sätze",
+      "headings": "H2 alle 300 Wörter, H3 für Unterpunkte"
+    },
+    "eatSignals": [
+      "Autor mit Credentials nennen",
+      "Studien mit DOI verlinken",
+      "Expertenzitate einbauen",
+      "Aktualisierungsdatum angeben",
+      "Peer-reviewed Quellen nutzen"
+    ],
+    "visualContent": [
+      "Infografiken für komplexe Konzepte",
+      "Schritt-für-Schritt Bilder",
+      "Video-Tutorials (max 3 Min)",
+      "Vor/Nach Visualisierungen"
+    ]
+  },
+
+  "performanceMetrics": {
+    "kpis": [
+      "Organischer Traffic: +50% in 6 Monaten",
+      "Featured Snippets: 5+ Keywords",
+      "Durchschnittliche Lesedauer: >2 Minuten",
+      "Bounce Rate: <40%",
+      "Produktfinder Completion Rate: >60%"
+    ],
+    "tracking": [
+      "Google Analytics 4",
+      "Google Search Console",
+      "Hotjar (Heatmaps)",
+      "Internal Link Tracking"
+    ]
+  },
+
+  "contentProduction": {
+    "workflow": [
+      "1. Keyword-Recherche & Themenauswahl",
+      "2. Experten-Interview / Studien-Review",
+      "3. Artikel-Entwurf",
+      "4. Fact-Checking durch Dental-Experten",
+      "5. SEO-Optimierung",
+      "6. Visuelle Elemente erstellen",
+      "7. Veröffentlichung",
+      "8. Social Media Promotion",
+      "9. Performance-Monitoring (30 Tage)",
+      "10. Content-Update (alle 6 Monate)"
+    ],
+    "roles": [
+      "Content Strategist",
+      "Dental Expert (Review)",
+      "SEO Specialist",
+      "Grafik Designer",
+      "Video Producer (optional)"
+    ]
+  },
+
+  "distributionChannels": [
+    {
+      "channel": "Website Blog",
+      "frequency": "2-3x pro Woche",
+      "format": "Artikel 800-1500 Wörter"
+    },
+    {
+      "channel": "Newsletter",
+      "frequency": "1x pro Monat",
+      "format": "Roundup + Hauptartikel"
+    },
+    {
+      "channel": "Social Media (Instagram, Facebook)",
+      "frequency": "3x pro Woche",
+      "format": "Snippets, Infografiken, Quick-Tips"
+    },
+    {
+      "channel": "YouTube (optional)",
+      "frequency": "1x pro Monat",
+      "format": "3-5 Min Video-Tutorials"
+    }
+  ]
+}

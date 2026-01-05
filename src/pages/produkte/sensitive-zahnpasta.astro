@@ -1,0 +1,115 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ProductDetailLayout from "@/components/ProductDetailLayout.astro";
+import { Heart } from '@lucide/astro';
+import type { ProductDetail } from '@/types/models';
+
+const product: ProductDetail = {
+  id: "sensitive-zahnpasta",
+  slug: "sensitive-zahnpasta",
+  sku: "EL-SENS-75",
+  name: "elmex SENSITIVE Professional",
+  subtitle: "Zahnpasta",
+  category: "toothpaste",
+  productLine: "sensitive",
+  description: "Spezielle Zahnpasta für schmerzempfindliche Zähne mit sofortiger und langanhaltender Schmerzlinderung",
+  heroTitle: "Sofortige Linderung für empfindliche Zähne",
+  heroDescription: "Klinisch bewiesene Formel für sofortige Schmerzlinderung bei empfindlichen Zähnen. Verschließt freiliegende Dentinkanälchen und bildet eine langanhaltende Schutzschicht.",
+  badge: {
+    text: "Sofortige Schmerzlinderung"
+  },
+  features: [
+    {
+      icon: "heart",
+      text: "Sofortige Wirkung"
+    },
+    {
+      icon: "shield",
+      text: "Langanhaltender Schutz"
+    }
+  ],
+  benefits: [
+    "Sofortige Schmerzlinderung bei empfindlichen Zähnen",
+    "Verschließt freiliegende Dentinkanälchen",
+    "Langanhaltende Schutzschicht",
+    "Sanfte Reinigung ohne Abrasion"
+  ],
+  ingredients: [
+    "Kaliumnitrat",
+    "Natriumfluorid 1400 ppm",
+    "Aqua",
+    "Hydrated Silica"
+  ],
+  howItWorks: {
+    title: "Wie funktioniert die Schmerzlinderung?",
+    description: "Verstehe die Wirkweise auf zellulärer Ebene",
+    steps: [
+      {
+        number: 1,
+        title: "Dentinkanälchen werden verschlossen",
+        description: "Wirkstoffe dringen in freiliegende Kanälchen ein"
+      },
+      {
+        number: 2,
+        title: "Schutzbarriere entsteht",
+        description: "Eine Schutzschicht bildet sich über der empfindlichen Zone"
+      },
+      {
+        number: 3,
+        title: "Schmerz wird blockiert",
+        description: "Nervenreizungen werden verhindert"
+      }
+    ]
+  },
+  usage: {
+    title: "Richtige Anwendung bei Sensibilität",
+    expert: {
+      name: "Dr. Michael Weber",
+      title: "Zahnarzt für Parodontologie",
+      description: "Dr. Michael Weber, spezialisiert auf empfindliche Zähne, erklärt die optimale Anwendung für maximale Schmerzlinderung."
+    },
+    instructions: [
+      "Bei Schmerz direkt auf betroffene Stelle auftragen",
+      "Sanft kreisende Bewegungen",
+      "Mindestens 1 Minute einwirken lassen"
+    ]
+  },
+  matchingScore: {
+    percentage: 92,
+    profile: "Basierend auf Ihrem Profil (Empfindliche Zähne, Zahnfleischrückgang): Hervorragende Übereinstimmung.",
+    note: "Hinweis: Bei anhaltenden Beschwerden kombinieren Sie mit",
+    alternativeProduct: {
+      name: "elmex SENSITIVE Mundspülung",
+      url: "/produkte/sensitive-mundspuelung"
+    }
+  },
+  rating: {
+    value: 4.7,
+    count: 3421
+  },
+  price: 4.49,
+  availability: "https://schema.org/InStock",
+  imageUrl: "/images/products/sensitive-zahnpasta.jpg",
+  buyLinks: [
+    {
+      retailer: "dm-drogerie markt",
+      url: "/wo-kaufen?product=sensitive-zahnpasta&retailer=dm"
+    },
+    {
+      retailer: "Rossmann",
+      url: "/wo-kaufen?product=sensitive-zahnpasta&retailer=rossmann"
+    },
+    {
+      retailer: "REWE",
+      url: "/wo-kaufen?product=sensitive-zahnpasta&retailer=rewe"
+    }
+  ]
+};
+---
+
+<Layout
+  title={`${product.name} | ${product.subtitle}`}
+  description={product.description}
+>
+  <ProductDetailLayout product={product} iconComponent={Heart} />
+</Layout>

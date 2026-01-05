@@ -1,0 +1,104 @@
+---
+import Logo from "@/components/ui/Logo.astro";
+import ToTop from "@/components/widgets/ToTop.astro";
+import { siteConfig, footerColumns } from "@/config/site.js";
+---
+
+<footer class="bg-neutral-100 border-t border-neutral-200 mt-20 md:mt-32">
+  <div class="container mx-auto px-4 py-12 md:py-16">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <!-- Brand Column -->
+      <div class="md:col-span-1">
+        <Logo />
+        <p class="mt-4 text-sm text-neutral-600">
+          Wissenschaftlich fundierte Zahngesundheit für die ganze Familie seit {siteConfig.foundingYear}
+        </p>
+      </div>
+
+      <!-- Footer Columns -->
+      {footerColumns.map((column) => (
+        <div>
+          <h3 class="font-brand text-base font-semibold text-neutral-900 mb-4">
+            {column.title}
+          </h3>
+          <ul class="space-y-2">
+            {column.links.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  class="text-sm text-neutral-600 hover:text-primary:text-primary transition-colors"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="pt-8 border-t border-neutral-200">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-center md:text-left text-neutral-600">
+          © {new Date().getFullYear()} elmex - Eine Marke von Colgate-Palmolive. Alle Rechte vorbehalten.
+        </p>
+
+        <!-- Carbon Footprint Badge -->
+        <div class="flex items-center gap-2 text-xs text-neutral-500">
+          <span class="text-green-600">🌱</span>
+          <span>Diese Seite erzeugt nur <strong class="text-neutral-700">0.2g CO₂</strong> pro Besuch</span>
+          <a href="/nachhaltigkeit" class="underline hover:text-primary transition-colors ml-1">Mehr erfahren</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<ToTop />
+
+<style is:global>
+  .footer-social-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+
+  .footer-social-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: all 0.3s ease-in-out;
+  }
+  .footer-social-icon-link:hover .footer-social-icon svg {
+    width: auto;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  .footer-social-icon-link:hover .ic-twitter {
+    color: #1DA1F2;
+  }
+
+  .footer-social-icon-link:hover .ic-github {
+    color: #333;
+  }
+
+  .footer-social-icon-link:hover .ic-zcool {
+    color: #fff200;
+  }
+
+  .footer-social-icon-link:hover .ic-behance {
+    color: #0055ff;
+  }
+
+  .footer-social-icon-link:hover .ic-rss {
+    color: #F26522;
+  }
+</style>

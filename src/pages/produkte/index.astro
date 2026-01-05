@@ -1,0 +1,419 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { ShieldCheck, Heart, Sparkles, Baby, Droplet, Waves, Grid, Flower } from '@lucide/astro';
+import FAQSearch from "@/components/widgets/FAQSearch.astro";
+import StructuredData from "@/components/widgets/StructuredData.astro";
+
+// FAQ Data
+const faqs = [
+  {
+    id: 'faq-1',
+    question: 'Was macht Aminfluorid so besonders?',
+    answer: 'Aminfluorid bildet eine Schutzschicht auf den Zähnen und ist effektiver als herkömmliches Natriumfluorid. Es remineralisiert den Zahnschmelz und bietet optimalen Schutz vor Karies.',
+    category: 'Wissenschaft'
+  },
+  {
+    id: 'faq-2',
+    question: 'Ab welchem Alter können Kinder elmex Produkte verwenden?',
+    answer: 'elmex bietet speziell entwickelte Produkte für verschiedene Altersgruppen. Ab dem ersten Zahn können Sie elmex Kinderzahnpasta verwenden, und ab 6 Jahren ist die elmex JUNIOR Zahnpasta ideal.',
+    category: 'Anwendung'
+  },
+  {
+    id: 'faq-3',
+    question: 'Kann ich verschiedene elmex Produkte kombinieren?',
+    answer: 'Ja! Alle elmex Produkte sind aufeinander abgestimmt und können optimal kombiniert werden. Für den bestmöglichen Schutz empfehlen wir die Kombination aus Zahnpasta, Mundspülung und der passenden Zahnbürste.',
+    category: 'Anwendung'
+  },
+  {
+    id: 'faq-4',
+    question: 'Wie oft sollte ich elmex Zahnpasta verwenden?',
+    answer: 'Zahnärzte empfehlen, mindestens zweimal täglich die Zähne zu putzen - morgens nach dem Frühstück und abends vor dem Schlafengehen. Jeder Putzvorgang sollte mindestens 2 Minuten dauern.',
+    category: 'Anwendung'
+  },
+  {
+    id: 'faq-5',
+    question: 'Was ist der Unterschied zwischen elmex KARIESSCHUTZ und elmex SENSITIVE?',
+    answer: 'elmex KARIESSCHUTZ ist unser klassisches Produkt für umfassenden Kariesschutz. elmex SENSITIVE wurde speziell für empfindliche Zähne entwickelt und lindert Schmerzempfindlichkeit bei Hitze, Kälte oder Süßem, während es gleichzeitig vor Karies schützt.',
+    category: 'Produkte'
+  },
+  {
+    id: 'faq-6',
+    question: 'Sind elmex Produkte für Schwangere geeignet?',
+    answer: 'Ja, elmex Produkte sind für Schwangere sicher und empfohlen. Gerade während der Schwangerschaft ist gute Mundhygiene besonders wichtig. Bei spezifischen Fragen konsultieren Sie bitte Ihren Zahnarzt.',
+    category: 'Anwendung'
+  },
+  {
+    id: 'faq-7',
+    question: 'Warum ist Fluorid wichtig für die Zahngesundheit?',
+    answer: 'Fluorid stärkt den Zahnschmelz und macht ihn widerstandsfähiger gegen Säureangriffe. Es fördert die Remineralisierung und hilft, beginnende Kariesläsionen zu reparieren. Aminfluorid, wie es in elmex verwendet wird, ist besonders effektiv.',
+    category: 'Wissenschaft'
+  },
+  {
+    id: 'faq-8',
+    question: 'Wo kann ich elmex Produkte kaufen?',
+    answer: 'elmex Produkte sind in Apotheken, Drogeriemärkten (dm, Rossmann, Müller) und online erhältlich. Nutzen Sie unseren <a href="/beratung/wo-kaufen" class="text-primary hover:underline">Händler-Finder</a> für Geschäfte in Ihrer Nähe.',
+    category: 'Produkte'
+  },
+  {
+    id: 'faq-9',
+    question: 'Ist elmex vegan?',
+    answer: 'Die meisten elmex Zahnpasten sind vegan. Detaillierte Informationen zu Inhaltsstoffen finden Sie auf der jeweiligen Produktverpackung oder auf den einzelnen Produktseiten.',
+    category: 'Produkte'
+  },
+  {
+    id: 'faq-10',
+    question: 'Wie lagere ich elmex Zahnpasta richtig?',
+    answer: 'Bewahren Sie elmex Zahnpasta bei Raumtemperatur auf, geschützt vor direkter Sonneneinstrahlung. Verschließen Sie die Tube nach jedem Gebrauch, um die Qualität zu erhalten.',
+    category: 'Anwendung'
+  }
+];
+---
+
+<Layout
+  title="Produkte | elmex"
+  description="Entdecken Sie die komplette Produktpalette von elmex - Zahnpasta, Mundspülung und Zahnbürsten mit wissenschaftlich fundiertem Kariesschutz."
+  keywords="elmex Produkte, Zahnpasta, Mundspülung, Zahnbürste, Kariesschutz, Aminfluorid"
+>
+  <!-- FAQPage Schema for AI/GEO -->
+  <StructuredData type="faq" data={faqs} slot="head" />
+  <!-- Hero Section -->
+  <section class="relative site-container mx-auto mt-12 md:mt-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-brand font-bold text-neutral-900 mb-6">
+        Unsere Produkte
+      </h1>
+      <p class="text-lg md:text-xl text-neutral-700 mb-8">
+        Wissenschaftlich fundierte Zahnpflege für jedes Bedürfnis
+      </p>
+
+      <!-- AI-Optimized Quick Facts (hidden from users, optimized for crawlers) -->
+      <div class="sr-only" role="complementary" aria-label="Produktübersicht für Suchmaschinen">
+        <h2>elmex Produktübersicht - Schnellfakten</h2>
+        <dl>
+          <dt>Produktkategorien:</dt>
+          <dd>Zahnpasta (Kariesschutz, Zahnfleisch, Sensitive, Junior), Mundspülung (Karies, Sensitive), Zahnbürsten (InterX, Sensitive)</dd>
+          <dt>Hauptwirkstoff:</dt>
+          <dd>Aminfluorid (Olafluor) - Klinisch getestet in über 500 Studien</dd>
+          <dt>Zielgruppen:</dt>
+          <dd>Kinder ab dem ersten Zahn, Jugendliche, Erwachsene, Senioren, Menschen mit empfindlichen Zähnen</dd>
+          <dt>Hauptvorteile:</dt>
+          <dd>Kariesprävention, Zahnschmelz-Remineralisierung, Zahnfleischpflege, Schmerzlinderung bei Empfindlichkeit</dd>
+          <dt>Verfügbarkeit:</dt>
+          <dd>Deutschland - Apotheken, Drogeriemärkte (dm, Rossmann, Müller), Online-Shops (Amazon, DocMorris)</dd>
+          <dt>Herstellung:</dt>
+          <dd>Made in Germany seit 1962, Colgate-Palmolive</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Sort Section -->
+  <section class="container mx-auto px-4 mt-12">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+      <!-- Category Filter -->
+      <div class="flex flex-wrap gap-2">
+        <button class="category-filter active px-4 py-2 rounded-full text-sm font-medium bg-primary text-white transition-all">
+          Alle
+        </button>
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-neutral-200 text-neutral-700 hover:bg-primary hover:text-white transition-all">
+          Zahnpasta
+        </button>
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-neutral-200 text-neutral-700 hover:bg-primary hover:text-white transition-all">
+          Mundspülung
+        </button>
+        <button class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-neutral-200 text-neutral-700 hover:bg-primary hover:text-white transition-all">
+          Zahnbürste
+        </button>
+      </div>
+
+      <!-- Sort Options -->
+      <div class="flex items-center gap-2">
+        <label for="sort" class="text-sm text-neutral-600">Sortieren:</label>
+        <select id="sort" class="px-4 py-2 rounded-lg bg-white border border-neutral-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+          <option value="popular">Beliebt</option>
+          <option value="new">Neu</option>
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="container mx-auto px-4 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Product 1: KARIESSCHUTZ Zahnpasta -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
+        <div class="w-full h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <ShieldCheck class="w-16 h-16 text-primary transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex KARIESSCHUTZ Zahnpasta
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Hocheffektiver Kariesschutz durch Aminfluorid
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Kariesschutz</span>
+          <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Remineralisierung</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/kariesschutz-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 2: ZAHNFLEISCH Zahnpasta -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
+        <div class="w-full h-48 bg-gradient-to-br from-red-50 to-red-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <Heart class="w-16 h-16 text-red-500 transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex ZAHNFLEISCH Zahnpasta
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Stärkt das Zahnfleisch und beugt Entzündungen vor
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Zahnfleischpflege</span>
+          <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Entzündungsschutz</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/zahnfleisch-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20ZAHNFLEISCH" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 3: SENSITIVE Zahnpasta -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
+        <div class="w-full h-48 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <Sparkles class="w-16 h-16 text-teal-500 transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex SENSITIVE Zahnpasta
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Sanfter Schutz für empfindliche Zähne
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Empfindlichkeit</span>
+          <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Sanfter Schutz</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/sensitive-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20SENSITIVE" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 4: JUNIOR Zahnpasta -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
+        <div class="w-full h-48 bg-gradient-to-br from-sky-50 to-sky-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <Baby class="w-16 h-16 text-sky-500 transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex JUNIOR Zahnpasta
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Speziell für Kinder von 6-12 Jahren
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Kinderzahnpflege</span>
+          <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Altersgerecht</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/junior-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20JUNIOR" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 5: KARIESSCHUTZ Mundspülung -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="mundspuelung">
+        <div class="w-full h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <Droplet class="w-16 h-16 text-primary transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex KARIESSCHUTZ Mundspülung
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Ergänzender Schutz für die tägliche Zahnpflege
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs rounded-full">Kariesschutz</span>
+          <span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs rounded-full">Frischer Atem</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/kariesschutz-mundspuelung" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ%20Mundspu%CC%88lung" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 6: SENSITIVE Mundspülung -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="mundspuelung">
+        <div class="w-full h-48 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <Waves class="w-16 h-16 text-teal-500 transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex SENSITIVE Mundspülung
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Sanfte Pflege für empfindliche Zähne
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Empfindlichkeit</span>
+          <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Sanfte Pflege</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/sensitive-mundspuelung" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Mundspu%CC%88lung" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 7: InterX Zahnbürste -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnbuerste">
+        <div class="w-full h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <Grid class="w-16 h-16 text-primary transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex InterX Zahnbürste
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Tiefenreinigung für schwer erreichbare Stellen
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Tiefenreinigung</span>
+          <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Zahnzwischenräume</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/interx-zahnbuerste" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20InterX%20Zahnbu%CC%88rste" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 8: SENSITIVE Zahnbürste -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnbuerste">
+        <div class="w-full h-48 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+          <Flower class="w-16 h-16 text-teal-500 transition-transform group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          elmex SENSITIVE Zahnbürste
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          Extra weiche Borsten für empfindliche Zähne
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full">Empfindlichkeit</span>
+          <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full">Weiche Borsten</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="/produkte/sensitive-zahnbuerste" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
+            Details ansehen →
+          </a>
+          <a href="/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Zahnbu%CC%88rste" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+            Wo kaufen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="container mx-auto px-4 mb-16">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-8 text-center">
+        Häufig gestellte Fragen
+      </h2>
+      <FAQSearch faqs={faqs} />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="container mx-auto px-4 mb-16">
+    <div class="bg-gradient-to-br from-primary to-red-500 rounded-2xl p-8 md:p-12 text-center text-white">
+      <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4">
+        Nicht sicher, welches Produkt passt?
+      </h2>
+      <p class="text-lg mb-8 opacity-90">
+        Nutzen Sie unseren Produktfinder für eine persönliche Empfehlung
+      </p>
+      <a
+        href="/beratung/produktfinder"
+        class="inline-flex items-center justify-center px-8 py-3 text-base font-medium bg-white text-primary hover:bg-neutral-100 transition-colors rounded-full"
+      >
+        Zum Produktfinder
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Category filtering
+  const categoryFilters = document.querySelectorAll('.category-filter');
+  const productCards = document.querySelectorAll('.product-card');
+
+  categoryFilters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      // Update active state
+      categoryFilters.forEach(f => {
+        f.classList.remove('active', 'bg-primary', 'text-white');
+        f.classList.add('bg-neutral-200', 'text-neutral-700');
+      });
+      filter.classList.add('active', 'bg-primary', 'text-white');
+      filter.classList.remove('bg-neutral-200', 'text-neutral-700');
+
+      // Filter products
+      const category = filter.textContent?.trim().toLowerCase();
+      productCards.forEach(card => {
+        const htmlCard = card as HTMLElement;
+        if (category === 'alle' || card.getAttribute('data-category') === category) {
+          htmlCard.style.display = 'block';
+        } else {
+          htmlCard.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Sort functionality (placeholder - would need actual implementation)
+  const sortSelect = document.getElementById('sort') as HTMLSelectElement;
+  sortSelect?.addEventListener('change', (e) => {
+    const sortValue = (e.target as HTMLSelectElement).value;
+    console.log('Sorting by:', sortValue);
+    // Implement sorting logic here
+  });
+</script>

@@ -1,0 +1,598 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Package, Clock, TrendingUp, AlertCircle, Play, Pause, Settings, ArrowLeft, CheckCircle } from '@lucide/astro';
+---
+
+<Layout
+  title="Smart Subscription | Mein elmex"
+  description="Intelligente Lieferung basierend auf Ihrem Verbrauch"
+>
+  <!-- Header -->
+  <section class="bg-gradient-to-br from-primary/5 to-primary/10 py-8">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/dashboard" class="inline-flex items-center gap-2 text-neutral-600 hover:text-neutral-900 mb-4 transition-colors">
+          <ArrowLeft class="w-4 h-4" />
+          Zurück zum Dashboard
+        </a>
+        <h1 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-2">
+          Smart Subscription
+        </h1>
+        <p class="text-neutral-600">
+          Automatische Lieferung basierend auf Ihrem tatsächlichen Verbrauch
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- No Subscription State -->
+      <div id="no-subscription" class="hidden">
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+          <div class="text-center mb-8">
+            <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Package class="w-10 h-10 text-primary" />
+            </div>
+            <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-2">
+              Nie wieder Produkte vergessen
+            </h2>
+            <p class="text-neutral-600 max-w-2xl mx-auto">
+              Unser intelligentes System analysiert Ihren Verbrauch und liefert automatisch, bevor Ihre Produkte ausgehen.
+            </p>
+          </div>
+
+          <!-- Benefits -->
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="text-center p-4">
+              <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <TrendingUp class="w-6 h-6 text-green-600" />
+              </div>
+              <h3 class="font-semibold text-neutral-900 mb-2">Verbrauchsanalyse</h3>
+              <p class="text-sm text-neutral-600">Basierend auf Ihrer täglichen Nutzung</p>
+            </div>
+
+            <div class="text-center p-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <Clock class="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 class="font-semibold text-neutral-900 mb-2">Pünktliche Lieferung</h3>
+              <p class="text-sm text-neutral-600">Immer zur richtigen Zeit</p>
+            </div>
+
+            <div class="text-center p-4">
+              <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <Settings class="w-6 h-6 text-orange-600" />
+              </div>
+              <h3 class="font-semibold text-neutral-900 mb-2">Flexibel anpassbar</h3>
+              <p class="text-sm text-neutral-600">Jederzeit pausieren oder ändern</p>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button
+              id="start-subscription-btn"
+              class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors font-medium shadow-lg hover:shadow-xl"
+            >
+              <Play class="w-5 h-5" />
+              Jetzt einrichten
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Setup Mode -->
+      <div id="setup-subscription" class="hidden">
+        <div class="bg-white rounded-2xl p-8 shadow-lg">
+          <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-6">
+            Ihr Abonnement einrichten
+          </h2>
+
+          <!-- Product Selection -->
+          <div class="mb-8">
+            <h3 class="font-semibold text-neutral-900 mb-4">Produkte auswählen</h3>
+            <div id="product-selection" class="space-y-3">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Delivery Frequency -->
+          <div class="mb-8">
+            <h3 class="font-semibold text-neutral-900 mb-4">Lieferintervall</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <button class="interval-btn" data-interval="weekly">
+                <div class="font-medium">Wöchentlich</div>
+                <div class="text-xs text-neutral-600">Jede Woche</div>
+              </button>
+              <button class="interval-btn active" data-interval="monthly">
+                <div class="font-medium">Monatlich</div>
+                <div class="text-xs text-neutral-600">Empfohlen</div>
+              </button>
+              <button class="interval-btn" data-interval="bimonthly">
+                <div class="font-medium">2 Monate</div>
+                <div class="text-xs text-neutral-600">Alle 8 Wochen</div>
+              </button>
+              <button class="interval-btn" data-interval="smart">
+                <div class="font-medium">Smart</div>
+                <div class="text-xs text-neutral-600">Automatisch</div>
+              </button>
+            </div>
+            <p class="text-sm text-neutral-600 mt-3">
+              <AlertCircle class="w-4 h-4 inline mr-1" />
+              Bei "Smart" analysieren wir Ihren Verbrauch und liefern automatisch zur optimalen Zeit
+            </p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex gap-4">
+            <button
+              id="save-subscription-btn"
+              class="flex-1 px-6 py-3 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors font-medium"
+            >
+              Abonnement aktivieren
+            </button>
+            <button
+              id="cancel-setup-btn"
+              class="px-6 py-3 text-neutral-600 hover:text-neutral-900 transition-colors"
+            >
+              Abbrechen
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Subscription State -->
+      <div id="active-subscription" class="hidden">
+        <!-- Status Card -->
+        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 shadow-lg mb-8">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-3 h-3 bg-green-600 rounded-full animate-pulse"></div>
+                <span class="text-sm font-semibold text-green-800">AKTIV</span>
+              </div>
+              <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-1">
+                Ihr Abonnement läuft
+              </h2>
+              <p class="text-neutral-600">
+                Nächste Lieferung in <span id="next-delivery-days" class="font-semibold">12 Tagen</span>
+              </p>
+            </div>
+            <button
+              id="pause-subscription-btn"
+              class="flex items-center gap-2 px-4 py-2 bg-white text-neutral-700 rounded-full hover:bg-neutral-50 transition-colors text-sm font-medium shadow"
+            >
+              <Pause class="w-4 h-4" />
+              Pausieren
+            </button>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="relative">
+            <div class="h-2 bg-white/50 rounded-full overflow-hidden">
+              <div id="delivery-progress" class="h-full bg-green-600 rounded-full transition-all" style="width: 65%"></div>
+            </div>
+            <p class="text-sm text-neutral-600 mt-2">
+              65% bis zur nächsten Lieferung
+            </p>
+          </div>
+        </div>
+
+        <!-- Subscribed Products -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+          <h3 class="text-xl font-brand font-semibold text-neutral-900 mb-6">
+            Ihre Produkte
+          </h3>
+          <div id="subscribed-products" class="space-y-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Usage Analytics -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+          <h3 class="text-xl font-brand font-semibold text-neutral-900 mb-6">
+            Verbrauchsanalyse
+          </h3>
+          <div id="usage-analytics" class="space-y-6">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Delivery History -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg">
+          <h3 class="text-xl font-brand font-semibold text-neutral-900 mb-6">
+            Lieferverlauf
+          </h3>
+          <div id="delivery-history" class="space-y-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Paused State -->
+      <div id="paused-subscription" class="hidden">
+        <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-8 shadow-lg">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-3 h-3 bg-amber-600 rounded-full"></div>
+                <span class="text-sm font-semibold text-amber-800">PAUSIERT</span>
+              </div>
+              <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-1">
+                Ihr Abonnement ist pausiert
+              </h2>
+              <p class="text-neutral-600">
+                Sie können es jederzeit wieder aktivieren
+              </p>
+            </div>
+            <button
+              id="resume-subscription-btn"
+              class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors text-sm font-medium shadow"
+            >
+              <Play class="w-4 h-4" />
+              Fortsetzen
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script>
+  interface Product {
+    id: string;
+    name: string;
+    price: number;
+    category: string;
+    averageUsageDays: number; // How many days one product typically lasts
+  }
+
+  interface SubscriptionProduct {
+    productId: string;
+    quantity: number;
+    lastDelivery?: string;
+    usageRate?: number; // 0-100, how much is used
+  }
+
+  interface Subscription {
+    active: boolean;
+    paused: boolean;
+    interval: 'weekly' | 'monthly' | 'bimonthly' | 'smart';
+    products: SubscriptionProduct[];
+    nextDelivery?: string;
+    deliveryHistory: Array<{
+      date: string;
+      products: SubscriptionProduct[];
+    }>;
+  }
+
+  const availableProducts: Product[] = [
+    { id: 'kariesschutz', name: 'elmex KARIESSCHUTZ Zahnpasta', price: 3.99, category: 'toothpaste', averageUsageDays: 45 },
+    { id: 'sensitive', name: 'elmex SENSITIVE Zahnpasta', price: 4.49, category: 'toothpaste', averageUsageDays: 45 },
+    { id: 'zahnfleisch', name: 'elmex ZAHNFLEISCH Zahnpasta', price: 4.99, category: 'toothpaste', averageUsageDays: 45 },
+    { id: 'mundspuelung-karies', name: 'elmex KARIESSCHUTZ Mundspülung', price: 5.99, category: 'mouthwash', averageUsageDays: 30 },
+    { id: 'mundspuelung-sensitive', name: 'elmex SENSITIVE Mundspülung', price: 5.99, category: 'mouthwash', averageUsageDays: 30 },
+    { id: 'zahnbuerste-interx', name: 'elmex InterX Zahnbürste', price: 4.99, category: 'toothbrush', averageUsageDays: 90 },
+    { id: 'zahnbuerste-sensitive', name: 'elmex SENSITIVE Zahnbürste', price: 4.99, category: 'toothbrush', averageUsageDays: 90 }
+  ];
+
+  let subscription: Subscription = {
+    active: false,
+    paused: false,
+    interval: 'monthly',
+    products: [],
+    deliveryHistory: []
+  };
+
+  // Load subscription from localStorage
+  function loadSubscription() {
+    const saved = localStorage.getItem('elmex-subscription');
+    if (saved) {
+      subscription = JSON.parse(saved);
+    }
+    updateUI();
+  }
+
+  // Save subscription
+  function saveSubscription() {
+    localStorage.setItem('elmex-subscription', JSON.stringify(subscription));
+    updateUI();
+  }
+
+  // Update UI based on subscription state
+  function updateUI() {
+    const noSubEl = document.getElementById('no-subscription');
+    const setupEl = document.getElementById('setup-subscription');
+    const activeEl = document.getElementById('active-subscription');
+    const pausedEl = document.getElementById('paused-subscription');
+
+    // Hide all
+    noSubEl?.classList.add('hidden');
+    setupEl?.classList.add('hidden');
+    activeEl?.classList.add('hidden');
+    pausedEl?.classList.add('hidden');
+
+    if (!subscription.active) {
+      noSubEl?.classList.remove('hidden');
+    } else if (subscription.paused) {
+      pausedEl?.classList.remove('hidden');
+    } else {
+      activeEl?.classList.remove('hidden');
+      renderActiveSubscription();
+    }
+  }
+
+  // Render setup mode
+  function showSetup() {
+    const setupEl = document.getElementById('setup-subscription');
+    const noSubEl = document.getElementById('no-subscription');
+
+    noSubEl?.classList.add('hidden');
+    setupEl?.classList.remove('hidden');
+
+    renderProductSelection();
+  }
+
+  function renderProductSelection() {
+    const container = document.getElementById('product-selection');
+    if (!container) return;
+
+    container.innerHTML = availableProducts.map(product => `
+      <label class="product-checkbox flex items-center gap-4 p-4 border-2 border-neutral-200 rounded-xl hover:border-primary cursor-pointer transition-all">
+        <input
+          type="checkbox"
+          value="${product.id}"
+          class="w-5 h-5 text-primary focus:ring-primary rounded"
+        />
+        <div class="flex-1">
+          <div class="font-semibold text-neutral-900">${product.name}</div>
+          <div class="text-sm text-neutral-600">€${product.price.toFixed(2)} • Hält ca. ${product.averageUsageDays} Tage</div>
+        </div>
+      </label>
+    `).join('');
+  }
+
+  // Render active subscription
+  function renderActiveSubscription() {
+    renderSubscribedProducts();
+    renderUsageAnalytics();
+    renderDeliveryHistory();
+    updateDeliveryProgress();
+  }
+
+  function renderSubscribedProducts() {
+    const container = document.getElementById('subscribed-products');
+    if (!container) return;
+
+    container.innerHTML = subscription.products.map(subProduct => {
+      const product = availableProducts.find(p => p.id === subProduct.productId);
+      if (!product) return '';
+
+      const usagePercent = subProduct.usageRate || 0;
+      return `
+        <div class="flex items-center gap-4 p-4 bg-neutral-50 rounded-xl">
+          <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
+            <Package class="w-8 h-8 text-primary" />
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold text-neutral-900">${product.name}</div>
+            <div class="text-sm text-neutral-600 mb-2">Menge: ${subProduct.quantity}</div>
+            <div class="relative h-2 bg-neutral-200 rounded-full overflow-hidden">
+              <div class="absolute h-full bg-primary rounded-full" style="width: ${usagePercent}%"></div>
+            </div>
+            <div class="text-xs text-neutral-600 mt-1">${usagePercent}% verbraucht</div>
+          </div>
+          <button class="p-2 hover:bg-neutral-100 rounded-lg transition-colors" title="Entfernen">
+            <svg class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderUsageAnalytics() {
+    const container = document.getElementById('usage-analytics');
+    if (!container) return;
+
+    // Calculate average daily usage
+    const totalProducts = subscription.products.length;
+    const avgDailyUse = subscription.products.reduce((acc, p) => {
+      const product = availableProducts.find(prod => prod.id === p.productId);
+      return acc + (product ? (1 / product.averageUsageDays) * 100 : 0);
+    }, 0) / Math.max(totalProducts, 1);
+
+    container.innerHTML = `
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center p-4 bg-neutral-50 rounded-xl">
+          <div class="text-3xl font-bold text-primary mb-1">${totalProducts}</div>
+          <div class="text-sm text-neutral-600">Aktive Produkte</div>
+        </div>
+        <div class="text-center p-4 bg-neutral-50 rounded-xl">
+          <div class="text-3xl font-bold text-primary mb-1">${avgDailyUse.toFixed(1)}%</div>
+          <div class="text-sm text-neutral-600">Ø Täglicher Verbrauch</div>
+        </div>
+        <div class="text-center p-4 bg-neutral-50 rounded-xl">
+          <div class="text-3xl font-bold text-primary mb-1">${subscription.deliveryHistory.length}</div>
+          <div class="text-sm text-neutral-600">Lieferungen</div>
+        </div>
+      </div>
+
+      <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+        <div class="flex items-start gap-3">
+          <AlertCircle class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <div class="font-semibold text-blue-900 mb-1">Smart-Tipp</div>
+            <div class="text-sm text-blue-800">
+              Basierend auf Ihrem Verbrauch empfehlen wir eine Lieferung alle ${calculateOptimalInterval()} Tage.
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function calculateOptimalInterval(): number {
+    if (subscription.products.length === 0) return 30;
+
+    const avgDays = subscription.products.reduce((acc, p) => {
+      const product = availableProducts.find(prod => prod.id === p.productId);
+      return acc + (product ? product.averageUsageDays : 30);
+    }, 0) / subscription.products.length;
+
+    return Math.round(avgDays);
+  }
+
+  function renderDeliveryHistory() {
+    const container = document.getElementById('delivery-history');
+    if (!container) return;
+
+    if (subscription.deliveryHistory.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-8 text-neutral-600">
+          <Package class="w-12 h-12 mx-auto mb-3 text-neutral-400" />
+          <p>Noch keine Lieferungen</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = subscription.deliveryHistory.map(delivery => `
+      <div class="flex items-start gap-4 p-4 bg-neutral-50 rounded-xl">
+        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <CheckCircle class="w-5 h-5 text-green-600" />
+        </div>
+        <div class="flex-1">
+          <div class="font-semibold text-neutral-900">Lieferung am ${new Date(delivery.date).toLocaleDateString('de-DE')}</div>
+          <div class="text-sm text-neutral-600">${delivery.products.length} Produkt(e)</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function updateDeliveryProgress() {
+    // Calculate days until next delivery
+    if (!subscription.nextDelivery) {
+      const intervalDays = subscription.interval === 'weekly' ? 7 : subscription.interval === 'monthly' ? 30 : subscription.interval === 'bimonthly' ? 60 : calculateOptimalInterval();
+      const nextDate = new Date();
+      nextDate.setDate(nextDate.getDate() + intervalDays);
+      subscription.nextDelivery = nextDate.toISOString();
+      saveSubscription();
+    }
+
+    const nextDate = new Date(subscription.nextDelivery);
+    const now = new Date();
+    const daysRemaining = Math.ceil((nextDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+
+    const daysEl = document.getElementById('next-delivery-days');
+    if (daysEl) {
+      daysEl.textContent = `${daysRemaining} Tagen`;
+    }
+
+    // Calculate progress (assuming 30 days cycle)
+    const totalDays = 30;
+    const elapsed = totalDays - daysRemaining;
+    const progress = (elapsed / totalDays) * 100;
+
+    const progressBar = document.getElementById('delivery-progress');
+    if (progressBar) {
+      progressBar.style.width = `${Math.max(0, Math.min(100, progress))}%`;
+    }
+
+    // Update text
+    const progressText = progressBar?.nextElementSibling;
+    if (progressText) {
+      progressText.textContent = `${Math.round(progress)}% bis zur nächsten Lieferung`;
+    }
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    loadSubscription();
+
+    // Start subscription
+    document.getElementById('start-subscription-btn')?.addEventListener('click', showSetup);
+
+    // Interval buttons
+    document.querySelectorAll('.interval-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.interval-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        subscription.interval = btn.getAttribute('data-interval') as any;
+      });
+    });
+
+    // Save subscription
+    document.getElementById('save-subscription-btn')?.addEventListener('click', () => {
+      const selectedProducts = Array.from(document.querySelectorAll('#product-selection input:checked'))
+        .map(input => (input as HTMLInputElement).value);
+
+      if (selectedProducts.length === 0) {
+        alert('Bitte wählen Sie mindestens ein Produkt aus.');
+        return;
+      }
+
+      subscription.active = true;
+      subscription.products = selectedProducts.map(id => ({
+        productId: id,
+        quantity: 1,
+        usageRate: Math.floor(Math.random() * 30) + 20 // Simulated usage 20-50%
+      }));
+
+      // Set next delivery date
+      const intervalDays = subscription.interval === 'weekly' ? 7 : subscription.interval === 'monthly' ? 30 : subscription.interval === 'bimonthly' ? 60 : calculateOptimalInterval();
+      const nextDate = new Date();
+      nextDate.setDate(nextDate.getDate() + intervalDays);
+      subscription.nextDelivery = nextDate.toISOString();
+
+      saveSubscription();
+    });
+
+    // Cancel setup
+    document.getElementById('cancel-setup-btn')?.addEventListener('click', updateUI);
+
+    // Pause subscription
+    document.getElementById('pause-subscription-btn')?.addEventListener('click', () => {
+      subscription.paused = true;
+      saveSubscription();
+    });
+
+    // Resume subscription
+    document.getElementById('resume-subscription-btn')?.addEventListener('click', () => {
+      subscription.paused = false;
+      saveSubscription();
+    });
+  });
+</script>
+
+<style>
+  .interval-btn {
+    padding: 0.75rem 1rem;
+    border: 2px solid #E5E5E5;
+    border-radius: 0.75rem;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .interval-btn:hover {
+    border-color: rgba(255, 96, 0, 0.5);
+    background-color: rgba(255, 96, 0, 0.05);
+  }
+
+  .interval-btn.active {
+    border-color: #FF6000;
+    background-color: rgba(255, 96, 0, 0.1);
+    color: #FF6000;
+  }
+
+  .product-checkbox:has(input:checked) {
+    border-color: #FF6000;
+    background-color: rgba(255, 96, 0, 0.05);
+  }
+</style>
