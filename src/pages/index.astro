@@ -332,41 +332,40 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
 
   <!-- Advisory Section -->
   <section class="container mx-auto px-4 mt-16 md:mt-24 mb-16">
-    <div class="max-w-4xl mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500 p-10 md:p-12 text-white text-center">
-      <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4">
+    <div class="max-w-4xl mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-neutral-100 to-neutral-200 p-10 md:p-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-4">
         Haben Sie Beschwerden oder Fragen zu Ihrer Zahngesundheit?
       </h2>
-      <p class="text-lg mb-6 opacity-95">
-        Finden Sie die passende Lösung für Ihr Anliegen
+      <p class="text-lg text-neutral-600 mb-8">
+        Durchsuchen Sie unsere Expertenratgeber
       </p>
 
-      <!-- Problem Categories -->
-      <div class="flex flex-wrap justify-center gap-3 mb-8">
-        <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
-          Empfindliche Zähne
-        </span>
-        <span class="bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">
-          Zahnfleischbluten
-        </span>
-        <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-          Kariesprävention
-        </span>
-        <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
-          Kinderzahnpflege
-        </span>
+      <!-- Search Field -->
+      <div class="max-w-2xl mx-auto mb-6">
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Ich habe Beschwerden mit..."
+            class="w-full px-6 py-4 text-lg rounded-full border-2 border-neutral-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+            id="advisory-search"
+          />
+          <svg class="absolute right-6 top-1/2 -translate-y-1/2 w-6 h-6 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
       </div>
 
       <a
         href="/wissen"
-        class="inline-flex items-center justify-center gap-2 px-8 py-3 text-lg font-semibold bg-white text-teal-600 rounded-full hover:bg-neutral-100 hover:scale-105 transition-all shadow-lg hover:shadow-xl"
+        class="inline-flex items-center justify-center gap-2 px-8 py-3 text-lg font-semibold bg-primary text-white rounded-full hover:bg-primary-dark hover:scale-105 transition-all shadow-lg hover:shadow-xl"
       >
-        Tipps & Beratung finden
+        Ratgeber durchsuchen
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </a>
 
-      <p class="mt-4 text-sm opacity-80">
+      <p class="mt-6 text-sm text-neutral-600">
         Kostenlose Expertenratgeber für alle Themen
       </p>
     </div>
