@@ -33,10 +33,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3-4 plans
 
 Plans:
-- [ ] 01-01: Ungenutzte Template-Files identifizieren und entfernen
-- [ ] 01-02: Intelligente Produkt-Slug-Struktur implementieren (Ordner mit Subordnern, Produktinfo-Files)
-- [ ] 01-03: Experten-Bilder aus /public/models organisieren und verfügbar machen
-- [ ] 01-04: llms.txt Viewer-Icon in Navbar integrieren (SVG, ganz rechts)
+- [x] 01-01: Project Cleanup & UI Addition (Remove unused files, add llms.txt icon) — 3min
+- [ ] 01-02: Content Structure Foundation (Product folders, expert images organization)
 
 ### Phase 2: Fragebogen-Optimierung
 **Goal**: Vertrauenswürdiger, umfassender Fragebogen mit erweiterter Zero-Party-Data-Erfassung
@@ -118,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Cleanup | 0/4 | Not started | - |
+| 1. Foundation & Cleanup | 1/2 | In progress | - |
 | 2. Fragebogen-Optimierung | 0/4 | Not started | - |
 | 3. Hauptseite-Personalisierung | 0/5 | Not started | - |
 | 4. Produktsystem-Überarbeitung | 0/5 | Not started | - |
