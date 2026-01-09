@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 ## Current Position
 
 Phase: 3 of 7 (Hauptseite-Personalisierung)
-Plan: 2 of 5 in current phase
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-09 — Completed 03-02-PLAN.md (Fix Personalization Duplication & Expert Trust)
+Last activity: 2026-01-09 — Completed 03-03-PLAN.md (Personalized Hero Line & Trust Seals)
 
-Progress: ███░░░░░░░ 30%
+Progress: ████░░░░░░ 36%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 4 min
-- Total execution time: 0.53 hours
+- Total execution time: 0.57 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: ███░░░░░░░ 30%
 |-------|-------|-------|----------|
 | 1. Foundation & Cleanup | 2 | 8 min | 4 min |
 | 2. Fragebogen-Optimierung | 4 | 21 min | 5 min |
-| 3. Hauptseite-Personalisierung | 2 | 3 min | 2 min |
+| 3. Hauptseite-Personalisierung | 3 | 5 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 1min, 4min, 2min, 1min
+- Last 5 plans: 4min, 2min, 1min, 2min
 - Trend: Highly efficient
 
 ## Accumulated Context
@@ -63,6 +63,8 @@ Recent decisions affecting current work:
 | 03-01 | Minimal design with borders vs gradient backgrounds | Reduces visual competition, focuses attention on content and messaging |
 | 03-02 | Single recommendation source (widget only) | Eliminates duplication, widget handles personalized and default states |
 | 03-02 | Expert images in personalized content | Trust signals directly in personalized context increase perceived quality |
+| 03-03 | Hero personalization priority: dentistFrequency → ageGroup → concern | Priority reflects urgency and specificity for most relevant messaging |
+| 03-03 | Schema.org Brand markup for trust bar | Enhances SEO crawlability and enables Knowledge Graph features |
 
 ### Deferred Issues
 
@@ -74,6 +76,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-09 14:44
-Stopped at: Completed 03-02-PLAN.md (Fix Personalization Duplication & Expert Trust)
+Last session: 2026-01-09 14:49
+Stopped at: Completed 03-03-PLAN.md (Personalized Hero Line & Trust Seals)
 Resume file: None
