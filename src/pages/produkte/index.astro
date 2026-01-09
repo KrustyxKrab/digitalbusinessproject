@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { ShieldCheck, Heart, Sparkles, Baby, Droplet, Waves, Grid, Flower } from '@lucide/astro';
 import FAQSearch from "@/components/widgets/FAQSearch.astro";
 import StructuredData from "@/components/widgets/StructuredData.astro";
 
@@ -160,10 +159,18 @@ const faqs = [
   <section class="container mx-auto px-4 mb-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Product 1: KARIESSCHUTZ Zahnpasta -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
-        <div class="w-full h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <ShieldCheck class="w-16 h-16 text-primary transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte/kariesschutz-zahnpasta" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_01.png"
+            alt="elmex KARIESSCHUTZ Zahnpasta"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_02.png"
+            alt="elmex KARIESSCHUTZ Zahnpasta - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex KARIESSCHUTZ Zahnpasta
@@ -176,20 +183,25 @@ const faqs = [
           <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Remineralisierung</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/kariesschutz-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
 
       <!-- Product 2: ZAHNFLEISCH Zahnpasta -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
-        <div class="w-full h-48 bg-gradient-to-br from-red-50 to-red-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <Heart class="w-16 h-16 text-red-500 transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/elmexprotectionprofessional/elmex_protection_professional_1.png"
+            alt="elmex ZAHNFLEISCH Zahnpasta"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/elmexprotectionprofessional/elmex_protection_professional_2.png"
+            alt="elmex ZAHNFLEISCH Zahnpasta - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex ZAHNFLEISCH Zahnpasta
@@ -202,20 +214,25 @@ const faqs = [
           <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Entzündungsschutz</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/zahnfleisch-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20ZAHNFLEISCH" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20ZAHNFLEISCH'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
 
       <!-- Product 3: SENSITIVE Zahnpasta -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
-        <div class="w-full h-48 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <Sparkles class="w-16 h-16 text-teal-500 transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte/sensitive-zahnpasta" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/sensitive-zahnpasta/sensitive-zahnpasta_01.png"
+            alt="elmex SENSITIVE Zahnpasta"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/sensitive-zahnpasta/sensitive-zahnpasta_02.png"
+            alt="elmex SENSITIVE Zahnpasta - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex SENSITIVE Zahnpasta
@@ -228,20 +245,25 @@ const faqs = [
           <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Sanfter Schutz</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/sensitive-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20SENSITIVE" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20SENSITIVE'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
 
       <!-- Product 4: JUNIOR Zahnpasta -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnpasta">
-        <div class="w-full h-48 bg-gradient-to-br from-sky-50 to-sky-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <Baby class="w-16 h-16 text-sky-500 transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/elmexjunior/elmex_ junior_1.png"
+            alt="elmex JUNIOR Zahnpasta"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/elmexjunior/elmex_ junior_2.png"
+            alt="elmex JUNIOR Zahnpasta - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex JUNIOR Zahnpasta
@@ -254,20 +276,25 @@ const faqs = [
           <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Altersgerecht</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/junior-zahnpasta" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20JUNIOR" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20JUNIOR'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
 
       <!-- Product 5: KARIESSCHUTZ Mundspülung -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="mundspuelung">
-        <div class="w-full h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <Droplet class="w-16 h-16 text-primary transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="mundspuelung">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/elmexkariesschutz/elmex_kariesschutz_1.png"
+            alt="elmex KARIESSCHUTZ Mundspülung"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/elmexkariesschutz/elmex_kariesschutz_2.png"
+            alt="elmex KARIESSCHUTZ Mundspülung - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex KARIESSCHUTZ Mundspülung
@@ -280,20 +307,25 @@ const faqs = [
           <span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs rounded-full">Frischer Atem</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/kariesschutz-mundspuelung" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ%20Mundspu%CC%88lung" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ%20Mundspu%CC%88lung'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
 
       <!-- Product 6: SENSITIVE Mundspülung -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="mundspuelung">
-        <div class="w-full h-48 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <Waves class="w-16 h-16 text-teal-500 transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="mundspuelung">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/elmexsensitivemouthwash/elmex_sensitive_mundspuelung_1.png"
+            alt="elmex SENSITIVE Mundspülung"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/elmexsensitivemouthwash/elmex_sensitive_mundspuelung_2.png"
+            alt="elmex SENSITIVE Mundspülung - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex SENSITIVE Mundspülung
@@ -306,20 +338,25 @@ const faqs = [
           <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Sanfte Pflege</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/sensitive-mundspuelung" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Mundspu%CC%88lung" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Mundspu%CC%88lung'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
 
       <!-- Product 7: InterX Zahnbürste -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnbuerste">
-        <div class="w-full h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <Grid class="w-16 h-16 text-primary transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnbuerste">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/elmexzahnbuerste/elmex_zahnbürste_1.png"
+            alt="elmex InterX Zahnbürste"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/elmexzahnbuerste/elmex_zahnbürste_2.png"
+            alt="elmex InterX Zahnbürste - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex InterX Zahnbürste
@@ -332,20 +369,25 @@ const faqs = [
           <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Zahnzwischenräume</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/interx-zahnbuerste" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20InterX%20Zahnbu%CC%88rste" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20InterX%20Zahnbu%CC%88rste'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
 
       <!-- Product 8: SENSITIVE Zahnbürste -->
-      <div class="product-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all" data-category="zahnbuerste">
-        <div class="w-full h-48 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-          <Flower class="w-16 h-16 text-teal-500 transition-transform group-hover:scale-110" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all"></div>
+      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnbuerste">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="/products/elmexsensitivezahnbuerste/elmex_sensitive_zahnbürste_1.png"
+            alt="elmex SENSITIVE Zahnbürste"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="/products/elmexsensitivezahnbuerste/elmex_sensitive_zahnbürste_2.png"
+            alt="elmex SENSITIVE Zahnbürste - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
         </div>
         <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
           elmex SENSITIVE Zahnbürste
@@ -358,14 +400,11 @@ const faqs = [
           <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full">Weiche Borsten</span>
         </div>
         <div class="flex flex-col gap-2">
-          <a href="/produkte/sensitive-zahnbuerste" class="text-primary hover:text-primary-dark font-medium text-sm transition-colors">
-            Details ansehen →
-          </a>
-          <a href="/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Zahnbu%CC%88rste" class="text-neutral-600 hover:text-primary text-sm transition-colors">
+          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Zahnbu%CC%88rste'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
             Wo kaufen
-          </a>
+          </button>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
