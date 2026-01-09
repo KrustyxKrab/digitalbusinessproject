@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { ShieldCheck, Heart, Sparkles, Microscope, HeartPulse, Baby } from '@lucide/astro';
+import { ShieldCheck, Heart, Sparkles, Microscope, HeartPulse, Baby, Lightbulb } from '@lucide/astro';
 import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecommendations.astro";
 ---
 
@@ -583,6 +583,99 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
           }
         });
       });
+    });
+  </script>
+
+  <!-- Tipp des Tages (Daily Tip) Section -->
+  <section class="container mx-auto px-4 mt-16 md:mt-20 mb-16">
+    <div class="max-w-4xl mx-auto rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 p-6 md:p-8 border-2 border-amber-200">
+      <div class="flex flex-col md:flex-row gap-6 items-start md:items-center">
+        <div class="flex-shrink-0">
+          <Lightbulb class="w-10 h-10 md:w-12 md:h-12 text-amber-500" />
+        </div>
+        <div class="flex-1">
+          <div class="text-sm font-semibold text-amber-700 uppercase tracking-wide mb-2">
+            Tipp des Tages
+          </div>
+          <p id="daily-tip-content" class="text-lg md:text-xl font-medium text-neutral-900 mb-4">
+            Laden...
+          </p>
+          <a href="/wissen" class="inline-flex items-center text-amber-700 hover:text-amber-900 font-medium transition-colors">
+            Mehr Tipps entdecken
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Daily Tip of the Day functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const tips = [
+        "Putzen Sie Ihre Zähne mindestens 2 Minuten lang für optimale Reinigung",
+        "Wechseln Sie Ihre Zahnbürste alle 3 Monate für beste Hygiene",
+        "Fluorid remineralisiert den Zahnschmelz und schützt vor Karies",
+        "Vermeiden Sie Snacks zwischen den Mahlzeiten für gesündere Zähne",
+        "Zahnseide entfernt bis zu 80% der Plaque zwischen den Zähnen",
+        "Trinken Sie nach säurehaltigen Getränken Wasser zum Neutralisieren",
+        "Warten Sie 30 Minuten mit dem Putzen nach säurehaltigen Speisen",
+        "Kinder sollten ab dem ersten Zahn fluoridhaltige Zahnpasta verwenden",
+        "Zahnfleischbluten ist oft ein Zeichen für Entzündungen - Zahnarzt aufsuchen",
+        "Elektrische Zahnbürsten können die Putztechnik verbessern",
+        "Regelmäßige Kontrolluntersuchungen beim Zahnarzt beugen Problemen vor",
+        "Verwenden Sie kreisende Bewegungen beim Zähneputzen für gründliche Reinigung",
+        "Achten Sie auf zuckerfreie Zwischenmahlzeiten für gesunde Zähne",
+        "Mundspülungen ergänzen die Zahnpflege, ersetzen sie aber nicht",
+        "Professionelle Zahnreinigungen sollten 1-2 mal jährlich durchgeführt werden",
+        "Zahnschmelz kann durch Fluorid wieder aufgebaut werden",
+        "Nachtschutz hilft gegen nächtliches Zähneknirschen",
+        "Vermeiden Sie häufiges Zähnebleichen, um den Schmelz zu schonen",
+        "Milchzähne brauchen genauso viel Pflege wie bleibende Zähne",
+        "Kalziumreiche Lebensmittel stärken die Zähne von innen",
+        "Zahnzwischenraumbürsten sind ideal für größere Lücken",
+        "Eine ausgewogene Ernährung trägt zur Zahngesundheit bei",
+        "Rauchen schadet nicht nur der Lunge, sondern auch den Zähnen",
+        "Fluoridgel bietet zusätzlichen Schutz bei hohem Kariesrisiko",
+        "Achten Sie auf erste Anzeichen von Zahnproblemen wie Empfindlichkeit",
+        "Sanftes Putzen schont das Zahnfleisch und verhindert Rückgang",
+        "Zungenreinigung verbessert die Mundhygiene und den Atem",
+        "Regelmäßiger Zahnarztbesuch ist wichtiger als teure Behandlungen später",
+        "Kinderzahnpasta hat einen altersgerechten Fluoridgehalt",
+        "Zahngesundheit beginnt schon im Mutterleib mit gesunder Ernährung"
+      ];
+
+      const tipContent = document.getElementById('daily-tip-content');
+      if (!tipContent) return;
+
+      // Get today's date in YYYY-MM-DD format
+      const today = new Date().toISOString().split('T')[0];
+
+      // Get stored date and index from localStorage
+      const storedDate = localStorage.getItem('elmex-daily-tip-date');
+      let storedIndex = parseInt(localStorage.getItem('elmex-daily-tip-index') || '0', 10);
+
+      // Check if we need to update the tip (new day)
+      if (storedDate !== today) {
+        // Increment index and wrap around after 29
+        storedIndex = (storedIndex + 1) % 30;
+
+        // Store new date and index
+        localStorage.setItem('elmex-daily-tip-date', today);
+        localStorage.setItem('elmex-daily-tip-index', storedIndex.toString());
+      }
+
+      // Display the tip
+      tipContent.textContent = tips[storedIndex];
+
+      // Add fade-in animation
+      tipContent.style.opacity = '0';
+      setTimeout(() => {
+        tipContent.style.transition = 'opacity 0.5s ease-in';
+        tipContent.style.opacity = '1';
+      }, 100);
     });
   </script>
 
