@@ -29,6 +29,18 @@ import { Package, Clock, TrendingUp, AlertCircle, Play, Pause, Settings, ArrowLe
   <section class="container mx-auto px-4 py-12">
     <div class="max-w-4xl mx-auto">
 
+      <!-- Subscription List from Product Pages -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-8">
+          Ihre Abo-Produkte
+        </h2>
+        <div id="subscription-list" class="grid gap-4">
+          <!-- Populated by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Phase 7: Add fulfillment provider selection here -->
+
       <!-- No Subscription State -->
       <div id="no-subscription" class="hidden">
         <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
@@ -511,8 +523,52 @@ import { Package, Clock, TrendingUp, AlertCircle, Play, Pause, Settings, ArrowLe
     }
   }
 
+  // Load and display subscriptions from product pages
+  function loadProductSubscriptions() {
+    const subscriptions = JSON.parse(localStorage.getItem('elmex-subscriptions') || '[]');
+    const container = document.getElementById('subscription-list');
+
+    if (!container) return;
+
+    if (subscriptions.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-12">
+          <p class="text-neutral-600 mb-4">Sie haben noch keine Produkte in Ihrem Abo.</p>
+          <a href="/produkte" class="text-primary hover:underline">Produkte entdecken</a>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = subscriptions.map((sub: any) => `
+      <div class="bg-white rounded-xl p-6 shadow-lg">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="text-lg font-semibold text-neutral-900">${sub.name}</h3>
+            <p class="text-sm text-neutral-600 mt-1">Alle ${sub.interval} Tage</p>
+          </div>
+          <button class="remove-subscription text-red-600 hover:text-red-700" data-slug="${sub.slug}">
+            Entfernen
+          </button>
+        </div>
+      </div>
+    `).join('');
+
+    // Handle remove buttons
+    document.querySelectorAll('.remove-subscription').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const slug = target.dataset.slug;
+        const filtered = subscriptions.filter((s: any) => s.slug !== slug);
+        localStorage.setItem('elmex-subscriptions', JSON.stringify(filtered));
+        loadProductSubscriptions();
+      });
+    });
+  }
+
   // Initialize
   document.addEventListener('DOMContentLoaded', () => {
+    loadProductSubscriptions();
     loadSubscription();
 
     // Start subscription
