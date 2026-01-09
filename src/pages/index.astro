@@ -63,8 +63,14 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
         if (!profileData) return; // No quiz data - keep fallback text
 
         const profile = JSON.parse(profileData);
-        const answers = profile.answers;
-        if (!answers) return;
+
+        // Parse answers array into a map for easier access
+        const answersMap: Record<string, any> = {};
+        if (profile.answers && Array.isArray(profile.answers)) {
+          profile.answers.forEach((item: any) => {
+            answersMap[item.questionId] = item.answer;
+          });
+        }
 
         // Personalize headline
         const headlineEl = document.querySelector('[data-personalized="headline"]');
@@ -75,37 +81,49 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
           let concern = '';
 
           // Priority 1: dentistFrequency check
-          if (answers.dentistFrequency === 'never') {
+          if (answersMap.dentistFrequency === 'never' || answersMap.dentistFrequency === 'issues-only') {
             headline = 'Professionelle Beratung, jetzt verfügbar';
             concern = 'Zahngesundheit';
           }
-          // Priority 2: Junior/Baby age groups
-          else if (answers.ageGroup === 'junior' || answers.ageGroup === 'baby') {
+          // Priority 2: Child age groups
+          else if (answersMap.childAge) {
             headline = 'Zahngesundheit von Anfang an';
-            concern = answers.ageGroup === 'baby' ? 'Kleinkinder' : 'Kinder';
+            concern = 'Kinderzähne';
           }
-          // Priority 3: Concern-based messaging
-          else if (answers.concern) {
-            switch (answers.concern) {
-              case 'sensitivity':
-                headline = 'Ihre Lösung für empfindliche Zähne';
-                concern = 'empfindliche Zähne';
-                break;
-              case 'cavity':
-                headline = 'Effektiver Kariesschutz für Ihre Familie';
-                concern = 'Kariesschutz';
-                break;
-              case 'gum':
-                headline = 'Gesundes Zahnfleisch beginnt hier';
-                concern = 'Zahnfleischpflege';
-                break;
-              case 'whitening':
-                headline = 'Strahlend weiße Zähne, natürlich geschützt';
-                concern = 'Zahnaufhellung';
-                break;
-              default:
-                headline = 'Zahngesundheit für die ganze Familie';
-                concern = 'Zahnpflege';
+          // Priority 3: Concern-based messaging from dentalConcerns
+          else if (answersMap.dentalConcerns) {
+            const concerns = Array.isArray(answersMap.dentalConcerns) ? answersMap.dentalConcerns : [answersMap.dentalConcerns];
+
+            if (concerns.includes('sensitive-teeth')) {
+              headline = 'Ihre Lösung für empfindliche Zähne';
+              concern = 'empfindliche Zähne';
+            } else if (concerns.includes('cavity-protection')) {
+              headline = 'Effektiver Kariesschutz für Ihre Familie';
+              concern = 'Kariesschutz';
+            } else if (concerns.includes('gum-health')) {
+              headline = 'Gesundes Zahnfleisch beginnt hier';
+              concern = 'Zahnfleischpflege';
+            } else if (concerns.includes('whitening')) {
+              headline = 'Strahlend weiße Zähne, natürlich geschützt';
+              concern = 'Zahnaufhellung';
+            } else {
+              headline = 'Zahngesundheit für die ganze Familie';
+              concern = 'Zahnpflege';
+            }
+          }
+          // Priority 4: Symptoms from issues flow
+          else if (answersMap.symptoms) {
+            const symptoms = Array.isArray(answersMap.symptoms) ? answersMap.symptoms : [answersMap.symptoms];
+
+            if (symptoms.includes('sensitivity')) {
+              headline = 'Ihre Lösung für empfindliche Zähne';
+              concern = 'empfindliche Zähne';
+            } else if (symptoms.includes('bleeding') || symptoms.includes('inflammation')) {
+              headline = 'Gesundes Zahnfleisch beginnt hier';
+              concern = 'Zahnfleischpflege';
+            } else if (symptoms.includes('pain')) {
+              headline = 'Professionelle Beratung, jetzt verfügbar';
+              concern = 'Zahngesundheit';
             }
           }
 
