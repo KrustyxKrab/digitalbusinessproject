@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 ## Current Position
 
 Phase: 2 of 7 (Fragebogen-Optimierung)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-09 — Completed 02-01-PLAN.md (Experten-Bilder, Welcome Screen & Zeitangabe)
+Last activity: 2026-01-09 — Completed 02-02-PLAN.md (Neue Fragen: Putztechnik, Essgewohnheiten, Konsum)
 
-Progress: ███░░░░░░░ 11%
+Progress: ████░░░░░░ 15%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 6 min
-- Total execution time: 0.28 hours
+- Total plans completed: 4
+- Average duration: 7 min
+- Total execution time: 0.40 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1. Foundation & Cleanup | 2 | 8 min | 4 min |
-| 2. Fragebogen-Optimierung | 1 | 9 min | 9 min |
+| 2. Fragebogen-Optimierung | 2 | 16 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 3min, 5min, 9min
+- Last 5 plans: 3min, 5min, 9min, 7min
 - Trend: Steady
 
 ## Accumulated Context
@@ -50,6 +50,9 @@ Recent decisions affecting current work:
 | 02-01 | Welcome question as first step with time estimate | Transparency about quiz duration (2-3 minutes) before user commits |
 | 02-01 | Skip option to bypass quiz | Respects user autonomy - can go directly to results |
 | 02-01 | Quiz popup restricted to main landing page only | Prevents intrusive popup behavior on other pages |
+| 02-02 | Brushing technique as multiple-selection | Users often combine techniques, multiple selection captures real behavior |
+| 02-02 | Eating habits focus on dental risk factors | Target behaviors with dental impact (sugar, acid, snacking) |
+| 02-02 | Consumption limited to daily habits | Coffee, tea, smoking tracked for direct dental health implications |
 
 ### Deferred Issues
 
@@ -61,6 +64,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-09 15:05
-Stopped at: Completed 02-01-PLAN.md (Experten-Bilder, Welcome Screen & Zeitangabe)
+Last session: 2026-01-09 15:15
+Stopped at: Completed 02-02-PLAN.md (Neue Fragen: Putztechnik, Essgewohnheiten, Konsum)
 Resume file: None
