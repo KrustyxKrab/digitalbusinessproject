@@ -60,25 +60,21 @@ export const quizFlow: Record<string, QuizQuestion> = {
       {
         value: 'myself',
         label: 'Für mich selbst',
-        icon: '👤',
         description: 'Persönliche Zahnpflege-Empfehlungen'
       },
       {
         value: 'child',
         label: 'Für mein Kind',
-        icon: '👶',
         description: 'Kindgerechte Zahnpflege'
       },
       {
         value: 'family',
         label: 'Für die ganze Familie',
-        icon: '👨‍👩‍👧‍👦',
         description: 'Produkte für alle Familienmitglieder'
       },
       {
         value: 'issues',
         label: 'Ich habe akute Beschwerden',
-        icon: '⚕️',
         description: 'Gezielte Hilfe bei Problemen'
       }
     ],
@@ -137,37 +133,31 @@ export const quizFlow: Record<string, QuizQuestion> = {
       {
         value: 'cavity-protection',
         label: 'Kariesschutz',
-        icon: '🛡️',
         description: 'Wirksamer Schutz vor Karies'
       },
       {
         value: 'sensitive-teeth',
         label: 'Empfindliche Zähne',
-        icon: '❄️',
         description: 'Schutz bei Schmerzempfindlichkeit'
       },
       {
         value: 'gum-health',
         label: 'Zahnfleischgesundheit',
-        icon: '💚',
         description: 'Stärkung des Zahnfleischs'
       },
       {
         value: 'whitening',
         label: 'Weißere Zähne',
-        icon: '✨',
         description: 'Natürlich weiße Zähne'
       },
       {
         value: 'fresh-breath',
         label: 'Frischer Atem',
-        icon: '💨',
         description: 'Langanhaltende Frische'
       },
       {
         value: 'natural',
         label: 'Natürliche Inhaltsstoffe',
-        icon: '🌿',
         description: 'Pflanzliche Wirkstoffe'
       }
     ],
@@ -179,10 +169,10 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Was ist dir bei der Zahnpflege deines Kindes wichtig?',
     type: 'multiple',
     options: [
-      { value: 'cavity', label: 'Kariesschutz', icon: '🛡️' },
-      { value: 'taste', label: 'Angenehmer Geschmack', icon: '😋' },
-      { value: 'fun', label: 'Spaß beim Putzen', icon: '🎮' },
-      { value: 'gentle', label: 'Sanfte Reinigung', icon: '🤲' }
+      { value: 'cavity', label: 'Kariesschutz' },
+      { value: 'taste', label: 'Angenehmer Geschmack' },
+      { value: 'fun', label: 'Spaß beim Putzen' },
+      { value: 'gentle', label: 'Sanfte Reinigung' }
     ],
     next: 'results'
   },
@@ -192,11 +182,11 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Welche Bedürfnisse haben eure Familienmitglieder?',
     type: 'multiple',
     options: [
-      { value: 'kids', label: 'Kinderzähne', icon: '👶' },
-      { value: 'adults', label: 'Erwachsene', icon: '👤' },
-      { value: 'seniors', label: 'Senioren', icon: '👵' },
-      { value: 'sensitive', label: 'Empfindliche Zähne', icon: '❄️' },
-      { value: 'gums', label: 'Zahnfleischprobleme', icon: '💚' }
+      { value: 'kids', label: 'Kinderzähne' },
+      { value: 'adults', label: 'Erwachsene' },
+      { value: 'seniors', label: 'Senioren' },
+      { value: 'sensitive', label: 'Empfindliche Zähne' },
+      { value: 'gums', label: 'Zahnfleischprobleme' }
     ],
     next: 'results'
   },
@@ -206,11 +196,11 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Welche Beschwerden hast du aktuell?',
     type: 'multiple',
     options: [
-      { value: 'pain', label: 'Zahnschmerzen', icon: '🦷' },
-      { value: 'bleeding', label: 'Zahnfleischbluten', icon: '🩸' },
-      { value: 'sensitivity', label: 'Schmerzempfindlichkeit', icon: '❄️' },
-      { value: 'bad-breath', label: 'Mundgeruch', icon: '😷' },
-      { value: 'inflammation', label: 'Entzündung', icon: '🔥' }
+      { value: 'pain', label: 'Zahnschmerzen' },
+      { value: 'bleeding', label: 'Zahnfleischbluten' },
+      { value: 'sensitivity', label: 'Schmerzempfindlichkeit' },
+      { value: 'bad-breath', label: 'Mundgeruch' },
+      { value: 'inflammation', label: 'Entzündung' }
     ],
     next: 'urgency'
   },
@@ -245,7 +235,7 @@ export const quizFlow: Record<string, QuizQuestion> = {
     type: 'single',
     options: [
       { value: '1', label: '1x täglich' },
-      { value: '2', label: '2x täglich', description: '⭐ Empfohlen' },
+      { value: '2', label: '2x täglich', description: 'Empfohlen' },
       { value: '3+', label: '3x oder öfter' },
       { value: 'irregular', label: 'Unregelmäßig' }
     ],
@@ -257,10 +247,10 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Wie putzen Sie Ihre Zähne?',
     type: 'multiple',
     options: [
-      { value: 'circular', label: 'Kreisende Bewegungen', icon: '🔄' },
-      { value: 'horizontal', label: 'Hin und her', icon: '↔️' },
-      { value: 'vertical', label: 'Auf und ab', icon: '↕️' },
-      { value: 'unsure', label: 'Bin mir nicht sicher', icon: '❓' }
+      { value: 'circular', label: 'Kreisende Bewegungen' },
+      { value: 'horizontal', label: 'Hin und her' },
+      { value: 'vertical', label: 'Auf und ab' },
+      { value: 'unsure', label: 'Bin mir nicht sicher' }
     ],
     next: 'eatingHabits'
   },
@@ -270,10 +260,10 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Wie würden Sie Ihre Essgewohnheiten beschreiben?',
     type: 'multiple',
     options: [
-      { value: 'sugary', label: 'Viel Süßes', icon: '🍬' },
-      { value: 'acidic', label: 'Säurehaltige Lebensmittel', icon: '🍋' },
-      { value: 'balanced', label: 'Ausgewogen', icon: '🥗' },
-      { value: 'snacking', label: 'Häufige Snacks', icon: '🍪' }
+      { value: 'sugary', label: 'Viel Süßes' },
+      { value: 'acidic', label: 'Säurehaltige Lebensmittel' },
+      { value: 'balanced', label: 'Ausgewogen' },
+      { value: 'snacking', label: 'Häufige Snacks' }
     ],
     next: 'consumption'
   },
@@ -283,10 +273,10 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Welche Gewohnheiten treffen auf Sie zu?',
     type: 'multiple',
     options: [
-      { value: 'coffee', label: 'Kaffee täglich', icon: '☕' },
-      { value: 'tea', label: 'Tee täglich', icon: '🫖' },
-      { value: 'smoking', label: 'Rauchen', icon: '🚬' },
-      { value: 'none', label: 'Keine davon', icon: '✅' }
+      { value: 'coffee', label: 'Kaffee täglich' },
+      { value: 'tea', label: 'Tee täglich' },
+      { value: 'smoking', label: 'Rauchen' },
+      { value: 'none', label: 'Keine davon' }
     ],
     next: 'dentistFrequency'
   },
@@ -296,7 +286,7 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Wie oft gehen Sie zum Zahnarzt?',
     type: 'single',
     options: [
-      { value: '2x-year', label: '2x pro Jahr', description: '⭐ Empfohlen' },
+      { value: '2x-year', label: '2x pro Jahr', description: 'Empfohlen' },
       { value: '1x-year', label: '1x pro Jahr' },
       { value: 'rarely', label: 'Selten' },
       { value: 'issues-only', label: 'Nur bei Beschwerden' }
@@ -309,7 +299,7 @@ export const quizFlow: Record<string, QuizQuestion> = {
     question: 'Wie oft lassen Sie eine professionelle Zahnreinigung durchführen?',
     type: 'single',
     options: [
-      { value: '2x-year', label: '2x pro Jahr', description: '⭐ Empfohlen' },
+      { value: '2x-year', label: '2x pro Jahr', description: 'Empfohlen' },
       { value: '1x-year', label: '1x pro Jahr' },
       { value: 'rarely', label: 'Selten' },
       { value: 'never', label: 'Noch nie' }

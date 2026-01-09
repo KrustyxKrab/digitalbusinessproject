@@ -54,7 +54,7 @@ Eine umfassende Weiterentwicklung des elmex Prototyps - ein personalisiertes Zah
 - [ ] Tägliche Routine aus Beratung entfernen (gehört ins Dashboard)
 
 **Fragebogen (Questionnaire):**
-- [ ] Vertrauenswürdige Experten-Bilder zur Vertrauensbildung
+- [✓] Vertrauenswürdige Experten-Bilder zur Vertrauensbildung
 - [ ] Erstes Fenster: "Möchten Sie personalisierte Beratung für Ihre Zahngesundheit?"
 - [ ] Zeitangabe für Fragebogen-Dauer
 - [ ] Neue Frage: "Beschreiben Sie kurz, wie Sie Ihre Zähne putzen"
@@ -63,6 +63,7 @@ Eine umfassende Weiterentwicklung des elmex Prototyps - ein personalisiertes Zah
 - [ ] Zahnarzt/Zahnreinigung-Frequenz erfragen
 - [ ] Account-Erstellung am Ende (optional - funktioniert auch ohne, aber mit Account umfassendere Beratung möglich)
 - [ ] Gesamter Fragebogen bleibt kurz und prägnant
+- [✓] **NO EMOJIS** - Use Lucide icons or text descriptions instead (emojis unprofessional for dental health context)
 
 **Produkte-Übersicht:**
 - [ ] "Für Ihre Routine / Vorgeschlagen" Bereich oben
