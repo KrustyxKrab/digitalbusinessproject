@@ -6,7 +6,7 @@ import QuizResults from './QuizResults';
 import type { QuizAnswer } from '../../types/models';
 
 export default function OnboardingQuiz() {
-  const [currentQuestionId, setCurrentQuestionId] = useState<string>('start');
+  const [currentQuestionId, setCurrentQuestionId] = useState<string>('welcome');
   const [answers, setAnswers] = useState<QuizAnswer[]>([]);
   const [isComplete, setIsComplete] = useState(false);
   const [greeting] = useState<string>(getTimeBasedGreeting());

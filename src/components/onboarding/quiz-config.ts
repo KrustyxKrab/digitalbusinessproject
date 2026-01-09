@@ -30,6 +30,28 @@ export function getTimeBasedGreeting(): string {
 }
 
 export const quizFlow: Record<string, QuizQuestion> = {
+  welcome: {
+    id: 'welcome',
+    question: 'Möchten Sie personalisierte Beratung für Ihre Zahngesundheit?',
+    type: 'single',
+    options: [
+      {
+        value: 'yes',
+        label: 'Ja, gerne',
+        description: 'Dauert ca. 2-3 Minuten'
+      },
+      {
+        value: 'skip',
+        label: 'Direkt zu Produkten',
+        description: 'Überspringen Sie den Fragebogen'
+      }
+    ],
+    next: (answer) => {
+      if (answer === 'skip') return 'results';
+      return 'start';
+    }
+  },
+
   start: {
     id: 'start',
     question: 'Für wen suchst du heute?',
