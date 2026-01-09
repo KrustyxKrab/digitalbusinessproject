@@ -304,6 +304,19 @@ export const quizFlow: Record<string, QuizQuestion> = {
     next: 'cleaningFrequency'
   },
 
+  cleaningFrequency: {
+    id: 'cleaningFrequency',
+    question: 'Wie oft lassen Sie eine professionelle Zahnreinigung durchführen?',
+    type: 'single',
+    options: [
+      { value: '2x-year', label: '2x pro Jahr', description: '⭐ Empfohlen' },
+      { value: '1x-year', label: '1x pro Jahr' },
+      { value: 'rarely', label: 'Selten' },
+      { value: 'never', label: 'Noch nie' }
+    ],
+    next: 'results'
+  },
+
   results: {
     id: 'results',
     question: 'Perfekt! Wir haben deine persönlichen Empfehlungen erstellt.',
