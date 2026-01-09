@@ -171,34 +171,37 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
     <PersonalizedRecommendations />
   </section>
 
-  <!-- Interactive Tools Section -->
-  <section class="container mx-auto px-4 mt-16 md:mt-24">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Product Finder Tool -->
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-red-500 p-8 text-white">
-        <h3 class="text-2xl font-brand font-bold mb-3">Produktfinder</h3>
-        <p class="mb-6 opacity-90">Finden Sie die perfekten elmex Produkte für Ihre Bedürfnisse</p>
-        <a
-          href="/beratung/produktfinder"
-          class="inline-flex items-center justify-center px-6 py-3 bg-white text-primary font-medium rounded-full hover:bg-neutral-100 transition-colors"
-        >
-          Produktfinder starten
-        </a>
-      </div>
-
-      <!-- Dental Health Tips Tool -->
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 p-8 text-white">
-        <h3 class="text-2xl font-brand font-bold mb-3">Zahngesundheits-Tipps</h3>
-        <p class="mb-6 opacity-90">Expertenwissen für gesunde Zähne und starkes Zahnfleisch</p>
-        <a
-          href="/beratung/zahngesundheit-tipps"
-          class="inline-flex items-center justify-center px-6 py-3 bg-white text-cyan-600 font-medium rounded-full hover:bg-neutral-100 transition-colors"
-        >
-          Tipps ansehen
-        </a>
-      </div>
+  <!-- Product Finder - Prominent CTA -->
+  <section class="container mx-auto px-4 mt-16 md:mt-20">
+    <div class="max-w-3xl mx-auto text-center relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary-dark to-red-600 p-10 md:p-12 text-white">
+      <Sparkles class="w-16 h-16 mx-auto mb-6 animate-pulse" />
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-brand font-bold mb-4">
+        Welche Zahnpasta passt zu Ihnen?
+      </h2>
+      <p class="text-lg md:text-xl mb-8 opacity-95">
+        Beantworten Sie 5 Fragen und erhalten Sie Ihre persönliche Produktempfehlung
+      </p>
+      <a
+        href="/beratung/produktfinder"
+        class="inline-flex items-center justify-center gap-2 px-10 py-4 text-lg font-semibold bg-white text-primary rounded-full hover:bg-neutral-100 hover:scale-105 transition-all shadow-xl hover:shadow-2xl animate-pulse-subtle"
+      >
+        Jetzt Produktfinder starten
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
   </section>
+
+  <style>
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.95; }
+    }
+    .animate-pulse-subtle {
+      animation: pulse-subtle 3s ease-in-out infinite;
+    }
+  </style>
 
   <!-- Scientific Credibility -->
   <section class="container mx-auto px-4 mt-16 md:mt-24">
