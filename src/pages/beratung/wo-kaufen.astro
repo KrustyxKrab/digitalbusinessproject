@@ -4,48 +4,68 @@ import { MapPin, ExternalLink, Store, ShoppingCart, Search } from '@lucide/astro
 
 const retailers = [
   {
-    name: 'Amazon',
-    logo: '/retailers/amazon.svg',
-    url: 'https://www.amazon.de/s?k=elmex',
-    type: 'online',
-    description: 'Schnelle Lieferung, große Auswahl'
-  },
-  {
     name: 'dm-drogerie markt',
     logo: '/retailers/dm.svg',
     url: 'https://www.dm.de/search?query=elmex',
     type: 'store',
-    description: 'Über 2.000 Filialen in Deutschland'
+    description: 'Online & in über 2.000 Filialen',
+    shortName: 'dm'
   },
   {
     name: 'Rossmann',
     logo: '/retailers/rossmann.svg',
-    url: 'https://www.rossmann.de/de/search?text=elmex',
+    url: 'https://www.rossmann.de/search?text=elmex',
     type: 'store',
-    description: 'Deutschlandweit verfügbar'
+    description: 'Online & in über 2.200 Filialen',
+    shortName: 'R'
   },
   {
-    name: 'Müller',
-    logo: '/retailers/mueller.svg',
-    url: 'https://www.mueller.de/suche/?q=elmex',
-    type: 'store',
-    description: 'In Ihrer Nähe'
+    name: 'Amazon',
+    logo: '/retailers/amazon.svg',
+    url: 'https://www.amazon.de/s?k=elmex',
+    type: 'online',
+    description: 'Versand in 1-2 Tagen',
+    shortName: '📦'
   },
   {
     name: 'DocMorris',
     logo: '/retailers/docmorris.svg',
-    url: 'https://www.docmorris.de/elmex',
+    url: 'https://www.docmorris.de/search?searchTerm=elmex',
     type: 'online',
-    description: 'Online-Apotheke'
+    description: 'Online-Apotheke',
+    shortName: '+'
   },
   {
-    name: 'Shop Apotheke',
-    logo: '/retailers/shop-apotheke.svg',
-    url: 'https://www.shop-apotheke.com/search/?text=elmex',
-    type: 'online',
-    description: 'Versandapotheke'
+    name: 'Müller',
+    logo: '/retailers/mueller.svg',
+    url: 'https://www.mueller.de/search/?text=elmex',
+    type: 'store',
+    description: 'Online & in über 560 Filialen',
+    shortName: 'M'
+  },
+  {
+    name: 'REWE',
+    logo: '/retailers/rewe.svg',
+    url: 'https://shop.rewe.de/products/search?search=elmex',
+    type: 'store',
+    description: 'Online & in Supermärkten',
+    shortName: 'R'
   }
 ];
+
+// Product name mapping for display
+const productNames: Record<string, string> = {
+  'kariesschutz-zahnpasta': 'elmex KARIESSCHUTZ Zahnpasta',
+  'sensitive-zahnpasta': 'elmex SENSITIVE Zahnpasta',
+  'kariesschutz-mundspuelung': 'elmex KARIESSCHUTZ Mundspülung',
+  'sensitive-mundspuelung': 'elmex SENSITIVE Mundspülung',
+  'sensitive-professional': 'elmex SENSITIVE PROFESSIONAL',
+  'white': 'elmex OPTI-SCHMELZ WHITE',
+  'junior': 'elmex JUNIOR',
+  'junior-mundspuelung': 'elmex JUNIOR Mundspülung',
+  'zahnbuerste': 'elmex Zahnbürste',
+  'gelee': 'elmex gelée'
+};
 ---
 
 <Layout
@@ -56,10 +76,10 @@ const retailers = [
   <div class="container mx-auto px-4 py-16">
     <!-- Hero Section -->
     <div class="max-w-4xl mx-auto text-center mb-16">
-      <h1 class="text-4xl md:text-5xl font-brand font-bold text-neutral-900 mb-4">
+      <h1 id="page-title" class="text-4xl md:text-5xl font-brand font-bold text-neutral-900 mb-4">
         Wo Sie elmex kaufen können
       </h1>
-      <p class="text-lg text-neutral-600 mb-8">
+      <p id="page-subtitle" class="text-lg text-neutral-600 mb-8">
         elmex Produkte sind deutschlandweit in Apotheken, Drogeriemärkten und online erhältlich
       </p>
     </div>
@@ -120,26 +140,35 @@ const retailers = [
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {retailers.map(retailer => (
-          <a
-            href={retailer.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="retailer-card bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary hover:shadow-xl transition-all group"
+          <div
+            class="retailer-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all"
             data-type={retailer.type}
           >
-            <div class="flex flex-col items-center text-center h-full">
-              {/* Logo Placeholder - Replace with actual logos */}
-              <div class="w-full h-20 bg-neutral-100 rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <span class="text-2xl font-bold text-neutral-400">{retailer.name.substring(0, 2)}</span>
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-16 h-16 bg-neutral-100 rounded-lg flex items-center justify-center">
+                <span class={`text-2xl font-bold ${
+                  retailer.name === 'dm-drogerie markt' ? 'text-primary' :
+                  retailer.name === 'Rossmann' ? 'text-red-600' :
+                  retailer.name === 'DocMorris' ? 'text-green-600' :
+                  retailer.name === 'Müller' ? 'text-orange-600' :
+                  retailer.name === 'REWE' ? 'text-red-700' :
+                  'text-neutral-700'
+                }`}>{retailer.shortName}</span>
               </div>
-              <h3 class="text-lg font-brand font-semibold mb-2 text-neutral-900">{retailer.name}</h3>
-              <p class="text-sm text-neutral-600 mb-4 flex-1">{retailer.description}</p>
-              <div class="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all">
-                <span>Jetzt kaufen</span>
-                <ExternalLink class="w-4 h-4" />
+              <div>
+                <h3 class="font-semibold text-lg text-neutral-900">{retailer.name}</h3>
+                <p class="text-sm text-neutral-600">{retailer.description}</p>
               </div>
             </div>
-          </a>
+            <a
+              href={retailer.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-full px-6 py-3 bg-primary hover:bg-primary-dark text-white text-center font-semibold rounded-full transition-colors"
+            >
+              Bei {retailer.name === 'dm-drogerie markt' ? 'dm' : retailer.name.split(' ')[0]} kaufen
+            </a>
+          </div>
         ))}
       </div>
     </div>
@@ -365,15 +394,37 @@ const retailers = [
       }, 1000);
     });
 
-    // Get product from URL parameter
+    // Get product from URL parameter and update title
     const urlParams = new URLSearchParams(window.location.search);
-    const product = urlParams.get('product');
+    const productSlug = urlParams.get('product');
 
-    if (product) {
-      // Highlight that user is looking for a specific product
-      const heroSection = document.querySelector('.max-w-4xl.mx-auto.text-center.mb-16 p');
-      if (heroSection) {
-        heroSection.innerHTML = `Sie suchen nach: <strong class="text-primary">${decodeURIComponent(product)}</strong><br>Hier finden Sie alle Händler:`;
+    // Product name mapping
+    const productNamesMap: Record<string, string> = {
+      'kariesschutz-zahnpasta': 'elmex KARIESSCHUTZ Zahnpasta',
+      'sensitive-zahnpasta': 'elmex SENSITIVE Zahnpasta',
+      'kariesschutz-mundspuelung': 'elmex KARIESSCHUTZ Mundspülung',
+      'sensitive-mundspuelung': 'elmex SENSITIVE Mundspülung',
+      'sensitive-professional': 'elmex SENSITIVE PROFESSIONAL',
+      'white': 'elmex OPTI-SCHMELZ WHITE',
+      'junior': 'elmex JUNIOR',
+      'junior-mundspuelung': 'elmex JUNIOR Mundspülung',
+      'zahnbuerste': 'elmex Zahnbürste',
+      'gelee': 'elmex gelée'
+    };
+
+    if (productSlug) {
+      const productName = productNamesMap[productSlug] || 'elmex Produkt';
+
+      // Update page title
+      const pageTitle = document.getElementById('page-title');
+      if (pageTitle) {
+        pageTitle.innerHTML = `Wo kaufen: <span class="text-primary">${productName}</span>`;
+      }
+
+      // Update subtitle
+      const pageSubtitle = document.getElementById('page-subtitle');
+      if (pageSubtitle) {
+        pageSubtitle.textContent = 'Hier finden Sie alle Händler, bei denen Sie dieses Produkt kaufen können';
       }
     }
   });
