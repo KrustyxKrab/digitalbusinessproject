@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-09)
 
 **Core value:** Personalisierung als Gesamtpaket: Zero-Party-Data-Erfassung → individualisierte Produktempfehlungen → Dashboard-basiertes Tracking → kontextbewusste Beratung
-**Current focus:** Phase 2 — Fragebogen-Optimierung (Complete)
+**Current focus:** Phase 3 — Hauptseite-Personalisierung (Complete)
 
 ## Current Position
 
 Phase: 3 of 7 (Hauptseite-Personalisierung)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-01-09 — Completed 03-04-PLAN.md (Prominent Product Finder & Advisory Tips)
+Plan: 5 of 5 in current phase
+Status: Complete
+Last activity: 2026-01-09 — Completed 03-05-PLAN.md (Enhanced FAQs & Daily Tip Feature)
 
-Progress: ████░░░░░░ 40%
+Progress: ███████░░░ 43%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
+- Total plans completed: 11
 - Average duration: 3 min
-- Total execution time: 0.58 hours
+- Total execution time: 0.61 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: ████░░░░░░ 40%
 |-------|-------|-------|----------|
 | 1. Foundation & Cleanup | 2 | 8 min | 4 min |
 | 2. Fragebogen-Optimierung | 4 | 21 min | 5 min |
-| 3. Hauptseite-Personalisierung | 4 | 6 min | 2 min |
+| 3. Hauptseite-Personalisierung | 5 | 8 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 2min, 1min, 2min, 1min
+- Last 5 plans: 1min, 2min, 1min, 2min
 - Trend: Highly efficient
 
 ## Accumulated Context
@@ -69,6 +69,9 @@ Recent decisions affecting current work:
 | 03-04 | Full-width centered layout over split grid | Single prominent CTA converts better than competing actions |
 | 03-04 | Advisory section after blog preview | Strategic engagement point captures content-interested users before footer |
 | 03-04 | Problem category chips in advisory | Specific pain points resonate better than generic tips |
+| 03-05 | FAQ accordion: one open at a time | Focused reading experience reduces cognitive load, keeps page scannable |
+| 03-05 | 30 daily tips for monthly rotation | Full month of unique content before repeat keeps feature fresh, balances variety with maintenance |
+| 03-05 | localStorage date tracking for tips | Ensures same tip all day, changes at midnight for consistent user experience |
 
 ### Deferred Issues
 
@@ -80,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-09 14:52
-Stopped at: Completed 03-04-PLAN.md (Prominent Product Finder & Advisory Tips)
+Last session: 2026-01-09 18:07
+Stopped at: Completed 03-05-PLAN.md (Enhanced FAQs & Daily Tip Feature) - Phase 3 Complete
 Resume file: None
