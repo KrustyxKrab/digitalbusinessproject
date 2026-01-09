@@ -15,13 +15,13 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
       Produktfinder
     </h1>
     <p class="text-lg text-center text-neutral-600 mb-12">
-      Beantworten Sie 4 kurze Fragen für eine persönliche Empfehlung
+      Beantworten Sie 5 kurze Fragen für eine persönliche Empfehlung
     </p>
 
     <!-- Progress Bar -->
     <div class="progress-container mb-12">
       <div class="flex justify-between text-sm text-neutral-600 mb-2">
-        <span>Schritt <span id="current-step">1</span> von 4</span>
+        <span>Schritt <span id="current-step">1</span> von 5</span>
         <span><span id="progress-percent">0</span>%</span>
       </div>
       <div class="w-full bg-neutral-200 rounded-full h-2">
@@ -31,8 +31,27 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
 
     <!-- Quiz Container -->
     <div id="quiz-container" class="min-h-[400px]">
-      <!-- Question 1: Altersgruppe -->
+      <!-- Question 1: Purchase Intent (NEW) -->
       <div class="quiz-step active" data-step="1">
+        <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
+          Für wen suchen Sie?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button class="quiz-option" data-value="self">
+            <User class="w-12 h-12 text-primary mb-3" />
+            <span class="font-medium text-neutral-900">Für mich selbst</span>
+            <span class="text-sm text-neutral-600">Persönliche Zahnpflege</span>
+          </button>
+          <button class="quiz-option" data-value="other">
+            <Users class="w-12 h-12 text-primary mb-3" />
+            <span class="font-medium text-neutral-900">Für andere</span>
+            <span class="text-sm text-neutral-600">Familie, Partner, Kind</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 2: Altersgruppe -->
+      <div class="quiz-step" data-step="2">
         <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
           Für wen suchen Sie ein Produkt?
         </h2>
@@ -60,8 +79,8 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
         </div>
       </div>
 
-      <!-- Question 2: Hauptanliegen -->
-      <div class="quiz-step" data-step="2">
+      <!-- Question 3: Hauptanliegen -->
+      <div class="quiz-step" data-step="3">
         <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
           Was ist Ihr Hauptanliegen?
         </h2>
@@ -97,8 +116,8 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
         </div>
       </div>
 
-      <!-- Question 3: Produkttyp -->
-      <div class="quiz-step" data-step="3">
+      <!-- Question 4: Produkttyp -->
+      <div class="quiz-step" data-step="4">
         <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
           Welche Produkte interessieren Sie?
         </h2>
@@ -133,8 +152,8 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
         </p>
       </div>
 
-      <!-- Question 4: Bildbasierte Analyse (Optional) -->
-      <div class="quiz-step" data-step="4">
+      <!-- Question 5: Bildbasierte Analyse (Optional) -->
+      <div class="quiz-step" data-step="5">
         <h2 class="text-2xl md:text-3xl font-brand font-semibold mb-6 text-neutral-900">
           Möchten Sie ein Foto hochladen?
         </h2>
@@ -321,6 +340,7 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
   interface QuizState {
     currentStep: number;
     answers: {
+      purchaseIntent?: string;
       ageGroup?: string;
       concern?: string;
       productTypes: string[];
@@ -450,6 +470,24 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
     const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
     const progressBar = document.getElementById('progress-bar') as HTMLElement;
 
+    // Check for purchase intent query param
+    const urlParams = new URLSearchParams(window.location.search);
+    const intentParam = urlParams.get('intent');
+    if (intentParam === 'self' || intentParam === 'other') {
+      state.answers.purchaseIntent = intentParam;
+      // Auto-select the button
+      const intentButton = document.querySelector(`[data-step="1"] .quiz-option[data-value="${intentParam}"]`);
+      if (intentButton) {
+        intentButton.classList.add('selected');
+        // Auto-advance to next question
+        setTimeout(() => {
+          if (nextBtn && !nextBtn.disabled) {
+            nextBtn.click();
+          }
+        }, 500);
+      }
+    }
+
     // Option Selection
     quizOptions.forEach(option => {
       option.addEventListener('click', function(this: HTMLElement) {
@@ -478,8 +516,9 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
           this.classList.add('selected');
 
           // Save answer
-          if (step === '1') state.answers.ageGroup = value;
-          if (step === '2') state.answers.concern = value;
+          if (step === '1') state.answers.purchaseIntent = value;
+          if (step === '2') state.answers.ageGroup = value;
+          if (step === '3') state.answers.concern = value;
 
           // Enable next button
           nextBtn.disabled = false;
@@ -489,7 +528,7 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
 
     // Next Button
     nextBtn?.addEventListener('click', () => {
-      if (state.currentStep < 4) {
+      if (state.currentStep < 5) {
         state.currentStep++;
         updateQuiz();
       } else {
@@ -630,7 +669,7 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
     currentStepEl?.classList.add('active');
 
     // Update progress
-    const progress = (state.currentStep / 4) * 100;
+    const progress = (state.currentStep / 5) * 100;
     const progressBar = document.getElementById('progress-bar');
     if (progressBar) progressBar.style.width = `${progress}%`;
     const currentStepText = document.getElementById('current-step');
@@ -646,7 +685,7 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
 
     if (nextBtn) {
       const nextBtnText = nextBtn.querySelector('span') || nextBtn;
-      if (state.currentStep === 4) {
+      if (state.currentStep === 5) {
         nextBtn.innerHTML = 'Empfehlung anzeigen';
         nextBtn.disabled = false; // Can skip photo
       } else {
