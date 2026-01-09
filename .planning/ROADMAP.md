@@ -68,11 +68,11 @@ Plans:
 **Plans**: 4-5 plans
 
 Plans:
-- [ ] 04-01: Produkte-Übersicht mit "Für Ihre Routine/Vorgeschlagen", Produktkarten optimieren (klickbar, Hover-Effekt, Button-Styling) — PLANNED
-- [ ] 04-02: Produktseiten: Name erkennbar, "Wo kaufen" größer, drei Bilder above the fold, Inhaltsstoffe — PLANNED
-- [ ] 04-03: "Zu Abo hinzufügen" neben "In Routine aufnehmen", Zeithinweis entfernen — PLANNED
-- [ ] 04-04: Produktfinder auf Produkte-Seite, Emojis entfernen, Kaufsplit-Frage (für sich/andere → Alter) — PLANNED
-- [ ] 04-05: Produktvorschläge funktionierend, Rabatt auf Empfehlungen, "Wo kaufen" Feature reparieren — PLANNED
+- [x] 04-01: Produkte-Übersicht mit "Für Ihre Routine/Vorgeschlagen", Produktkarten optimieren (klickbar, Hover-Effekt, Button-Styling) — 3min
+- [x] 04-02: Produktseiten: Name erkennbar, "Wo kaufen" größer, drei Bilder above the fold, Inhaltsstoffe — 3min
+- [x] 04-03: "Zu Abo hinzufügen" neben "In Routine aufnehmen", Zeithinweis entfernen — 3min
+- [x] 04-04: Produktfinder auf Produkte-Seite, Emojis entfernen, Kaufsplit-Frage (für sich/andere → Alter) — 3min
+- [x] 04-05: Produktvorschläge funktionierend, Rabatt auf Empfehlungen, "Wo kaufen" Feature reparieren — 3min
 
 ### Phase 5: Dashboard & Routine
 **Goal**: Persönliches Dashboard mit realistischem Health-Score, optimierter Routine-Platzierung und individualisierten Daten
@@ -119,7 +119,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Foundation & Cleanup | 2/2 | Complete | 2026-01-09 |
 | 2. Fragebogen-Optimierung | 4/4 | Complete | 2026-01-09 |
 | 3. Hauptseite-Personalisierung | 5/5 | Complete | 2026-01-09 |
-| 4. Produktsystem-Überarbeitung | 0/5 | Not started | - |
+| 4. Produktsystem-Überarbeitung | 5/5 | Complete | 2026-01-09 |
 | 5. Dashboard & Routine | 0/3 | Not started | - |
 | 6. Beratung & Wissen | 0/4 | Not started | - |
 | 7. Features & Polish | 0/4 | Not started | - |
