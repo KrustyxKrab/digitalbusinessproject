@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 ## Current Position
 
 Phase: 3 of 7 (Hauptseite-Personalisierung)
-Plan: 1 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-09 — Completed 03-01-PLAN.md (Strong Hook & Hero Redesign)
+Last activity: 2026-01-09 — Completed 03-02-PLAN.md (Fix Personalization Duplication & Expert Trust)
 
-Progress: ███░░░░░░░ 26%
+Progress: ███░░░░░░░ 30%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 4 min
-- Total execution time: 0.52 hours
+- Total execution time: 0.53 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: ███░░░░░░░ 26%
 |-------|-------|-------|----------|
 | 1. Foundation & Cleanup | 2 | 8 min | 4 min |
 | 2. Fragebogen-Optimierung | 4 | 21 min | 5 min |
-| 3. Hauptseite-Personalisierung | 1 | 2 min | 2 min |
+| 3. Hauptseite-Personalisierung | 2 | 3 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 7min, 1min, 4min, 2min
+- Last 5 plans: 1min, 4min, 2min, 1min
 - Trend: Highly efficient
 
 ## Accumulated Context
@@ -61,6 +61,8 @@ Recent decisions affecting current work:
 | 02-04 | localStorage for account preference | Integrated into existing user profile structure |
 | 03-01 | Hook headline specificity over generic messaging | "welcher Zahntyp" performs better than vague "Zahngesundheit verbessern" |
 | 03-01 | Minimal design with borders vs gradient backgrounds | Reduces visual competition, focuses attention on content and messaging |
+| 03-02 | Single recommendation source (widget only) | Eliminates duplication, widget handles personalized and default states |
+| 03-02 | Expert images in personalized content | Trust signals directly in personalized context increase perceived quality |
 
 ### Deferred Issues
 
@@ -72,6 +74,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-09 14:40
-Stopped at: Completed 03-01-PLAN.md (Strong Hook & Hero Redesign)
+Last session: 2026-01-09 14:44
+Stopped at: Completed 03-02-PLAN.md (Fix Personalization Duplication & Expert Trust)
 Resume file: None

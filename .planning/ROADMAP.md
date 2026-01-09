@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Cleanup** - Projektstruktur bereinigen und intelligente Content-Organisation etablieren
 - [x] **Phase 2: Fragebogen-Optimierung** - Vertrauensbildung und erweiterte Zero-Party-Data-Erfassung
-- [ ] **Phase 3: Hauptseite-Personalisierung** (In progress - 1/5 plans) - Landing-Experience mit Hooks, Experten und Personalisierung
+- [ ] **Phase 3: Hauptseite-Personalisierung** (In progress - 2/5 plans) - Landing-Experience mit Hooks, Experten und Personalisierung
 - [ ] **Phase 4: Produktsystem-Überarbeitung** - Intelligente Slugs, optimierte Cards und Produktseiten
 - [ ] **Phase 5: Dashboard & Routine** - Persönliche Daten, Score-Anpassungen und Routine-Optimierung
 - [ ] **Phase 6: Beratung & Wissen** - Dynamische Beratung, UI-Mockups und Wissens-Content
@@ -56,7 +56,7 @@ Plans:
 
 Plans:
 - [x] 03-01: Starker Hook am Anfang ("Finde heraus, welcher Zahntyp du bist! → Jetzt testen"), Kästchenhintergrund entfernen — 2min
-- [ ] 03-02: "Für Sie empfohlen" Duplikation beheben, Experten-Bilder einbauen
+- [x] 03-02: "Für Sie empfohlen" Duplikation beheben, Experten-Bilder einbauen — 1min
 - [ ] 03-03: Hero Line individualisiert an Fragebogen (mit Fallback), Crawlbare Siegel integrieren
 - [ ] 03-04: Produktfinder prominenter positionieren, Zahngesundheits-Tipps neu gestalten (beratend, Weiterleitung zu /wissen)
 - [ ] 03-05: FAQs erweitern, "Tipp des Tages" Feature
@@ -118,7 +118,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 |-------|----------------|--------|-----------|
 | 1. Foundation & Cleanup | 2/2 | Complete | 2026-01-09 |
 | 2. Fragebogen-Optimierung | 4/4 | Complete | 2026-01-09 |
-| 3. Hauptseite-Personalisierung | 1/5 | In progress | - |
+| 3. Hauptseite-Personalisierung | 2/5 | In progress | - |
 | 4. Produktsystem-Überarbeitung | 0/5 | Not started | - |
 | 5. Dashboard & Routine | 0/3 | Not started | - |
 | 6. Beratung & Wissen | 0/4 | Not started | - |
