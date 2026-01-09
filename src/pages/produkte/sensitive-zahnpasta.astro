@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import ProductDetailLayout from "@/components/ProductDetailLayout.astro";
+import CrossProductRecommendations from "@/components/CrossProductRecommendations.astro";
 import { Heart } from '@lucide/astro';
 import type { ProductDetail } from '@/types/models';
 
@@ -119,4 +120,8 @@ const product: ProductDetail = {
   description={product.description}
 >
   <ProductDetailLayout product={product} iconComponent={Heart} />
+  <CrossProductRecommendations
+    currentProductLine={product.productLine}
+    currentProductSlug={product.slug}
+  />
 </Layout>
