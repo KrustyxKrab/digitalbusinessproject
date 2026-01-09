@@ -1,5 +1,5 @@
 ---
-import { ShieldCheck, Eye, Code, Zap } from '@lucide/astro';
+import { Eye, Code } from '@lucide/astro';
 import type { ProductDetail } from '@/types/models';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   iconComponent?: any;
 }
 
-const { product, iconComponent: ProductIcon = ShieldCheck } = Astro.props;
+const { product } = Astro.props;
 
 // Generate Schema.org structured data
 const schemaProduct = {
@@ -58,112 +58,227 @@ const schemaProduct = {
 
 <!-- HUMAN FOCUS MODE -->
 <div id="human-mode" class="transition-all">
-  <!-- Hero Section - Immersive -->
-  <section class="relative min-h-[80vh] bg-gradient-to-br from-neutral-50 via-orange-50/30 to-neutral-100 overflow-hidden">
-    <div class="container mx-auto px-4 py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- Left: Product Visualization -->
-        <div class="relative">
-          <div class="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-white to-orange-100 shadow-2xl">
-            <!-- 3D-Like Product Display -->
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="product-3d-container relative w-full h-full flex items-center justify-center">
-                <!-- Simulated 3D Fluid Effect -->
-                <div class="absolute inset-0 opacity-30">
-                  <div class="fluid-blob bg-gradient-to-br from-primary/40 to-orange-300/40 rounded-full blur-3xl animate-pulse"></div>
-                </div>
+  <!-- Product Header Section -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+      <!-- Product Name -->
+      <div class="mb-8">
+        <h1 class="text-4xl md:text-5xl font-brand font-bold text-neutral-900 mb-2">
+          {product.name}
+        </h1>
+        {product.subtitle && (
+          <p class="text-xl text-neutral-600">{product.subtitle}</p>
+        )}
+      </div>
 
-                <!-- Product Icon -->
-                <div class="relative z-10 scale-150">
-                  <ProductIcon class="w-32 h-32 text-primary drop-shadow-2xl animate-float" />
-                </div>
-
-                <!-- Particle Effect Overlay -->
-                <div class="absolute inset-0 pointer-events-none">
-                  <div class="particle particle-1"></div>
-                  <div class="particle particle-2"></div>
-                  <div class="particle particle-3"></div>
-                </div>
-              </div>
-            </div>
+      <!-- 3 Product Images Above Fold -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <!-- Main Image (Large, Left) -->
+        <div class="md:col-span-2">
+          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50">
+            <img
+              src={`/products/${product.slug}/${product.slug}_01.png`}
+              alt={`${product.name} - Hauptbild`}
+              class="w-full h-full object-contain"
+            />
           </div>
-
-          <!-- Floating Info Cards -->
-          {product.features.map((feature, index) => (
-            <div
-              class={`absolute glass p-4 rounded-xl shadow-lg animate-slide-in-right ${index === 0 ? '-right-4 top-1/4' : 'hidden'}`}
-            >
-              <div class="flex items-center gap-2">
-                <Zap class="w-5 h-5 text-yellow-500" />
-                <span class="text-sm font-semibold">{feature.text}</span>
-              </div>
-            </div>
-          ))}
         </div>
 
-        <!-- Right: Content -->
-        <div class="space-y-6">
-          <div class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+        <!-- Images 2 & 3 (Stacked Vertically, Right) -->
+        <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50">
+            <img
+              src={`/products/${product.slug}/${product.slug}_02.png`}
+              alt={`${product.name} - Bild 2`}
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50">
+            <img
+              src={`/products/${product.slug}/${product.slug}_03.png`}
+              alt={`${product.name} - Bild 3`}
+              class="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Button Group -->
+      <div class="flex flex-wrap gap-3 mb-8">
+        <a
+          href={`/beratung/wo-kaufen?product=${product.slug}`}
+          class="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold text-lg rounded-full transition-colors shadow-lg hover:shadow-xl"
+        >
+          Wo kaufen
+        </a>
+        <a
+          href="#online-retailers"
+          class="px-8 py-4 bg-white hover:bg-neutral-50 text-primary font-semibold text-lg rounded-full border-2 border-primary transition-colors"
+        >
+          Online kaufen
+        </a>
+        <button
+          id="routine-btn"
+          class="px-6 py-4 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium rounded-full transition-colors"
+        >
+          <span id="routine-text">In Routine aufnehmen</span>
+        </button>
+        <button class="px-6 py-4 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium rounded-full transition-colors">
+          Zu Abo hinzufügen
+        </button>
+      </div>
+
+      <!-- Product Description -->
+      <div class="mb-8">
+        <p class="text-lg text-neutral-700 leading-relaxed mb-6">
+          {product.description}
+        </p>
+
+        <!-- Badge -->
+        {product.badge && (
+          <div class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold">
             <span class="flex items-center gap-2">
               <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
               {product.badge.text}
             </span>
           </div>
+        )}
+      </div>
 
-          <h1 class="text-5xl md:text-6xl font-brand font-bold text-neutral-900 leading-tight">
-            {product.heroTitle}
-          </h1>
+      <!-- Benefits -->
+      {product.benefits && product.benefits.length > 0 && (
+        <div class="mb-8">
+          <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-4">
+            Vorteile
+          </h2>
+          <ul class="space-y-3">
+            {product.benefits.map((benefit) => (
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-neutral-700">{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-          <p class="text-xl text-neutral-600 leading-relaxed">
-            {product.heroDescription}
+      <!-- AI Matching Score -->
+      {product.matchingScore && (
+        <div class="p-6 bg-gradient-to-r from-primary/5 to-orange-50 rounded-2xl border border-primary/20 mb-8">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-semibold text-neutral-900">Passt das zu mir?</h3>
+            <div class="text-3xl font-bold gradient-title">{product.matchingScore.percentage}%</div>
+          </div>
+          <p class="text-sm text-neutral-600 mb-3">
+            {product.matchingScore.profile}
           </p>
-
-          <!-- AI Matching Score -->
-          {product.matchingScore && (
-            <div class="p-6 bg-gradient-to-r from-primary/5 to-orange-50 rounded-2xl border border-primary/20">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="font-semibold text-neutral-900">Passt das zu mir?</h3>
-                <div class="text-3xl font-bold gradient-title">{product.matchingScore.percentage}%</div>
-              </div>
-              <p class="text-sm text-neutral-600 mb-3">
-                {product.matchingScore.profile}
-              </p>
-              {product.matchingScore.note && product.matchingScore.alternativeProduct && (
-                <p class="text-xs text-neutral-500 flex items-start gap-2">
-                  <span class="text-orange-500">ⓘ</span>
-                  {product.matchingScore.note} <a href={product.matchingScore.alternativeProduct.url} class="text-primary hover:underline">{product.matchingScore.alternativeProduct.name}</a>
-                </p>
-              )}
-            </div>
+          {product.matchingScore.note && product.matchingScore.alternativeProduct && (
+            <p class="text-xs text-neutral-500 flex items-start gap-2">
+              <span class="text-orange-500">ⓘ</span>
+              {product.matchingScore.note} <a href={product.matchingScore.alternativeProduct.url} class="text-primary hover:underline">{product.matchingScore.alternativeProduct.name}</a>
+            </p>
           )}
+        </div>
+      )}
 
-          <!-- CTA -->
-          <div class="flex gap-4">
-            <button class="flex-1 px-8 py-4 bg-primary text-white rounded-full hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl font-medium">
-              In meine Morgenroutine aufnehmen
-            </button>
-            <button class="px-6 py-4 border-2 border-neutral-300 rounded-full hover:border-primary transition-colors">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Wo kaufen Link -->
-          <div class="pt-4">
-            <a
-              href={`/wo-kaufen?product=${product.slug}`}
-              class="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-medium transition-colors"
-            >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              Wo kaufen
-            </a>
-          </div>
+      <!-- Online Retailers Section -->
+      <div id="online-retailers" class="mb-8">
+        <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-6">
+          Online kaufen
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a
+            href="https://www.dm.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-6 bg-white border-2 border-neutral-200 hover:border-primary rounded-xl transition-all hover:shadow-lg group"
+          >
+            <div class="flex flex-col items-center text-center">
+              <div class="text-4xl font-bold text-neutral-800 mb-3">dm</div>
+              <button class="mt-2 px-6 py-2 bg-primary text-white rounded-full group-hover:bg-primary-dark transition-colors text-sm font-medium">
+                Jetzt kaufen
+              </button>
+            </div>
+          </a>
+          <a
+            href="https://www.rossmann.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-6 bg-white border-2 border-neutral-200 hover:border-primary rounded-xl transition-all hover:shadow-lg group"
+          >
+            <div class="flex flex-col items-center text-center">
+              <div class="text-4xl font-bold text-neutral-800 mb-3">Rossmann</div>
+              <button class="mt-2 px-6 py-2 bg-primary text-white rounded-full group-hover:bg-primary-dark transition-colors text-sm font-medium">
+                Jetzt kaufen
+              </button>
+            </div>
+          </a>
+          <a
+            href="https://www.amazon.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-6 bg-white border-2 border-neutral-200 hover:border-primary rounded-xl transition-all hover:shadow-lg group"
+          >
+            <div class="flex flex-col items-center text-center">
+              <div class="text-4xl font-bold text-neutral-800 mb-3">Amazon</div>
+              <button class="mt-2 px-6 py-2 bg-primary text-white rounded-full group-hover:bg-primary-dark transition-colors text-sm font-medium">
+                Jetzt kaufen
+              </button>
+            </div>
+          </a>
+          <a
+            href="https://www.docmorris.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-6 bg-white border-2 border-neutral-200 hover:border-primary rounded-xl transition-all hover:shadow-lg group"
+          >
+            <div class="flex flex-col items-center text-center">
+              <div class="text-4xl font-bold text-neutral-800 mb-3">DocMorris</div>
+              <button class="mt-2 px-6 py-2 bg-primary text-white rounded-full group-hover:bg-primary-dark transition-colors text-sm font-medium">
+                Jetzt kaufen
+              </button>
+            </div>
+          </a>
         </div>
       </div>
+
+      <!-- Detailed Ingredients Section -->
+      {product.ingredients && typeof product.ingredients === 'object' && 'active' in product.ingredients && (
+        <section class="my-12">
+          <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-6">
+            Inhaltsstoffe
+          </h2>
+          <div class="bg-neutral-50 rounded-xl p-6">
+            <div class="mb-6">
+              <h3 class="font-semibold text-lg text-neutral-800 mb-3">Wirkstoffe</h3>
+              <ul class="space-y-2">
+                {product.ingredients.active.map((ingredient: any) => (
+                  <li class="flex items-start">
+                    <span class="font-medium text-primary mr-2">•</span>
+                    <div>
+                      <span class="font-medium">{ingredient.name}</span>
+                      <p class="text-sm text-neutral-600">{ingredient.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-lg text-neutral-800 mb-3">Weitere Inhaltsstoffe</h3>
+              <p class="text-sm text-neutral-600 leading-relaxed">
+                {product.ingredients.other}
+              </p>
+            </div>
+
+            <p class="text-xs text-neutral-500 mt-4">
+              Alle Angaben gemäß aktueller Rezeptur. Bei Fragen wenden Sie sich an Ihren Zahnarzt oder Apotheker.
+            </p>
+          </div>
+        </section>
+      )}
     </div>
   </section>
 
@@ -450,6 +565,28 @@ Last crawled: {new Date().toISOString()}
       // Switch to Human mode
       crawlerMode?.classList.add('hidden');
       humanMode?.classList.remove('hidden');
+    }
+  });
+
+  // Routine Button (No time hints)
+  const routineBtn = document.getElementById('routine-btn');
+  const routineText = document.getElementById('routine-text');
+  let isInRoutine = false;
+
+  routineBtn?.addEventListener('click', () => {
+    isInRoutine = !isInRoutine;
+    if (isInRoutine) {
+      if (routineText) {
+        routineText.textContent = '✓ Zur Routine hinzugefügt';
+      }
+      routineBtn.classList.remove('bg-neutral-100', 'hover:bg-neutral-200', 'text-neutral-700');
+      routineBtn.classList.add('bg-green-100', 'hover:bg-green-200', 'text-green-700');
+    } else {
+      if (routineText) {
+        routineText.textContent = 'In Routine aufnehmen';
+      }
+      routineBtn.classList.remove('bg-green-100', 'hover:bg-green-200', 'text-green-700');
+      routineBtn.classList.add('bg-neutral-100', 'hover:bg-neutral-200', 'text-neutral-700');
     }
   });
 </script>

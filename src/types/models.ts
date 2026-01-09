@@ -65,7 +65,13 @@ export interface Product {
   productLine: 'kariesschutz' | 'sensitive' | 'zahnfleisch' | 'junior';
   description: string;
   benefits: string[];
-  ingredients: string[];
+  ingredients: string[] | {
+    active: {
+      name: string;
+      description: string;
+    }[];
+    other: string;
+  };
   price: number;
   imageUrl: string;
 }
