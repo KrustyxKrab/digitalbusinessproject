@@ -11,6 +11,11 @@ export default function QuizResults({ answers }: QuizResultsProps) {
 
   const [healthScore, setHealthScore] = useState<number>(0);
 
+  // Account creation state
+  const [showAccountOption, setShowAccountOption] = useState<boolean>(true);
+  const [accountChoice, setAccountChoice] = useState<'pending' | 'create' | 'skip'>('pending');
+  const [accountData, setAccountData] = useState({ email: '', name: '' });
+
   useEffect(() => {
     // Analyze answers and generate recommendations
     const issues = analyzeAnswers(answers);
@@ -85,7 +90,7 @@ export default function QuizResults({ answers }: QuizResultsProps) {
     return mockProducts.slice(0, 2);
   };
 
-  const createUserProfile = (answers: QuizAnswer[], issues: string[]) => {
+  const createUserProfile = (answers: QuizAnswer[], issues: string[], accountInfo?: { email: string; name: string; accountCreated: boolean }) => {
     // Save to localStorage as a foundation for the MeinElmex dashboard
     const profile = {
       quizCompleted: true,
@@ -93,10 +98,36 @@ export default function QuizResults({ answers }: QuizResultsProps) {
       answers: answers,
       dentalIssues: issues,
       healthScore: calculateHealthScore(answers),
+      ...(accountInfo && { account: accountInfo }),
     };
 
     localStorage.setItem('elmex-user-profile', JSON.stringify(profile));
     console.log('User profile created:', profile);
+  };
+
+  const handleAccountChoice = (choice: 'create' | 'skip') => {
+    setAccountChoice(choice);
+    if (choice === 'skip') {
+      setShowAccountOption(false);
+    }
+  };
+
+  const handleAccountSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (accountData.email && accountData.name) {
+      // Store account preference
+      const accountInfo = {
+        email: accountData.email,
+        name: accountData.name,
+        accountCreated: true
+      };
+
+      // Re-create profile with account info
+      const issues = analyzeAnswers(answers);
+      createUserProfile(answers, issues, accountInfo);
+
+      setShowAccountOption(false);
+    }
   };
 
   const calculateHealthScore = (answers: QuizAnswer[]): number => {
@@ -117,6 +148,86 @@ export default function QuizResults({ answers }: QuizResultsProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 py-12 px-4">
       <div className="max-w-4xl mx-auto">
+        {/* Account Creation Option */}
+        {showAccountOption && (
+          <div className="card mb-8 animate-slide-up text-center">
+            <h2 className="text-2xl md:text-3xl font-brand font-bold text-neutral-900 mb-4">
+              Möchten Sie ein Konto erstellen?
+            </h2>
+            <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
+              <strong>Mit Konto:</strong> Zugriff von allen Geräten, personalisierte Beratung.<br />
+              <strong>Ohne Konto:</strong> Funktioniert nur auf diesem Gerät.
+            </p>
+
+            {accountChoice === 'pending' && (
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={() => handleAccountChoice('create')}
+                  className="px-8 py-3 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors font-medium shadow-lg"
+                >
+                  Ja, Konto erstellen
+                </button>
+                <button
+                  onClick={() => handleAccountChoice('skip')}
+                  className="px-8 py-3 bg-neutral-200 text-neutral-700 rounded-full hover:bg-neutral-300 transition-colors font-medium"
+                >
+                  Nein, ohne Konto fortfahren
+                </button>
+              </div>
+            )}
+
+            {accountChoice === 'create' && (
+              <form onSubmit={handleAccountSubmit} className="max-w-md mx-auto mt-6">
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="name" className="block text-left text-sm font-medium text-neutral-700 mb-1">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      value={accountData.name}
+                      onChange={(e) => setAccountData({ ...accountData, name: e.target.value })}
+                      className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                      placeholder="Ihr Name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-left text-sm font-medium text-neutral-700 mb-1">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={accountData.email}
+                      onChange={(e) => setAccountData({ ...accountData, email: e.target.value })}
+                      className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                      placeholder="ihre@email.de"
+                      required
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <button
+                      type="submit"
+                      className="flex-1 px-6 py-3 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors font-medium"
+                    >
+                      Konto erstellen
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setAccountChoice('pending')}
+                      className="px-6 py-3 bg-neutral-200 text-neutral-700 rounded-full hover:bg-neutral-300 transition-colors font-medium"
+                    >
+                      Zurück
+                    </button>
+                  </div>
+                </div>
+              </form>
+            )}
+          </div>
+        )}
+
         <div className="text-center mb-12 animate-slide-up">
           <div className="text-6xl mb-4 bling-effect">✨</div>
           <h1 className="text-4xl md:text-5xl font-brand font-bold gradient-title mb-4">
