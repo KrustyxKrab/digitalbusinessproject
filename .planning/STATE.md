@@ -5,34 +5,34 @@
 See: .planning/PROJECT.md (updated 2026-01-09)
 
 **Core value:** Personalisierung als Gesamtpaket: Zero-Party-Data-Erfassung → individualisierte Produktempfehlungen → Dashboard-basiertes Tracking → kontextbewusste Beratung
-**Current focus:** Phase 2 — Fragebogen-Optimierung
+**Current focus:** Phase 2 — Fragebogen-Optimierung (Complete)
 
 ## Current Position
 
 Phase: 2 of 7 (Fragebogen-Optimierung)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-01-09 — Completed 02-03-PLAN.md (Zahnarzt/Zahnreinigung-Frequenz)
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-01-09 — Completed 02-04-PLAN.md (Account-Erstellung optional am Ende)
 
-Progress: ████░░░░░░ 18%
+Progress: █████░░░░░ 22%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
+- Total plans completed: 6
 - Average duration: 6 min
-- Total execution time: 0.43 hours
+- Total execution time: 0.50 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1. Foundation & Cleanup | 2 | 8 min | 4 min |
-| 2. Fragebogen-Optimierung | 3 | 17 min | 6 min |
+| 2. Fragebogen-Optimierung | 4 | 21 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 5min, 9min, 7min, 1min
-- Trend: Steady
+- Last 5 plans: 9min, 7min, 1min, 4min
+- Trend: Efficient
 
 ## Accumulated Context
 
@@ -55,6 +55,9 @@ Recent decisions affecting current work:
 | 02-02 | Consumption limited to daily habits | Coffee, tea, smoking tracked for direct dental health implications |
 | 02-03 | 2x/year marked as recommended for healthcare | Aligns with dental health best practices for visits and cleanings |
 | 02-03 | Healthcare questions at end of quiz | Natural flow from daily habits → professional care |
+| 02-04 | Account creation optional, not required | Quiz works perfectly in guest mode - respects user autonomy |
+| 02-04 | No password for prototype simplicity | Account only captures email and name, avoiding auth complexity |
+| 02-04 | localStorage for account preference | Integrated into existing user profile structure |
 
 ### Deferred Issues
 
@@ -66,6 +69,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-09 15:17
-Stopped at: Completed 02-03-PLAN.md (Zahnarzt/Zahnreinigung-Frequenz)
+Last session: 2026-01-09 15:23
+Stopped at: Completed 02-04-PLAN.md (Account-Erstellung optional am Ende) - Phase 2 Complete
 Resume file: None
