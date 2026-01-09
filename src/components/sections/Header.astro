@@ -1,6 +1,7 @@
 ---
 import menus from "@/collections/menu.json";
 import Logo from "@/components/ui/Logo.astro";
+import { FileText } from '@lucide/astro';
 ---
 
 <!-- This is an invisible div with relative position so that it takes up the height of the menu (because menu is absolute/fixed) -->
@@ -90,6 +91,16 @@ import Logo from "@/components/ui/Logo.astro";
             })
           }
         </div>
+
+        <!-- llms.txt Viewer Icon -->
+        <a
+          href="/llms.txt"
+          target="_blank"
+          class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-sm text-neutral-600 hover:text-[#FF6B35] transition-colors"
+          title="View AI Training Context"
+        >
+          <FileText class="w-4 h-4" />
+        </a>
 
       </div>
 
