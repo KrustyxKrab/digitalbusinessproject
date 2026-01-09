@@ -32,7 +32,7 @@
     </button>
   </div>
 
-  <div id="recommendations-container" class="grid md:grid-cols-3 gap-6">
+  <div id="recommendations-container" class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
     <!-- Dynamically populated -->
   </div>
 
@@ -88,12 +88,13 @@
     'flower': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>'
   };
 
-  // Product database for recommendations
+  // Product database for recommendations with real product images
   const productDatabase: Record<string, any> = {
     'kariesschutz': {
       name: 'elmex KARIESSCHUTZ',
       description: 'Hocheffektiver Kariesschutz durch Aminfluorid',
       url: '/produkte/kariesschutz-zahnpasta',
+      image: '/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_01.png',
       category: 'cavity',
       icon: 'shield'
     },
@@ -101,50 +102,65 @@
       name: 'elmex SENSITIVE',
       description: 'Sanfter Schutz für empfindliche Zähne',
       url: '/produkte/sensitive-zahnpasta',
+      image: '/products/sensitive-zahnpasta/sensitive-zahnpasta_01.png',
       category: 'sensitivity',
       icon: 'sparkles'
     },
-    'zahnfleisch': {
-      name: 'elmex ZAHNFLEISCH',
-      description: 'Stärkung und Schutz für das Zahnfleisch',
-      url: '/produkte/zahnfleisch-zahnpasta',
-      category: 'gum',
-      icon: 'heart'
+    'sensitive-professional': {
+      name: 'elmex SENSITIVE PROFESSIONAL',
+      description: 'Sofortige und langanhaltende Schmerzlinderung',
+      url: '/produkte/sensitive-zahnpasta',
+      image: '/products/elmexsensitiveprofessional/elmex_sensitive_professional_1.png',
+      category: 'sensitivity',
+      icon: 'sparkles'
+    },
+    'white': {
+      name: 'elmex OPTI-SCHMELZ WHITE',
+      description: 'Strahlend weiße Zähne bei gleichzeitigem Schmelzschutz',
+      url: '/produkte',
+      image: '/products/elmexwhite/elmex_weiß_schmelz_1.png',
+      category: 'whitening',
+      icon: 'sparkles'
     },
     'junior': {
       name: 'elmex JUNIOR',
       description: 'Speziell für Kinder von 6-12 Jahren',
-      url: '/produkte/junior-zahnpasta',
+      url: '/produkte',
+      image: '/products/elmexjunior/elmex_ junior_1.png',
       category: 'junior',
       icon: 'baby'
     },
-    'mundspuelung-karies': {
-      name: 'elmex KARIESSCHUTZ Mundspülung',
-      description: 'Ergänzender Schutz für Ihre Zähne',
-      url: '/produkte/mundspuelung-karies',
-      category: 'cavity',
+    'junior-mundspuelung': {
+      name: 'elmex JUNIOR Mundspülung',
+      description: 'Ergänzender Schutz für Kinderzähne',
+      url: '/produkte',
+      image: '/products/elmexjuniorspülung/elmex_junior_mundspülung1.png',
+      category: 'junior',
       icon: 'droplet'
     },
-    'mundspuelung-sensitive': {
+    'sensitive-mouthwash': {
       name: 'elmex SENSITIVE Mundspülung',
       description: 'Sanfte Pflege für empfindliche Zähne',
-      url: '/produkte/mundspuelung-sensitive',
+      url: '/produkte',
+      image: '/products/elmexsensitivemouthwash/elmex_sensitive_mundspülung_1.png',
       category: 'sensitivity',
       icon: 'waves'
     },
-    'zahnbuerste-interx': {
-      name: 'elmex InterX Zahnbürste',
-      description: 'Effektive Reinigung der Zahnzwischenräume',
-      url: '/produkte/zahnbuerste-interx',
+    'zahnbuerste': {
+      name: 'elmex Zahnbürste',
+      description: 'Effektive Reinigung für gesunde Zähne',
+      url: '/produkte',
+      image: '/products/elmexzahnbuerste/elmex_zahnbürste_1.png',
       category: 'cavity',
       icon: 'brush'
     },
-    'zahnbuerste-sensitive': {
-      name: 'elmex SENSITIVE Zahnbürste',
-      description: 'Extra sanft für empfindliche Zähne',
-      url: '/produkte/zahnbuerste-sensitive',
-      category: 'sensitivity',
-      icon: 'flower'
+    'gelee': {
+      name: 'elmex gelée',
+      description: 'Intensive Fluoridierung zur Kariesvorbeugung',
+      url: '/produkte',
+      image: '/products/elmexgelee/elmex_gelée_1.png',
+      category: 'cavity',
+      icon: 'shield'
     }
   };
 
@@ -171,47 +187,70 @@
 
     // Strategy 1: Quiz-based recommendations
     if (profile.quizCompleted && profile.quizResult) {
-      const concern = profile.quizResult.answers.concern;
-      const ageGroup = profile.quizResult.answers.ageGroup;
-
-      // Recommend complementary products
-      if (concern === 'sensitivity') {
-        recommendations.push(productDatabase['mundspuelung-sensitive']);
-        recommendations.push(productDatabase['zahnbuerste-sensitive']);
-      } else if (concern === 'cavity') {
-        recommendations.push(productDatabase['mundspuelung-karies']);
-        recommendations.push(productDatabase['zahnbuerste-interx']);
-      } else if (concern === 'gum') {
-        recommendations.push(productDatabase['zahnfleisch']);
+      // Parse answers array into map
+      const answersMap: Record<string, any> = {};
+      if (Array.isArray(profile.quizResult.answers)) {
+        profile.quizResult.answers.forEach((item: any) => {
+          answersMap[item.questionId] = item.answer;
+        });
       }
 
-      if (ageGroup === 'junior' || ageGroup === 'baby') {
+      // Recommend based on dental concerns
+      if (answersMap.dentalConcerns) {
+        const concerns = Array.isArray(answersMap.dentalConcerns) ? answersMap.dentalConcerns : [answersMap.dentalConcerns];
+
+        if (concerns.includes('sensitive-teeth')) {
+          recommendations.push(productDatabase['sensitive-professional']);
+          recommendations.push(productDatabase['sensitive-mouthwash']);
+        } else if (concerns.includes('cavity-protection')) {
+          recommendations.push(productDatabase['kariesschutz']);
+          recommendations.push(productDatabase['gelee']);
+        } else if (concerns.includes('gum-health')) {
+          recommendations.push(productDatabase['kariesschutz']);
+          recommendations.push(productDatabase['zahnbuerste']);
+        } else if (concerns.includes('whitening')) {
+          recommendations.push(productDatabase['white']);
+          recommendations.push(productDatabase['zahnbuerste']);
+        }
+      }
+
+      // Recommend for children
+      if (answersMap.childAge || answersMap.start === 'child') {
         recommendations.push(productDatabase['junior']);
+        recommendations.push(productDatabase['junior-mundspuelung']);
+      }
+
+      // Recommend based on symptoms
+      if (answersMap.symptoms) {
+        const symptoms = Array.isArray(answersMap.symptoms) ? answersMap.symptoms : [answersMap.symptoms];
+
+        if (symptoms.includes('sensitivity')) {
+          recommendations.push(productDatabase['sensitive-professional']);
+        } else if (symptoms.includes('bleeding') || symptoms.includes('inflammation')) {
+          recommendations.push(productDatabase['kariesschutz']);
+        }
       }
     }
 
     // Strategy 2: Browsing history-based
-    if (profile.viewedProducts.length > 0) {
-      // Get most recently viewed product
-      const recentProduct = profile.viewedProducts[profile.viewedProducts.length - 1];
-
-      // Find related products (same category or complementary)
+    if (recommendations.length < 3 && profile.viewedProducts.length > 0) {
+      // Add complementary products
       Object.values(productDatabase).forEach(product => {
-        if (!recommendations.find(r => r.name === product.name)) {
+        if (!recommendations.find(r => r.name === product.name) && recommendations.length < 3) {
           recommendations.push(product);
         }
       });
     }
 
-    // Strategy 3: Popular products (default)
-    if (recommendations.length < 3) {
+    // Strategy 3: Popular products (default) - always show if no quiz
+    if (recommendations.length === 0) {
+      recommendations.push(productDatabase['sensitive-professional']);
       recommendations.push(productDatabase['kariesschutz']);
-      recommendations.push(productDatabase['sensitive']);
-      recommendations.push(productDatabase['mundspuelung-karies']);
+      recommendations.push(productDatabase['white']);
     }
 
-    // Return max 3 recommendations
-    return recommendations.slice(0, 3);
+    // Return max 3-4 recommendations
+    return recommendations.slice(0, 4);
   }
 
   function renderRecommendations(recommendations: any[], profile: UserProfile) {
@@ -230,13 +269,15 @@
     }
     reason.textContent = reasonText;
 
-    // Render product cards
+    // Render product cards with real images
     container.innerHTML = recommendations.map(product => `
       <a
         href="${product.url}"
         class="recommendation-card bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary hover:shadow-lg transition-all group"
       >
-        <div class="mb-3 group-hover:scale-110 transition-transform text-primary">${icons[product.icon]}</div>
+        <div class="mb-4 flex items-center justify-center h-32 group-hover:scale-105 transition-transform">
+          <img src="${product.image}" alt="${product.name}" class="max-h-full max-w-full object-contain" />
+        </div>
         <h4 class="font-brand font-semibold text-lg mb-2 text-neutral-900">${product.name}</h4>
         <p class="text-sm text-neutral-600 mb-4">${product.description}</p>
         <div class="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
@@ -295,12 +336,10 @@
       trackProductView(productName, currentPath);
     }
 
-    // Show recommendations for returning visitors (2+ visits)
+    // Always show recommendations (default products for first-time visitors, personalized for returning)
     const profile = getUserProfile();
-    if (profile.visitCount >= 2) {
-      const recommendations = getRecommendations(profile);
-      renderRecommendations(recommendations, profile);
-    }
+    const recommendations = getRecommendations(profile);
+    renderRecommendations(recommendations, profile);
 
     // Dismiss button
     const dismissBtn = document.getElementById('dismiss-recommendations');
