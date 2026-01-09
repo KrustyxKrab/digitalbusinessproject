@@ -86,6 +86,28 @@ export default function OnboardingQuiz() {
       <div className="max-w-2xl mx-auto">
         {currentQuestionId === 'start' && (
           <div className="text-center mb-8 animate-fade-in">
+            {/* Expert Images Header */}
+            <div className="mb-6">
+              <p className="text-sm text-neutral-600 mb-4">Vertrauen Sie unseren Experten</p>
+              <div className="flex justify-center gap-4">
+                <img
+                  src="/assets/experts/expert-1.png"
+                  alt="Experte 1"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-md"
+                />
+                <img
+                  src="/assets/experts/expert-2.png"
+                  alt="Experte 2"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-md"
+                />
+                <img
+                  src="/assets/experts/expert-3.png"
+                  alt="Experte 3"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-md"
+                />
+              </div>
+            </div>
+
             <h1 className="text-4xl md:text-5xl font-brand font-bold gradient-title mb-4">
               {greeting}
             </h1>
