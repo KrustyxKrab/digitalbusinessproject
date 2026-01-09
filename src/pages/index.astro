@@ -33,10 +33,10 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
   <!-- Hero Section -->
   <section class="relative site-container mx-auto mt-12 md:mt-20 px-4">
     <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-brand font-bold text-neutral-900 mb-6 will-animate animate-fade-in">
+      <h1 data-personalized="headline" class="text-4xl md:text-5xl lg:text-6xl font-brand font-bold text-neutral-900 mb-6 will-animate animate-fade-in">
         Zahngesundheit für die ganze Familie
       </h1>
-      <p class="text-lg md:text-xl text-neutral-700 mb-8 will-animate animate-fade-in" style="animation-delay: 0.2s;">
+      <p data-personalized="subheadline" class="text-lg md:text-xl text-neutral-700 mb-8 will-animate animate-fade-in" style="animation-delay: 0.2s;">
         Wissenschaftlich fundierter Kariesschutz für jedes Alter
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center will-animate animate-fade-in" style="animation-delay: 0.4s;">
@@ -55,6 +55,76 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const profileData = localStorage.getItem('elmex-user-profile');
+        if (!profileData) return; // No quiz data - keep fallback text
+
+        const profile = JSON.parse(profileData);
+        const answers = profile.answers;
+        if (!answers) return;
+
+        // Personalize headline
+        const headlineEl = document.querySelector('[data-personalized="headline"]');
+        const subheadlineEl = document.querySelector('[data-personalized="subheadline"]');
+
+        if (headlineEl && subheadlineEl) {
+          let headline = '';
+          let concern = '';
+
+          // Priority 1: dentistFrequency check
+          if (answers.dentistFrequency === 'never') {
+            headline = 'Professionelle Beratung, jetzt verfügbar';
+            concern = 'Zahngesundheit';
+          }
+          // Priority 2: Junior/Baby age groups
+          else if (answers.ageGroup === 'junior' || answers.ageGroup === 'baby') {
+            headline = 'Zahngesundheit von Anfang an';
+            concern = answers.ageGroup === 'baby' ? 'Kleinkinder' : 'Kinder';
+          }
+          // Priority 3: Concern-based messaging
+          else if (answers.concern) {
+            switch (answers.concern) {
+              case 'sensitivity':
+                headline = 'Ihre Lösung für empfindliche Zähne';
+                concern = 'empfindliche Zähne';
+                break;
+              case 'cavity':
+                headline = 'Effektiver Kariesschutz für Ihre Familie';
+                concern = 'Kariesschutz';
+                break;
+              case 'gum':
+                headline = 'Gesundes Zahnfleisch beginnt hier';
+                concern = 'Zahnfleischpflege';
+                break;
+              case 'whitening':
+                headline = 'Strahlend weiße Zähne, natürlich geschützt';
+                concern = 'Zahnaufhellung';
+                break;
+              default:
+                headline = 'Zahngesundheit für die ganze Familie';
+                concern = 'Zahnpflege';
+            }
+          }
+
+          // Update headline if personalized
+          if (headline) {
+            headlineEl.textContent = headline;
+          }
+
+          // Update subheadline with personalization
+          if (concern) {
+            subheadlineEl.textContent = `Personalisiert für Ihre ${concern} – Wissenschaftlich fundiert`;
+          }
+        }
+      } catch (error) {
+        // Silent fail - keep fallback text
+        console.error('Hero personalization error:', error);
+      }
+    });
+  </script>
 
   <!-- Trust Bar -->
   <section class="mt-16 md:mt-24 py-8">
