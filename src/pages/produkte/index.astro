@@ -107,6 +107,23 @@ const faqs = [
     </div>
   </section>
 
+  <!-- Personalized "Für Ihre Routine" Section -->
+  <section id="personalized-section" class="hidden container mx-auto px-4 mt-12">
+    <div class="bg-neutral-50 rounded-2xl p-8">
+      <div class="mb-6">
+        <h2 id="personalized-title" class="text-2xl md:text-3xl font-brand font-bold text-neutral-900 mb-2">
+          Für Ihre Routine
+        </h2>
+        <p id="personalized-subtitle" class="text-neutral-600">
+          Basierend auf Ihren Antworten
+        </p>
+      </div>
+      <div id="personalized-products" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </section>
+
   <!-- Filter & Sort Section -->
   <section class="container mx-auto px-4 mt-12">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
@@ -382,6 +399,172 @@ const faqs = [
 </Layout>
 
 <script>
+  // Product database with real images
+  const productDatabase: Record<string, any> = {
+    'kariesschutz': {
+      name: 'elmex KARIESSCHUTZ Zahnpasta',
+      description: 'Hocheffektiver Kariesschutz durch Aminfluorid',
+      url: '/produkte/kariesschutz-zahnpasta',
+      slug: 'kariesschutz-zahnpasta',
+      image: '/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_01.png',
+      image2: '/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_02.png',
+      category: 'cavity',
+      tags: ['Kariesschutz', 'Remineralisierung']
+    },
+    'sensitive': {
+      name: 'elmex SENSITIVE Zahnpasta',
+      description: 'Sanfter Schutz für empfindliche Zähne',
+      url: '/produkte/sensitive-zahnpasta',
+      slug: 'sensitive-zahnpasta',
+      image: '/products/sensitive-zahnpasta/sensitive-zahnpasta_01.png',
+      image2: '/products/sensitive-zahnpasta/sensitive-zahnpasta_02.png',
+      category: 'sensitivity',
+      tags: ['Empfindlichkeit', 'Sanfter Schutz']
+    },
+    'sensitive-professional': {
+      name: 'elmex SENSITIVE PROFESSIONAL',
+      description: 'Sofortige und langanhaltende Schmerzlinderung',
+      url: '/produkte/sensitive-zahnpasta',
+      slug: 'elmexsensitiveprofessional',
+      image: '/products/elmexsensitiveprofessional/elmex_sensitive_professional_1.png',
+      image2: '/products/elmexsensitiveprofessional/elmex_sensitive_professional_2.png',
+      category: 'sensitivity',
+      tags: ['Empfindlichkeit', 'Professional']
+    },
+    'zahnfleisch': {
+      name: 'elmex ZAHNFLEISCH Zahnpasta',
+      description: 'Stärkt das Zahnfleisch und beugt Entzündungen vor',
+      url: '/produkte',
+      slug: 'elmexprotectionprofessional',
+      image: '/products/elmexprotectionprofessional/elmex_protection_professional_1.png',
+      image2: '/products/elmexprotectionprofessional/elmex_protection_professional_2.png',
+      category: 'gum',
+      tags: ['Zahnfleischpflege', 'Entzündungsschutz']
+    },
+    'junior': {
+      name: 'elmex JUNIOR Zahnpasta',
+      description: 'Speziell für Kinder von 6-12 Jahren',
+      url: '/produkte',
+      slug: 'elmexjunior',
+      image: '/products/elmexjunior/elmex_ junior_1.png',
+      image2: '/products/elmexjunior/elmex_ junior_2.png',
+      category: 'junior',
+      tags: ['Kinderzahnpflege', 'Altersgerecht']
+    },
+    'white': {
+      name: 'elmex OPTI-SCHMELZ WHITE',
+      description: 'Strahlend weiße Zähne bei gleichzeitigem Schmelzschutz',
+      url: '/produkte',
+      slug: 'elmexwhite',
+      image: '/products/elmexwhite/elmex_weiß_schmelz_1.png',
+      image2: '/products/elmexwhite/elmex_weiß_schmelz_2.png',
+      category: 'whitening',
+      tags: ['Whitening', 'Schmelzschutz']
+    }
+  };
+
+  // Load personalized recommendations
+  function loadPersonalizedSection() {
+    const section = document.getElementById('personalized-section');
+    const title = document.getElementById('personalized-title');
+    const subtitle = document.getElementById('personalized-subtitle');
+    const container = document.getElementById('personalized-products');
+
+    if (!section || !title || !subtitle || !container) return;
+
+    // Get user profile from localStorage
+    const userProfileStr = localStorage.getItem('elmex-user-profile');
+    let recommendations: any[] = [];
+    let isPersonalized = false;
+
+    if (userProfileStr) {
+      try {
+        const userProfile = JSON.parse(userProfileStr);
+        const concern = userProfile.concern;
+        const ageGroup = userProfile.ageGroup;
+
+        // Personalization logic based on quiz data
+        if (concern === 'sensitivity') {
+          recommendations.push(productDatabase['sensitive']);
+          recommendations.push(productDatabase['sensitive-professional']);
+          title.textContent = 'Für Ihre Routine';
+          subtitle.textContent = 'Basierend auf Ihren Antworten - Empfindliche Zähne';
+          isPersonalized = true;
+        } else if (concern === 'cavity') {
+          recommendations.push(productDatabase['kariesschutz']);
+          recommendations.push(productDatabase['zahnfleisch']);
+          title.textContent = 'Für Ihre Routine';
+          subtitle.textContent = 'Basierend auf Ihren Antworten - Kariesschutz';
+          isPersonalized = true;
+        } else if (concern === 'gum') {
+          recommendations.push(productDatabase['zahnfleisch']);
+          recommendations.push(productDatabase['kariesschutz']);
+          title.textContent = 'Für Ihre Routine';
+          subtitle.textContent = 'Basierend auf Ihren Antworten - Zahnfleischpflege';
+          isPersonalized = true;
+        } else if (concern === 'whitening') {
+          recommendations.push(productDatabase['white']);
+          recommendations.push(productDatabase['kariesschutz']);
+          title.textContent = 'Für Ihre Routine';
+          subtitle.textContent = 'Basierend auf Ihren Antworten - Weißere Zähne';
+          isPersonalized = true;
+        }
+
+        // Add junior products for young age groups
+        if (ageGroup === 'junior' || ageGroup === 'baby') {
+          recommendations = [productDatabase['junior']];
+          title.textContent = 'Für Ihre Routine';
+          subtitle.textContent = 'Basierend auf Ihren Antworten - Kinderzahnpflege';
+          isPersonalized = true;
+        }
+      } catch (e) {
+        console.error('Error parsing user profile:', e);
+      }
+    }
+
+    // Fallback to default recommendations if no personalization
+    if (recommendations.length === 0) {
+      recommendations.push(productDatabase['kariesschutz']);
+      recommendations.push(productDatabase['sensitive']);
+      recommendations.push(productDatabase['zahnfleisch']);
+      title.textContent = 'Vorgeschlagen für Sie';
+      subtitle.textContent = 'Unsere beliebtesten Produkte';
+    }
+
+    // Limit to 3-4 products
+    recommendations = recommendations.slice(0, 4);
+
+    // Render product cards
+    container.innerHTML = recommendations.map(product => `
+      <a href="${product.url}" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300">
+        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+          />
+          <img
+            src="${product.image2}"
+            alt="${product.name} - Ansicht 2"
+            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+          />
+        </div>
+        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+          ${product.name}
+        </h3>
+        <p class="text-sm text-neutral-600 mb-4">
+          ${product.description}
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          ${product.tags.map((tag: string) => `<span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">${tag}</span>`).join('')}
+        </div>
+      </a>
+    `).join('');
+
+    // Show the section
+    section.classList.remove('hidden');
+  }
+
   // Category filtering
   const categoryFilters = document.querySelectorAll('.category-filter');
   const productCards = document.querySelectorAll('.product-card');
@@ -416,4 +599,19 @@ const faqs = [
     console.log('Sorting by:', sortValue);
     // Implement sorting logic here
   });
+
+  // Initialize personalized section on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    loadPersonalizedSection();
+  });
 </script>
+
+<style>
+  /* Hover effect for image swap */
+  .product-card:hover .product-img-main {
+    opacity: 0;
+  }
+  .product-card:hover .product-img-hover {
+    opacity: 1;
+  }
+</style>
