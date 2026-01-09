@@ -36,6 +36,29 @@
     <!-- Dynamically populated -->
   </div>
 
+  <!-- Discount promotion and code -->
+  <div class="mt-8 text-center">
+    <p class="text-sm text-neutral-600 mb-4 italic">
+      Damit Sie das neue Produkt ausprobieren können, erhalten Sie 10% Rabatt auf Ihre erste Bestellung.
+    </p>
+    <div class="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full border-2 border-primary shadow-md">
+      <span class="text-sm text-neutral-600">Ihr Rabattcode:</span>
+      <code id="discount-code" class="text-lg font-bold text-primary bg-primary/10 px-4 py-1 rounded-lg">
+        <!-- Dynamically populated -->
+      </code>
+      <button
+        id="copy-discount-code"
+        class="px-4 py-1 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-lg transition-colors"
+        title="Code kopieren"
+      >
+        Kopieren
+      </button>
+    </div>
+    <p class="text-xs text-neutral-500 mt-2">
+      Einlösbar bei teilnehmenden Händlern
+    </p>
+  </div>
+
   <div class="mt-6 text-center">
     <a
       href="/beratung/produktfinder"
@@ -269,12 +292,19 @@
     }
     reason.textContent = reasonText;
 
-    // Render product cards with real images
+    // Render product cards with real images and discount badges
     container.innerHTML = recommendations.map(product => `
       <a
         href="${product.url}"
-        class="recommendation-card bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary hover:shadow-lg transition-all group"
+        class="recommendation-card relative bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary hover:shadow-lg transition-all group"
       >
+        <!-- Discount Badge -->
+        <div class="absolute top-4 right-4 z-10">
+          <div class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-pulse-subtle">
+            10% Rabatt
+          </div>
+        </div>
+
         <div class="mb-4 flex items-center justify-center h-32 group-hover:scale-105 transition-transform">
           <img src="${product.image}" alt="${product.name}" class="max-h-full max-w-full object-contain" />
         </div>
@@ -341,6 +371,69 @@
     const recommendations = getRecommendations(profile);
     renderRecommendations(recommendations, profile);
 
+    // Generate and display discount code
+    const generateDiscountCode = (profile: UserProfile): string => {
+      // Generate code based on user's quiz results or default
+      let concern = 'ELMEX';
+
+      if (profile.quizCompleted && profile.quizResult) {
+        const answersMap: Record<string, any> = {};
+        if (Array.isArray(profile.quizResult.answers)) {
+          profile.quizResult.answers.forEach((item: any) => {
+            answersMap[item.questionId] = item.answer;
+          });
+        }
+
+        if (answersMap.dentalConcerns) {
+          const concerns = Array.isArray(answersMap.dentalConcerns) ? answersMap.dentalConcerns : [answersMap.dentalConcerns];
+
+          if (concerns.includes('sensitive-teeth')) {
+            concern = 'SENSITIVE';
+          } else if (concerns.includes('cavity-protection')) {
+            concern = 'KARIES';
+          } else if (concerns.includes('gum-health')) {
+            concern = 'ZAHNFLEISCH';
+          } else if (concerns.includes('whitening')) {
+            concern = 'WHITE';
+          }
+        }
+
+        if (answersMap.childAge || answersMap.start === 'child') {
+          concern = 'JUNIOR';
+        }
+      }
+
+      return `ELMEX${concern}10`;
+    };
+
+    const discountCode = generateDiscountCode(profile);
+    const discountCodeEl = document.getElementById('discount-code');
+    if (discountCodeEl) {
+      discountCodeEl.textContent = discountCode;
+    }
+
+    // Copy discount code functionality
+    const copyBtn = document.getElementById('copy-discount-code');
+    copyBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      navigator.clipboard.writeText(discountCode).then(() => {
+        // Visual feedback
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = 'Kopiert!';
+        copyBtn.classList.add('bg-green-600');
+        copyBtn.classList.remove('bg-primary', 'hover:bg-primary-dark');
+
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+          copyBtn.classList.remove('bg-green-600');
+          copyBtn.classList.add('bg-primary', 'hover:bg-primary-dark');
+        }, 2000);
+      }).catch(() => {
+        alert('Fehler beim Kopieren. Bitte manuell kopieren: ' + discountCode);
+      });
+    });
+
     // Dismiss button
     const dismissBtn = document.getElementById('dismiss-recommendations');
     dismissBtn?.addEventListener('click', () => {
@@ -380,5 +473,20 @@
 
   .recommendation-card:hover {
     transform: translateY(-4px);
+  }
+
+  @keyframes pulse-subtle {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
   }
 </style>
