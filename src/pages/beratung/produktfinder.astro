@@ -1,7 +1,9 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles } from '@lucide/astro';
+import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles, Baby, User, Users } from '@lucide/astro';
 ---
+
+<!-- NO EMOJIS - Using Lucide icons per project guidelines -->
 
 <Layout
   title="Produktfinder | elmex"
@@ -36,22 +38,22 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button class="quiz-option" data-value="baby">
-            <span class="text-5xl mb-3">👶</span>
+            <Baby class="w-12 h-12 text-primary mb-3" />
             <span class="font-medium text-neutral-900">Baby/Kleinkind</span>
             <span class="text-sm text-neutral-600">0-6 Jahre</span>
           </button>
           <button class="quiz-option" data-value="junior">
-            <span class="text-5xl mb-3">🧒</span>
+            <User class="w-10 h-10 text-primary mb-3" />
             <span class="font-medium text-neutral-900">Kind</span>
             <span class="text-sm text-neutral-600">6-12 Jahre</span>
           </button>
           <button class="quiz-option" data-value="adult">
-            <span class="text-5xl mb-3">👤</span>
+            <User class="w-12 h-12 text-primary mb-3" />
             <span class="font-medium text-neutral-900">Erwachsener</span>
             <span class="text-sm text-neutral-600">13-64 Jahre</span>
           </button>
           <button class="quiz-option" data-value="senior">
-            <span class="text-5xl mb-3">👴</span>
+            <Users class="w-12 h-12 text-primary mb-3" />
             <span class="font-medium text-neutral-900">Senior</span>
             <span class="text-sm text-neutral-600">65+ Jahre</span>
           </button>
@@ -139,7 +141,7 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
         <p class="text-neutral-600 mb-6">
           Optional: Laden Sie ein Foto Ihrer Zähne oder aktuellen Zahnpasta hoch für genauere Empfehlungen.
           <strong class="block mt-2 text-sm text-amber-600">
-            ⚠️ Hinweis: Dies ersetzt nicht die Diagnose durch einen Zahnarzt. Nur für Produktempfehlungen.
+            Hinweis: Dies ersetzt nicht die Diagnose durch einen Zahnarzt. Nur für Produktempfehlungen.
           </strong>
         </p>
 
@@ -277,7 +279,7 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
   }
 
   .quiz-option.multi.selected::after {
-    content: '✓';
+    content: '';
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -291,6 +293,10 @@ import { ChevronRight, CheckCircle, Upload, Camera, ShieldCheck, Heart, Sparkles
     justify-content: center;
     font-size: 0.875rem;
     font-weight: 700;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   @keyframes fadeIn {
