@@ -265,6 +265,32 @@ export const quizFlow: Record<string, QuizQuestion> = {
     next: 'eatingHabits'
   },
 
+  eatingHabits: {
+    id: 'eatingHabits',
+    question: 'Wie würden Sie Ihre Essgewohnheiten beschreiben?',
+    type: 'multiple',
+    options: [
+      { value: 'sugary', label: 'Viel Süßes', icon: '🍬' },
+      { value: 'acidic', label: 'Säurehaltige Lebensmittel', icon: '🍋' },
+      { value: 'balanced', label: 'Ausgewogen', icon: '🥗' },
+      { value: 'snacking', label: 'Häufige Snacks', icon: '🍪' }
+    ],
+    next: 'consumption'
+  },
+
+  consumption: {
+    id: 'consumption',
+    question: 'Welche Gewohnheiten treffen auf Sie zu?',
+    type: 'multiple',
+    options: [
+      { value: 'coffee', label: 'Kaffee täglich', icon: '☕' },
+      { value: 'tea', label: 'Tee täglich', icon: '🫖' },
+      { value: 'smoking', label: 'Rauchen', icon: '🚬' },
+      { value: 'none', label: 'Keine davon', icon: '✅' }
+    ],
+    next: 'results'
+  },
+
   results: {
     id: 'results',
     question: 'Perfekt! Wir haben deine persönlichen Empfehlungen erstellt.',
