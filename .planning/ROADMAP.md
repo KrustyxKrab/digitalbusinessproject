@@ -45,7 +45,7 @@ Plans:
 Plans:
 - [x] 02-01: Experten-Bilder für Vertrauensbildung, erstes Fenster mit Willkommens-Frage, Zeitangabe — 9min
 - [x] 02-02: Neue Fragen hinzufügen (Putztechnik beschreiben, Essgewohnheiten, Rauchen/Tee/Kaffee) — 7min
-- [ ] 02-03: Zahnarzt/Zahnreinigung-Frequenz erfragen
+- [x] 02-03: Zahnarzt/Zahnreinigung-Frequenz erfragen — 1min
 - [ ] 02-04: Account-Erstellung optional am Ende (funktioniert auch ohne für einen Visit)
 
 ### Phase 3: Hauptseite-Personalisierung
@@ -117,7 +117,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Cleanup | 2/2 | Complete | 2026-01-09 |
-| 2. Fragebogen-Optimierung | 2/4 | In progress | - |
+| 2. Fragebogen-Optimierung | 3/4 | In progress | - |
 | 3. Hauptseite-Personalisierung | 0/5 | Not started | - |
 | 4. Produktsystem-Überarbeitung | 0/5 | Not started | - |
 | 5. Dashboard & Routine | 0/3 | Not started | - |
