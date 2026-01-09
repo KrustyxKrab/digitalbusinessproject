@@ -17,7 +17,7 @@ None
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Cleanup** - Projektstruktur bereinigen und intelligente Content-Organisation etablieren
-- [ ] **Phase 2: Fragebogen-Optimierung** - Vertrauensbildung und erweiterte Zero-Party-Data-Erfassung
+- [~] **Phase 2: Fragebogen-Optimierung** - Vertrauensbildung und erweiterte Zero-Party-Data-Erfassung
 - [ ] **Phase 3: Hauptseite-Personalisierung** - Landing-Experience mit Hooks, Experten und Personalisierung
 - [ ] **Phase 4: Produktsystem-Überarbeitung** - Intelligente Slugs, optimierte Cards und Produktseiten
 - [ ] **Phase 5: Dashboard & Routine** - Persönliche Daten, Score-Anpassungen und Routine-Optimierung
@@ -43,7 +43,7 @@ Plans:
 **Plans**: 3-4 plans
 
 Plans:
-- [ ] 02-01: Experten-Bilder für Vertrauensbildung, erstes Fenster mit Willkommens-Frage, Zeitangabe
+- [x] 02-01: Experten-Bilder für Vertrauensbildung, erstes Fenster mit Willkommens-Frage, Zeitangabe — 9min
 - [ ] 02-02: Neue Fragen hinzufügen (Putztechnik beschreiben, Essgewohnheiten, Rauchen/Tee/Kaffee)
 - [ ] 02-03: Zahnarzt/Zahnreinigung-Frequenz erfragen
 - [ ] 02-04: Account-Erstellung optional am Ende (funktioniert auch ohne für einen Visit)
@@ -117,7 +117,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Cleanup | 2/2 | Complete | 2026-01-09 |
-| 2. Fragebogen-Optimierung | 0/4 | Not started | - |
+| 2. Fragebogen-Optimierung | 1/4 | In progress | - |
 | 3. Hauptseite-Personalisierung | 0/5 | Not started | - |
 | 4. Produktsystem-Überarbeitung | 0/5 | Not started | - |
 | 5. Dashboard & Routine | 0/3 | Not started | - |
