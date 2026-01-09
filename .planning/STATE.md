@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 ## Current Position
 
 Phase: 3 of 7 (Hauptseite-Personalisierung)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-09 — Completed 03-03-PLAN.md (Personalized Hero Line & Trust Seals)
+Last activity: 2026-01-09 — Completed 03-04-PLAN.md (Prominent Product Finder & Advisory Tips)
 
-Progress: ████░░░░░░ 36%
+Progress: ████░░░░░░ 40%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
-- Average duration: 4 min
-- Total execution time: 0.57 hours
+- Total plans completed: 10
+- Average duration: 3 min
+- Total execution time: 0.58 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: ████░░░░░░ 36%
 |-------|-------|-------|----------|
 | 1. Foundation & Cleanup | 2 | 8 min | 4 min |
 | 2. Fragebogen-Optimierung | 4 | 21 min | 5 min |
-| 3. Hauptseite-Personalisierung | 3 | 5 min | 2 min |
+| 3. Hauptseite-Personalisierung | 4 | 6 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 4min, 2min, 1min, 2min
+- Last 5 plans: 2min, 1min, 2min, 1min
 - Trend: Highly efficient
 
 ## Accumulated Context
@@ -65,6 +65,10 @@ Recent decisions affecting current work:
 | 03-02 | Expert images in personalized content | Trust signals directly in personalized context increase perceived quality |
 | 03-03 | Hero personalization priority: dentistFrequency → ageGroup → concern | Priority reflects urgency and specificity for most relevant messaging |
 | 03-03 | Schema.org Brand markup for trust bar | Enhances SEO crawlability and enables Knowledge Graph features |
+| 03-04 | Product finder after personalized recommendations | Above-fold positioning with high visibility increases engagement significantly |
+| 03-04 | Full-width centered layout over split grid | Single prominent CTA converts better than competing actions |
+| 03-04 | Advisory section after blog preview | Strategic engagement point captures content-interested users before footer |
+| 03-04 | Problem category chips in advisory | Specific pain points resonate better than generic tips |
 
 ### Deferred Issues
 
@@ -76,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-09 14:49
-Stopped at: Completed 03-03-PLAN.md (Personalized Hero Line & Trust Seals)
+Last session: 2026-01-09 14:52
+Stopped at: Completed 03-04-PLAN.md (Prominent Product Finder & Advisory Tips)
 Resume file: None
