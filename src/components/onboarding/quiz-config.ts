@@ -288,7 +288,20 @@ export const quizFlow: Record<string, QuizQuestion> = {
       { value: 'smoking', label: 'Rauchen', icon: '🚬' },
       { value: 'none', label: 'Keine davon', icon: '✅' }
     ],
-    next: 'results'
+    next: 'dentistFrequency'
+  },
+
+  dentistFrequency: {
+    id: 'dentistFrequency',
+    question: 'Wie oft gehen Sie zum Zahnarzt?',
+    type: 'single',
+    options: [
+      { value: '2x-year', label: '2x pro Jahr', description: '⭐ Empfohlen' },
+      { value: '1x-year', label: '1x pro Jahr' },
+      { value: 'rarely', label: 'Selten' },
+      { value: 'issues-only', label: 'Nur bei Beschwerden' }
+    ],
+    next: 'cleaningFrequency'
   },
 
   results: {
