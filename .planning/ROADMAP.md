@@ -68,11 +68,11 @@ Plans:
 **Plans**: 4-5 plans
 
 Plans:
-- [ ] 04-01: Produkte-Übersicht mit "Für Ihre Routine/Vorgeschlagen", Produktkarten optimieren (klickbar, Hover-Effekt, Button-Styling)
-- [ ] 04-02: Produktseiten: Name erkennbar, "Wo kaufen" größer, drei Bilder above the fold, Inhaltsstoffe
-- [ ] 04-03: "Zu Abo hinzufügen" neben "In Routine aufnehmen", Zeithinweis entfernen
-- [ ] 04-04: Produktfinder auf Produkte-Seite, Emojis entfernen, Kaufsplit-Frage (für sich/andere → Alter)
-- [ ] 04-05: Produktvorschläge funktionierend, Rabatt auf Empfehlungen, "Wo kaufen" Feature reparieren
+- [ ] 04-01: Produkte-Übersicht mit "Für Ihre Routine/Vorgeschlagen", Produktkarten optimieren (klickbar, Hover-Effekt, Button-Styling) — PLANNED
+- [ ] 04-02: Produktseiten: Name erkennbar, "Wo kaufen" größer, drei Bilder above the fold, Inhaltsstoffe — PLANNED
+- [ ] 04-03: "Zu Abo hinzufügen" neben "In Routine aufnehmen", Zeithinweis entfernen — PLANNED
+- [ ] 04-04: Produktfinder auf Produkte-Seite, Emojis entfernen, Kaufsplit-Frage (für sich/andere → Alter) — PLANNED
+- [ ] 04-05: Produktvorschläge funktionierend, Rabatt auf Empfehlungen, "Wo kaufen" Feature reparieren — PLANNED
 
 ### Phase 5: Dashboard & Routine
 **Goal**: Persönliches Dashboard mit realistischem Health-Score, optimierter Routine-Platzierung und individualisierten Daten
