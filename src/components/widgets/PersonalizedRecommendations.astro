@@ -3,17 +3,17 @@
 // Uses localStorage data from quiz, browsing history, and user interactions
 ---
 
-<div id="personalized-widget" class="hidden bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 my-12 border border-primary/20">
-  <div class="flex items-start justify-between mb-6">
-    <div>
-      <div class="flex items-center justify-center mb-4">
-        <div class="flex items-center">
-          <img src="/assets/experts/expert-1.png" alt="Zahnexperte" class="w-12 h-12 rounded-full border-2 border-white shadow-md" />
-          <img src="/assets/experts/expert-2.png" alt="Zahnexperte" class="w-12 h-12 rounded-full border-2 border-white shadow-md -ml-3" />
-          <img src="/assets/experts/expert-3.png" alt="Zahnexperte" class="w-12 h-12 rounded-full border-2 border-white shadow-md -ml-3" />
-        </div>
+<div id="personalized-widget" class="hidden relative bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 my-12 border border-primary/20">
+  <div class="mb-8">
+    <div class="flex flex-col items-center mb-6">
+      <div class="flex -space-x-2 mb-3">
+        <img src="/assets/experts/expert-1.png" alt="Zahnexperte" class="w-12 h-12 rounded-full border-2 border-white shadow-md" />
+        <img src="/assets/experts/expert-2.png" alt="Zahnexperte" class="w-12 h-12 rounded-full border-2 border-white shadow-md" />
+        <img src="/assets/experts/expert-3.png" alt="Zahnexperte" class="w-12 h-12 rounded-full border-2 border-white shadow-md" />
       </div>
-      <p class="text-sm text-neutral-600 text-center mb-4">Empfohlen von Zahnexperten</p>
+      <p class="text-sm text-neutral-600">Empfohlen von Zahnexperten</p>
+    </div>
+    <div class="text-center">
       <h3 class="text-2xl md:text-3xl font-brand font-bold text-neutral-900 mb-2">
         Für Sie empfohlen
       </h3>
@@ -23,7 +23,7 @@
     </div>
     <button
       id="dismiss-recommendations"
-      class="text-neutral-400 hover:text-neutral-600:text-neutral-300 transition-colors"
+      class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600 transition-colors"
       aria-label="Empfehlungen ausblenden"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
