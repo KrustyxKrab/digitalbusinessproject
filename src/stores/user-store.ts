@@ -1,11 +1,16 @@
-import { map } from 'nanostores';
+import { map, atom } from 'nanostores';
 import type { UserProfile } from '../types/models';
 
 // User Profile Store
 export const userProfile = map({
 name: '',
   healthScore: 0,
-  routine: {} 
+  routine: {}
+});
+
+// Account Status Store
+export const accountStatus = atom<{ hasAccount: boolean; email?: string; name?: string }>({
+  hasAccount: false
 });
 
 // Helper functions
@@ -92,11 +97,51 @@ export async function loadFromIndexedDB(key: string): Promise<any> {
   });
 }
 
-// Initialize store from IndexedDB on client
+// Account management functions
+export function getAccountStatus(): { hasAccount: boolean; email?: string; name?: string } {
+  if (typeof window === 'undefined') return { hasAccount: false };
+
+  const profile = localStorage.getItem('elmex-user-profile');
+  if (profile) {
+    try {
+      const data = JSON.parse(profile);
+      if (data.account && data.account.accountCreated) {
+        return {
+          hasAccount: true,
+          email: data.account.email,
+          name: data.account.name
+        };
+      }
+    } catch (e) {
+      console.error('Error reading account status:', e);
+    }
+  }
+
+  return { hasAccount: false };
+}
+
+export function getDisplayMode(): 'account' | 'guest' {
+  const status = getAccountStatus();
+  return status.hasAccount ? 'account' : 'guest';
+}
+
+export function getDisplayName(): string {
+  const status = getAccountStatus();
+  if (status.hasAccount && status.name) {
+    return status.name;
+  }
+  return 'Gast';
+}
+
+// Initialize stores from IndexedDB/localStorage on client
 if (typeof window !== 'undefined') {
   loadFromIndexedDB('userProfile').then((profile) => {
     if (profile) {
       userProfile.set(profile);
     }
   });
+
+  // Load account status
+  const status = getAccountStatus();
+  accountStatus.set(status);
 }
