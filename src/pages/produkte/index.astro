@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import FAQSearch from "@/components/widgets/FAQSearch.astro";
 import StructuredData from "@/components/widgets/StructuredData.astro";
+import { User, Users } from '@lucide/astro';
 
 // FAQ Data
 const faqs = [
@@ -418,21 +419,40 @@ const faqs = [
     </div>
   </section>
 
-  <!-- CTA Section -->
+  <!-- CTA Section with Inline Product Finder -->
   <section class="container mx-auto px-4 mb-16">
-    <div class="bg-gradient-to-br from-primary to-red-500 rounded-2xl p-8 md:p-12 text-center text-white">
-      <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4">
-        Nicht sicher, welches Produkt passt?
-      </h2>
-      <p class="text-lg mb-8 opacity-90">
-        Nutzen Sie unseren Produktfinder für eine persönliche Empfehlung
-      </p>
-      <a
-        href="/beratung/produktfinder"
-        class="inline-flex items-center justify-center px-8 py-3 text-base font-medium bg-white text-primary hover:bg-neutral-100 transition-colors rounded-full"
-      >
-        Zum Produktfinder
-      </a>
+    <div class="bg-gradient-to-br from-primary to-red-500 rounded-2xl p-8 md:p-12 text-white">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4">
+            Nicht sicher, welches Produkt passt?
+          </h2>
+          <p class="text-lg opacity-90">
+            Unser Produktfinder hilft Ihnen in 5 Fragen zur perfekten Empfehlung
+          </p>
+        </div>
+
+        <!-- Inline mini finder (Question 1 only) -->
+        <div class="bg-white rounded-xl p-6 text-neutral-900">
+          <h3 class="text-xl font-semibold mb-4">Für wen suchen Sie?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <a href="/beratung/produktfinder?intent=self" class="flex items-center gap-3 p-4 bg-neutral-50 hover:bg-neutral-100 rounded-lg transition-colors">
+              <User class="w-8 h-8 text-primary flex-shrink-0" />
+              <span class="font-medium">Für mich selbst</span>
+            </a>
+            <a href="/beratung/produktfinder?intent=other" class="flex items-center gap-3 p-4 bg-neutral-50 hover:bg-neutral-100 rounded-lg transition-colors">
+              <Users class="w-8 h-8 text-primary flex-shrink-0" />
+              <span class="font-medium">Für andere</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="text-center mt-6">
+          <a href="/beratung/produktfinder" class="text-white/80 hover:text-white underline text-sm">
+            Oder starten Sie den vollständigen Produktfinder →
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>
