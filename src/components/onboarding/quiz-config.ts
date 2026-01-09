@@ -249,7 +249,20 @@ export const quizFlow: Record<string, QuizQuestion> = {
       { value: '3+', label: '3x oder öfter' },
       { value: 'irregular', label: 'Unregelmäßig' }
     ],
-    next: 'results'
+    next: 'brushingTechnique'
+  },
+
+  brushingTechnique: {
+    id: 'brushingTechnique',
+    question: 'Wie putzen Sie Ihre Zähne?',
+    type: 'multiple',
+    options: [
+      { value: 'circular', label: 'Kreisende Bewegungen', icon: '🔄' },
+      { value: 'horizontal', label: 'Hin und her', icon: '↔️' },
+      { value: 'vertical', label: 'Auf und ab', icon: '↕️' },
+      { value: 'unsure', label: 'Bin mir nicht sicher', icon: '❓' }
+    ],
+    next: 'eatingHabits'
   },
 
   results: {
