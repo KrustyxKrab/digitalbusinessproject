@@ -363,12 +363,15 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
     const closeBtn = document.getElementById('close-modal');
     const skipBtn = document.getElementById('skip-quiz');
 
+    // Only show modal on main landing page (/)
+    const isMainPage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+
     // Check if user has visited before or completed quiz
     const hasVisited = localStorage.getItem('elmex-has-visited');
     const quizCompleted = localStorage.getItem('elmex-user-profile');
 
-    // Show modal only if first visit and quiz not completed
-    if (!hasVisited && !quizCompleted) {
+    // Show modal only if on main page, first visit, and quiz not completed
+    if (isMainPage && !hasVisited && !quizCompleted) {
       setTimeout(() => {
         modal?.classList.remove('hidden');
         modal?.classList.add('flex');
