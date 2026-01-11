@@ -3,6 +3,34 @@ import Layout from "@/layouts/Layout.astro";
 import FAQSearch from "@/components/widgets/FAQSearch.astro";
 import StructuredData from "@/components/widgets/StructuredData.astro";
 import { User, Users } from '@lucide/astro';
+import type { ProductDetail } from '@/types/models';
+import fs from 'fs';
+import path from 'path';
+
+// Load all products dynamically from JSON files
+function loadAllProducts(): ProductDetail[] {
+  const productsDir = path.join(process.cwd(), 'public', 'products');
+  const folders = fs.readdirSync(productsDir);
+
+  return folders
+    .filter(folder => {
+      const folderPath = path.join(productsDir, folder);
+      return fs.statSync(folderPath).isDirectory();
+    })
+    .map(folder => {
+      try {
+        const jsonPath = path.join(productsDir, folder, 'product-info.json');
+        const json = fs.readFileSync(jsonPath, 'utf-8');
+        return JSON.parse(json) as ProductDetail;
+      } catch (error) {
+        console.error(`Failed to load product: ${folder}`, error);
+        return null;
+      }
+    })
+    .filter((p): p is ProductDetail => p !== null);
+}
+
+const allProducts = loadAllProducts();
 
 // FAQ Data
 const faqs = [
@@ -159,253 +187,55 @@ const faqs = [
   <!-- Products Grid -->
   <section class="container mx-auto px-4 mb-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Product 1: KARIESSCHUTZ Zahnpasta -->
-      <a href="/produkte/kariesschutz-zahnpasta" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_01.png"
-            alt="elmex KARIESSCHUTZ Zahnpasta"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_02.png"
-            alt="elmex KARIESSCHUTZ Zahnpasta - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex KARIESSCHUTZ Zahnpasta
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Hocheffektiver Kariesschutz durch Aminfluorid
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Kariesschutz</span>
-          <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Remineralisierung</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
+      {allProducts.map(product => {
+        // Determine category for filtering
+        let categoryClass = 'zahnpasta';
+        if (product.category === 'mouthwash') categoryClass = 'mundspuelung';
+        else if (product.category === 'toothbrush') categoryClass = 'zahnbuerste';
 
-      <!-- Product 2: ZAHNFLEISCH Zahnpasta -->
-      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/elmexprotectionprofessional/elmex_protection_professional_1.png"
-            alt="elmex ZAHNFLEISCH Zahnpasta"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/elmexprotectionprofessional/elmex_protection_professional_2.png"
-            alt="elmex ZAHNFLEISCH Zahnpasta - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex ZAHNFLEISCH Zahnpasta
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Stärkt das Zahnfleisch und beugt Entzündungen vor
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Zahnfleischpflege</span>
-          <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Entzündungsschutz</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20ZAHNFLEISCH'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
+        // Get first two benefits as tags if available, otherwise use generic ones
+        const tags = product.benefits?.slice(0, 2) || [product.productLine, 'Klinisch geprüft'];
 
-      <!-- Product 3: SENSITIVE Zahnpasta -->
-      <a href="/produkte/sensitive-zahnpasta" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/sensitive-zahnpasta/sensitive-zahnpasta_01.png"
-            alt="elmex SENSITIVE Zahnpasta"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/sensitive-zahnpasta/sensitive-zahnpasta_02.png"
-            alt="elmex SENSITIVE Zahnpasta - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex SENSITIVE Zahnpasta
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Sanfter Schutz für empfindliche Zähne
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Empfindlichkeit</span>
-          <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Sanfter Schutz</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20SENSITIVE'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
-
-      <!-- Product 4: JUNIOR Zahnpasta -->
-      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnpasta">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/elmexjunior/elmex_ junior_1.png"
-            alt="elmex JUNIOR Zahnpasta"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/elmexjunior/elmex_ junior_2.png"
-            alt="elmex JUNIOR Zahnpasta - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex JUNIOR Zahnpasta
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Speziell für Kinder von 6-12 Jahren
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Kinderzahnpflege</span>
-          <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Altersgerecht</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20JUNIOR'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
-
-      <!-- Product 5: KARIESSCHUTZ Mundspülung -->
-      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="mundspuelung">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/elmexkariesschutz/elmex_kariesschutz_1.png"
-            alt="elmex KARIESSCHUTZ Mundspülung"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/elmexkariesschutz/elmex_kariesschutz_2.png"
-            alt="elmex KARIESSCHUTZ Mundspülung - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex KARIESSCHUTZ Mundspülung
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Ergänzender Schutz für die tägliche Zahnpflege
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs rounded-full">Kariesschutz</span>
-          <span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs rounded-full">Frischer Atem</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20KARIESSCHUTZ%20Mundspu%CC%88lung'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
-
-      <!-- Product 6: SENSITIVE Mundspülung -->
-      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="mundspuelung">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/elmexsensitivemouthwash/elmex_sensitive_mundspuelung_1.png"
-            alt="elmex SENSITIVE Mundspülung"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/elmexsensitivemouthwash/elmex_sensitive_mundspuelung_2.png"
-            alt="elmex SENSITIVE Mundspülung - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex SENSITIVE Mundspülung
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Sanfte Pflege für empfindliche Zähne
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Empfindlichkeit</span>
-          <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Sanfte Pflege</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Mundspu%CC%88lung'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
-
-      <!-- Product 7: InterX Zahnbürste -->
-      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnbuerste">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/elmexzahnbuerste/elmex_zahnbürste_1.png"
-            alt="elmex InterX Zahnbürste"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/elmexzahnbuerste/elmex_zahnbürste_2.png"
-            alt="elmex InterX Zahnbürste - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex InterX Zahnbürste
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Tiefenreinigung für schwer erreichbare Stellen
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Tiefenreinigung</span>
-          <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Zahnzwischenräume</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20InterX%20Zahnbu%CC%88rste'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
-
-      <!-- Product 8: SENSITIVE Zahnbürste -->
-      <a href="/produkte" class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300" data-category="zahnbuerste">
-        <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-          <img
-            src="/products/elmexsensitivezahnbuerste/elmex_sensitive_zahnbürste_1.png"
-            alt="elmex SENSITIVE Zahnbürste"
-            class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-          />
-          <img
-            src="/products/elmexsensitivezahnbuerste/elmex_sensitive_zahnbürste_2.png"
-            alt="elmex SENSITIVE Zahnbürste - Ansicht 2"
-            class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
-          />
-        </div>
-        <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
-          elmex SENSITIVE Zahnbürste
-        </h3>
-        <p class="text-sm text-neutral-600 mb-4">
-          Extra weiche Borsten für empfindliche Zähne
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full">Empfindlichkeit</span>
-          <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full">Weiche Borsten</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <button onclick="event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=elmex%20SENSITIVE%20Zahnbu%CC%88rste'" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-            Wo kaufen
-          </button>
-        </div>
-      </a>
+        return (
+          <a
+            href={`/produkte/${product.slug}`}
+            class="product-card block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer hover:scale-105 transform duration-300"
+            data-category={categoryClass}
+          >
+            <div class="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+              <img
+                src={`/products/${product.slug}/${product.slug}_01.png`}
+                alt={product.name}
+                class="product-img-main absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+              />
+              <img
+                src={`/products/${product.slug}/${product.slug}_02.png`}
+                alt={`${product.name} - Ansicht 2`}
+                class="product-img-hover absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300"
+              />
+            </div>
+            <h3 class="text-lg font-brand font-semibold text-neutral-900 mb-2">
+              {product.name}
+            </h3>
+            <p class="text-sm text-neutral-600 mb-4">
+              {product.description}
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {tags.map(tag => (
+                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">{tag}</span>
+              ))}
+            </div>
+            <div class="flex flex-col gap-2">
+              <button
+                onclick={`event.preventDefault(); event.stopPropagation(); window.location.href='/beratung/wo-kaufen?product=${encodeURIComponent(product.name)}'`}
+                class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
+              >
+                Wo kaufen
+              </button>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </section>
 
@@ -458,70 +288,6 @@ const faqs = [
 </Layout>
 
 <script>
-  // Product database with real images
-  const productDatabase: Record<string, any> = {
-    'kariesschutz': {
-      name: 'elmex KARIESSCHUTZ Zahnpasta',
-      description: 'Hocheffektiver Kariesschutz durch Aminfluorid',
-      url: '/produkte/kariesschutz-zahnpasta',
-      slug: 'kariesschutz-zahnpasta',
-      image: '/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_01.png',
-      image2: '/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_02.png',
-      category: 'cavity',
-      tags: ['Kariesschutz', 'Remineralisierung']
-    },
-    'sensitive': {
-      name: 'elmex SENSITIVE Zahnpasta',
-      description: 'Sanfter Schutz für empfindliche Zähne',
-      url: '/produkte/sensitive-zahnpasta',
-      slug: 'sensitive-zahnpasta',
-      image: '/products/sensitive-zahnpasta/sensitive-zahnpasta_01.png',
-      image2: '/products/sensitive-zahnpasta/sensitive-zahnpasta_02.png',
-      category: 'sensitivity',
-      tags: ['Empfindlichkeit', 'Sanfter Schutz']
-    },
-    'sensitive-professional': {
-      name: 'elmex SENSITIVE PROFESSIONAL',
-      description: 'Sofortige und langanhaltende Schmerzlinderung',
-      url: '/produkte/sensitive-zahnpasta',
-      slug: 'elmexsensitiveprofessional',
-      image: '/products/elmexsensitiveprofessional/elmex_sensitive_professional_1.png',
-      image2: '/products/elmexsensitiveprofessional/elmex_sensitive_professional_2.png',
-      category: 'sensitivity',
-      tags: ['Empfindlichkeit', 'Professional']
-    },
-    'zahnfleisch': {
-      name: 'elmex ZAHNFLEISCH Zahnpasta',
-      description: 'Stärkt das Zahnfleisch und beugt Entzündungen vor',
-      url: '/produkte',
-      slug: 'elmexprotectionprofessional',
-      image: '/products/elmexprotectionprofessional/elmex_protection_professional_1.png',
-      image2: '/products/elmexprotectionprofessional/elmex_protection_professional_2.png',
-      category: 'gum',
-      tags: ['Zahnfleischpflege', 'Entzündungsschutz']
-    },
-    'junior': {
-      name: 'elmex JUNIOR Zahnpasta',
-      description: 'Speziell für Kinder von 6-12 Jahren',
-      url: '/produkte',
-      slug: 'elmexjunior',
-      image: '/products/elmexjunior/elmex_ junior_1.png',
-      image2: '/products/elmexjunior/elmex_ junior_2.png',
-      category: 'junior',
-      tags: ['Kinderzahnpflege', 'Altersgerecht']
-    },
-    'white': {
-      name: 'elmex OPTI-SCHMELZ WHITE',
-      description: 'Strahlend weiße Zähne bei gleichzeitigem Schmelzschutz',
-      url: '/produkte',
-      slug: 'elmexwhite',
-      image: '/products/elmexwhite/elmex_weiß_schmelz_1.png',
-      image2: '/products/elmexwhite/elmex_weiß_schmelz_2.png',
-      category: 'whitening',
-      tags: ['Whitening', 'Schmelzschutz']
-    }
-  };
-
   // Load personalized recommendations
   function loadPersonalizedSection() {
     const section = document.getElementById('personalized-section');
@@ -534,7 +300,6 @@ const faqs = [
     // Get user profile from localStorage
     const userProfileStr = localStorage.getItem('elmex-user-profile');
     let recommendations: any[] = [];
-    let isPersonalized = false;
 
     if (userProfileStr) {
       try {
@@ -542,39 +307,67 @@ const faqs = [
         const concern = userProfile.concern;
         const ageGroup = userProfile.ageGroup;
 
+        // Build product lookup from DOM - all products already rendered
+        const allProductCards = Array.from(document.querySelectorAll('.product-card[data-category]'));
+        const productsBySlug = new Map();
+
+        allProductCards.forEach(card => {
+          const href = card.getAttribute('href') || '';
+          const slug = href.split('/').pop() || '';
+          const name = card.querySelector('h3')?.textContent?.trim() || '';
+          const description = card.querySelector('p')?.textContent?.trim() || '';
+          const image = card.querySelector('.product-img-main')?.getAttribute('src') || '';
+          const image2 = card.querySelector('.product-img-hover')?.getAttribute('src') || '';
+          const tags = Array.from(card.querySelectorAll('span')).map(s => s.textContent?.trim() || '');
+
+          productsBySlug.set(slug, {
+            name,
+            description,
+            url: href,
+            slug,
+            image,
+            image2,
+            tags
+          });
+        });
+
         // Personalization logic based on quiz data
         if (concern === 'sensitivity') {
-          recommendations.push(productDatabase['sensitive']);
-          recommendations.push(productDatabase['sensitive-professional']);
+          const sensitive = productsBySlug.get('sensitive-zahnpasta');
+          const sensitivePro = productsBySlug.get('elmexsensitiveprofessional');
+          if (sensitive) recommendations.push(sensitive);
+          if (sensitivePro) recommendations.push(sensitivePro);
           title.textContent = 'Für Ihre Routine';
           subtitle.textContent = 'Basierend auf Ihren Antworten - Empfindliche Zähne';
-          isPersonalized = true;
         } else if (concern === 'cavity') {
-          recommendations.push(productDatabase['kariesschutz']);
-          recommendations.push(productDatabase['zahnfleisch']);
+          const kariesschutz = productsBySlug.get('kariesschutz-zahnpasta');
+          const zahnfleisch = productsBySlug.get('elmexprotectionprofessional');
+          if (kariesschutz) recommendations.push(kariesschutz);
+          if (zahnfleisch) recommendations.push(zahnfleisch);
           title.textContent = 'Für Ihre Routine';
           subtitle.textContent = 'Basierend auf Ihren Antworten - Kariesschutz';
-          isPersonalized = true;
         } else if (concern === 'gum') {
-          recommendations.push(productDatabase['zahnfleisch']);
-          recommendations.push(productDatabase['kariesschutz']);
+          const zahnfleisch = productsBySlug.get('elmexprotectionprofessional');
+          const kariesschutz = productsBySlug.get('kariesschutz-zahnpasta');
+          if (zahnfleisch) recommendations.push(zahnfleisch);
+          if (kariesschutz) recommendations.push(kariesschutz);
           title.textContent = 'Für Ihre Routine';
           subtitle.textContent = 'Basierend auf Ihren Antworten - Zahnfleischpflege';
-          isPersonalized = true;
         } else if (concern === 'whitening') {
-          recommendations.push(productDatabase['white']);
-          recommendations.push(productDatabase['kariesschutz']);
+          const white = productsBySlug.get('elmexwhite');
+          const kariesschutz = productsBySlug.get('kariesschutz-zahnpasta');
+          if (white) recommendations.push(white);
+          if (kariesschutz) recommendations.push(kariesschutz);
           title.textContent = 'Für Ihre Routine';
           subtitle.textContent = 'Basierend auf Ihren Antworten - Weißere Zähne';
-          isPersonalized = true;
         }
 
         // Add junior products for young age groups
         if (ageGroup === 'junior' || ageGroup === 'baby') {
-          recommendations = [productDatabase['junior']];
+          const junior = productsBySlug.get('elmexjunior');
+          if (junior) recommendations = [junior];
           title.textContent = 'Für Ihre Routine';
           subtitle.textContent = 'Basierend auf Ihren Antworten - Kinderzahnpflege';
-          isPersonalized = true;
         }
       } catch (e) {
         console.error('Error parsing user profile:', e);
@@ -583,11 +376,8 @@ const faqs = [
 
     // Fallback to default recommendations if no personalization
     if (recommendations.length === 0) {
-      recommendations.push(productDatabase['kariesschutz']);
-      recommendations.push(productDatabase['sensitive']);
-      recommendations.push(productDatabase['zahnfleisch']);
-      title.textContent = 'Vorgeschlagen für Sie';
-      subtitle.textContent = 'Unsere beliebtesten Produkte';
+      // Don't show the personalized section if no recommendations
+      return;
     }
 
     // Limit to 3-4 products

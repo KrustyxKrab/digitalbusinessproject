@@ -556,16 +556,16 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
       faqToggles.forEach(toggle => {
         toggle.addEventListener('click', () => {
           const faqItem = toggle.closest('.faq-item');
-          const answer = faqItem?.querySelector('.faq-answer');
-          const chevron = faqItem?.querySelector('.faq-chevron');
+          const answer = faqItem?.querySelector('.faq-answer') as HTMLElement;
+          const chevron = faqItem?.querySelector('.faq-chevron') as HTMLElement;
           const isActive = faqItem?.classList.contains('active');
 
           // Close all other FAQs
           document.querySelectorAll('.faq-item.active').forEach(item => {
             if (item !== faqItem) {
               item.classList.remove('active');
-              const otherAnswer = item.querySelector('.faq-answer');
-              const otherChevron = item.querySelector('.faq-chevron');
+              const otherAnswer = item.querySelector('.faq-answer') as HTMLElement;
+              const otherChevron = item.querySelector('.faq-chevron') as HTMLElement;
               if (otherAnswer) otherAnswer.style.maxHeight = '0';
               if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
             }
@@ -573,11 +573,11 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
 
           // Toggle current FAQ
           if (isActive) {
-            faqItem.classList.remove('active');
+            if (faqItem) faqItem.classList.remove('active');
             if (answer) answer.style.maxHeight = '0';
             if (chevron) chevron.style.transform = 'rotate(0deg)';
           } else {
-            faqItem.classList.add('active');
+            if (faqItem) faqItem.classList.add('active');
             if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
             if (chevron) chevron.style.transform = 'rotate(180deg)';
           }
