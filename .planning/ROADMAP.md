@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **v1.1 Product System Fix (In Progress):**
 - [x] **Phase 8: Product Data Migration** - Generate JSON metadata for all products in public/products/
-- [ ] **Phase 9: Dynamic Routing Implementation** - Implement slug-based routing for product detail pages
+- [x] **Phase 9: Dynamic Routing Implementation** - Implement slug-based routing for product detail pages
 - [ ] **Phase 10: Products Overview Refactor** - Replace hardcoded products with dynamic data loading
 - [ ] **Phase 11: Product System Integration** - Connect recommendations, routine, and abo to new structure
 - [ ] **Phase 12: Resume v1.0 Roadmap** - Continue with Dashboard & Routine (former Phase 5)
@@ -111,10 +111,10 @@ Plans:
 **Goal**: Implement slug-based dynamic routing for product detail pages using Astro patterns
 **Depends on**: Phase 8 (JSON metadata available)
 **Research**: Unlikely (Astro dynamic routes, getStaticPaths already established)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 09-01: TBD
+- [x] 09-01: Create dynamic product route with getStaticPaths, verify internal links use slug format — 5min
 
 #### Phase 10: Products Overview Refactor
 **Goal**: Replace hardcoded products in src/pages/produkte/index.astro with dynamic data loading
@@ -190,7 +190,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 8 → 9 → 10 → 11 �
 | 3. Hauptseite-Personalisierung | v1.0 | 5/5 | Complete | 2026-01-09 |
 | 4. Produktsystem-Überarbeitung | v1.0 | 5/5 | Complete | 2026-01-09 |
 | 8. Product Data Migration | v1.1 | 1/1 | Complete | 2026-01-11 |
-| 9. Dynamic Routing Implementation | v1.1 | 0/? | Not started | - |
+| 9. Dynamic Routing Implementation | v1.1 | 1/1 | Complete | 2026-01-11 |
 | 10. Products Overview Refactor | v1.1 | 0/? | Not started | - |
 | 11. Product System Integration | v1.1 | 0/? | Not started | - |
 | 12. Resume v1.0 Roadmap | v1.1 | 0/? | Not started | - |
