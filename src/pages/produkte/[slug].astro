@@ -1,0 +1,81 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ProductDetailLayout from "@/components/ProductDetailLayout.astro";
+import CrossProductRecommendations from "@/components/CrossProductRecommendations.astro";
+import { ShieldCheck } from '@lucide/astro';
+import type { ProductDetail } from '@/types/models';
+import fs from 'fs';
+import path from 'path';
+
+// Generate static paths for all products
+export async function getStaticPaths() {
+  const productsDir = path.join(process.cwd(), 'public', 'products');
+
+  try {
+    // Read all directories in public/products
+    const entries = fs.readdirSync(productsDir, { withFileTypes: true });
+
+    // Filter for directories only and read their product-info.json
+    const paths = entries
+      .filter(entry => entry.isDirectory())
+      .map(entry => {
+        const slug = entry.name;
+        const jsonPath = path.join(productsDir, slug, 'product-info.json');
+
+        try {
+          // Read and parse product JSON
+          const jsonContent = fs.readFileSync(jsonPath, 'utf-8');
+          const product = JSON.parse(jsonContent) as ProductDetail;
+
+          // Transform ingredients if it's a simple array to match ProductDetail interface
+          if (Array.isArray(product.ingredients)) {
+            // If ingredients is a simple string array, convert to detailed format
+            const ingredientsList = product.ingredients as string[];
+            const activeIngredient = ingredientsList[0];
+            const otherIngredients = ingredientsList.slice(1).join(', ');
+
+            product.ingredients = {
+              active: [{
+                name: activeIngredient,
+                description: `Wirkstoff zur Zahnpflege`
+              }],
+              other: otherIngredients
+            };
+          }
+
+          return {
+            params: { slug },
+            props: { product }
+          };
+        } catch (error) {
+          // Log error but don't break the build
+          console.error(`Failed to load product ${slug}:`, error);
+          return null;
+        }
+      })
+      .filter(Boolean); // Remove any null entries from failed loads
+
+    return paths;
+  } catch (error) {
+    console.error('Failed to read products directory:', error);
+    return [];
+  }
+}
+
+interface Props {
+  product: ProductDetail;
+}
+
+const { product } = Astro.props;
+---
+
+<Layout
+  title={`${product.name} | ${product.subtitle}`}
+  description={product.heroDescription || product.description}
+>
+  <ProductDetailLayout product={product} iconComponent={ShieldCheck} />
+  <CrossProductRecommendations
+    currentProductLine={product.productLine}
+    currentProductSlug={product.slug}
+  />
+</Layout>
