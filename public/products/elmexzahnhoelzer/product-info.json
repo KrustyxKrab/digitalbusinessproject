@@ -1,0 +1,105 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_01.png (main), {slug}_02.png (hover), {slug}_03.png (detail)",
+  "id": "elmexzahnhoelzer",
+  "slug": "elmexzahnhoelzer",
+  "sku": "EL-PICK-SET-38",
+  "name": "elmex Zahnhölzer",
+  "subtitle": "Zahnseide / Zahnhölzer",
+  "category": "floss",
+  "productLine": "kariesschutz",
+  "description": "Professionelle Zahnhölzer mit dreieckigem Querschnitt für die schonende Reinigung der Zahnzwischenräume",
+  "heroTitle": "Natürliche Zwischenraumpflege für unterwegs",
+  "heroDescription": "Zahnhölzer aus Naturholz mit dreieckigem Querschnitt - passen sich optimal den Zahnzwischenräumen an. Ideal für die Pflege unterwegs und nach den Mahlzeiten.",
+  "badge": {
+    "text": "Aus Naturholz"
+  },
+  "features": [
+    {
+      "icon": "triangle",
+      "text": "Dreieckiger Querschnitt"
+    },
+    {
+      "icon": "leaf",
+      "text": "Naturholz"
+    }
+  ],
+  "benefits": [
+    "Dreieckige Form passt sich Zahnzwischenräumen an",
+    "Aus natürlichem, splitterfreiem Holz",
+    "Ideal für unterwegs - praktische Verpackung",
+    "Sanft zum Zahnfleisch bei richtiger Anwendung"
+  ],
+  "ingredients": [
+    "Natürliches Birkenholz",
+    "Splitterfrei verarbeitet",
+    "Dreieckige Form",
+    "Unbehandelt"
+  ],
+  "howItWorks": {
+    "title": "Wie funktionieren Zahnhölzer?",
+    "description": "Die richtige Anwendung erklärt",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Zwischen Zähne einführen",
+        "description": "Das Zahnholz vorsichtig in den Zwischenraum schieben"
+      },
+      {
+        "number": 2,
+        "title": "Dreieck passt sich an",
+        "description": "Die dreieckige Form füllt den Zwischenraum optimal aus"
+      },
+      {
+        "number": 3,
+        "title": "Speisereste werden entfernt",
+        "description": "Sanftes Hin- und Herbewegen reinigt gründlich"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Richtige Anwendung der Zahnhölzer",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt erklärt die sichere und effektive Anwendung von Zahnhölzern."
+    },
+    "instructions": [
+      "Vor Gebrauch kurz mit Speichel anfeuchten",
+      "Vorsichtig in den Zahnzwischenraum schieben",
+      "Nicht mit Gewalt durchdrücken - bei Widerstand abbrechen",
+      "Sanft hin- und herbewegen",
+      "Nach jeder Mahlzeit oder bei Bedarf anwenden",
+      "Jedes Zahnholz nur einmal verwenden"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 85,
+    "profile": "Basierend auf Ihrem Profil (Zwischenraumpflege, Unterwegs): Sehr gute Übereinstimmung.",
+    "note": "Hinweis: Für gründlichere Reinigung zu Hause kombinieren Sie mit",
+    "alternativeProduct": {
+      "name": "elmex Interdentalbürsten",
+      "url": "/produkte/elmexinterdentalbuerste"
+    }
+  },
+  "rating": {
+    "value": 4.4,
+    "count": 987
+  },
+  "price": 2.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "/images/products/elmexzahnhoelzer.jpg",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexzahnhoelzer&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexzahnhoelzer&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexzahnhoelzer&retailer=rewe"
+    }
+  ]
+}

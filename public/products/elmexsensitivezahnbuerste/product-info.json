@@ -1,0 +1,104 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_01.png (main), {slug}_02.png (hover), {slug}_03.png (hover), {slug}_03.png (detail)",
+  "id": "elmexsensitivezahnbuerste",
+  "slug": "elmexsensitivezahnbuerste",
+  "sku": "EL-SENS-TB-01",
+  "name": "elmex SENSITIVE Zahnbürste",
+  "subtitle": "Zahnbürste",
+  "category": "toothbrush",
+  "productLine": "sensitive",
+  "description": "Extra weiche Zahnbürste speziell für schmerzempfindliche Zähne und gereiztes Zahnfleisch",
+  "heroTitle": "Besonders sanft bei Schmerzempfindlichkeit",
+  "heroDescription": "Ultra-weiche Konex-Borsten für maximalen Komfort bei empfindlichen Zähnen. Reinigt gründlich und schonend, ohne Schmerzen zu verursachen.",
+  "badge": {
+    "text": "Ultra-weiche Borsten"
+  },
+  "features": [
+    {
+      "icon": "heart",
+      "text": "Extra sanft"
+    },
+    {
+      "icon": "feather",
+      "text": "Konex-Borsten"
+    }
+  ],
+  "benefits": [
+    "Ultra-weiche Konex-Borsten für empfindliche Zähne",
+    "Reinigt sanft ohne Schmerzen zu verursachen",
+    "Schont gereiztes Zahnfleisch",
+    "Ergonomischer Griff für sanfte Kontrolle"
+  ],
+  "ingredients": [
+    "Ultra-weiche Konex-Nylon-Borsten",
+    "Ergonomischer Soft-Griff",
+    "Gummierte Griffzone",
+    "Abgerundete Borstenenden"
+  ],
+  "howItWorks": {
+    "title": "Wie funktioniert die sanfte Reinigung?",
+    "description": "Verstehe die schmerzfreie Putztechnik",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Konex-Borsten passen sich an",
+        "description": "Ultra-weiche Borsten schmiegen sich sanft an empfindliche Bereiche"
+      },
+      {
+        "number": 2,
+        "title": "Sanfte Reinigung erfolgt",
+        "description": "Gründliche Plaque-Entfernung ohne Schmerzreize"
+      },
+      {
+        "number": 3,
+        "title": "Zahnfleisch wird geschont",
+        "description": "Keine Irritation von empfindlichem Zahnfleisch"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Sanfte Putztechnik bei Sensibilität",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt erklärt die richtige Technik für schmerzfreies Zähneputzen."
+    },
+    "instructions": [
+      "Ganz sanft ohne Druck kreisend putzen",
+      "Die Bürste macht die Arbeit - nicht drücken!",
+      "2 Minuten zweimal täglich",
+      "Bei Schmerzen: Noch sanfter und kürzer beginnen",
+      "Alle 3 Monate wechseln für optimale Sanftheit"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 94,
+    "profile": "Basierend auf Ihrem Profil (Schmerzempfindliche Zähne, Sanfte Reinigung): Perfekte Übereinstimmung.",
+    "note": "Hinweis: Perfekt kombinierbar mit",
+    "alternativeProduct": {
+      "name": "elmex SENSITIVE Professional",
+      "url": "/produkte/sensitive-zahnpasta"
+    }
+  },
+  "rating": {
+    "value": 4.8,
+    "count": 2876
+  },
+  "price": 2.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "/images/products/elmexsensitivezahnbuerste.jpg",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexsensitivezahnbuerste&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexsensitivezahnbuerste&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexsensitivezahnbuerste&retailer=rewe"
+    }
+  ]
+}

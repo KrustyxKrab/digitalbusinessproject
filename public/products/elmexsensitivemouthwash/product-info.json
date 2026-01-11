@@ -1,0 +1,104 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_01.png (main), {slug}_02.png (hover), {slug}_03.png (detail)",
+  "id": "elmexsensitivemouthwash",
+  "slug": "elmexsensitivemouthwash",
+  "sku": "EL-SENS-MW-400",
+  "name": "elmex SENSITIVE Mundspülung",
+  "subtitle": "Mundspülung",
+  "category": "mouthwash",
+  "productLine": "sensitive",
+  "description": "Alkoholfreie Mundspülung für empfindliche Zähne mit beruhigender Wirkung",
+  "heroTitle": "Sanfte Pflege für empfindliche Zähne",
+  "heroDescription": "Alkoholfreie, milde Mundspülung speziell für schmerzempfindliche Zähne. Bildet eine Schutzschicht und beruhigt gereizte Bereiche für langanhaltenden Komfort.",
+  "badge": {
+    "text": "Alkoholfrei & beruhigend"
+  },
+  "features": [
+    {
+      "icon": "heart",
+      "text": "Extra sanft"
+    },
+    {
+      "icon": "shield",
+      "text": "Schutzschicht"
+    }
+  ],
+  "benefits": [
+    "Alkoholfreie Formel - brennt nicht",
+    "Speziell für empfindliche Zähne entwickelt",
+    "Bildet schützende Schicht über empfindlichen Bereichen",
+    "Erreicht alle Zahnoberflächen und Zahnzwischenräume"
+  ],
+  "ingredients": [
+    "Aminfluorid 250 ppm",
+    "Kaliumchlorid",
+    "Aqua",
+    "PEG-40 Hydrogenated Castor Oil"
+  ],
+  "howItWorks": {
+    "title": "Wie wirkt die SENSITIVE Mundspülung?",
+    "description": "Verstehe die beruhigende Wirkung",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Erreicht empfindliche Stellen",
+        "description": "Die Spülung umhüllt alle Zahnoberflächen sanft"
+      },
+      {
+        "number": 2,
+        "title": "Schutzschicht bildet sich",
+        "description": "Wirkstoffe legen sich schützend über empfindliche Bereiche"
+      },
+      {
+        "number": 3,
+        "title": "Schmerz wird gelindert",
+        "description": "Langanhaltende Beruhigung und Schutz"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Optimale Anwendung bei Sensibilität",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt zeigt die richtige Anwendung für maximalen Schutz empfindlicher Zähne."
+    },
+    "instructions": [
+      "Nach dem Zähneputzen 10ml verwenden",
+      "30 Sekunden sanft im Mund bewegen",
+      "Ausspucken, nicht nachspülen",
+      "Für besten Schutz 2x täglich anwenden",
+      "Nicht essen oder trinken für 30 Minuten"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 91,
+    "profile": "Basierend auf Ihrem Profil (Empfindliche Zähne, Zusatzschutz): Sehr gute Übereinstimmung.",
+    "note": "Hinweis: Für optimale Ergebnisse kombinieren Sie mit",
+    "alternativeProduct": {
+      "name": "elmex SENSITIVE Professional",
+      "url": "/produkte/sensitive-zahnpasta"
+    }
+  },
+  "rating": {
+    "value": 4.7,
+    "count": 2143
+  },
+  "price": 3.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "/images/products/elmexsensitivemouthwash.jpg",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexsensitivemouthwash&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexsensitivemouthwash&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexsensitivemouthwash&retailer=rewe"
+    }
+  ]
+}
