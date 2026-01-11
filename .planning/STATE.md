@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 
 Milestone: v1.1 Product System Fix
 Phase: 8 of 12 (Product Data Migration)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-01-11 — Milestone v1.1 created (5 phases)
+Plan: 08-01 Complete
+Status: Ready for Phase 9
+Last activity: 2026-01-11 — Phase 8 Plan 1 complete (Product JSON metadata for 14 products)
 
-Progress: ░░░░░░░░░░ 0% (of v1.1 milestone)
+Progress: ██░░░░░░░░ 20% (of v1.1 milestone - 1/5 phases complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 3 min
-- Total execution time: 0.85 hours
+- Total execution time: 1.1 hours
 
 **By Phase:**
 
@@ -32,10 +32,11 @@ Progress: ░░░░░░░░░░ 0% (of v1.1 milestone)
 | 2. Fragebogen-Optimierung | 4 | 21 min | 5 min |
 | 3. Hauptseite-Personalisierung | 5 | 8 min | 2 min |
 | 4. Produktsystem-Überarbeitung | 5 | 15 min | 3 min |
+| 8. Product Data Migration | 1 | 15 min | 15 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (3min), 04-02 (3min), 04-03 (3min), 04-04 (3min), 04-05 (3min)
-- Trend: Consistent, efficient execution
+- Last 5 plans: 04-02 (3min), 04-03 (3min), 04-04 (3min), 04-05 (3min), 08-01 (15min)
+- Trend: Consistent execution, data migration took longer due to content creation
 
 ## Accumulated Context
 
@@ -74,6 +75,10 @@ Recent decisions affecting current work:
 | 03-05 | FAQ accordion: one open at a time | Focused reading experience reduces cognitive load, keeps page scannable |
 | 03-05 | 30 daily tips for monthly rotation | Full month of unique content before repeat keeps feature fresh, balances variety with maintenance |
 | 03-05 | localStorage date tracking for tips | Ensures same tip all day, changes at midnight for consistent user experience |
+| 08-01 | SKU pattern: EL-{LINE}-{TYPE}-{SIZE} | Consistent product identification across catalog |
+| 08-01 | Default pricing: €3.99 toothpastes, €2.99 accessories | Standardized pricing structure for product catalog |
+| 08-01 | Expert attribution: Dr. Sarah Schmidt | Trusted authority figure across all products for consistency |
+| 08-01 | Buy links: dm, Rossmann, REWE | Standardized retailer selection for availability |
 
 ### Deferred Issues
 

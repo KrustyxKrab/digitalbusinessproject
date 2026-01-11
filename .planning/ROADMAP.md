@@ -28,7 +28,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Produktsystem-Überarbeitung** - Intelligente Slugs, optimierte Cards und Produktseiten
 
 **v1.1 Product System Fix (In Progress):**
-- [ ] **Phase 8: Product Data Migration** - Generate JSON metadata for all products in public/products/
+- [x] **Phase 8: Product Data Migration** - Generate JSON metadata for all products in public/products/
 - [ ] **Phase 9: Dynamic Routing Implementation** - Implement slug-based routing for product detail pages
 - [ ] **Phase 10: Products Overview Refactor** - Replace hardcoded products with dynamic data loading
 - [ ] **Phase 11: Product System Integration** - Connect recommendations, routine, and abo to new structure
@@ -102,10 +102,10 @@ Plans:
 **Goal**: Generate comprehensive JSON metadata files for all products in public/products/ folders
 **Depends on**: Phase 4 (Product folder structure established)
 **Research**: Unlikely (JSON generation, file system operations, existing product data patterns)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 08-01: TBD (run /gsd:plan-phase 8 to break down)
+- [x] 08-01: Generate product-info.json for all 14 remaining products (7 toothpastes, 2 mouthwashes, 4 toothbrushes, 1 floss) — 15min
 
 #### Phase 9: Dynamic Routing Implementation
 **Goal**: Implement slug-based dynamic routing for product detail pages using Astro patterns
@@ -189,7 +189,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 8 → 9 → 10 → 11 �
 | 2. Fragebogen-Optimierung | v1.0 | 4/4 | Complete | 2026-01-09 |
 | 3. Hauptseite-Personalisierung | v1.0 | 5/5 | Complete | 2026-01-09 |
 | 4. Produktsystem-Überarbeitung | v1.0 | 5/5 | Complete | 2026-01-09 |
-| 8. Product Data Migration | v1.1 | 0/? | Not started | - |
+| 8. Product Data Migration | v1.1 | 1/1 | Complete | 2026-01-11 |
 | 9. Dynamic Routing Implementation | v1.1 | 0/? | Not started | - |
 | 10. Products Overview Refactor | v1.1 | 0/? | Not started | - |
 | 11. Product System Integration | v1.1 | 0/? | Not started | - |
