@@ -62,7 +62,7 @@ export interface Product {
   id: string;
   name: string;
   category: 'toothpaste' | 'mouthwash' | 'toothbrush' | 'floss';
-  productLine: 'kariesschutz' | 'sensitive' | 'zahnfleisch' | 'junior';
+  productLine: 'kariesschutz' | 'sensitive' | 'optischmelz' | 'junior';
   description: string;
   benefits: string[];
   ingredients: string[] | {

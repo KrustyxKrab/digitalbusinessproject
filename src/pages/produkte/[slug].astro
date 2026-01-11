@@ -9,7 +9,7 @@ import path from 'path';
 
 // Generate static paths for all products
 export async function getStaticPaths() {
-  const productsDir = path.join(process.cwd(), 'public', 'products');
+  const productsDir = path.join(process.cwd(), 'src/assets', 'products');
 
   try {
     // Read all directories in public/products

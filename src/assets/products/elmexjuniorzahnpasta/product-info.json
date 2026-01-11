@@ -1,0 +1,103 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_1.png (main), {slug}_2.png (hover), {slug}_3.png (detail)",
+  "id": "elmexjuniorzahnpasta",
+  "slug": "elmexjuniorzahnpasta",
+  "sku": "EL-JR-TP-75",
+  "name": "elmex JUNIOR Zahnpasta",
+  "subtitle": "Zahnpasta",
+  "category": "toothpaste",
+  "productLine": "junior",
+  "description": "Spezielle Zahnpasta für Kinder von 6 bis 12 Jahren zur Stärkung der neuen bleibenden Zähne",
+  "heroTitle": "Starke Zähne für den Zahnwechsel",
+  "heroDescription": "Speziell entwickelt für den Zahnwechsel bei Kindern von 6 bis 12 Jahren. Das hochwirksame Aminfluorid härtet den noch weichen Zahnschmelz der neuen, bleibenden Zähne.",
+  "badge": {
+    "text": "Für 6-12 Jahre"
+  },
+  "features": [
+    {
+      "icon": "shield",
+      "text": "1400 ppm Fluorid"
+    },
+    {
+      "icon": "smile",
+      "text": "Milder Geschmack"
+    }
+  ],
+  "benefits": [
+    "Mineralisiert und schützt die neuen bleibenden Zähne",
+    "Altersgerechter Fluoridgehalt (1400 ppm)",
+    "Reinigt gründlich und schonend",
+    "Milder Geschmack motiviert zum regelmäßigen Putzen"
+  ],
+  "ingredients": [
+    "Aminfluorid 1400 ppm",
+    "Aqua",
+    "Hydrated Silica",
+    "Sorbitol"
+  ],
+  "howItWorks": {
+    "title": "Wie schützt die Junior Zahnpasta?",
+    "description": "Schutz für die neuen Zähne",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Reinigung",
+        "description": "Entfernt Plaque gründlich von Milch- und bleibenden Zähnen"
+      },
+      {
+        "number": 2,
+        "title": "Mineralisierung",
+        "description": "Aminfluorid lagert sich im Zahnschmelz ein"
+      },
+      {
+        "number": 3,
+        "title": "Härtung",
+        "description": "Macht die Zähne widerstandsfähiger gegen Karies"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Zähneputzen ab 6 Jahren",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt erklärt, worauf es beim Putzen während des Zahnwechsels ankommt."
+    },
+    "instructions": [
+      "Zweimal täglich nach den Mahlzeiten putzen",
+      "Einen etwa erbsengroßen Strang Zahnpasta verwenden",
+      "2 Minuten lang bürsten (Kauflächen, Außenflächen, Innenflächen)",
+      "Zahnpasta ausspucken, nicht schlucken"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 95,
+    "profile": "Basierend auf Ihrem Profil (Kind 6-12 Jahre, Zahnwechsel): Perfekte Übereinstimmung.",
+    "note": "Hinweis: Für zusätzlichen Schutz empfehlen wir",
+    "alternativeProduct": {
+      "name": "elmex JUNIOR Mundspülung",
+      "url": "/produkte/elmexjuniorspuelung"
+    }
+  },
+  "rating": {
+    "value": 4.7,
+    "count": 1890
+  },
+  "price": 2.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "src/assets/products/elmexjuniorzahnpasta/elmexjuniorzahnpasta_1.png",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexjuniorzahnpasta&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexjuniorzahnpasta&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexjuniorzahnpasta&retailer=rewe"
+    }
+  ]
+}

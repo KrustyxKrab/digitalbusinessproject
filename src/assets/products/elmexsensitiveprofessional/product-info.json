@@ -1,0 +1,103 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_1.png (main), {slug}_2.png (hover), {slug}_3.png (detail)",
+  "id": "elmexsensitiveprofessional",
+  "slug": "elmexsensitiveprofessional",
+  "sku": "EL-SENSP-75",
+  "name": "elmex SENSITIVE PROFESSIONAL Zahnpasta",
+  "subtitle": "Zahnpasta",
+  "category": "toothpaste",
+  "productLine": "sensitive",
+  "description": "Professional-Zahnpasta für empfindliche Zähne mit Pro-Argin Technologie für sofortige Schmerzlinderung",
+  "heroTitle": "Professional-Schutz für empfindliche Zähne",
+  "heroDescription": "Hocheffektive Pro-Argin Technologie für sofortige und langanhaltende Schmerzlinderung. Versiegelt freiliegende Dentinkanälchen direkt an der Schmerzquelle.",
+  "badge": {
+    "text": "Pro-Argin Technologie"
+  },
+  "features": [
+    {
+      "icon": "zap",
+      "text": "Sofortige Wirkung"
+    },
+    {
+      "icon": "shield",
+      "text": "Pro-Argin Formel"
+    }
+  ],
+  "benefits": [
+    "Sofortige Schmerzlinderung bei Anwendung",
+    "Pro-Argin Technologie versiegelt Dentinkanälchen",
+    "Langanhaltender Schutz vor Schmerzempfindlichkeit",
+    "Klinisch bewiesene Wirksamkeit"
+  ],
+  "ingredients": [
+    "Pro-Argin (Arginin 8%)",
+    "Calciumcarbonat",
+    "Natriummonofluorphosphat 1450 ppm",
+    "Aqua"
+  ],
+  "howItWorks": {
+    "title": "Wie funktioniert Pro-Argin?",
+    "description": "Die revolutionäre Wirkweise erklärt",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Arginin bindet an Dentin",
+        "description": "Die Pro-Argin Formel lagert sich an freiliegende Kanälchen an"
+      },
+      {
+        "number": 2,
+        "title": "Kanälchen werden versiegelt",
+        "description": "Eine Versiegelung entsteht direkt an der Schmerzquelle"
+      },
+      {
+        "number": 3,
+        "title": "Schutz wird aufgebaut",
+        "description": "Langanhaltende Barriere gegen Schmerzreize"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Professional Anwendung bei Sensibilität",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt erklärt die optimale Anwendung der Pro-Argin Technologie für maximale Schmerzlinderung."
+    },
+    "instructions": [
+      "Bei akutem Schmerz: Direkt mit dem Finger auf betroffene Stelle auftragen",
+      "1 Minute sanft einmassieren",
+      "Für täglichen Schutz: 2x täglich wie gewohnt putzen",
+      "Nach dem Putzen nicht ausspülen"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 94,
+    "profile": "Basierend auf Ihrem Profil (Schmerzempfindliche Zähne, Professional-Pflege): Perfekte Übereinstimmung.",
+    "note": "Hinweis: Für optimalen Schutz kombinieren Sie mit",
+    "alternativeProduct": {
+      "name": "elmex SENSITIVE Mundspülung",
+      "url": "/produkte/elmexsensitivemouthwash"
+    }
+  },
+  "rating": {
+    "value": 4.8,
+    "count": 3876
+  },
+  "price": 4.49,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "src/assets/products/elmexsensitiveprofessional/elmexsensitiveprofessional_1.png",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexsensitiveprofessional&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexsensitiveprofessional&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexsensitiveprofessional&retailer=rewe"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_1.png (main), {slug}_2.png (hover), {slug}_3.png (detail)",
+  "id": "elmexoptischmelzspuelung",
+  "slug": "elmexoptischmelzspuelung",
+  "sku": "EL-OS-MW-400",
+  "name": "elmex Opti-schmelz Professional",
+  "subtitle": "Mundspülung",
+  "category": "mouthwash",
+  "productLine": "optischmelz",
+  "description": "Professional-Mundspülung mit verstärkter Formel für umfassenden Schutz von Zahnschmelz",
+  "heroTitle": "Professioneller Rundumschutz für den Zahnschmelz",
+  "heroDescription": "Klinisch geprüfte Professional-Formel für umfassenden Schutz. Versiegelt den Zahnschmelz und schützt vor Säureangriffen.",
+  "badge": {
+    "text": "Professional Formel"
+  },
+  "features": [
+    {
+      "icon": "shield",
+      "text": "Schmelz-Versiegelung"
+    },
+    {
+      "icon": "zap",
+      "text": "Professional Formel"
+    }
+  ],
+  "benefits": [
+    "Umfassender Schutz für den Zahnschmelz",
+    "Professional-Formel mit verstärkter Wirkung",
+    "Schützt effektiv vor Zahnschmelzabbau",
+    "Klinisch geprüfte Wirksamkeit"
+  ],
+  "ingredients": [
+    "Aminfluorid",
+    "Zinnchlorid",
+    "Aqua",
+    "Glycerin"
+  ],
+  "howItWorks": {
+    "title": "Wie funktioniert der Schmelz-Schutz?",
+    "description": "Verstehe die Wirkweise der Spülung",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Schutzschicht bildet sich",
+        "description": "Zinnchlorid bildet eine zinnreiche Schicht auf dem Zahn"
+      },
+      {
+        "number": 2,
+        "title": "Schmelz wird gestärkt",
+        "description": "Aminfluorid stärkt den Zahnschmelz zusätzlich"
+      },
+      {
+        "number": 3,
+        "title": "Säuren werden abgewehrt",
+        "description": "Die Zähne sind resistenter gegen erosive Säureangriffe"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Professional Anwendung",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt zeigt die professionelle Anwendung für optimalen Schmelzschutz."
+    },
+    "instructions": [
+      "Einmal täglich spülen",
+      "10ml Lösung verwenden",
+      "30 Sekunden lang spülen",
+      "Nicht schlucken und nicht nachspülen"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 91,
+    "profile": "Basierend auf Ihrem Profil (Zahnschmelzschutz, Säureschutz): Hervorragende Übereinstimmung.",
+    "note": "Hinweis: Für optimalen Schutz kombinieren Sie mit",
+    "alternativeProduct": {
+      "name": "elmex Opti-schmelz Zahnpasta",
+      "url": "/produkte/optischmelz-zahnpasta"
+    }
+  },
+  "rating": {
+    "value": 4.7,
+    "count": 2614
+  },
+  "price": 4.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "src/assets/products/elmexoptischmelzspuelung/elmexoptischmelzspuelung_1.png",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexoptischmelzspuelung&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexoptischmelzspuelung&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexoptischmelzspuelung&retailer=rewe"
+    }
+  ]
+}

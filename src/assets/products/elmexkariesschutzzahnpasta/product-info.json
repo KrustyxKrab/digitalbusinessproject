@@ -1,0 +1,97 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_1.png (main), {slug}_2.png (hover), {slug}_3.png (detail)",
+  "id": "elmexkariesschutzzahnpasta",
+  "slug": "elmexkariesschutzzahnpasta",
+  "sku": "EL-KS-PRO-75",
+  "name": "elmex KARIESSCHUTZ Professional Zahnpasta",
+  "subtitle": "Zahnpasta",
+  "category": "toothpaste",
+  "productLine": "kariesschutz",
+  "description": "Medizinische Zahnpasta mit Aminfluorid zur Härtung des Zahnschmelzes und effektivem Kariesschutz",
+  "heroTitle": "Ihr täglicher Schutzschild für den Zahnschmelz",
+  "heroDescription": "Hocheffektiver Kariesschutz durch klinisch geprüftes Aminfluorid. Remineralisiert den Zahnschmelz und bietet optimalen Schutz für die ganze Familie.",
+  "badge": {
+    "text": "#1 Von Zahnärzten empfohlen"
+  },
+  "features": [
+    {
+      "icon": "zap",
+      "text": "99.9% Kariesschutz"
+    },
+    {
+      "icon": "shield",
+      "text": "Aminfluorid-Formel"
+    }
+  ],
+  "benefits": [
+    "Hocheffektiver Kariesschutz durch Aminfluorid",
+    "Remineralisiert den Zahnschmelz",
+    "Klinisch geprüfte Wirksamkeit",
+    "Von Zahnärzten empfohlen"
+  ],
+  "ingredients": [
+    "Aminfluorid 1400 ppm",
+    "Aqua",
+    "Sorbitol",
+    "Hydrated Silica"
+  ],
+  "howItWorks": {
+    "title": "Wie funktioniert der Schutzschild?",
+    "description": "Scrolle und erlebe die Wirkung auf mikroskopischer Ebene",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Aminfluorid dringt ein",
+        "description": "Das Aminfluorid dringt in die Zahnoberfläche ein"
+      },
+      {
+        "number": 2,
+        "title": "Schutzschicht bildet sich",
+        "description": "Es bildet sich eine schützende Mineralschicht"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Perfekte Anwendung in 10 Sekunden",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt, Dentalhygienikerin mit 15 Jahren Erfahrung, zeigt Ihnen die optimale Putztechnik für maximalen Schutz."
+    },
+    "instructions": [
+      "Kreisende Bewegungen",
+      "2 Minuten Putzzeit",
+      "Nicht ausspülen"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 85,
+    "profile": "Basierend auf Ihrem Profil (Kariesprävention, Alter 30+): Sehr gute Übereinstimmung.",
+    "note": "Hinweis: Für empfindliche Zahnhälse empfehlen wir zusätzlich",
+    "alternativeProduct": {
+      "name": "elmex SENSITIVE",
+      "url": "/produkte/sensitive-zahnpasta"
+    }
+  },
+  "rating": {
+    "value": 4.8,
+    "count": 2847
+  },
+  "price": 3.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "src/assets/products/elmexkariesschutzzahnpasta/elmexkariesschutzzahnpasta_1.png",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexkariesschutzzahnpasta&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexkariesschutzzahnpasta&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexkariesschutzzahnpasta&retailer=rewe"
+    }
+  ]
+}

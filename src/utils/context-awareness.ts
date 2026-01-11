@@ -1,4 +1,4 @@
-import type { UserProfile, Product } from '../types/models';
+import type { UserProfile } from '../types/models';
 
 /**
  * Get personalized greeting based on time of day
@@ -48,58 +48,59 @@ export function getPersonalizedMessage(profile?: UserProfile | null): string {
 
 /**
  * Get contextual product recommendations based on time and user profile
+ *
+ * Returns product slugs instead of full product objects for efficient data management.
+ * Components should load full product data from JSON files using these slugs.
+ *
+ * @param profile - User profile with dental issues and preferences
+ * @returns Array of product slugs (e.g., ["kariesschutz-zahnpasta", "sensitive-zahnpasta"])
  */
 export function getContextualRecommendations(
-  profile?: UserProfile | null,
-  allProducts: Product[] = []
-): Product[] {
+  profile?: UserProfile | null
+): string[] {
   const hour = new Date().getHours();
-  const recommendations: Product[] = [];
+  const recommendations: string[] = [];
 
   if (!profile) {
-    // Default recommendations
-    return allProducts.slice(0, 3);
+    // Default recommendations for visitors without profile
+    return ['sensitive-zahnpasta', 'kariesschutz-zahnpasta', 'elmex-gelee'];
   }
 
   // Morning: Focus on fresh breath and whitening
   if (hour >= 5 && hour < 12) {
-    const morningProducts = allProducts.filter(p =>
-      p.benefits.some(b =>
-        b.toLowerCase().includes('frisch') ||
-        b.toLowerCase().includes('atem') ||
-        b.toLowerCase().includes('weiss')
-      )
-    );
-    recommendations.push(...morningProducts.slice(0, 2));
+    recommendations.push('kariesschutz-zahnpasta');
+    recommendations.push('mundspuelung-kariesschutz');
   }
 
   // Evening: Focus on protection and regeneration
   if (hour >= 20 && hour < 24) {
-    const eveningProducts = allProducts.filter(p =>
-      p.benefits.some(b =>
-        b.toLowerCase().includes('schutz') ||
-        b.toLowerCase().includes('regeneration') ||
-        b.toLowerCase().includes('nacht')
-      )
-    );
-    recommendations.push(...eveningProducts.slice(0, 2));
+    recommendations.push('sensitive-zahnpasta');
+    recommendations.push('elmex-gelee');
   }
 
-  // Match user's dental issues
+  // Match user's dental issues to product slugs
   if (profile.dentalIssues.length > 0) {
-    const issueProducts = allProducts.filter(p => {
-      return profile.dentalIssues.some(issue =>
-        p.benefits.some(b => b.toLowerCase().includes(issue.toLowerCase()))
-      );
+    profile.dentalIssues.forEach(issue => {
+      const issueLower = issue.toLowerCase();
+
+      if (issueLower.includes('sensitive') || issueLower.includes('empfindlich')) {
+        recommendations.push('sensitive-zahnpasta');
+        recommendations.push('sensitive-professional-zahnpasta');
+      } else if (issueLower.includes('karies') || issueLower.includes('cavity')) {
+        recommendations.push('kariesschutz-zahnpasta');
+        recommendations.push('elmex-gelee');
+      } else if (issueLower.includes('zahnfleisch') || issueLower.includes('gum')) {
+        recommendations.push('zahnfleisch-zahnpasta');
+      } else if (issueLower.includes('white') || issueLower.includes('weiss')) {
+        recommendations.push('opti-schmelz-white-zahnpasta');
+      } else if (issueLower.includes('junior') || issueLower.includes('kind')) {
+        recommendations.push('elmexjunior');
+      }
     });
-    recommendations.push(...issueProducts.slice(0, 2));
   }
 
-  // Remove duplicates
-  const unique = Array.from(new Set(recommendations.map(p => p.id)))
-    .map(id => recommendations.find(p => p.id === id)!)
-    .filter(Boolean);
-
+  // Remove duplicates and limit to 3 recommendations
+  const unique = Array.from(new Set(recommendations));
   return unique.slice(0, 3);
 }
 

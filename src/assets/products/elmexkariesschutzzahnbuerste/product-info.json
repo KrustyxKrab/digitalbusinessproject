@@ -1,0 +1,103 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_1.png (main), {slug}_2.png (hover), {slug}_3.png (detail)",
+  "id": "elmexkariesschutzzahnbuerste",
+  "slug": "elmexkariesschutzzahnbuerste",
+  "sku": "EL-KS-TB-01",
+  "name": "elmex KARIESSCHUTZ Zahnbürste",
+  "subtitle": "Zahnbürste",
+  "category": "toothbrush",
+  "productLine": "kariesschutz",
+  "description": "Zahnbürste mit speziellen X-Borsten für eine gründliche Reinigung bis in die Zahnzwischenräume",
+  "heroTitle": "Überlegene Reinigung dank X-Borsten",
+  "heroDescription": "Die höher stehenden X-Borsten dringen tief in die Zahnzwischenräume ein und entfernen Plaque effektiver als herkömmliche Zahnbürsten. Für optimalen Kariesschutz.",
+  "badge": {
+    "text": "X-Borsten Technologie"
+  },
+  "features": [
+    {
+      "icon": "x-circle",
+      "text": "X-Borsten-Stellung"
+    },
+    {
+      "icon": "shield",
+      "text": "Entfernt Plaque"
+    }
+  ],
+  "benefits": [
+    "X-Borsten erreichen schwer zugängliche Zahnzwischenräume",
+    "Entfernt Plaque gründlicher als herkömmliche Bürsten",
+    "Ergonomischer Griff für sichere Handhabung",
+    "Kleiner Bürstenkopf erreicht auch die hinteren Backenzähne"
+  ],
+  "ingredients": [
+    "Abgerundete Nylon-Borsten",
+    "Ergonomischer Kunststoff-Griff",
+    "X-förmige Borstenanordnung",
+    "Rutschfeste Daumenauflage"
+  ],
+  "howItWorks": {
+    "title": "Wie wirken die X-Borsten?",
+    "description": "Erlebe die mechanische Reinigung",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Tiefenreinigung",
+        "description": "Die längeren X-Borsten gelangen tief in die Zahnzwischenräume"
+      },
+      {
+        "number": 2,
+        "title": "Plaque-Entfernung",
+        "description": "Beläge werden mechanisch gelöst und entfernt"
+      },
+      {
+        "number": 3,
+        "title": "Schonung",
+        "description": "Abgerundete Borstenenden schonen dabei das Zahnfleisch"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Die richtige Putztechnik",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt empfiehlt die richtige Handhabung für effektive Plaque-Kontrolle."
+    },
+    "instructions": [
+      "Bürste im 45-Grad-Winkel zum Zahnfleisch ansetzen",
+      "Mit kleinen, rüttelnden Bewegungen putzen",
+      "Alle 3 Monate die Zahnbürste wechseln",
+      "Nach Erkältungen oder Krankheit austauschen"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 92,
+    "profile": "Basierend auf Ihrem Profil (Kariesprävention, Gründliche Reinigung): Sehr gute Übereinstimmung.",
+    "note": "Hinweis: Verwenden Sie dazu die passende Zahnpasta",
+    "alternativeProduct": {
+      "name": "elmex KARIESSCHUTZ Zahnpasta",
+      "url": "/produkte/kariesschutz-zahnpasta"
+    }
+  },
+  "rating": {
+    "value": 4.7,
+    "count": 3102
+  },
+  "price": 2.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "src/assets/products/elmexkariesschutzzahnbuerste/elmexkariesschutzzahnbuerste_1.png",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexkariesschutzzahnbuerste&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexkariesschutzzahnbuerste&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexkariesschutzzahnbuerste&retailer=rewe"
+    }
+  ]
+}

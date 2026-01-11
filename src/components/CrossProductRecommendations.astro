@@ -16,45 +16,103 @@ const { currentProductLine, currentProductSlug } = Astro.props;
 
 // Product database for recommendations
 const allProducts: Record<string, Product[]> = {
-  'kariesschutz': [
+  'gelee': [
     {
-      slug: 'kariesschutz-mundspuelung',
-      name: 'elmex KARIESSCHUTZ Mundspülung',
-      description: 'Ergänzender Schutz für schwer erreichbare Stellen',
-      image: '/products/kariesschutz-mundspuelung/kariesschutz-mundspuelung_01.png'
-    },
-    {
-      slug: 'zahnbuerste',
-      name: 'elmex InterX Zahnbürste',
-      description: 'Effektive Reinigung für gesunde Zähne',
-      image: '/products/elmexzahnbuerste/elmex_zahnbürste_1.png'
-    },
-    {
-      slug: 'gelee',
+      slug: 'elmexgelee',
       name: 'elmex gelée',
       description: 'Intensive Fluoridierung zur Kariesvorbeugung',
-      image: '/products/elmexgelee/elmex_gelée_1.png'
+      image: '../src/assets/products/elmexgelee/elmexgelee_1.png'
     }
+  ],
+  'white': [
+    {
+      slug: 'elmexwhite',
+      name: 'elmex White',
+      description: 'Wirksamer Schutz vor neuen Verfärbungen',
+      image: '../src/assets/products/elmexwhite/elmexwhite_1.png'
+    }
+  ],
+  'zahnhoelzer': [
+    {
+      slug: 'elmexzahnhoelzer',
+      name: 'elmex Zahnhölzer',
+      description: 'Sanfte Reinigung für gesunde Zähne',
+      image: '../src/assets/products/elmexzahnhoelzer/elmexzahnhoelzer_1.png'
+    }
+  ],
+  'kariesschutz': [
+    {
+      slug: 'elmexkariesschutzzahnpasta',
+      name: 'elmex KARIESSCHUTZ Zahnpasta',
+      description: 'Ergänzender Schutz für schwer erreichbare Stellen',
+      image: '../src/assets/products/elmexkariesschutzzahnpasta/elmexkariesschutzzahnpasta_1.png'
+    },
+    {
+      slug: 'elmexkariesschutzzahnbuerste',
+      name: 'elmex Expert Präzision Zahnbürste',
+      description: 'Effektive Reinigung für gesunde Zähne',
+      image: '../src/assets/products/elmexkariesschutzzahnbuerste/elmexkariesschutzzahnbuerste_1.png'
+    },
   ],
   'sensitive': [
     {
-      slug: 'sensitive-mundspuelung',
+      slug: 'elmexsensitivespuelung',
       name: 'elmex SENSITIVE Mundspülung',
       description: 'Sanfte Pflege für empfindliche Zähne',
-      image: '/products/elmexsensitivemouthwash/elmex_sensitive_mundspülung_1.png'
+      image: '../src/assets/products/elmexsensitivespuelung/elmexsensitivespuelung_1.png'
     },
     {
-      slug: 'sensitive-professional',
+      slug: 'elmexsensitiveprofessional',
       name: 'elmex SENSITIVE PROFESSIONAL',
       description: 'Sofortige und langanhaltende Schmerzlinderung',
-      image: '/products/elmexsensitiveprofessional/elmex_sensitive_professional_1.png'
+      image: '../src/assets/products/elmexsensitiveprofessional/elmexsensitiveprofessional_1.png'
     },
     {
-      slug: 'zahnbuerste-sensitive',
+      slug: 'elmexsensitivezahnpasta',
+      name: 'elmex SENSITIVE Zahnpasta',
+      description: 'Sofortige und langanhaltende Schmerzlinderung',
+      image: '../src/assets/products/elmexsensitivezahnpasta/elmexsensitivezahnpasta_1.png'
+    },
+    {
+      slug: 'elmexsensitivezahnbuerste',
       name: 'elmex SENSITIVE Zahnbürste',
       description: 'Besonders weiche Borsten für empfindliche Zähne',
-      image: '/products/elmexzahnbuerste/elmex_zahnbürste_1.png'
+      image: '../src/assets/products/elmexsensitivezahnbuerste/elmexsensitivezahnbuerste_1.png'
     }
+  ],
+  'optischmelz': [
+    {
+      slug: 'elmexoptischmelzspuelung',
+      name: 'elmex OPTI-SCHMELZ Mundspülung',
+      description: 'Sanfte Pflege für empfindliche Zähne',
+      image: '../src/assets/products/elmexoptischmelzspuelung/elmexoptischmelzspuelung_1.png'
+    },
+    {
+      slug: 'elmexoptischmelzzahnbuerste',
+      name: 'elmex OPTI-SCHMELZ Zahnbürste',
+      description: 'Effektive Reinigung für gesunde Zähne',
+      image: '../src/assets/products/elmexoptischmelzzahnbuerste/elmexoptischmelzzahnbuerste_1.png'
+    },
+    {
+      slug: 'elmexoptischmelzzahnpasta',
+      name: 'elmex OPTI-SCHMELZ Zahnpasta',
+      description: 'Intensive Fluoridierung zur Kariesvorbeugung',
+      image: '../src/assets/products/elmexoptischmelzzahnpasta/elmexoptischmelzzahnpasta_1.png'
+    }
+  ],
+  'junior': [
+    {
+      slug: 'elmexjuniorzahnpasta',
+      name: 'elmex JUNIOR Zahnpasta',
+      description: 'Die erste Zahnpasta für Kinder ab 6 Jahren',
+      image: '../src/assets/products/elmexjuniorzahnpasta/elmexjuniorzahnpasta_1.png'
+    },
+    {
+      slug: 'elmexjuniorspuelung',
+      name: 'elmex JUNIOR Mundspülung',
+      description: 'Die erste Mundspülung für Kinder ab 6 Jahren',
+      image: '../src/assets/products/elmexjuniorspuelung/elmexjuniorspuelung_1.png'
+    },
   ]
 };
 
@@ -76,7 +134,7 @@ const recommendations = (allProducts[currentProductLine] || [])
             <img
               src={product.image}
               alt={product.name}
-              class="w-full h-48 object-contain mb-4 rounded-xl bg-neutral-50"
+              class="w-full h-48 object-cover mb-4 rounded-xl bg-neutral-50"
             />
             <div class="absolute top-2 right-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
               Empfohlen
