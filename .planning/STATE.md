@@ -10,19 +10,19 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 ## Current Position
 
 Milestone: v1.1 Product System Fix
-Phase: 9 of 12 (Dynamic Routing Implementation)
-Plan: 09-01 Complete
-Status: Ready for Phase 10
-Last activity: 2026-01-11 — Phase 9 Plan 1 complete (Dynamic slug-based routing for all products)
+Phase: 10 of 12 (Products Overview Refactor)
+Plan: 10-01 Complete
+Status: Ready for Phase 11
+Last activity: 2026-01-11 — Phase 10 Plan 1 complete (Dynamic product loading, hardcoded pages removed)
 
-Progress: ████░░░░░░ 40% (of v1.1 milestone - 2/5 phases complete)
+Progress: ██████░░░░ 60% (of v1.1 milestone - 3/5 phases complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 19
 - Average duration: 3 min
-- Total execution time: 1.2 hours
+- Total execution time: 1.3 hours
 
 **By Phase:**
 
@@ -34,10 +34,11 @@ Progress: ████░░░░░░ 40% (of v1.1 milestone - 2/5 phases com
 | 4. Produktsystem-Überarbeitung | 5 | 15 min | 3 min |
 | 8. Product Data Migration | 1 | 15 min | 15 min |
 | 9. Dynamic Routing Implementation | 1 | 5 min | 5 min |
+| 10. Products Overview Refactor | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-04 (3min), 04-05 (3min), 08-01 (15min), 09-01 (5min)
-- Trend: Consistent execution, infrastructure work varies 5-15min based on complexity
+- Last 5 plans: 04-05 (3min), 08-01 (15min), 09-01 (5min), 10-01 (4min)
+- Trend: Consistent execution, infrastructure work varies 4-15min based on complexity
 
 ## Accumulated Context
 
@@ -83,6 +84,10 @@ Recent decisions affecting current work:
 | 09-01 | Dynamic route with getStaticPaths | Single [slug].astro serves all 16 products reading from public/products/ |
 | 09-01 | Ingredient transformation for compatibility | Simple arrays converted to detailed format {active, other} |
 | 09-01 | Graceful JSON error handling | Invalid products logged but don't break build |
+| 10-01 | Dynamic product loading in overview | loadAllProducts() reads from file system at build time |
+| 10-01 | Category mapping for filtering | toothpaste → zahnpasta, mouthwash → mundspuelung, toothbrush → zahnbuerste |
+| 10-01 | Product tags from benefits | First two benefits from JSON used as display tags in product cards |
+| 10-01 | Client-side personalization from DOM | "Für Ihre Routine" now reads from rendered products instead of hardcoded database |
 
 ### Deferred Issues
 
@@ -104,6 +109,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-11 16:21
-Stopped at: Phase 9 Plan 1 complete
+Last session: 2026-01-11 16:27
+Stopped at: Phase 10 Plan 1 complete
 Resume file: None
