@@ -5,16 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-01-09)
 
 **Core value:** Personalisierung als Gesamtpaket: Zero-Party-Data-Erfassung → individualisierte Produktempfehlungen → Dashboard-basiertes Tracking → kontextbewusste Beratung
-**Current focus:** Phase 3 — Hauptseite-Personalisierung (Complete)
+**Current focus:** v1.1 — Product System Fix (critical infrastructure work)
 
 ## Current Position
 
-Phase: 4 of 7 (Produktsystem-Überarbeitung)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-01-09 — Completed Phase 4 (all 5 plans executed)
+Milestone: v1.1 Product System Fix
+Phase: 8 of 12 (Product Data Migration)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-11 — Milestone v1.1 created (5 phases)
 
-Progress: ████████████░ 59%
+Progress: ░░░░░░░░░░ 0% (of v1.1 milestone)
 
 ## Performance Metrics
 
@@ -76,14 +77,24 @@ Recent decisions affecting current work:
 
 ### Deferred Issues
 
-None yet.
+**From v1.0 roadmap (now Future milestone):**
+- Phase 5: Dashboard & Routine - Deferred pending product system fix
+- Phase 6: Beratung & Wissen - Deferred pending product system fix
+- Phase 7: Features & Polish - Deferred pending product system fix
+
+**Rationale:** Product system has critical issues (hardcoded products, no slug routing, missing JSON metadata) that must be resolved before continuing with dashboard and advanced features.
 
 ### Blockers/Concerns
 
 None yet.
 
+### Roadmap Evolution
+
+- v1.0 Foundation shipped: 4 phases (Phase 1-4) on 2026-01-09
+- v1.1 Product System Fix created: 5 phases (Phase 8-12) on 2026-01-11 - critical infrastructure work to fix product routing and data structure
+
 ## Session Continuity
 
-Last session: 2026-01-09 19:15
-Stopped at: Completed Phase 4 (all 5 plans: 04-01 through 04-05) - Ready for Phase 5
+Last session: 2026-01-11 15:53
+Stopped at: Milestone v1.1 initialization
 Resume file: None
