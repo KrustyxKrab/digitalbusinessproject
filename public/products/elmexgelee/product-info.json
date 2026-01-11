@@ -1,0 +1,103 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_01.png (main), {slug}_02.png (hover), {slug}_03.png (detail)",
+  "id": "elmexgelee",
+  "slug": "elmexgelee",
+  "sku": "EL-GEL-PRO-25",
+  "name": "elmex gelée",
+  "subtitle": "Zahnpasta",
+  "category": "toothpaste",
+  "productLine": "kariesschutz",
+  "description": "Hochkonzentriertes Fluorid-Gelee für intensive Kariesprävention und Stärkung des Zahnschmelzes",
+  "heroTitle": "Intensive Kariesprävention für besondere Bedürfnisse",
+  "heroDescription": "Hochkonzentriertes Fluorid-Gelee mit 12.500 ppm Fluorid für einmal wöchentliche Intensivbehandlung. Ideal für erhöhtes Kariesrisiko und nach zahnärztlichen Eingriffen.",
+  "badge": {
+    "text": "12.500 ppm Fluorid"
+  },
+  "features": [
+    {
+      "icon": "zap",
+      "text": "12.500 ppm Fluorid"
+    },
+    {
+      "icon": "shield",
+      "text": "Intensive Remineralisierung"
+    }
+  ],
+  "benefits": [
+    "Hochkonzentriertes Fluorid für intensive Kariesprävention",
+    "Stärkt den Zahnschmelz nachhaltig",
+    "Ideal bei erhöhtem Kariesrisiko",
+    "Empfohlen nach zahnärztlichen Eingriffen"
+  ],
+  "ingredients": [
+    "Aminfluorid 12.500 ppm",
+    "Aqua",
+    "Hydroxyethylcellulose",
+    "PEG-40 Hydrogenated Castor Oil"
+  ],
+  "howItWorks": {
+    "title": "Wie funktioniert die Intensivbehandlung?",
+    "description": "Erlebe die hochwirksame Fluorid-Therapie",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Hochdosiertes Fluorid dringt ein",
+        "description": "Die intensive Fluorid-Konzentration dringt tief in den Zahnschmelz ein"
+      },
+      {
+        "number": 2,
+        "title": "Remineralisierung wird aktiviert",
+        "description": "Der Zahnschmelz wird nachhaltig gestärkt und remineralisiert"
+      },
+      {
+        "number": 3,
+        "title": "Langzeitschutz entsteht",
+        "description": "Eine Schutzbarriere schützt die Zähne bis zur nächsten Anwendung"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Richtige Anwendung des Gelées",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt erklärt die korrekte Anwendung für maximale Wirksamkeit der Intensivbehandlung."
+    },
+    "instructions": [
+      "Einmal wöchentlich nach dem Zähneputzen anwenden",
+      "Dünn auf die Zahnoberflächen auftragen",
+      "2 Minuten einwirken lassen, danach ausspucken",
+      "1 Stunde nicht essen oder trinken"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 88,
+    "profile": "Basierend auf Ihrem Profil (Erhöhtes Kariesrisiko, Intensive Pflege): Sehr gute Übereinstimmung.",
+    "note": "Hinweis: Für die tägliche Pflege kombinieren Sie mit",
+    "alternativeProduct": {
+      "name": "elmex KARIESSCHUTZ",
+      "url": "/produkte/kariesschutz-zahnpasta"
+    }
+  },
+  "rating": {
+    "value": 4.6,
+    "count": 1834
+  },
+  "price": 3.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "/images/products/elmexgelee.jpg",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexgelee&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexgelee&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexgelee&retailer=rewe"
+    }
+  ]
+}

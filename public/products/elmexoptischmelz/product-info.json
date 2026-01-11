@@ -1,0 +1,103 @@
+{
+  "_comment": "Product metadata for dynamic loading. Images: {slug}_01.png (main), {slug}_02.png (hover), {slug}_03.png (detail)",
+  "id": "elmexoptischmelz",
+  "slug": "elmexoptischmelz",
+  "sku": "EL-OS-PRO-75",
+  "name": "elmex OPTI-SCHMELZ Professional",
+  "subtitle": "Zahnpasta",
+  "category": "toothpaste",
+  "productLine": "kariesschutz",
+  "description": "Spezialzahnpasta zum Schutz und zur Stärkung des Zahnschmelzes mit mikrofeiner Technologie",
+  "heroTitle": "Maximaler Schutz für Ihren Zahnschmelz",
+  "heroDescription": "Innovative Formel mit mikro-feiner Technologie zum Schutz und zur Stärkung des Zahnschmelzes. Versiegelt Mikrorisse und schützt vor Säureangriffen.",
+  "badge": {
+    "text": "Mikro-feine Technologie"
+  },
+  "features": [
+    {
+      "icon": "zap",
+      "text": "Versiegelt Mikrorisse"
+    },
+    {
+      "icon": "shield",
+      "text": "Säureschutz"
+    }
+  ],
+  "benefits": [
+    "Schützt und stärkt den Zahnschmelz",
+    "Versiegelt Mikrorisse im Zahnschmelz",
+    "Schützt vor Säureangriffen",
+    "Mikro-feine Technologie für intensive Pflege"
+  ],
+  "ingredients": [
+    "Natriumfluorid 1450 ppm",
+    "Mikrofeines Hydroxylapatit",
+    "Aqua",
+    "Hydrated Silica"
+  ],
+  "howItWorks": {
+    "title": "Wie funktioniert die Schmelz-Versiegelung?",
+    "description": "Erlebe die mikro-feine Technologie",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Mikrorisse werden gefunden",
+        "description": "Die Formel erkennt Schwachstellen im Zahnschmelz"
+      },
+      {
+        "number": 2,
+        "title": "Versiegelung erfolgt",
+        "description": "Mikro-feine Partikel versiegeln Risse und Schwachstellen"
+      },
+      {
+        "number": 3,
+        "title": "Schmelz wird gestärkt",
+        "description": "Der Zahnschmelz wird widerstandsfähiger gegen Säureangriffe"
+      }
+    ]
+  },
+  "usage": {
+    "title": "Optimale Schmelzpflege",
+    "expert": {
+      "name": "Dr. Sarah Schmidt",
+      "title": "Dentalhygienikerin",
+      "description": "Dr. Sarah Schmidt erklärt die richtige Anwendung für optimalen Zahnschmelzschutz."
+    },
+    "instructions": [
+      "Zweimal täglich nach den Mahlzeiten putzen",
+      "2-3 Minuten sanft in kreisenden Bewegungen putzen",
+      "Besonders nach säurehaltigen Speisen anwenden",
+      "Nach dem Putzen ausspucken, nicht ausspülen"
+    ]
+  },
+  "matchingScore": {
+    "percentage": 87,
+    "profile": "Basierend auf Ihrem Profil (Zahnschmelzschutz, Säureschutz): Sehr gute Übereinstimmung.",
+    "note": "Hinweis: Für zusätzliche Pflege empfehlen wir",
+    "alternativeProduct": {
+      "name": "elmex OPTI-SCHMELZ Zahnbürste",
+      "url": "/produkte/elmexoptischmelzzahnbuerste"
+    }
+  },
+  "rating": {
+    "value": 4.6,
+    "count": 1923
+  },
+  "price": 3.99,
+  "availability": "https://schema.org/InStock",
+  "imageUrl": "/images/products/elmexoptischmelz.jpg",
+  "buyLinks": [
+    {
+      "retailer": "dm-drogerie markt",
+      "url": "/wo-kaufen?product=elmexoptischmelz&retailer=dm"
+    },
+    {
+      "retailer": "Rossmann",
+      "url": "/wo-kaufen?product=elmexoptischmelz&retailer=rossmann"
+    },
+    {
+      "retailer": "REWE",
+      "url": "/wo-kaufen?product=elmexoptischmelz&retailer=rewe"
+    }
+  ]
+}
