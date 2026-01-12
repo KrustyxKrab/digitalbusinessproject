@@ -688,7 +688,7 @@ import { Search, MessageCircle, ChevronDown, Bot, Mail, Phone, Clock } from '@lu
         let hasResults = false;
         faqItems.forEach(item => {
           const itemCategories = item.getAttribute('data-category') || '';
-          if (category === 'all' || itemCategories.includes(category)) {
+          if (category === 'all' || (category && itemCategories.includes(category))) {
             (item as HTMLElement).style.display = 'block';
             hasResults = true;
           } else {
