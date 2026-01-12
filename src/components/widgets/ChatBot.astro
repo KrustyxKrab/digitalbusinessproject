@@ -1,0 +1,167 @@
+<div 
+  id="chatbot-widget" 
+  class="fixed bottom-6 right-6 z-[9999] transition-transform duration-300 ease-in-out group"
+>
+  
+  <div
+    id="chatbot-window"
+    class="
+      absolute bottom-16 right-0 
+      w-80 sm:w-96 max-w-[calc(100vw-2rem)] 
+      bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden 
+      origin-bottom-right transition-all duration-300 ease-out
+      
+      /* Standard-Zustand: Unsichtbar & nicht klickbar */
+      opacity-0 invisible translate-y-4 scale-95 pointer-events-none
+    "
+  >
+    <div class="bg-primary text-white p-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-bold">elmex Assistent</h3>
+          <p class="text-xs text-white/80">Wir helfen gerne!</p>
+        </div>
+      </div>
+      <button id="chatbot-close" type="button" class="hover:bg-white/10 p-2 rounded-lg transition-colors cursor-pointer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="p-4 h-80 overflow-y-auto bg-neutral-50">
+      <div class="space-y-3">
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-neutral-100">
+          <p class="text-sm text-neutral-700 mb-3">
+            Hallo! Ich bin Ihr elmex Assistent. Wie kann ich Ihnen heute helfen?
+          </p>
+          <div class="space-y-2">
+            <a href="/beratung/produktfinder" class="block w-full text-left px-3 py-2 bg-primary/5 hover:bg-primary/10 rounded-lg text-sm text-primary font-medium transition-colors">
+              🔍 Produktempfehlung finden
+            </a>
+            <a href="/fragen" class="block w-full text-left px-3 py-2 bg-primary/5 hover:bg-primary/10 rounded-lg text-sm text-primary font-medium transition-colors">
+              ❓ FAQ durchsuchen
+            </a>
+            <a href="/beratung" class="block w-full text-left px-3 py-2 bg-primary/5 hover:bg-primary/10 rounded-lg text-sm text-primary font-medium transition-colors">
+              💬 Persönliche Beratung
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-3 bg-white border-t border-neutral-200">
+      <div class="flex gap-2">
+        <input type="text" placeholder="Ihre Frage eingeben..." class="flex-1 px-4 py-2 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20" disabled />
+        <button class="bg-neutral-200 text-neutral-400 p-2 rounded-lg cursor-not-allowed" disabled>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button
+    id="chatbot-toggle"
+    type="button"
+    class="flex items-center gap-3 bg-primary text-white h-12 px-5 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 relative z-50 cursor-pointer"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+    </svg>
+    <span class="font-semibold text-sm">Hilfe</span>
+  </button>
+
+</div>
+
+<style>
+  /* Logik: Wenn der Container (#chatbot-widget) die Klasse 'is-open' hat,
+   ändern wir die Eigenschaften des inneren Fensters (#chatbot-window).
+  */
+  #chatbot-widget.is-open #chatbot-window {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  /* Support für den ToTop Button Shift */
+  :global(#chatbot-widget.shift-left) {
+    transform: translateX(-4rem);
+  }
+</style>
+
+<script>
+  let cleanupFn;
+
+  function initChatbot() {
+    // 1. Aufräumen
+    if (cleanupFn) {
+      cleanupFn();
+      cleanupFn = null;
+    }
+
+    const widgetEl = document.getElementById('chatbot-widget');
+    const toggleBtn = document.getElementById('chatbot-toggle');
+    const closeBtn = document.getElementById('chatbot-close');
+    const windowEl = document.getElementById('chatbot-window');
+
+    if (!widgetEl || !toggleBtn) return;
+
+    // 2. Funktionen
+    const openChat = () => {
+      widgetEl.classList.add('is-open');
+      // Kleiner Timeout, damit der aktuelle Klick nicht sofort als "Klick außerhalb" gewertet wird
+      setTimeout(() => {
+        document.addEventListener('click', handleOutsideClick);
+      }, 10);
+    };
+
+    const closeChat = () => {
+      widgetEl.classList.remove('is-open');
+      document.removeEventListener('click', handleOutsideClick);
+    };
+
+    const toggleChat = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const isOpen = widgetEl.classList.contains('is-open');
+      if (isOpen) {
+        closeChat();
+      } else {
+        openChat();
+      }
+    };
+
+    const handleOutsideClick = (e) => {
+      // Wenn Klick NICHT im Widget ist, schließen
+      if (!widgetEl.contains(e.target)) {
+        closeChat();
+      }
+    };
+
+    // 3. Listener registrieren
+    toggleBtn.addEventListener('click', toggleChat);
+    if (closeBtn) closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeChat();
+    });
+
+    // 4. Cleanup definieren
+    cleanupFn = () => {
+      toggleBtn.removeEventListener('click', toggleChat);
+      document.removeEventListener('click', handleOutsideClick);
+      // Optional: Close Button Listener müsste man auch entfernen, 
+      // aber bei Astro Page Swap werden eh die Elemente gelöscht.
+    };
+  }
+
+  // Starten
+  initChatbot();
+  document.addEventListener('astro:page-load', initChatbot);
+</script>

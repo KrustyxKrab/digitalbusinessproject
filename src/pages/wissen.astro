@@ -23,7 +23,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         Wissenschaftlich fundierte Artikel, klinische Studien und Expertenwissen zu allen Aspekten der Mundgesundheit.
       </p>
 
-      <!-- Search Bar -->
       <div class="max-w-2xl mx-auto">
         <div class="relative">
           <input
@@ -42,7 +41,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
   </div>
 </section>
 
-<!-- Category Filter -->
 <section class="container mx-auto px-4 -mt-8 relative z-10">
   <div class="max-w-5xl mx-auto">
     <div class="bg-white rounded-2xl shadow-xl p-4 flex flex-wrap gap-3 justify-center border border-neutral-100">
@@ -68,18 +66,22 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
   </div>
 </section>
 
-<!-- Featured Article -->
 <section class="container mx-auto px-4 py-16">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-4">Featured</h2>
+    
     <div class="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-3xl overflow-hidden shadow-2xl">
       <div class="grid md:grid-cols-2 gap-0">
         <div class="p-8 md:p-12 flex flex-col justify-center text-white">
+          
+          <h2 class="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
+            Featured Article
+          </h2>
+
           <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold mb-4 w-fit">
             <Award class="w-3 h-3" />
             Neue Studie 2025
           </div>
-          <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4">
+          <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4 text-white">
             Wie Aminfluorid den Zahnschmelz remineralisiert
           </h2>
           <p class="text-neutral-300 mb-6 text-lg leading-relaxed">
@@ -87,7 +89,7 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             und bietet überlegenen Kariesschutz durch kontinuierliche Mineralfreisetzung.
           </p>
           <div class="flex items-center gap-4 mb-6">
-            <img src="/assets/experts/expert-1.jpg" alt="Dr. Schmidt" class="w-12 h-12 rounded-full bg-neutral-700" onerror="this.style.display='none'" />
+            <img src="/assets/experts/expert-1.png" alt="Dr. Schmidt" class="w-12 h-12 rounded-full bg-neutral-700 object-cover" onerror="this.style.display='none'" />
             <div>
               <div class="font-semibold">Dr. med. dent. Maria Schmidt</div>
               <div class="text-sm text-neutral-400">Forschungsleiterin, elmex Labs</div>
@@ -108,13 +110,11 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
   </div>
 </section>
 
-<!-- Articles Grid -->
 <section class="container mx-auto px-4 py-8">
   <div class="max-w-6xl mx-auto">
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
 
-      <!-- Article 1 - Karies -->
       <article class="article-card group cursor-pointer" data-category="karies wissenschaft">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-red-50 to-orange-50 relative overflow-hidden flex items-center justify-center">
@@ -143,7 +143,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 2 - Zahnfleisch -->
       <article class="article-card group cursor-pointer" data-category="zahnfleisch">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-pink-50 to-red-50 relative overflow-hidden flex items-center justify-center">
@@ -172,7 +171,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 3 - Kinder -->
       <article class="article-card group cursor-pointer" data-category="kinder">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden flex items-center justify-center">
@@ -201,7 +199,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 4 - Wissenschaft -->
       <article class="article-card group cursor-pointer" data-category="wissenschaft">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-purple-50 to-indigo-50 relative overflow-hidden flex items-center justify-center">
@@ -230,7 +227,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 5 - Experten -->
       <article class="article-card group cursor-pointer" data-category="experten zahnfleisch">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-teal-50 to-green-50 relative overflow-hidden flex items-center justify-center">
@@ -259,7 +255,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 6 - Karies -->
       <article class="article-card group cursor-pointer" data-category="karies">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-amber-50 to-yellow-50 relative overflow-hidden flex items-center justify-center">
@@ -288,7 +283,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 7 - Fluorid -->
       <article class="article-card group cursor-pointer" data-category="wissenschaft karies">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-cyan-50 to-blue-50 relative overflow-hidden flex items-center justify-center">
@@ -316,7 +310,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 8 - Putztechnik -->
       <article class="article-card group cursor-pointer" data-category="karies">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-green-50 to-emerald-50 relative overflow-hidden flex items-center justify-center">
@@ -346,7 +339,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 9 - Mundgeruch -->
       <article class="article-card group cursor-pointer" data-category="zahnfleisch">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-rose-50 to-pink-50 relative overflow-hidden flex items-center justify-center">
@@ -374,7 +366,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 10 - Schwangerschaft -->
       <article class="article-card group cursor-pointer" data-category="zahnfleisch">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-violet-50 to-purple-50 relative overflow-hidden flex items-center justify-center">
@@ -404,7 +395,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 11 - Elektrische Zahnbürste -->
       <article class="article-card group cursor-pointer" data-category="karies wissenschaft">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-slate-50 to-zinc-50 relative overflow-hidden flex items-center justify-center">
@@ -434,7 +424,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 12 - Zahnseide -->
       <article class="article-card group cursor-pointer" data-category="karies">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-orange-50 to-amber-50 relative overflow-hidden flex items-center justify-center">
@@ -462,7 +451,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 13 - Diabetes -->
       <article class="article-card group cursor-pointer" data-category="zahnfleisch wissenschaft">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-red-50 to-rose-50 relative overflow-hidden flex items-center justify-center">
@@ -490,7 +478,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 14 - Zahnspange -->
       <article class="article-card group cursor-pointer" data-category="kinder karies">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-sky-50 to-blue-50 relative overflow-hidden flex items-center justify-center">
@@ -520,7 +507,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         </div>
       </article>
 
-      <!-- Article 15 - Zahnschmelzabbau -->
       <article class="article-card group cursor-pointer" data-category="karies wissenschaft">
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
           <div class="aspect-video bg-gradient-to-br from-lime-50 to-green-50 relative overflow-hidden flex items-center justify-center">
@@ -558,7 +544,6 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
   </div>
 </section>
 
-<!-- Research Banner -->
 <section class="container mx-auto px-4 py-16">
   <div class="max-w-4xl mx-auto bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 text-white text-center">
     <Microscope class="w-16 h-16 mx-auto mb-6 text-white/80" />

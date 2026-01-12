@@ -4,31 +4,26 @@ import Logo from "@/components/ui/Logo.astro";
 import { FileText, User } from '@lucide/astro';
 ---
 
-<!-- This is an invisible div with relative position so that it takes up the height of the menu (because menu is absolute/fixed) -->
 <div class="relative w-full h-16 sm:h-20 opacity-0 pointer-events-none"></div>
+
 <header id="header" class="fixed top-2 sm:top-4 z-50 w-full px-3 sm:px-4 lg:px-6">
   <div id="site-container"
-    class="flex items-center justify-between h-14 sm:h-15 site-container mx-auto px-4 sm:px-6 py-2.5 border-transparent border-[0.5px] transition-all duration-300"
+    class="flex items-center justify-between h-14 sm:h-15 site-container mx-auto px-4 sm:px-6 py-2.5 border-transparent border-[0.5px] rounded-2xl transition-all duration-300"
   >
-    <!-- Logo -->
     <div class="flex-shrink-0 z-50">
       <Logo />
     </div>
 
-    <!-- Mobile Menu Background Overlay -->
     <div
       id="mobileMenuBackground"
       class="fixed inset-0 z-20 hidden w-screen h-screen duration-300 ease-out bg-white/90 backdrop-blur-sm"
     >
     </div>
 
-    <!-- Navigation -->
     <nav
       class="relative z-30 flex flex-row-reverse justify-start w-full text-sm sm:justify-end text-neutral-500 sm:flex-row sm:items-center"
     >
-      <!-- Mobile Menu Toggle Buttons -->
       <div class="flex items-center gap-2 sm:hidden">
-        <!-- Hamburger Menu Button -->
         <div
           id="openMenu"
           class="flex items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90"
@@ -44,7 +39,6 @@ import { FileText, User } from '@lucide/astro';
           >
         </div>
 
-        <!-- Close Menu Button -->
         <div
           id="closeMenu"
           class="hidden items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90"
@@ -61,12 +55,10 @@ import { FileText, User } from '@lucide/astro';
         </div>
       </div>
 
-      <!-- Menu Items -->
       <div
         id="menu"
         class="fixed top-[68px] sm:top-0 left-3 right-3 sm:left-0 sm:right-0 ease-out duration-300 z-40 flex-col items-center justify-start hidden w-auto h-auto text-sm pt-6 pb-5 sm:py-0 sm:relative sm:flex-row sm:flex"
       >
-        <!-- Mobile Menu Background -->
         <div
           class="absolute inset-0 top-0 right-0 block w-full h-full sm:hidden"
         >
@@ -76,7 +68,6 @@ import { FileText, User } from '@lucide/astro';
           </div>
         </div>
 
-        <!-- Menu Links -->
         <div class="relative z-10 flex flex-col sm:flex-row items-center w-full sm:w-auto gap-1 sm:gap-0">
           {
             menus.map((menu) => {
@@ -92,7 +83,6 @@ import { FileText, User } from '@lucide/astro';
           }
         </div>
 
-        <!-- Dashboard Icon -->
         <a
           href="/dashboard"
           class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-sm text-neutral-600 hover:text-primary transition-colors"
@@ -101,7 +91,6 @@ import { FileText, User } from '@lucide/astro';
           <User class="w-5 h-5" />
         </a>
 
-        <!-- llms.txt Viewer Icon -->
         <a
           href="/llms.txt"
           target="_blank"
@@ -118,6 +107,15 @@ import { FileText, User } from '@lucide/astro';
 </header>
 
 <style>
+  /* Header scroll state classes (Applied via JS) */
+  :global(.is-scrolled) {
+    background-color: rgba(255, 255, 255, 0.8); /* White with opacity */
+    backdrop-filter: blur(12px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border-color: rgba(229, 229, 229, 0.5) !important; /* neutral-200 with opacity */
+  }
+
   /* Header container spacing optimization */
   #header {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -253,6 +251,7 @@ import { FileText, User } from '@lucide/astro';
   const closeMenu = document.getElementById('closeMenu');
   const menu = document.getElementById('menu');
   const mobileMenuBackground = document.getElementById('mobileMenuBackground');
+  const siteContainer = document.getElementById('site-container'); // FIX: Grab the container
 
   // Mobile menu open function
   function openMobileMenu() {
@@ -304,6 +303,32 @@ import { FileText, User } from '@lucide/astro';
       }
     }
   });
+
+  // FIX: Scroll Effect Logic
+  function handleScroll() {
+    if (window.scrollY > 20) {
+      siteContainer?.classList.add('is-scrolled');
+      siteContainer?.classList.remove('border-transparent');
+    } else {
+      siteContainer?.classList.remove('is-scrolled');
+      siteContainer?.classList.add('border-transparent');
+    }
+  }
+
+  // Add scroll listener with optimization
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Run once on load to set initial state
+  handleScroll();
 
   // Add to global scope so inline events can call it
   window.closeMobileMenu = closeMobileMenu;

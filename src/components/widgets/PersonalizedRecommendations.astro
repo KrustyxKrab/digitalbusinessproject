@@ -209,7 +209,7 @@ const productDatabase = processedProducts.reduce((acc, curr) => {
     <div id="recommendations-container" class="mx-auto max-w-max flex flex-col md:flex-row md:flex-wrap justify-center gap-6 px-4 md:px-0">
       </div>
   </div>
-  <div class="mt-8 text-center">
+  <!-- <div class="mt-8 text-center">
     <p class="text-sm text-neutral-600 mb-4 italic">
       Damit Sie das neue Produkt ausprobieren können, erhalten Sie 10% Rabatt auf Ihre erste Bestellung.
     </p>
@@ -221,7 +221,7 @@ const productDatabase = processedProducts.reduce((acc, curr) => {
       </button>
     </div>
     <p class="text-xs text-neutral-500 mt-2">Einlösbar bei teilnehmenden Händlern</p>
-  </div>
+  </div> -->
   <div class="mt-6 text-center">
     <a href="/beratung/produktfinder" class="inline-flex items-center text-sm text-primary hover:text-primary-dark hover:underline transition-colors">
       Neue Empfehlung erhalten →
@@ -359,16 +359,17 @@ const productDatabase = processedProducts.reduce((acc, curr) => {
     }
     reason.textContent = reasonText;
 
+        // <div class="absolute top-4 right-4 z-10">
+        //   <div class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-pulse-subtle">
+        //     10% Rabatt
+        //   </div>
+        // </div>
+
     container.innerHTML = recommendations.map(product => `
       <a
         href="${product.url}"
         class="recommendation-card relative bg-white rounded-xl border-2 border-neutral-200 hover:border-primary hover:shadow-lg transition-all group mx-auto flex flex-col overflow-hidden w-full md:w-72 lg:w-80 shrink-0"
       >
-        <div class="absolute top-4 right-4 z-10">
-          <div class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-pulse-subtle">
-            10% Rabatt
-          </div>
-        </div>
 
         <div class="h-48 w-full overflow-hidden bg-gray-50 flex items-center justify-center">
           <img 
