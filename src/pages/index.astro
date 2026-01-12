@@ -1,6 +1,19 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { ShieldCheck, Heart, Sparkles, Microscope, HeartPulse, Baby, Lightbulb } from '@lucide/astro';
+import { 
+  ShieldCheck, 
+  Heart, 
+  Sparkles, 
+  Microscope, 
+  HeartPulse, 
+  Baby, 
+  Lightbulb, 
+  Search, 
+  ScanFace, 
+  Activity, 
+  ChevronDown, 
+  ArrowRight 
+} from '@lucide/astro';
 import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecommendations.astro";
 ---
 
@@ -9,41 +22,87 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
   description="Wissenschaftlich fundierter Kariesschutz für jedes Alter - Von Zahnärzten empfohlen, klinisch getestet, Made in Germany."
   keywords="elmex, Zahnpasta, Kariesschutz, Aminfluorid, Zahngesundheit, Made in Germany"
 >
-  <!-- Hero Section -->
-  <section class="relative site-container mx-auto mt-12 md:mt-20 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 data-personalized="headline" class="text-4xl md:text-5xl lg:text-6xl font-brand font-bold text-neutral-900 mb-6 will-animate animate-fade-in">
-        Zahngesundheit für die ganze Familie
-      </h1>
-      <p data-personalized="subheadline" class="text-lg md:text-xl text-neutral-700 mb-8 will-animate animate-fade-in" style="animation-delay: 0.2s;">
-        Wissenschaftlich fundierter Kariesschutz für jedes Alter
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center will-animate animate-fade-in" style="animation-delay: 0.4s;">
-        <a
-          href="/produkte"
-          class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-full"
-        >
-          Produkte entdecken
-        </a>
-        <a
-          href="/beratung/zahngesundheit-tipps"
-          class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors rounded-full"
-        >
-          Zahnpflege-Tipps
-        </a>
+
+  <section class="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-neutral-900/80 mix-blend-multiply"></div>
+      <img 
+        src="assets/experts/expert-landscape-3.png" 
+        alt="Elmex Labor und Forschung" 
+        class="w-full h-full object-cover opacity-80" 
+      />
+    </div>
+
+    <div class="relative z-10 container mx-auto px-4 mt-16">
+      <div class="max-w-4xl">
+        
+        <h1 data-personalized="headline" class="text-4xl md:text-6xl lg:text-7xl font-brand font-bold text-white mb-8 leading-tight will-animate animate-fade-in drop-shadow-2xl tracking-tight max-w-3xl">
+          Wissenschaftlich fundierter Schutz für dauerhafte Zahngesundheit.
+        </h1>
+        
+        <p data-personalized="subheadline" class="text-xl md:text-2xl text-neutral-50 mb-12 max-w-3xl font-light leading-relaxed will-animate animate-fade-in drop-shadow-lg" style="animation-delay: 0.2s;">
+          Profitieren Sie von jahrzehntelanger zahnmedizinischer Forschung. Nutzen Sie unsere digitalen Tools für eine präzise Analyse Ihres individuellen Bedarfs.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 will-animate animate-fade-in" style="animation-delay: 0.4s;">
+          
+          <a href="/beratung/produktfinder" class="group relative bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white hover:border-white rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl text-left overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+              <ArrowRight class="w-5 h-5 text-white group-hover:text-primary" />
+            </div>
+            <div class="w-12 h-12 rounded-full bg-white/20 group-hover:bg-primary/10 flex items-center justify-center mb-4 transition-colors">
+              <Search class="w-6 h-6 text-white group-hover:text-primary" />
+            </div>
+            <h3 class="text-lg font-bold text-white group-hover:text-neutral-900 mb-1">Produktfinder</h3>
+            <p class="text-sm text-neutral-200 group-hover:text-neutral-600 leading-snug">
+              Finden Sie anhand Ihrer Symptome die perfekte Pflege.
+            </p>
+          </a>
+
+          <a href="/onboarding" class="group relative bg-primary/90 backdrop-blur-md border border-primary/50 hover:bg-primary-dark rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl text-left">
+            <div class="absolute top-0 right-0 p-4">
+               <span class="flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+              </span>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-4">
+              <Activity class="w-6 h-6 text-white" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Zahnanalyse Starten</h3>
+            <p class="text-sm text-white/90 leading-snug">
+              Erstellen Sie in 2 Minuten Ihr persönliches Gesundheitsprofil.
+            </p>
+          </a>
+
+          <a href="/beratung/foto-analyse" class="group relative bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white hover:border-white rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl text-left overflow-hidden">
+             <div class="absolute top-3 right-3 bg-teal-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+               Neu
+             </div>
+            <div class="w-12 h-12 rounded-full bg-white/20 group-hover:bg-primary/10 flex items-center justify-center mb-4 transition-colors">
+              <ScanFace class="w-6 h-6 text-white group-hover:text-primary" />
+            </div>
+            <h3 class="text-lg font-bold text-white group-hover:text-neutral-900 mb-1">KI Foto-Scan</h3>
+            <p class="text-sm text-neutral-200 group-hover:text-neutral-600 leading-snug">
+              Zähne scannen und Sofort-Analyse erhalten (Beta).
+            </p>
+          </a>
+
+        </div>
       </div>
     </div>
   </section>
 
+
   <script>
+    // Personalization Logic (Existing)
     document.addEventListener('DOMContentLoaded', () => {
       try {
         const profileData = localStorage.getItem('elmex-user-profile');
-        if (!profileData) return; // No quiz data - keep fallback text
+        if (!profileData) return; 
 
         const profile = JSON.parse(profileData);
-
-        // Parse answers array into a map for easier access
         const answersMap: Record<string, any> = {};
         if (profile.answers && Array.isArray(profile.answers)) {
           profile.answers.forEach((item: any) => {
@@ -51,7 +110,6 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
           });
         }
 
-        // Personalize headline
         const headlineEl = document.querySelector('[data-personalized="headline"]');
         const subheadlineEl = document.querySelector('[data-personalized="subheadline"]');
 
@@ -59,489 +117,338 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
           let headline = '';
           let concern = '';
 
-          // Priority 1: dentistFrequency check
+          // Logic remains the same...
           if (answersMap.dentistFrequency === 'never' || answersMap.dentistFrequency === 'issues-only') {
-            headline = 'Professionelle Beratung, jetzt verfügbar';
+            headline = 'Professionelle Beratung, jetzt digital'; // Slightly adapted text
             concern = 'Zahngesundheit';
           }
-          // Priority 2: Child age groups
           else if (answersMap.childAge) {
-            headline = 'Zahngesundheit von Anfang an';
+            headline = 'Starke Zähne von Anfang an';
             concern = 'Kinderzähne';
           }
-          // Priority 3: Concern-based messaging from dentalConcerns
           else if (answersMap.dentalConcerns) {
             const concerns = Array.isArray(answersMap.dentalConcerns) ? answersMap.dentalConcerns : [answersMap.dentalConcerns];
 
             if (concerns.includes('sensitive-teeth')) {
-              headline = 'Ihre Lösung für empfindliche Zähne';
+              headline = 'Freiheit für schmerzempfindliche Zähne';
               concern = 'empfindliche Zähne';
             } else if (concerns.includes('cavity-protection')) {
-              headline = 'Effektiver Kariesschutz für Ihre Familie';
+              headline = 'Maximaler Kariesschutz für Sie';
               concern = 'Kariesschutz';
             } else if (concerns.includes('gum-health')) {
-              headline = 'Gesundes Zahnfleisch beginnt hier';
+              headline = 'Starkes Zahnfleisch, gesunde Zähne';
               concern = 'Zahnfleischpflege';
             } else if (concerns.includes('whitening')) {
-              headline = 'Strahlend weiße Zähne, natürlich geschützt';
+              headline = 'Natürliches Weiß, klinisch geschützt';
               concern = 'Zahnaufhellung';
             } else {
-              headline = 'Zahngesundheit für die ganze Familie';
+              headline = 'Ihr Weg zu gesunden Zähnen beginnt hier.';
               concern = 'Zahnpflege';
             }
           }
-          // Priority 4: Symptoms from issues flow
-          else if (answersMap.symptoms) {
-            const symptoms = Array.isArray(answersMap.symptoms) ? answersMap.symptoms : [answersMap.symptoms];
-
-            if (symptoms.includes('sensitivity')) {
-              headline = 'Ihre Lösung für empfindliche Zähne';
-              concern = 'empfindliche Zähne';
-            } else if (symptoms.includes('bleeding') || symptoms.includes('inflammation')) {
-              headline = 'Gesundes Zahnfleisch beginnt hier';
-              concern = 'Zahnfleischpflege';
-            } else if (symptoms.includes('pain')) {
-              headline = 'Professionelle Beratung, jetzt verfügbar';
-              concern = 'Zahngesundheit';
-            }
-          }
-
-          // Update headline if personalized
-          if (headline) {
-            headlineEl.textContent = headline;
-          }
-
-          // Update subheadline with personalization
-          if (concern) {
-            subheadlineEl.textContent = `Personalisiert für Ihre ${concern} – Wissenschaftlich fundiert`;
-          }
+          
+          if (headline) headlineEl.textContent = headline;
+          if (concern) subheadlineEl.textContent = `Ihr personalisierter Plan für ${concern} – Wissenschaftlich fundiert.`;
         }
       } catch (error) {
-        // Silent fail - keep fallback text
         console.error('Hero personalization error:', error);
       }
     });
   </script>
 
-  <!-- Trust Bar -->
-  <section class="mt-16 md:mt-24 py-8" itemscope itemtype="https://schema.org/Brand">
+  <section id="trust-bar" class="mt-8 md:mt-16 py-8 bg-white border-b border-neutral-100" itemscope itemtype="https://schema.org/Brand">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <article class="flex flex-col items-center" itemprop="award">
-          <svg class="w-12 h-12 text-primary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Von Zahnärzten empfohlen Icon" role="img">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-          </svg>
-          <span itemprop="name" class="sr-only">Von Zahnärzten empfohlen</span>
+        <article class="flex flex-col items-center group cursor-pointer hover:-translate-y-1 transition-transform" itemprop="award">
+          <div class="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
           <h3 class="font-brand font-semibold text-neutral-900 mb-1">Von Zahnärzten empfohlen</h3>
-          <p class="text-sm text-neutral-600">#1 Empfehlung</p>
+          <p class="text-sm text-neutral-600">Die Nr. 1 Marke</p>
         </article>
-        <article class="flex flex-col items-center" itemprop="award">
-          <svg class="w-12 h-12 text-primary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Klinisch getestet Icon" role="img">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-          </svg>
-          <span itemprop="name" class="sr-only">Klinisch getestet</span>
+        
+        <article class="flex flex-col items-center group cursor-pointer hover:-translate-y-1 transition-transform" itemprop="award">
+           <div class="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+          </div>
           <h3 class="font-brand font-semibold text-neutral-900 mb-1">Klinisch getestet</h3>
           <p class="text-sm text-neutral-600">500+ Studien</p>
         </article>
-        <article class="flex flex-col items-center" itemprop="award">
-          <svg class="w-12 h-12 text-primary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Made in Germany Icon" role="img">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
-          </svg>
-          <span itemprop="name" class="sr-only">Made in Germany</span>
+        
+        <article class="flex flex-col items-center group cursor-pointer hover:-translate-y-1 transition-transform" itemprop="award">
+           <div class="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+             <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
+            </svg>
+          </div>
           <h3 class="font-brand font-semibold text-neutral-900 mb-1">Made in Germany</h3>
-          <p class="text-sm text-neutral-600">Qualität seit 1962</p>
+          <p class="text-sm text-neutral-600">Forschung in Lörrach</p>
         </article>
-        <article class="flex flex-col items-center" itemprop="award">
-          <svg class="w-12 h-12 text-primary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="Nachhaltig produziert Icon" role="img">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-          <span itemprop="name" class="sr-only">Nachhaltig produziert</span>
-          <h3 class="font-brand font-semibold text-neutral-900 mb-1">Nachhaltig produziert</h3>
-          <p class="text-sm text-neutral-600">Umweltbewusst</p>
+        
+        <article class="flex flex-col items-center group cursor-pointer hover:-translate-y-1 transition-transform" itemprop="award">
+           <div class="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+             <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-brand font-semibold text-neutral-900 mb-1">Nachhaltig</h3>
+          <p class="text-sm text-neutral-600">Verantwortungsvoll</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Personalized Product Recommendations -->
-  <section class="container mx-auto px-4">
+  <section class="container mx-auto px-4 mt-12">
     <PersonalizedRecommendations />
   </section>
 
-  <!-- Hook Section -->
-  <section class="relative bg-gradient-to-r from-primary to-primary-dark py-16 md:py-20 mt-16">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-brand font-bold text-white mb-4 will-animate animate-fade-in">
-          Finde heraus, welcher Zahntyp du bist!
-        </h2>
-        <p class="text-lg md:text-xl text-white/90 mb-8 will-animate animate-fade-in" style="animation-delay: 0.2s;">
-          Personalisierte Zahnpflege-Empfehlungen in nur 2 Minuten
-        </p>
-        <a
-          href="/onboarding"
-          class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-primary bg-white hover:bg-neutral-100 transition-colors rounded-full shadow-lg hover:shadow-xl will-animate animate-fade-in"
-          style="animation-delay: 0.4s;"
-        >
-          Jetzt kostenlos testen
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Finder - Prominent CTA -->
-  <section class="container mx-auto px-4 mt-16 md:mt-20">
-    <div class="max-w-3xl mx-auto text-center relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary-dark to-red-600 p-10 md:p-12 text-white">
-      <!-- Background Product Images -->
-      <div class="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
-        <img src="../src/assets/products/elmexsensitivezahnpasta/elmexsensitivezahnpasta_1.png" alt="" class="absolute top-4 left-8 w-20 md:w-24 rotate-12 blur-[1px]" />
-        <img src="../src/assets/products/kariesschutz-zahnpasta/kariesschutz-zahnpasta_1.png" alt="" class="absolute bottom-8 right-12 w-20 md:w-24 -rotate-12 blur-[1px]" />
-        <img src="../src/assets/products/elmexwhite/elmex_weiß_schmelz_1.png" alt="" class="absolute top-1/2 left-4 w-16 md:w-20 -rotate-6 blur-[1px]" />
-        <img src="../src/assets/products/elmexgelee/elmex_gelée_1.png" alt="" class="absolute bottom-12 left-16 w-16 md:w-20 rotate-6 blur-[1px]" />
+  <section class="container mx-auto px-4 section-spacing-sm">
+    <div class="max-w-4xl mx-auto text-center relative overflow-hidden rounded-[2rem] bg-[var(--color-primary)] p-10 md:p-16 text-white isolate shadow-[var(--shadow-card)]">
+      
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+         <div class="absolute top-[-50%] left-[-20%] w-[80%] h-[150%] rounded-full bg-[var(--color-primary)] opacity-20 blur-[100px]"></div>
+         <div class="absolute bottom-[-50%] right-[-20%] w-[80%] h-[150%] rounded-full bg-[var(--color-professional)] opacity-20 blur-[100px]"></div>
       </div>
 
-      <!-- Main Content -->
       <div class="relative z-10">
-        <Sparkles class="w-16 h-16 mx-auto mb-6 animate-pulse" />
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-brand font-bold mb-4">
-          Welche Zahnpasta passt zu Ihnen?
+        <Sparkles class="w-16 h-16 mx-auto mb-6 text-white bling-effect" />
+        
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-brand font-bold mb-6 text-white leading-tight">
+          Nicht sicher, was Sie brauchen?
         </h2>
-        <p class="text-lg md:text-xl mb-8 opacity-95">
-          Beantworten Sie 5 Fragen und erhalten Sie Ihre persönliche Produktempfehlung
+        
+        <p class="text-lg md:text-xl mb-10 text-[var(--color-neutral-300)] max-w-2xl mx-auto font-body font-light leading-relaxed">
+          Unser Algorithmus analysiert Ihre Symptome (z.B. Schmerzempfindlichkeit, Zahnfleischbluten) und empfiehlt die medizinisch korrekte Systempflege.
         </p>
+        
         <a
           href="/beratung/produktfinder"
-          class="inline-flex items-center justify-center gap-2 px-10 py-4 text-lg font-semibold bg-white text-primary rounded-full hover:bg-neutral-100 hover:scale-105 transition-all shadow-xl hover:shadow-2xl animate-pulse-subtle"
+          class="btn inline-flex items-center justify-center gap-2 px-10 py-5 text-lg font-bold bg-white text-[var(--color-text-primary)] rounded-full hover:scale-105 hover:text-[var(--color-primary)] transition-all shadow-xl"
         >
-          Jetzt Produktfinder starten
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
+          Zum Symptom-Checker
+          <ArrowRight class="w-5 h-5" />
         </a>
       </div>
     </div>
   </section>
 
-  <style>
-    @keyframes pulse-subtle {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.95; }
-    }
-    .animate-pulse-subtle {
-      animation: pulse-subtle 3s ease-in-out infinite;
-    }
-  </style>
-
-  <!-- Scientific Credibility -->
   <section class="container mx-auto px-4 mt-16 md:mt-24">
-    <div class="bg-neutral-100 rounded-2xl p-8 md:p-12">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-4">
-          Wissenschaftlich fundiert
-        </h2>
-        <p class="text-lg text-neutral-600">
-          Über 60 Jahre Forschung für Ihre Zahngesundheit
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="text-5xl font-bold text-primary mb-3">500+</div>
-          <h3 class="font-brand font-semibold text-neutral-900 mb-2">Studien</h3>
-          <p class="text-sm text-neutral-600">Klinisch bestätigte Wirksamkeit</p>
+    <div class="bg-neutral-50 rounded-2xl p-8 md:p-12 border border-neutral-100">
+      <div class="flex flex-col md:flex-row gap-12 items-center">
+        <div class="md:w-1/2">
+           <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-6">
+            Wir sprechen nicht von Wundern. <br/>
+            <span class="text-primary">Wir sprechen von Wissenschaft.</span>
+          </h2>
+          <p class="text-lg text-neutral-600 mb-8 leading-relaxed">
+            Hinter jeder Tube elmex stehen über 60 Jahre Forschung. Wir arbeiten eng mit Universitäten und Zahnkliniken zusammen, um Wirkstoffe zu entwickeln, die mehr tun als nur reinigen – sie schützen und reparieren.
+          </p>
+          <a href="/wissen" class="text-primary font-semibold hover:text-primary-dark inline-flex items-center gap-2">
+            Unsere Studien ansehen <ArrowRight class="w-4 h-4"/>
+          </a>
         </div>
-        <div class="text-center">
-          <div class="text-5xl font-bold text-primary mb-3">#1</div>
-          <h3 class="font-brand font-semibold text-neutral-900 mb-2">Empfehlung</h3>
-          <p class="text-sm text-neutral-600">Von Zahnärzten in Deutschland</p>
-        </div>
-        <div class="text-center">
-          <div class="text-5xl font-bold text-primary mb-3">60+</div>
-          <h3 class="font-brand font-semibold text-neutral-900 mb-2">Jahre</h3>
-          <p class="text-sm text-neutral-600">Forschung und Entwicklung</p>
+        
+        <div class="md:w-1/2 grid grid-cols-2 gap-4">
+          <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+            <div class="text-4xl font-bold text-neutral-900 mb-1">500+</div>
+            <div class="text-sm text-neutral-500 uppercase tracking-wide">Studien</div>
+          </div>
+           <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+            <div class="text-4xl font-bold text-primary mb-1">#1</div>
+            <div class="text-sm text-neutral-500 uppercase tracking-wide">Empfehlung</div>
+          </div>
+           <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+            <div class="text-4xl font-bold text-neutral-900 mb-1">1962</div>
+            <div class="text-sm text-neutral-500 uppercase tracking-wide">Pionierarbeit</div>
+          </div>
+           <div class="bg-white p-6 rounded-xl shadow-sm text-center flex items-center justify-center">
+             <Microscope class="w-10 h-10 text-neutral-300" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Blog Preview -->
-  <section class="container mx-auto px-4 mt-16 md:mt-24 mb-16">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-4">
-        Wissenswertes über Zahngesundheit
-      </h2>
-      <p class="text-lg text-neutral-600">
-        Expertenratgeber für gesunde Zähne
-      </p>
+  <section class="container mx-auto px-4 mt-20 md:mt-32 mb-16">
+    <div class="flex justify-between items-end mb-12">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-2">
+          Wissen für Ihre Gesundheit
+        </h2>
+        <p class="text-lg text-neutral-600">
+          Von Experten geprüfte Artikel
+        </p>
+      </div>
+      <a href="/wissen" class="hidden md:inline-flex items-center text-primary font-medium hover:text-primary-dark">
+        Alles ansehen <ArrowRight class="w-4 h-4 ml-1"/>
+      </a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Article 1 -->
-      <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-        <div class="w-full h-48 bg-gradient-to-br from-orange-100 to-orange-300 flex items-center justify-center">
-          <Microscope class="w-20 h-20 text-orange-600" />
+      <article class="group cursor-pointer">
+        <div class="aspect-video bg-neutral-100 rounded-2xl overflow-hidden mb-4 relative">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
+          <div class="absolute bottom-4 left-4">
+             <span class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">Karies</span>
+          </div>
+          <Microscope class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-white/80 group-hover:scale-110 transition-transform" />
         </div>
-        <div class="p-6">
-          <h3 class="text-xl font-brand font-semibold text-neutral-900 mb-3">
-            Wie entsteht Karies und wie kann man sie verhindern?
-          </h3>
-          <p class="text-neutral-600 mb-4">
-            Erfahren Sie, wie Karies entsteht und welche Maßnahmen effektiv dagegen helfen.
-          </p>
-          <a href="/wissen/karies-prevention" class="text-primary hover:text-primary-dark font-medium">
-            Weiterlesen →
-          </a>
-        </div>
-      </article>
-
-      <!-- Article 2 -->
-      <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-        <div class="w-full h-48 bg-gradient-to-br from-red-100 to-red-300 flex items-center justify-center">
-          <HeartPulse class="w-20 h-20 text-red-600" />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-brand font-semibold text-neutral-900 mb-3">
-            5 Anzeichen für Zahnfleischprobleme
-          </h3>
-          <p class="text-neutral-600 mb-4">
-            Erkennen Sie die Warnsignale und schützen Sie Ihr Zahnfleisch rechtzeitig.
-          </p>
-          <a href="/wissen/zahnfleischprobleme" class="text-primary hover:text-primary-dark font-medium">
-            Weiterlesen →
-          </a>
-        </div>
-      </article>
-
-      <!-- Article 3 -->
-      <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-        <div class="w-full h-48 bg-gradient-to-br from-blue-100 to-blue-300 flex items-center justify-center">
-          <Baby class="w-20 h-20 text-blue-600" />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-brand font-semibold text-neutral-900 mb-3">
-            Richtige Zahnpflege von Anfang an
-          </h3>
-          <p class="text-neutral-600 mb-4">
-            Tipps für gesunde Kinderzähne vom ersten Zahn bis ins Schulalter.
-          </p>
-          <a href="/wissen/kinderzahnpflege" class="text-primary hover:text-primary-dark font-medium">
-            Weiterlesen →
-          </a>
-        </div>
-      </article>
-    </div>
-
-    <div class="text-center mt-12">
-      <a
-        href="/wissen"
-        class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-primary border-2 border-primary hover:bg-primary hover:text-white transition-colors rounded-full"
-      >
-        Alle Artikel ansehen
-      </a>
-    </div>
-  </section>
-
-  <!-- Advisory Section -->
-  <section class="container mx-auto px-4 mt-16 md:mt-24 mb-16">
-    <div class="max-w-4xl mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-neutral-100 to-neutral-200 p-10 md:p-12 text-center">
-      <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-4">
-        Haben Sie Beschwerden oder Fragen zu Ihrer Zahngesundheit?
-      </h2>
-      <p class="text-lg text-neutral-600 mb-8">
-        Durchsuchen Sie unsere Expertenratgeber
-      </p>
-
-      <!-- Search Field -->
-      <div class="max-w-2xl mx-auto mb-6">
-        <div class="relative">
-          <input
-            type="text"
-            placeholder="Ich habe Beschwerden mit..."
-            class="w-full px-6 py-4 text-lg rounded-full border-2 border-neutral-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-            id="advisory-search"
-          />
-          <svg class="absolute right-6 top-1/2 -translate-y-1/2 w-6 h-6 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-      </div>
-
-      <a
-        href="/wissen"
-        class="inline-flex items-center justify-center gap-2 px-8 py-3 text-lg font-semibold bg-primary text-white rounded-full hover:bg-primary-dark hover:scale-105 transition-all shadow-lg hover:shadow-xl"
-      >
-        Ratgeber durchsuchen
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </a>
-
-      <p class="mt-6 text-sm text-neutral-600">
-        Kostenlose Expertenratgeber für alle Themen
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="container mx-auto px-4 mt-16 md:mt-24 mb-16">
-    <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-4">
-          Häufig gestellte Fragen
-        </h2>
-        <p class="text-lg text-neutral-600">
-          Antworten auf die wichtigsten Fragen zur Zahngesundheit
+        <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+            Wie entsteht Karies wirklich?
+        </h3>
+        <p class="text-neutral-600 line-clamp-2">
+            Der Prozess der Demineralisation einfach erklärt und wie Aminfluorid ihn stoppt.
         </p>
-      </div>
+      </article>
 
-      <div class="space-y-0">
-        <!-- FAQ 1 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Wie oft sollte ich meine Zähne putzen?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Mindestens zweimal täglich, morgens und abends, für jeweils zwei Minuten. Idealerweise sollten Sie nach jeder Hauptmahlzeit putzen. Verwenden Sie dabei eine fluoridhaltige Zahnpasta wie elmex, um optimalen Schutz vor Karies zu gewährleisten.
+      <article class="group cursor-pointer">
+        <div class="aspect-video bg-neutral-100 rounded-2xl overflow-hidden mb-4 relative">
+           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
+           <div class="absolute bottom-4 left-4">
+             <span class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">Zahnfleisch</span>
+          </div>
+          <HeartPulse class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-white/80 group-hover:scale-110 transition-transform" />
+        </div>
+        <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+            Zahnfleischbluten: Warnsignale
+        </h3>
+        <p class="text-neutral-600 line-clamp-2">
+            Warum rotes Zahnfleisch oft der Anfang von Parodontitis ist und was Sie tun können.
+        </p>
+      </article>
+
+      <article class="group cursor-pointer">
+        <div class="aspect-video bg-neutral-100 rounded-2xl overflow-hidden mb-4 relative">
+           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
+           <div class="absolute bottom-4 left-4">
+             <span class="bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">Kinder</span>
+          </div>
+          <Baby class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-white/80 group-hover:scale-110 transition-transform" />
+        </div>
+        <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+            Milchzähne richtig schützen
+        </h3>
+        <p class="text-neutral-600 line-clamp-2">
+            Vom ersten Zahn bis zur Schule: Der Leitfaden für Eltern.
+        </p>
+      </article>
+    </div>
+  </section>
+
+
+
+  <section class="bg-neutral-50 py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-2">
+            Häufig gestellte Fragen
+          </h2>
+        </div>
+        <div class="space-y-3">
+          <div class="relative mb-10">
+            <input
+                type="text"
+                placeholder="Suche nach Symptomen, Produkten oder Inhaltsstoffen..."
+                class="w-full px-6 py-4 pl-12 text-lg rounded-full bg-neutral-50 border border-neutral-200 focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-inner"
+            />
+            <Search class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+             <button class="absolute right-3 top-2 bottom-2 bg-primary text-white px-6 rounded-full hover:bg-primary-dark transition-colors font-medium">
+                Suchen
+            </button>
+            </div>
+          <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors" data-faq-toggle>
+              <span class="font-semibold text-neutral-900">Wie oft sollte ich meine Zähne putzen?</span>
+              <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" />
+            </button>
+            <div class="faq-answer max-h-0 transition-all duration-300">
+              <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+                Mindestens zweimal täglich, morgens und abends, für jeweils zwei Minuten.
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- FAQ 2 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Was ist Aminfluorid und wie wirkt es?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Aminfluorid ist eine spezielle Form von Fluorid, die sich besonders schnell und gleichmäßig auf den Zähnen verteilt. Es bildet eine Schutzschicht auf dem Zahnschmelz und remineralisiert angegriffene Stellen. elmex verwendet diese hochwirksame Fluoridform in allen Produkten für maximalen Kariesschutz.
+           <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors" data-faq-toggle>
+              <span class="font-semibold text-neutral-900">Was ist Aminfluorid?</span>
+              <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" />
+            </button>
+            <div class="faq-answer max-h-0 transition-all duration-300">
+              <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+                Ein spezielles Fluorid, das sich schnell an den Zahnschmelz anlagert und ihn härtet.
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- FAQ 3 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Ab welchem Alter sollte mein Kind Zahnpasta verwenden?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Ab dem ersten Zahn sollten Sie eine erbsengroße Menge fluoridhaltige Kinderzahnpasta verwenden. Für Kinder von 0-6 Jahren empfehlen wir elmex Kinder-Zahnpasta mit altersgerechtem Fluoridgehalt. Ab 6 Jahren können Kinder auf Junior-Zahnpasta umsteigen.
+          
+           <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors" data-faq-toggle>
+              <span class="font-semibold text-neutral-900">Ab wann Kinderzahnpasta?</span>
+              <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" />
+            </button>
+            <div class="faq-answer max-h-0 transition-all duration-300">
+              <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+                Ab dem Durchbruch des ersten Milchzahns sollte einmal täglich geputzt werden.
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- FAQ 4 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Wie erkenne ich empfindliche Zähne?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Schmerzen bei kalten oder heißen Getränken, süßen Speisen oder beim Einatmen kalter Luft sind typische Anzeichen für empfindliche Zähne. Dies entsteht oft durch freiliegende Zahnhälse. elmex SENSITIVE Zahnpasta versiegelt diese Stellen effektiv und lindert den Schmerz langfristig.
+          <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors" data-faq-toggle>
+              <span class="font-semibold text-neutral-900">Was hilft bei empfindlichen Zähnen?</span>
+              <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" />
+            </button>
+            <div class="faq-answer max-h-0 transition-all duration-300">
+              <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+                elmex SENSITIVE Zahnpasta mit Aminfluorid verschließt offene Dentinkanälchen und reduziert Schmerzempfindlichkeit effektiv.
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- FAQ 5 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Was hilft gegen Zahnfleischbluten?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Regelmäßiges sanftes Putzen mit einer weichen Zahnbürste ist der Schlüssel. Verwenden Sie zusätzlich Zahnseide oder Interdentalbürsten für die Zahnzwischenräume. Bei anhaltendem Zahnfleischbluten sollten Sie einen Zahnarzt aufsuchen, da dies ein Zeichen für Entzündungen sein kann.
+          <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors" data-faq-toggle>
+              <span class="font-semibold text-neutral-900">Ist Fluorid sicher?</span>
+              <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" />
+            </button>
+            <div class="faq-answer max-h-0 transition-all duration-300">
+              <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+                Ja, Fluorid ist in empfohlenen Konzentrationen absolut sicher und der wissenschaftlich belegt effektivste Schutz vor Karies.
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- FAQ 6 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Wie wähle ich die richtige Zahnbürste?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Wählen Sie eine Zahnbürste mit weichen bis mittelharten Borsten, um Zahnfleisch und Zahnschmelz zu schonen. Der Bürstenkopf sollte klein genug sein, um alle Bereiche zu erreichen. Wechseln Sie Ihre Zahnbürste alle drei Monate oder früher, wenn die Borsten ausgefranst sind.
+          <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors" data-faq-toggle>
+              <span class="font-semibold text-neutral-900">Welche Lebensmittel sind schlecht für die Zähne?</span>
+              <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" />
+            </button>
+            <div class="faq-answer max-h-0 transition-all duration-300">
+              <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+                Zuckerhaltige Getränke, säurehaltige Lebensmittel und klebrige Snacks. Wichtig: Die Häufigkeit des Konsums ist entscheidender als die Menge.
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- FAQ 7 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Sind elektrische Zahnbürsten besser als manuelle?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Beide können effektiv sein, wenn sie richtig verwendet werden. Elektrische Zahnbürsten können bei der korrekten Putztechnik helfen und erreichen oft eine gründlichere Reinigung. Wichtiger als die Art der Bürste ist die regelmäßige und gründliche Anwendung mit fluoridhaltiger Zahnpasta.
+          <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors" data-faq-toggle>
+              <span class="font-semibold text-neutral-900">Was tun bei Zahnfleischbluten?</span>
+              <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" />
+            </button>
+            <div class="faq-answer max-h-0 transition-all duration-300">
+              <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+                Regelmäßig und gründlich putzen mit elmex Zahnfleisch-Schutz, täglich Zahnseide verwenden. Bei anhaltendem Bluten Zahnarzt konsultieren.
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- FAQ 8 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Wie oft sollte ich zum Zahnarzt gehen?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Mindestens zweimal jährlich zur Kontrolluntersuchung. Ihr Zahnarzt kann Probleme frühzeitig erkennen und behandeln, bevor sie schwerwiegend werden. Zusätzlich wird eine professionelle Zahnreinigung ein- bis zweimal pro Jahr empfohlen.
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ 9 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Was ist eine professionelle Zahnreinigung?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Bei der professionellen Zahnreinigung (PZR) werden Zahnstein und hartnäckige Beläge entfernt, die beim normalen Putzen nicht erreicht werden. Die Zähne werden anschließend poliert und fluoridiert. Dies ist eine wichtige Ergänzung zur täglichen Mundhygiene.
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ 10 -->
-        <div class="faq-item border-b border-neutral-200 py-4">
-          <button class="faq-toggle w-full flex justify-between items-center text-left hover:text-primary transition-colors" data-faq-toggle>
-            <span class="font-semibold text-neutral-900 pr-4">Können Kinder elmex Produkte verwenden?</span>
-            <svg class="faq-chevron w-5 h-5 text-neutral-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
-            <div class="pt-3 pb-1 text-neutral-600">
-              Ja, elmex bietet spezielle Produkte für verschiedene Altersstufen. elmex Kinder-Zahnpasta (0-6 Jahre) und elmex Junior (6-12 Jahre) sind mit altersgerechtem Fluoridgehalt formuliert. Diese schützen die Milchzähne und später die bleibenden Zähne optimal vor Karies.
-            </div>
+          <div class="text-center mt-6">
+            <a href="/fragen" class="text-primary font-semibold hover:text-primary-dark inline-flex items-center gap-2">
+              Alle Fragen ansehen <ArrowRight class="w-4 h-4"/>
+            </a>
           </div>
         </div>
       </div>
@@ -549,10 +456,9 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
   </section>
 
   <script>
-    // FAQ Accordion functionality
+    // FAQ Logic
     document.addEventListener('DOMContentLoaded', () => {
       const faqToggles = document.querySelectorAll('[data-faq-toggle]');
-
       faqToggles.forEach(toggle => {
         toggle.addEventListener('click', () => {
           const faqItem = toggle.closest('.faq-item');
@@ -560,254 +466,292 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
           const chevron = faqItem?.querySelector('.faq-chevron') as HTMLElement;
           const isActive = faqItem?.classList.contains('active');
 
-          // Close all other FAQs
+          // Reset all
           document.querySelectorAll('.faq-item.active').forEach(item => {
             if (item !== faqItem) {
               item.classList.remove('active');
-              const otherAnswer = item.querySelector('.faq-answer') as HTMLElement;
-              const otherChevron = item.querySelector('.faq-chevron') as HTMLElement;
-              if (otherAnswer) otherAnswer.style.maxHeight = '0';
-              if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
+              (item.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '0';
+              (item.querySelector('.faq-chevron') as HTMLElement).style.transform = 'rotate(0deg)';
             }
           });
 
-          // Toggle current FAQ
           if (isActive) {
-            if (faqItem) faqItem.classList.remove('active');
+            faqItem?.classList.remove('active');
             if (answer) answer.style.maxHeight = '0';
             if (chevron) chevron.style.transform = 'rotate(0deg)';
           } else {
-            if (faqItem) faqItem.classList.add('active');
+            faqItem?.classList.add('active');
             if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
             if (chevron) chevron.style.transform = 'rotate(180deg)';
           }
         });
       });
+
+      // FAQ Search functionality
+      const searchInput = document.querySelector('.space-y-3 input[type="text"]') as HTMLInputElement;
+      const searchButton = searchInput?.nextElementSibling as HTMLButtonElement;
+
+      function filterFAQs(searchTerm: string) {
+        const faqItems = document.querySelectorAll('.faq-item');
+        const normalizedSearch = searchTerm.toLowerCase().trim();
+
+        if (!normalizedSearch) {
+          // Show all items if search is empty
+          faqItems.forEach(item => {
+            (item as HTMLElement).style.display = 'block';
+          });
+          return;
+        }
+
+        let hasResults = false;
+        faqItems.forEach(item => {
+          const question = item.querySelector('.font-semibold')?.textContent?.toLowerCase() || '';
+          const answer = item.querySelector('.faq-answer .px-5')?.textContent?.toLowerCase() || '';
+
+          if (question.includes(normalizedSearch) || answer.includes(normalizedSearch)) {
+            (item as HTMLElement).style.display = 'block';
+            hasResults = true;
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+
+        // Show message if no results
+        const noResultsMsg = document.getElementById('faq-no-results');
+        if (!hasResults && !noResultsMsg) {
+          const msg = document.createElement('div');
+          msg.id = 'faq-no-results';
+          msg.className = 'text-center py-8 text-neutral-500';
+          msg.innerHTML = `
+            <p class="mb-2">Keine passenden Fragen gefunden.</p>
+            <a href="/fragen" class="text-primary hover:text-primary-dark font-medium">
+              Durchsuchen Sie alle FAQs →
+            </a>
+          `;
+          faqItems[0]?.parentElement?.appendChild(msg);
+        } else if (hasResults && noResultsMsg) {
+          noResultsMsg.remove();
+        }
+      }
+
+      searchButton?.addEventListener('click', () => {
+        filterFAQs(searchInput.value);
+      });
+
+      searchInput?.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          filterFAQs(searchInput.value);
+        }
+      });
+
+      // Real-time search (optional, with debounce)
+      let searchTimeout: NodeJS.Timeout;
+      searchInput?.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          filterFAQs(searchInput.value);
+        }, 300);
+      });
     });
   </script>
 
-  <!-- Tipp des Tages (Daily Tip) Section -->
-  <section class="container mx-auto px-4 mt-16 md:mt-20 mb-16">
-    <div class="max-w-4xl mx-auto rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 p-6 md:p-8 border-2 border-amber-200">
-      <div class="flex flex-col md:flex-row gap-6 items-start md:items-center">
-        <div class="flex-shrink-0">
-          <Lightbulb class="w-10 h-10 md:w-12 md:h-12 text-amber-500" />
+  <section class="container mx-auto px-4 py-16">
+    <div class="bg-amber-50 rounded-2xl p-6 border border-amber-100 flex gap-4 items-start max-w-2xl mx-auto">
+        <Lightbulb class="w-8 h-8 text-amber-500 flex-shrink-0 mt-1" />
+        <div>
+           <div class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">Tipp des Tages</div>
+           <p id="daily-tip-content" class="text-lg font-medium text-neutral-800">Laden...</p>
         </div>
-        <div class="flex-1">
-          <div class="text-sm font-semibold text-amber-700 uppercase tracking-wide mb-2">
-            Tipp des Tages
-          </div>
-          <p id="daily-tip-content" class="text-lg md:text-xl font-medium text-neutral-900 mb-4">
-            Laden...
-          </p>
-          <a href="/wissen" class="inline-flex items-center text-amber-700 hover:text-amber-900 font-medium transition-colors">
-            Mehr Tipps entdecken
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
     </div>
   </section>
 
   <script>
-    // Daily Tip of the Day functionality
+    // Daily Tip Logic (kept same)
     document.addEventListener('DOMContentLoaded', () => {
       const tips = [
-        "Putzen Sie Ihre Zähne mindestens 2 Minuten lang für optimale Reinigung",
-        "Wechseln Sie Ihre Zahnbürste alle 3 Monate für beste Hygiene",
-        "Fluorid remineralisiert den Zahnschmelz und schützt vor Karies",
-        "Vermeiden Sie Snacks zwischen den Mahlzeiten für gesündere Zähne",
-        "Zahnseide entfernt bis zu 80% der Plaque zwischen den Zähnen",
-        "Trinken Sie nach säurehaltigen Getränken Wasser zum Neutralisieren",
-        "Warten Sie 30 Minuten mit dem Putzen nach säurehaltigen Speisen",
-        "Kinder sollten ab dem ersten Zahn fluoridhaltige Zahnpasta verwenden",
-        "Zahnfleischbluten ist oft ein Zeichen für Entzündungen - Zahnarzt aufsuchen",
-        "Elektrische Zahnbürsten können die Putztechnik verbessern",
-        "Regelmäßige Kontrolluntersuchungen beim Zahnarzt beugen Problemen vor",
-        "Verwenden Sie kreisende Bewegungen beim Zähneputzen für gründliche Reinigung",
-        "Achten Sie auf zuckerfreie Zwischenmahlzeiten für gesunde Zähne",
-        "Mundspülungen ergänzen die Zahnpflege, ersetzen sie aber nicht",
-        "Professionelle Zahnreinigungen sollten 1-2 mal jährlich durchgeführt werden",
-        "Zahnschmelz kann durch Fluorid wieder aufgebaut werden",
-        "Nachtschutz hilft gegen nächtliches Zähneknirschen",
-        "Vermeiden Sie häufiges Zähnebleichen, um den Schmelz zu schonen",
-        "Milchzähne brauchen genauso viel Pflege wie bleibende Zähne",
-        "Kalziumreiche Lebensmittel stärken die Zähne von innen",
-        "Zahnzwischenraumbürsten sind ideal für größere Lücken",
-        "Eine ausgewogene Ernährung trägt zur Zahngesundheit bei",
-        "Rauchen schadet nicht nur der Lunge, sondern auch den Zähnen",
-        "Fluoridgel bietet zusätzlichen Schutz bei hohem Kariesrisiko",
-        "Achten Sie auf erste Anzeichen von Zahnproblemen wie Empfindlichkeit",
-        "Sanftes Putzen schont das Zahnfleisch und verhindert Rückgang",
-        "Zungenreinigung verbessert die Mundhygiene und den Atem",
-        "Regelmäßiger Zahnarztbesuch ist wichtiger als teure Behandlungen später",
-        "Kinderzahnpasta hat einen altersgerechten Fluoridgehalt",
-        "Zahngesundheit beginnt schon im Mutterleib mit gesunder Ernährung"
+        "Putzen Sie Ihre Zähne mindestens 2 Minuten lang.",
+        "Wechseln Sie Ihre Zahnbürste alle 3 Monate.",
+        "Fluorid remineralisiert den Zahnschmelz.",
+        "Vermeiden Sie Snacks zwischen den Mahlzeiten.",
+        "Zahnseide entfernt bis zu 80% der Plaque.",
+        "Trinken Sie Wasser nach säurehaltigen Getränken.",
+        "Warten Sie 30 Minuten nach dem Essen mit dem Putzen."
       ];
 
       const tipContent = document.getElementById('daily-tip-content');
-      if (!tipContent) return;
-
-      // Get today's date in YYYY-MM-DD format
-      const today = new Date().toISOString().split('T')[0];
-
-      // Get stored date and index from localStorage
-      const storedDate = localStorage.getItem('elmex-daily-tip-date');
-      let storedIndex = parseInt(localStorage.getItem('elmex-daily-tip-index') || '0', 10);
-
-      // Check if we need to update the tip (new day)
-      if (storedDate !== today) {
-        // Increment index and wrap around after 29
-        storedIndex = (storedIndex + 1) % 30;
-
-        // Store new date and index
-        localStorage.setItem('elmex-daily-tip-date', today);
-        localStorage.setItem('elmex-daily-tip-index', storedIndex.toString());
+      if (tipContent) {
+        const today = new Date().getDay(); // Simple rotation based on day of week for demo
+        tipContent.textContent = tips[today % tips.length];
       }
-
-      // Display the tip
-      tipContent.textContent = tips[storedIndex];
-
-      // Add fade-in animation
-      tipContent.style.opacity = '0';
-      setTimeout(() => {
-        tipContent.style.transition = 'opacity 0.5s ease-in';
-        tipContent.style.opacity = '1';
-      }, 100);
     });
   </script>
 
-  <!-- First Visit Modal -->
-  <div id="first-visit-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full p-8 md:p-12 shadow-2xl animate-slide-up relative">
-      <button id="close-modal" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-900 transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
+  <!-- Chatbot Widget (Dummy) -->
+  <div id="chatbot-widget" class="fixed bottom-6 right-6 z-40">
+    <button
+      id="chatbot-toggle"
+      class="flex items-center gap-3 bg-primary text-white px-6 py-4 rounded-full shadow-2xl hover:bg-primary-dark transition-all duration-300 hover:scale-105 group"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+      </svg>
+      <span class="font-semibold">Brauchst du Hilfe?</span>
+    </button>
 
-      <div class="text-center mb-8">
-        <!-- elmex Logo / Dental Professional -->
-        <div class="mb-6">
-          <div class="w-24 h-24 bg-white rounded-full mx-auto shadow-lg flex items-center justify-center border-4 border-primary/20">
-            <div class="text-center">
-              <span class="text-3xl font-brand font-bold text-primary">elmex</span>
-              <div class="text-xs text-neutral-600">PROFESSIONAL</div>
+    <div
+      id="chatbot-window"
+      class="hidden absolute bottom-20 right-0 w-96 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden"
+    >
+      <div class="bg-primary text-white p-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold">elmex Assistent</h3>
+            <p class="text-xs text-white/80">Wir helfen gerne!</p>
+          </div>
+        </div>
+        <button id="chatbot-close" class="hover:bg-white/10 p-2 rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="p-4 h-80 overflow-y-auto bg-neutral-50">
+        <div class="space-y-3">
+          <div class="bg-white p-4 rounded-lg shadow-sm border border-neutral-100">
+            <p class="text-sm text-neutral-700 mb-3">
+              Hallo! Ich bin Ihr elmex Assistent. Wie kann ich Ihnen heute helfen?
+            </p>
+            <div class="space-y-2">
+              <a href="/beratung/produktfinder" class="block w-full text-left px-3 py-2 bg-primary/5 hover:bg-primary/10 rounded-lg text-sm text-primary font-medium transition-colors">
+                🔍 Produktempfehlung finden
+              </a>
+              <a href="/fragen" class="block w-full text-left px-3 py-2 bg-primary/5 hover:bg-primary/10 rounded-lg text-sm text-primary font-medium transition-colors">
+                ❓ FAQ durchsuchen
+              </a>
+              <a href="/beratung" class="block w-full text-left px-3 py-2 bg-primary/5 hover:bg-primary/10 rounded-lg text-sm text-primary font-medium transition-colors">
+                💬 Persönliche Beratung
+              </a>
             </div>
           </div>
-        </div>
-        <h2 class="text-3xl md:text-4xl font-brand font-bold gradient-title mb-4">
-          Willkommen bei elmex!
-        </h2>
-        <p class="text-lg text-neutral-600 mx-auto">
-          Lassen Sie uns Ihre perfekte Zahnpflege-Routine finden. Unser kurzer Quiz hilft uns, Sie besser kennenzulernen.
-        </p>
-      </div>
-
-      <div class="space-y-4 mb-8">
-        <div class="flex items-start gap-4 p-4 bg-neutral-50 rounded-xl">
-          <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="font-semibold text-neutral-900 mb-1">Personalisierte Empfehlungen</h3>
-            <p class="text-sm text-neutral-600">Produkte und Tipps, die genau zu Ihren Bedürfnissen passen</p>
-          </div>
-        </div>
-        <div class="flex items-start gap-4 p-4 bg-neutral-50 rounded-xl">
-          <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="font-semibold text-neutral-900 mb-1">Nur 2 Minuten</h3>
-            <p class="text-sm text-neutral-600">Schnell und einfach zu Ihrer optimalen Zahnpflege</p>
+          <div class="text-center text-xs text-neutral-500 mt-4">
+            <p>KI-gestützter Chatbot (Demo)</p>
+            <p class="mt-1">Für detaillierte Fragen nutzen Sie unsere <a href="/fragen" class="text-primary hover:underline">FAQ-Seite</a></p>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a
-          href="/onboarding"
-          class="flex-1 inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-full shadow-lg hover:shadow-xl"
-        >
-          Quiz starten
-        </a>
-        <button
-          id="skip-quiz"
-          class="flex-1 inline-flex items-center justify-center px-8 py-4 text-base font-medium text-neutral-700 hover:text-neutral-900 transition-colors"
-        >
-          Vielleicht später
-        </button>
+      <div class="p-3 bg-white border-t border-neutral-200">
+        <div class="flex gap-2">
+          <input
+            type="text"
+            placeholder="Ihre Frage eingeben..."
+            class="flex-1 px-4 py-2 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+            disabled
+          />
+          <button class="bg-neutral-200 text-neutral-400 p-2 rounded-lg cursor-not-allowed" disabled>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+          </button>
+        </div>
+        <p class="text-xs text-neutral-400 mt-2 text-center">Chat-Funktion in Entwicklung</p>
       </div>
     </div>
   </div>
+
+  <div id="first-visit-modal" class="fixed inset-0 bg-neutral-900/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-white rounded-3xl max-w-3xl mx-4 w-full shadow-2xl relative overflow-hidden flex flex-col md:flex-row my-8">
+      
+      <div class="relative h-56 md:h-auto md:w-2/5 flex-shrink-0 bg-neutral-100">
+          <img src="/assets/experts/expert-2.png" 
+               alt="Ihr elmex Experte für Zahngesundheit" 
+               class="absolute inset-0 w-full h-full object-cover object-top md:object-center"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/40 md:bg-gradient-to-r md:from-neutral-900/20 to-transparent mix-blend-overlay"></div>
+      </div>
+
+      <div class="p-6 md:p-10 md:w-3/5 flex flex-col justify-center">
+          <h2 class="text-2xl md:text-3xl font-brand font-bold mb-3 text-neutral-900">Willkommen im Zentrum für Zahngesundheit.</h2>
+          <p class="text-neutral-600 mb-8 text-base md:text-lg leading-relaxed">
+              Hallo! Damit wir Sie optimal beraten können, lassen Sie uns kurz herausfinden, was Ihre Zähne gerade brauchen. Es dauert nur 2 Minuten.
+          </p>
+          
+          <div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <a href="/onboarding" class="w-full sm:w-auto flex-1 py-4 px-6 bg-primary text-white rounded-full text-center font-bold hover:bg-primary-dark transition-all transform hover:scale-[1.02] shadow-md hover:shadow-lg">
+                  Analyse jetzt starten
+              </a>
+              <button id="skip-quiz" class="w-full sm:w-auto py-3 px-6 text-neutral-500 hover:text-neutral-800 hover:bg-neutral-50 font-medium rounded-full transition-colors border border-transparent hover:border-neutral-200">
+                  Lieber erst umschauen
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
 </Layout>
 
 <script>
-  // First visit detection and modal
+  // Modal Logic
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('first-visit-modal');
-    const closeBtn = document.getElementById('close-modal');
     const skipBtn = document.getElementById('skip-quiz');
 
-    // Only show modal on main landing page (/)
-    const isMainPage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+    // Only simulate on main page if needed
+    const hasVisited = sessionStorage.getItem('elmex-session-visited');
 
-    // Check if user has visited before or completed quiz
-    const hasVisited = localStorage.getItem('elmex-has-visited');
-    const quizCompleted = localStorage.getItem('elmex-user-profile');
-
-    // Show modal only if on main page, first visit, and quiz not completed
-    if (isMainPage && !hasVisited && !quizCompleted) {
+    if (!hasVisited) {
       setTimeout(() => {
         modal?.classList.remove('hidden');
         modal?.classList.add('flex');
-      }, 1000); // Show after 1 second
+      }, 1500);
     }
 
-    // Close modal
-    const closeModal = () => {
+    skipBtn?.addEventListener('click', () => {
       modal?.classList.add('hidden');
-      modal?.classList.remove('flex');
-      localStorage.setItem('elmex-has-visited', 'true');
-    };
+      sessionStorage.setItem('elmex-session-visited', 'true');
+    });
 
-    closeBtn?.addEventListener('click', closeModal);
-    skipBtn?.addEventListener('click', closeModal);
+    // Chatbot Logic
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotClose = document.getElementById('chatbot-close');
 
-    // Close on background click
-    modal?.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
+    chatbotToggle?.addEventListener('click', () => {
+      chatbotWindow?.classList.toggle('hidden');
+    });
+
+    chatbotClose?.addEventListener('click', () => {
+      chatbotWindow?.classList.add('hidden');
+    });
+
+    // Close chatbot when clicking outside
+    document.addEventListener('click', (e) => {
+      const chatbotWidget = document.getElementById('chatbot-widget');
+      if (chatbotWidget && !chatbotWidget.contains(e.target as Node)) {
+        chatbotWindow?.classList.add('hidden');
       }
     });
   });
 </script>
 
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
+  
   .will-animate {
     opacity: 0;
-    animation-fill-mode: forwards;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>

@@ -1,0 +1,636 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, Award } from '@lucide/astro';
+---
+
+<Layout
+  title="Wissen & Forschung | elmex"
+  description="Wissenschaftlich fundierte Artikel zu Zahngesundheit, Kariesprävention und Mundpflege. Von Experten geprüft."
+  keywords="Zahngesundheit Wissen, Kariesprävention, Zahnpflege Forschung, elmex Studien"
+>
+
+<section class="bg-gradient-to-br from-primary/5 to-blue-50 py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm font-semibold text-primary mb-6 shadow-sm">
+        <GraduationCap class="w-4 h-4" />
+        Evidenzbasiertes Wissen
+      </div>
+      <h1 class="text-4xl md:text-6xl font-brand font-bold text-neutral-900 mb-6">
+        Wissen für Ihre Zahngesundheit
+      </h1>
+      <p class="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
+        Wissenschaftlich fundierte Artikel, klinische Studien und Expertenwissen zu allen Aspekten der Mundgesundheit.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="max-w-2xl mx-auto">
+        <div class="relative">
+          <input
+            type="text"
+            id="knowledge-search"
+            placeholder="Durchsuchen Sie über 100 Artikel zu Zahngesundheit..."
+            class="w-full px-6 py-4 pl-14 pr-32 text-lg rounded-full bg-white border-2 border-neutral-200 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-lg"
+          />
+          <Search class="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-neutral-400" />
+          <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primary-dark transition-colors font-medium">
+            Suchen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category Filter -->
+<section class="container mx-auto px-4 -mt-8 relative z-10">
+  <div class="max-w-5xl mx-auto">
+    <div class="bg-white rounded-2xl shadow-xl p-4 flex flex-wrap gap-3 justify-center border border-neutral-100">
+      <button class="category-filter active px-5 py-2.5 rounded-full font-medium transition-all bg-primary text-white" data-category="all">
+        Alle Themen
+      </button>
+      <button class="category-filter px-5 py-2.5 rounded-full font-medium transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200" data-category="karies">
+        Kariesschutz
+      </button>
+      <button class="category-filter px-5 py-2.5 rounded-full font-medium transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200" data-category="zahnfleisch">
+        Zahnfleisch
+      </button>
+      <button class="category-filter px-5 py-2.5 rounded-full font-medium transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200" data-category="kinder">
+        Kinderzähne
+      </button>
+      <button class="category-filter px-5 py-2.5 rounded-full font-medium transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200" data-category="wissenschaft">
+        Studien
+      </button>
+      <button class="category-filter px-5 py-2.5 rounded-full font-medium transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200" data-category="experten">
+        Expertenmeinungen
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Article -->
+<section class="container mx-auto px-4 py-16">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-4">Featured</h2>
+    <div class="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-3xl overflow-hidden shadow-2xl">
+      <div class="grid md:grid-cols-2 gap-0">
+        <div class="p-8 md:p-12 flex flex-col justify-center text-white">
+          <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold mb-4 w-fit">
+            <Award class="w-3 h-3" />
+            Neue Studie 2025
+          </div>
+          <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4">
+            Wie Aminfluorid den Zahnschmelz remineralisiert
+          </h2>
+          <p class="text-neutral-300 mb-6 text-lg leading-relaxed">
+            Aktuelle Forschungsergebnisse zeigen: Aminfluorid lagert sich 6x schneller an den Zahnschmelz an als herkömmliche Fluoride
+            und bietet überlegenen Kariesschutz durch kontinuierliche Mineralfreisetzung.
+          </p>
+          <div class="flex items-center gap-4 mb-6">
+            <img src="/assets/experts/expert-1.jpg" alt="Dr. Schmidt" class="w-12 h-12 rounded-full bg-neutral-700" onerror="this.style.display='none'" />
+            <div>
+              <div class="font-semibold">Dr. med. dent. Maria Schmidt</div>
+              <div class="text-sm text-neutral-400">Forschungsleiterin, elmex Labs</div>
+            </div>
+          </div>
+          <a href="#article-aminfluorid" class="inline-flex items-center gap-2 bg-white text-neutral-900 px-6 py-3 rounded-full font-semibold hover:bg-neutral-100 transition-colors w-fit">
+            Studie lesen
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="relative min-h-[300px] bg-gradient-to-br from-primary/20 to-blue-600/20 flex items-center justify-center">
+          <Microscope class="w-32 h-32 text-white/30" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Articles Grid -->
+<section class="container mx-auto px-4 py-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+
+      <!-- Article 1 - Karies -->
+      <article class="article-card group cursor-pointer" data-category="karies wissenschaft">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-red-50 to-orange-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <Microscope class="w-16 h-16 text-red-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Karies</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Der Karies-Prozess: Demineralisation verstehen
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Karies entsteht durch Säureattacken von Bakterien. Erfahren Sie, wie der Prozess der Demineralisation abläuft
+              und wie Fluorid den Zahnschmelz schützt und repariert.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">8 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 2 - Zahnfleisch -->
+      <article class="article-card group cursor-pointer" data-category="zahnfleisch">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-pink-50 to-red-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <HeartPulse class="w-16 h-16 text-pink-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-pink-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Zahnfleisch</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Parodontitis: Warnsignale & Prävention
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Zahnfleischerkrankungen sind die Hauptursache für Zahnverlust bei Erwachsenen. Lernen Sie die Warnsignale
+              kennen und wie Sie vorbeugen können.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">6 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 3 - Kinder -->
+      <article class="article-card group cursor-pointer" data-category="kinder">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <Baby class="w-16 h-16 text-blue-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Kinder</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Milchzahnpflege: Der ultimative Elternratgeber
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Vom ersten Zahn bis zur Schule: Alles was Eltern über Milchzahnpflege wissen müssen. Mit Tipps zur
+              richtigen Fluoriddosierung und Putztechnik für jedes Alter.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">10 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 4 - Wissenschaft -->
+      <article class="article-card group cursor-pointer" data-category="wissenschaft">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-purple-50 to-indigo-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <BookOpen class="w-16 h-16 text-purple-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Studie</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              60 Jahre elmex Forschung: Meilensteine
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Von der Entdeckung des Aminfluorids 1962 bis heute: Ein Rückblick auf die wichtigsten Forschungsergebnisse
+              und klinischen Durchbrüche in der Kariologie.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">12 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 5 - Experten -->
+      <article class="article-card group cursor-pointer" data-category="experten zahnfleisch">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-teal-50 to-green-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <GraduationCap class="w-16 h-16 text-teal-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-teal-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Experte</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Interview: Dr. Weber über Zahnfleischgesundheit
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Prof. Dr. Thomas Weber, Parodontologe und elmex Berater, erklärt die neuesten Erkenntnisse zur
+              Behandlung und Vorbeugung von Zahnfleischerkrankungen.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">7 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 6 - Karies -->
+      <article class="article-card group cursor-pointer" data-category="karies">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-amber-50 to-yellow-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <Shield class="w-16 h-16 text-amber-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-amber-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Prävention</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Ernährung & Zahngesundheit: Was Sie wissen müssen
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Nicht nur Zucker schadet den Zähnen. Erfahren Sie, welche Lebensmittel Ihre Zähne stärken und welche
+              Sie meiden sollten für optimale Mundgesundheit.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">9 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 7 - Fluorid -->
+      <article class="article-card group cursor-pointer" data-category="wissenschaft karies">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-cyan-50 to-blue-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <Microscope class="w-16 h-16 text-cyan-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-cyan-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Wissenschaft</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Fluorid: Mythen vs. wissenschaftliche Fakten
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Die WHO, DGZMK und alle internationalen Zahnmedizin-Organisationen empfehlen Fluorid. Hier sind die wissenschaftlichen Beweise für Sicherheit und Wirksamkeit.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">11 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 8 - Putztechnik -->
+      <article class="article-card group cursor-pointer" data-category="karies">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-green-50 to-emerald-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <svg class="w-16 h-16 text-green-300 relative z-10 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="absolute top-4 left-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Anleitung</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Die richtige Putztechnik: Schritt für Schritt
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Zahnärzte empfehlen die modifizierte Bass-Technik. Lernen Sie die wissenschaftlich fundierte Methode für optimale Plaque-Entfernung.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">6 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 9 - Mundgeruch -->
+      <article class="article-card group cursor-pointer" data-category="zahnfleisch">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-rose-50 to-pink-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <HeartPulse class="w-16 h-16 text-rose-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-rose-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Gesundheit</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Mundgeruch: Ursachen und effektive Lösungen
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              90% der Mundgeruch-Ursachen liegen im Mundraum. Bakterien auf der Zunge und Zahnfleischerkrankungen sind die Hauptauslöser. So behandeln Sie es richtig.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">7 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 10 - Schwangerschaft -->
+      <article class="article-card group cursor-pointer" data-category="zahnfleisch">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-violet-50 to-purple-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <svg class="w-16 h-16 text-violet-300 relative z-10 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+            <span class="absolute top-4 left-4 bg-violet-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Schwangerschaft</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Zahnpflege in der Schwangerschaft
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Schwangere haben erhöhtes Risiko für Zahnfleischentzündungen durch Hormonveränderungen. Prävention und professionelle Betreuung sind entscheidend.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">8 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 11 - Elektrische Zahnbürste -->
+      <article class="article-card group cursor-pointer" data-category="karies wissenschaft">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-slate-50 to-zinc-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <svg class="w-16 h-16 text-slate-300 relative z-10 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span class="absolute top-4 left-4 bg-slate-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Vergleich</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Elektrisch vs. Manuell: Was sagt die Wissenschaft?
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Cochrane-Review mit 51 Studien zeigt: Elektrische Zahnbürsten entfernen 21% mehr Plaque. Aber die Putztechnik ist entscheidender als das Werkzeug.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">9 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 12 - Zahnseide -->
+      <article class="article-card group cursor-pointer" data-category="karies">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-orange-50 to-amber-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <Shield class="w-16 h-16 text-orange-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-orange-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Prävention</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Zahnseide: Der unterschätzte Karies-Killer
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              80% der Karies entsteht zwischen den Zähnen, wo die Zahnbürste nicht hinkommt. Zahnseide ist unverzichtbar – hier die richtige Technik.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">5 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 13 - Diabetes -->
+      <article class="article-card group cursor-pointer" data-category="zahnfleisch wissenschaft">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-red-50 to-rose-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <HeartPulse class="w-16 h-16 text-red-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Gesundheit</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Diabetes & Parodontitis: Die gefährliche Verbindung
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Diabetiker haben 3x höheres Risiko für Parodontitis. Die Wechselwirkung zwischen beiden Erkrankungen und wie Sie vorbeugen.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">10 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 14 - Zahnspange -->
+      <article class="article-card group cursor-pointer" data-category="kinder karies">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-sky-50 to-blue-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <svg class="w-16 h-16 text-sky-300 relative z-10 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="absolute top-4 left-4 bg-sky-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Jugendliche</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Zahnpflege mit fester Zahnspange
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Brackets sind Plaque-Magneten. Mit diesen Techniken und Hilfsmitteln bleiben Ihre Zähne während der kieferorthopädischen Behandlung gesund.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">7 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 15 - Zahnschmelzabbau -->
+      <article class="article-card group cursor-pointer" data-category="karies wissenschaft">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100">
+          <div class="aspect-video bg-gradient-to-br from-lime-50 to-green-50 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <Microscope class="w-16 h-16 text-lime-300 relative z-10 group-hover:scale-110 transition-transform" />
+            <span class="absolute top-4 left-4 bg-lime-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Forschung</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+              Erosion vs. Abrasion: Zahnschmelz-Schäden verstehen
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              Säuren und mechanischer Abrieb können Ihren Zahnschmelz irreversibel schädigen. Neue Forschung zeigt Präventionsstrategien.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-neutral-500">11 Min. Lesezeit</span>
+              <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                Lesen
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <button class="px-8 py-4 bg-neutral-100 text-neutral-700 rounded-xl font-semibold hover:bg-neutral-200 transition-colors">
+        Mehr Artikel laden
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Research Banner -->
+<section class="container mx-auto px-4 py-16">
+  <div class="max-w-4xl mx-auto bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 text-white text-center">
+    <Microscope class="w-16 h-16 mx-auto mb-6 text-white/80" />
+    <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4">
+      Forschung, die wirkt
+    </h2>
+    <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+      Über 500 klinische Studien belegen die Wirksamkeit von elmex Produkten. Alle Forschungsergebnisse sind
+      in internationalen Fachzeitschriften publiziert.
+    </p>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <div class="text-5xl font-bold mb-2">500+</div>
+        <div class="text-white/80">Klinische Studien</div>
+      </div>
+      <div>
+        <div class="text-5xl font-bold mb-2">60+</div>
+        <div class="text-white/80">Jahre Forschung</div>
+      </div>
+      <div>
+        <div class="text-5xl font-bold mb-2">#1</div>
+        <div class="text-white/80">Zahnarzt-Empfehlung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Category Filter Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.category-filter');
+    const articleCards = document.querySelectorAll('.article-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category') || 'all';
+
+        // Update active state
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-primary', 'text-white');
+          btn.classList.add('bg-neutral-100', 'text-neutral-700');
+        });
+        button.classList.add('active', 'bg-primary', 'text-white');
+        button.classList.remove('bg-neutral-100', 'text-neutral-700');
+
+        // Filter articles
+        articleCards.forEach(card => {
+          const cardCategories = card.getAttribute('data-category') || '';
+          if (category === 'all' || cardCategories.includes(category)) {
+            (card as HTMLElement).style.display = 'block';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('knowledge-search') as HTMLInputElement;
+    searchInput?.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      articleCards.forEach(card => {
+        const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+        const description = card.querySelector('p')?.textContent?.toLowerCase() || '';
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</Layout>

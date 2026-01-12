@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Home",
+		"name": "Startseite",
 		"url": "/"
 	},
 	{
@@ -13,18 +13,14 @@
 	},
 	{
 		"name": "Beratung",
-		"url": "/beratung/zahngesundheit-tipps"
-	},
-	{
-		"name": "Dashboard",
-		"url": "/dashboard"
+		"url": "/beratung"
 	},
 	{
 		"name": "Über elmex",
 		"url": "/ueber-elmex"
 	},
 	{
-		"name": "Kontakt",
-		"url": "/kontakt"
+		"name": "Fragen",
+		"url": "/fragen"
 	}
 ]

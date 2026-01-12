@@ -1,0 +1,269 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { ScanFace, Camera, Upload, CheckCircle, AlertCircle, Info, ArrowRight, Shield } from '@lucide/astro';
+---
+
+<Layout
+  title="KI Foto-Analyse | elmex"
+  description="Nutzen Sie unsere innovative KI-gestützte Fotoanalyse für eine erste Einschätzung Ihrer Zahngesundheit. Beta-Version."
+  keywords="KI Zahnanalyse, Foto-Scan, Zahngesundheit Check, elmex"
+>
+
+<section class="container mx-auto px-4 py-12 md:py-20">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        <span class="flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-teal-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+        </span>
+        Beta-Version
+      </div>
+      <h1 class="text-4xl md:text-5xl font-brand font-bold text-neutral-900 mb-4">
+        KI-gestützte Zahnfoto-Analyse
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-2xl mx-auto">
+        Erhalten Sie in Sekunden eine erste KI-basierte Einschätzung Ihrer Zahngesundheit durch unsere innovative Bildanalysesoftware.
+      </p>
+    </div>
+
+    <!-- Info Banner -->
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8 flex gap-4">
+      <Info class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+      <div class="text-sm text-blue-900">
+        <p class="font-semibold mb-2">Wichtiger Hinweis zur Nutzung:</p>
+        <p>
+          Diese Analyse dient ausschließlich zu Informationszwecken und ersetzt keine professionelle zahnärztliche Untersuchung.
+          Bei Beschwerden oder Auffälligkeiten konsultieren Sie bitte Ihren Zahnarzt.
+        </p>
+      </div>
+    </div>
+
+    <!-- Upload Section (Dummy) -->
+    <div class="bg-white rounded-2xl border-2 border-dashed border-neutral-300 p-12 text-center mb-8">
+      <div class="max-w-md mx-auto">
+        <ScanFace class="w-20 h-20 text-primary mx-auto mb-6" />
+        <h2 class="text-2xl font-bold text-neutral-900 mb-3">Foto hochladen</h2>
+        <p class="text-neutral-600 mb-6">
+          Laden Sie ein gut beleuchtetes Foto Ihrer Zähne hoch. Für beste Ergebnisse fotografieren Sie mit geöffnetem Mund frontal in den Spiegel.
+        </p>
+
+        <div class="space-y-3">
+          <button class="w-full flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-dark transition-colors">
+            <Camera class="w-5 h-5" />
+            Mit Kamera aufnehmen
+          </button>
+          <button class="w-full flex items-center justify-center gap-3 bg-neutral-100 text-neutral-700 px-8 py-4 rounded-xl font-semibold hover:bg-neutral-200 transition-colors">
+            <Upload class="w-5 h-5" />
+            Foto hochladen
+          </button>
+        </div>
+
+        <p class="text-xs text-neutral-500 mt-6">
+          Ihre Bilder werden sicher verarbeitet und nicht gespeichert.
+          <a href="/datenschutz" class="text-primary hover:underline">Datenschutzhinweise</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- How it Works -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-8 text-center">
+        So funktioniert die Analyse
+      </h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-neutral-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <span class="text-2xl font-bold text-primary">1</span>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Foto aufnehmen</h3>
+          <p class="text-neutral-600 text-sm">
+            Machen Sie ein klares Foto Ihrer Zähne bei guter Beleuchtung. Frontalansicht mit geöffnetem Mund empfohlen.
+          </p>
+        </div>
+
+        <div class="bg-neutral-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <span class="text-2xl font-bold text-primary">2</span>
+          </div>
+          <h3 class="font-bold text-lg mb-2">KI-Analyse</h3>
+          <p class="text-neutral-600 text-sm">
+            Unsere KI analysiert das Bild und erkennt potenzielle Auffälligkeiten wie Verfärbungen, Zahnstein oder Zahnfleischprobleme.
+          </p>
+        </div>
+
+        <div class="bg-neutral-50 rounded-xl p-6">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <span class="text-2xl font-bold text-primary">3</span>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Empfehlungen erhalten</h3>
+          <p class="text-neutral-600 text-sm">
+            Erhalten Sie sofort eine Auswertung mit personalisierten Produktempfehlungen und Pflegetipps für Ihre Situation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-2xl p-8 mb-12">
+      <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-6 text-center">
+        Was unsere KI erkennen kann
+      </h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="flex gap-3 items-start">
+          <CheckCircle class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <h4 class="font-semibold text-neutral-900 mb-1">Verfärbungen</h4>
+            <p class="text-sm text-neutral-600">Erkennung von Verfärbungen und Empfehlung geeigneter Aufhellungsprodukte</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start">
+          <CheckCircle class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <h4 class="font-semibold text-neutral-900 mb-1">Zahnstein-Ablagerungen</h4>
+            <p class="text-sm text-neutral-600">Hinweise auf Plaque und Zahnstein mit Reinigungsempfehlungen</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start">
+          <CheckCircle class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <h4 class="font-semibold text-neutral-900 mb-1">Zahnfleischzustand</h4>
+            <p class="text-sm text-neutral-600">Beurteilung von Rötungen und möglichen Entzündungen</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start">
+          <CheckCircle class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <h4 class="font-semibold text-neutral-900 mb-1">Zahnlücken & Fehlstellungen</h4>
+            <p class="text-sm text-neutral-600">Identifikation auffälliger Lücken oder Fehlstellungen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample Analysis Result (Demo) -->
+    <div class="border-2 border-neutral-200 rounded-2xl overflow-hidden mb-8">
+      <div class="bg-neutral-100 px-6 py-4 border-b border-neutral-200">
+        <h3 class="font-bold text-lg text-neutral-900">Beispiel-Analyseergebnis</h3>
+        <p class="text-sm text-neutral-600">So könnte Ihr Ergebnis aussehen</p>
+      </div>
+      <div class="p-6">
+        <div class="space-y-4">
+          <!-- Overall Score -->
+          <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                B+
+              </div>
+              <div>
+                <h4 class="font-bold text-green-900">Guter Zustand</h4>
+                <p class="text-sm text-green-700">Ihre Zahngesundheit sieht vielversprechend aus</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Findings -->
+          <div>
+            <h4 class="font-semibold text-neutral-900 mb-3">Erkannte Bereiche:</h4>
+            <div class="space-y-2">
+              <div class="flex items-start gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <AlertCircle class="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-yellow-900">Leichte Verfärbungen</p>
+                  <p class="text-xs text-yellow-700">Empfehlung: elmex INTENSIVREINIGUNG für sanfte Aufhellung</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <CheckCircle class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-green-900">Zahnfleisch gesund</p>
+                  <p class="text-xs text-green-700">Keine Anzeichen von Entzündungen erkennbar</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommendations -->
+          <div class="bg-primary/5 rounded-xl p-4">
+            <h4 class="font-semibold text-neutral-900 mb-3">Empfohlene Produkte:</h4>
+            <div class="space-y-2">
+              <a href="/produkte/zahnpasta-intensivreinigung" class="flex items-center justify-between p-3 bg-white rounded-lg hover:shadow-md transition-shadow">
+                <span class="font-medium text-sm">elmex INTENSIVREINIGUNG</span>
+                <ArrowRight class="w-4 h-4 text-primary" />
+              </a>
+              <a href="/produkte/mundspuelung" class="flex items-center justify-between p-3 bg-white rounded-lg hover:shadow-md transition-shadow">
+                <span class="font-medium text-sm">elmex Kariesschutz Mundspülung</span>
+                <ArrowRight class="w-4 h-4 text-primary" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology Info -->
+    <div class="bg-neutral-900 text-white rounded-2xl p-8 mb-8">
+      <h2 class="text-2xl font-brand font-bold mb-4">Unsere KI-Technologie</h2>
+      <p class="text-neutral-300 mb-6">
+        Die elmex Foto-Analyse nutzt fortschrittliche Computer Vision und Machine Learning Algorithmen, die auf über
+        50.000 zahnmedizinischen Bildern trainiert wurden. Entwickelt in Zusammenarbeit mit Zahnärzten und KI-Experten.
+      </p>
+      <div class="grid md:grid-cols-3 gap-4 text-center">
+        <div>
+          <div class="text-3xl font-bold text-primary mb-1">98%</div>
+          <div class="text-sm text-neutral-400">Erkennungsgenauigkeit</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-primary mb-1">&lt;5s</div>
+          <div class="text-sm text-neutral-400">Analysezeit</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-primary mb-1">50k+</div>
+          <div class="text-sm text-neutral-400">Trainingsdaten</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security & Privacy -->
+    <div class="flex items-start gap-4 bg-blue-50 border border-blue-200 rounded-xl p-6">
+      <Shield class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+      <div>
+        <h3 class="font-bold text-blue-900 mb-2">Datenschutz & Sicherheit</h3>
+        <p class="text-sm text-blue-800 mb-3">
+          Ihre Privatsphäre hat höchste Priorität. Alle hochgeladenen Bilder werden verschlüsselt übertragen,
+          ausschließlich zur Analyse verwendet und nicht dauerhaft gespeichert.
+        </p>
+        <ul class="text-sm text-blue-800 space-y-1">
+          <li>✓ Ende-zu-Ende Verschlüsselung</li>
+          <li>✓ Keine permanente Speicherung</li>
+          <li>✓ DSGVO-konform</li>
+          <li>✓ Keine Weitergabe an Dritte</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-12">
+      <p class="text-neutral-600 mb-6">
+        Funktion ist derzeit in der Beta-Phase und wird kontinuierlich verbessert.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/beratung/produktfinder" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neutral-100 text-neutral-700 rounded-xl font-semibold hover:bg-neutral-200 transition-colors">
+          Alternativen: Produktfinder
+        </a>
+        <a href="/fragen" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-neutral-200 text-neutral-700 rounded-xl font-semibold hover:border-primary hover:text-primary transition-colors">
+          Häufige Fragen zur Foto-Analyse
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</Layout>

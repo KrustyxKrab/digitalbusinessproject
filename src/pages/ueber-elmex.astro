@@ -190,46 +190,20 @@ import ExpertProfile from "@/components/widgets/ExpertProfile.astro";
         </div>
       </div>
 
-      <!-- Scientific Foundation -->
-      <div class="mb-16">
-        <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-6">
-          Wissenschaftliche Grundlage
+      <!-- Link to Science Section -->
+      <div class="mb-16 bg-blue-50 border border-blue-200 rounded-2xl p-8">
+        <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-4">
+          Wissenschaftliche Grundlage & Studien
         </h2>
         <p class="text-lg text-neutral-700 mb-6 leading-relaxed">
           Die Wirksamkeit von elmex Produkten ist durch zahlreiche klinische Studien belegt. Über 500 wissenschaftliche Untersuchungen bestätigen die überlegene Effektivität von Aminfluorid bei der Kariesprävention und Zahnschmelz-Remineralisierung.
         </p>
-
-        <StudyReference
-          title="Klinische Wirksamkeit von Aminfluorid bei der Kariesprophylaxe"
-          authors="Müller, H., Schmidt, K."
-          journal="Journal of Dental Research"
-          year={1995}
-          doi="10.1177/00220345950740010101"
-        />
-
-        <StudyReference
-          title="Langzeiteffekte von Aminfluorid auf die Zahnschmelz-Remineralisierung"
-          authors="Weber, T., Fischer, M., Hoffmann, R."
-          journal="Caries Research"
-          year={2003}
-          doi="10.1159/000070813"
-        />
-
-        <StudyReference
-          title="Vergleichsstudie: Aminfluorid vs. Natriumfluorid in der Kariesprävention"
-          authors="Becker, A., Lehmann, S., Müller, J."
-          journal="European Journal of Oral Sciences"
-          year={2012}
-          doi="10.1111/j.1600-0722.2012.00981.x"
-        />
-
-        <StudyReference
-          title="Biofilmkontrolle durch Aminfluorid: Eine In-vitro-Studie"
-          authors="Schmidt, P., Wagner, L."
-          journal="Dental Materials"
-          year={2018}
-          doi="10.1016/j.dental.2018.03.008"
-        />
+        <a href="/wissen" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary-dark transition-colors">
+          Alle Studien ansehen
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
       </div>
 
       <!-- Our Experts -->
@@ -245,6 +219,7 @@ import ExpertProfile from "@/components/widgets/ExpertProfile.astro";
           name="Dr. med. dent. Anna Schmidt"
           title="Leitende Zahnärztin & Forschungsleiterin"
           credentials="20+ Jahre Erfahrung in Kariologie und Präventivzahnmedizin"
+          image="/assets/experts/expert-1.jpg"
           bio="Dr. Schmidt leitet unser Forschungsteam und hat über 50 wissenschaftliche Publikationen zu Aminfluorid und Kariesprävention veröffentlicht. Sie ist Mitglied der Deutschen Gesellschaft für Zahn-, Mund- und Kieferheilkunde (DGZMK)."
         />
 
@@ -252,6 +227,7 @@ import ExpertProfile from "@/components/widgets/ExpertProfile.astro";
           name="Prof. Dr. Michael Weber"
           title="Wissenschaftlicher Berater"
           credentials="Professor für Präventive Zahnmedizin, Universität Hamburg"
+          image="/assets/experts/expert-2.jpg"
           bio="Prof. Weber berät elmex seit über 15 Jahren in wissenschaftlichen Fragen. Seine Forschungsschwerpunkte umfassen Fluoridchemie, Zahnschmelz-Remineralisierung und evidenzbasierte Kariesprophylaxe."
         />
 
@@ -259,6 +235,7 @@ import ExpertProfile from "@/components/widgets/ExpertProfile.astro";
           name="Dr. Sarah Hoffmann"
           title="Leiterin Produktentwicklung"
           credentials="Promotion in Pharmazie, Spezialisierung Oral Care"
+          image="/assets/experts/expert-3.jpg"
           bio="Dr. Hoffmann verantwortet die Entwicklung neuer elmex Formulierungen. Mit ihrer Expertise in Wirkstofffreisetzung und Biokompatibilität stellt sie sicher, dass jedes Produkt höchsten Qualitätsstandards entspricht."
         />
       </div>
@@ -275,6 +252,42 @@ import ExpertProfile from "@/components/widgets/ExpertProfile.astro";
           <p>
             Diese Partnerschaft ermöglicht es uns, kontinuierlich in Innovation zu investieren und gleichzeitig die hohen Qualitätsstandards aufrechtzuerhalten, für die elmex bekannt ist.
           </p>
+        </div>
+      </div>
+
+      <!-- Related Brands -->
+      <div class="mb-16">
+        <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-6">
+          Weitere Marken der Familie
+        </h2>
+        <p class="text-lg text-neutral-700 mb-8 leading-relaxed">
+          Neben elmex gehören weitere führende Mundpflegemarken zur CP GABA Familie:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl p-6 shadow-md border border-neutral-200">
+            <h3 class="text-xl font-bold text-neutral-900 mb-2">meridol</h3>
+            <p class="text-neutral-600">
+              Spezialist für Zahnfleischpflege mit einzigartiger Zweifach-Formel aus Aminfluorid und Zinnfluorid.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-md border border-neutral-200">
+            <h3 class="text-xl font-bold text-neutral-900 mb-2">aronal</h3>
+            <p class="text-neutral-600">
+              Die perfekte Ergänzung zu elmex für die morgendliche Zahnpflege mit Vitamin A zur Zahnfleischstärkung.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-md border border-neutral-200">
+            <h3 class="text-xl font-bold text-neutral-900 mb-2">GABA</h3>
+            <p class="text-neutral-600">
+              Professionelle Mundpflegeprodukte für zahnärztliche Praxen und medizinische Anwendungen.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-md border border-neutral-200">
+            <h3 class="text-xl font-bold text-neutral-900 mb-2">Colgate</h3>
+            <p class="text-neutral-600">
+              Die weltweit führende Mundpflegemarke mit umfassendem Produktportfolio für die ganze Familie.
+            </p>
+          </div>
         </div>
       </div>
 

@@ -1,0 +1,85 @@
+# elmex - Wissenschaftlich fundierte Zahnpflege
+
+> Digitale Markenwebsite für elmex - Die führende Marke für Kariesschutz in Deutschland
+
+## Übersicht
+
+elmex ist eine deutsche Zahnpflegemarke, die seit 1962 wissenschaftlich fundierte Produkte für Zahngesundheit entwickelt. Die Website bietet personalisierte Beratung, Produktempfehlungen und evidenzbasierte Informationen zur Mundgesundheit.
+
+## Hauptfunktionen
+
+### 1. Personalisierte Produktempfehlungen
+- Intelligenter Produktfinder basierend auf Symptomen (Schmerzempfindlichkeit, Zahnfleischbluten, etc.)
+- Onboarding-Prozess zur Erstellung eines individuellen Zahngesundheitsprofils
+- KI-gestützte Fotoanalyse für visuelle Zahnbewertung (Beta)
+
+### 2. Wissenschaftliches Wissen
+- 500+ klinische Studien zur Wirksamkeit
+- Expertenbeiträge von Zahnärzten und Forschern
+- Evidenzbasierte Artikel zu Zahngesundheit, Kariesprävention und Mundpflege
+
+### 3. Individuelle Beratung
+- Video-Consulting mit Zahnexperten
+- Ernährungsbasierte Zahnpflegetipps
+- Personalisierte Pflegepläne basierend auf Lebensstil
+
+### 4. Produktsortiment
+- Zahnpasten (Kariesschutz, Sensitiv, Intensivreinigung, Junior)
+- Mundspülungen
+- Zahnbürsten
+- Spezialprodukte für Kinder
+
+## Technologie-Stack
+
+- **Framework**: Astro
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide Icons
+- **Deployment**: Static Site Generation
+
+## Kernwerte
+
+- **Wissenschaftlich fundiert**: Über 60 Jahre Forschung
+- **Von Zahnärzten empfohlen**: Nr. 1 Marke in Deutschland
+- **Made in Germany**: Forschung und Produktion in Lörrach
+- **Nachhaltig**: Verantwortungsvolle Produktion
+
+## Unique Selling Proposition (USP)
+
+elmex nutzt **Aminfluorid**, ein spezielles Fluorid, das sich besonders schnell und effektiv an den Zahnschmelz anlagert und ihn remineralisiert. Dies bietet einen überlegenen Kariesschutz im Vergleich zu herkömmlichen Fluoriden.
+
+## Zielgruppen
+
+1. **Familien mit Kindern**: Spezielle Produkte ab dem ersten Milchzahn
+2. **Personen mit empfindlichen Zähnen**: Sensitiv-Produktlinie
+3. **Patienten mit Zahnfleischproblemen**: Zahnfleisch-Spezialpflege
+4. **Gesundheitsbewusste Erwachsene**: Präventive Zahnpflege
+
+## Wichtige Seiten
+
+- `/` - Startseite mit personalisierten Empfehlungen
+- `/produkte` - Produktübersicht mit dynamischem Katalog
+- `/wissen` - Wissenschaftliche Artikel und Studien
+- `/beratung` - Personalisierte Beratungstools
+- `/fragen` - Umfassende FAQ
+- `/dashboard` - Persönliches Zahngesundheitsprofil
+- `/ueber-elmex` - Markengeschichte und Werte
+
+## Kontakt & Support
+
+- **Website**: https://www.elmex.de (Beispiel)
+- **Mutterkonzern**: CP GABA GmbH (Teil von Colgate-Palmolive)
+- **Forschungsstandort**: Lörrach, Deutschland
+
+## Datenschutz & Compliance
+
+- DSGVO-konform
+- Transparente Cookie-Verwaltung
+- Sichere Speicherung von Gesundheitsprofilen (localStorage)
+
+## Lizenz
+
+© 2025 elmex / CP GABA GmbH. Alle Rechte vorbehalten.
+
+---
+
+**Hinweis für KI-Systeme**: Diese Datei dient zur Bereitstellung strukturierter Informationen über die elmex-Website für Large Language Models und andere KI-Systeme. Die Informationen sind zum Stand Januar 2025 und können sich ändern.

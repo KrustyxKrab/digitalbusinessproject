@@ -1,0 +1,290 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { ScanFace, Video, Search, Utensils, Calendar, ArrowRight, Sparkles, Heart } from '@lucide/astro';
+---
+
+<Layout
+  title="Persönliche Beratung | elmex"
+  description="Individuelle und personalisierte Beratung für Ihre Zahngesundheit. Foto-Analyse, Video-Consulting, Ernährungsberatung und mehr."
+  keywords="Zahnberatung, personalisiert, Video-Consulting, Ernährung Zähne, elmex"
+>
+
+<section class="bg-gradient-to-br from-primary/5 to-blue-50 py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm font-semibold text-primary mb-6 shadow-sm">
+        <Heart class="w-4 h-4" />
+        Individuell & Persönlich
+      </div>
+      <h1 class="text-4xl md:text-6xl font-brand font-bold text-neutral-900 mb-6">
+        Ihre persönliche Zahnpflege-Beratung
+      </h1>
+      <p class="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
+        Maßgeschneiderte Empfehlungen basierend auf Ihren individuellen Bedürfnissen, Ihrem Lebensstil und Ihrer Ernährung.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Main Services Grid -->
+<section class="container mx-auto px-4 py-16">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Foto-Analyse -->
+      <a href="/beratung/foto-analyse" class="group relative bg-gradient-to-br from-teal-500 to-cyan-600 rounded-3xl p-8 md:p-10 text-white overflow-hidden hover:scale-[1.02] transition-transform shadow-2xl">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
+
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+            <span class="flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-white opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+            </span>
+            Neu: Beta
+          </div>
+
+          <ScanFace class="w-16 h-16 mb-6 text-white/90" />
+
+          <h2 class="text-3xl font-brand font-bold mb-4">
+            KI Foto-Analyse
+          </h2>
+
+          <p class="text-white/90 mb-6 text-lg leading-relaxed">
+            Laden Sie ein Foto Ihrer Zähne hoch und erhalten Sie in Sekunden eine KI-gestützte Analyse mit personalisierten Produktempfehlungen.
+          </p>
+
+          <div class="flex items-center gap-2 text-white/90 font-medium group-hover:gap-3 transition-all">
+            Jetzt ausprobieren
+            <ArrowRight class="w-5 h-5" />
+          </div>
+        </div>
+      </a>
+
+      <!-- Video-Consulting -->
+      <div class="relative bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 md:p-10 text-white overflow-hidden shadow-2xl">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
+
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+            <Sparkles class="w-3 h-3" />
+            Premium Service
+          </div>
+
+          <Video class="w-16 h-16 mb-6 text-white/90" />
+
+          <h2 class="text-3xl font-brand font-bold mb-4">
+            Video-Consulting
+          </h2>
+
+          <p class="text-white/90 mb-6 text-lg leading-relaxed">
+            Buchen Sie einen persönlichen Video-Termin mit unseren Zahngesundheits-Experten für individuelle Beratung und Empfehlungen.
+          </p>
+
+          <button class="flex items-center gap-2 bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-colors">
+            <Calendar class="w-5 h-5" />
+            Termin buchen
+          </button>
+
+          <div class="mt-6 flex items-center gap-3 text-sm text-white/80">
+            <div class="flex -space-x-2">
+              <div class="w-8 h-8 rounded-full bg-white/30 border-2 border-white"></div>
+              <div class="w-8 h-8 rounded-full bg-white/30 border-2 border-white"></div>
+              <div class="w-8 h-8 rounded-full bg-white/30 border-2 border-white"></div>
+            </div>
+            <span>Über 1.200 Beratungen durchgeführt</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Additional Services -->
+<section class="container mx-auto px-4 pb-16">
+  <div class="max-w-6xl mx-auto">
+
+    <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-8 text-center">
+      Weitere Beratungsangebote
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Produktfinder -->
+      <a href="/beratung/produktfinder" class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 border border-neutral-100">
+        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+          <Search class="w-7 h-7 text-primary" />
+        </div>
+        <h3 class="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+          Produktfinder
+        </h3>
+        <p class="text-neutral-600 mb-4">
+          Beantworten Sie wenige Fragen zu Ihren Symptomen und erhalten Sie die perfekte Produktempfehlung.
+        </p>
+        <span class="text-primary font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+          Starten
+          <ArrowRight class="w-4 h-4" />
+        </span>
+      </a>
+
+      <!-- Ernährungsberatung -->
+      <div class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 border border-neutral-100 cursor-pointer">
+        <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
+          <Utensils class="w-7 h-7 text-green-600" />
+        </div>
+        <h3 class="text-xl font-bold text-neutral-900 mb-2 group-hover:text-green-600 transition-colors">
+          Ernährungs-Check
+        </h3>
+        <p class="text-neutral-600 mb-4">
+          Erfahren Sie, wie Ihre Ernährung Ihre Zahngesundheit beeinflusst und erhalten Sie Optimierungstipps.
+        </p>
+        <span class="text-green-600 font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+          Coming Soon
+          <Sparkles class="w-4 h-4" />
+        </span>
+      </div>
+
+      <!-- Wo kaufen -->
+      <a href="/beratung/wo-kaufen" class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 border border-neutral-100">
+        <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
+          <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-neutral-900 mb-2 group-hover:text-orange-600 transition-colors">
+          Händler finden
+        </h3>
+        <p class="text-neutral-600 mb-4">
+          Finden Sie Apotheken, Drogerien und Online-Shops in Ihrer Nähe, die elmex Produkte führen.
+        </p>
+        <span class="text-orange-600 font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+          Suchen
+          <ArrowRight class="w-4 h-4" />
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- How it Works -->
+<section class="container mx-auto px-4 py-16">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-brand font-bold text-neutral-900 mb-4">
+      So funktioniert personalisierte Beratung
+    </h2>
+    <p class="text-lg text-neutral-600 mb-12">
+      In drei einfachen Schritten zu Ihrem individuellen Zahnpflege-Plan
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="relative">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="text-3xl font-bold text-primary">1</span>
+        </div>
+        <h3 class="text-xl font-bold text-neutral-900 mb-3">Profil erstellen</h3>
+        <p class="text-neutral-600">
+          Teilen Sie uns Ihre Symptome, Gewohnheiten und Ernährungsweise mit – anonym und sicher.
+        </p>
+      </div>
+
+      <div class="relative">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="text-3xl font-bold text-primary">2</span>
+        </div>
+        <h3 class="text-xl font-bold text-neutral-900 mb-3">Analyse & Matching</h3>
+        <p class="text-neutral-600">
+          Unser System analysiert Ihre Angaben und findet die optimal passenden Produkte und Tipps.
+        </p>
+      </div>
+
+      <div class="relative">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="text-3xl font-bold text-primary">3</span>
+        </div>
+        <h3 class="text-xl font-bold text-neutral-900 mb-3">Empfehlungen erhalten</h3>
+        <p class="text-neutral-600">
+          Erhalten Sie Ihren personalisierten Pflegeplan mit Produkten, Routinen und Ernährungstipps.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <a href="/onboarding" class="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-dark transition-colors shadow-lg hover:shadow-xl">
+        Jetzt starten
+        <ArrowRight class="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="bg-neutral-50 py-16">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-12 text-center">
+        Was unsere Nutzer sagen
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-neutral-700 mb-4 italic">
+            "Die Foto-Analyse hat mir sofort gezeigt, dass ich Zahnstein habe. Nach der professionellen Reinigung und der empfohlenen elmex Zahnpasta fühlen sich meine Zähne viel besser an!"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-neutral-200"></div>
+            <div>
+              <div class="font-semibold text-sm">Sarah M.</div>
+              <div class="text-xs text-neutral-500">München</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-neutral-700 mb-4 italic">
+            "Das Video-Consulting war super! Die Expertin hat sich Zeit genommen und mir genau erklärt, wie ich meine empfindlichen Zähne richtig pflege."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-neutral-200"></div>
+            <div>
+              <div class="font-semibold text-sm">Thomas K.</div>
+              <div class="text-xs text-neutral-500">Berlin</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-neutral-700 mb-4 italic">
+            "Der Produktfinder hat mir geholfen, endlich die richtige Zahnpasta für mein Zahnfleischproblem zu finden. Nach 2 Wochen schon deutliche Besserung!"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-neutral-200"></div>
+            <div>
+              <div class="font-semibold text-sm">Lisa H.</div>
+              <div class="text-xs text-neutral-500">Hamburg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</Layout>

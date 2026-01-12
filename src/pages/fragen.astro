@@ -1,0 +1,775 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Search, MessageCircle, ChevronDown, Bot, Mail, Phone, Clock } from '@lucide/astro';
+---
+
+<Layout
+  title="Häufig gestellte Fragen (FAQ) | elmex"
+  description="Finden Sie Antworten auf alle Ihre Fragen zu elmex Produkten, Zahngesundheit und Mundpflege. KI-Bot verfügbar für sofortige Hilfe."
+  keywords="FAQ, Fragen, Zahngesundheit, elmex Hilfe, Kundenservice"
+>
+
+<section class="bg-gradient-to-br from-primary/5 to-blue-50 py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm font-semibold text-primary mb-6 shadow-sm">
+        <MessageCircle class="w-4 h-4" />
+        Wir helfen Ihnen weiter
+      </div>
+      <h1 class="text-4xl md:text-6xl font-brand font-bold text-neutral-900 mb-6">
+        Häufig gestellte Fragen
+      </h1>
+      <p class="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
+        Finden Sie schnell Antworten auf Ihre Fragen zu Produkten, Zahngesundheit und mehr.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="max-w-2xl mx-auto">
+        <div class="relative">
+          <input
+            type="text"
+            id="faq-search"
+            placeholder="Suchen Sie nach Themen, Produkten oder Symptomen..."
+            class="w-full px-6 py-4 pl-14 pr-32 text-lg rounded-full bg-white border-2 border-neutral-200 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-lg"
+          />
+          <Search class="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-neutral-400" />
+          <button id="faq-search-btn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primary-dark transition-colors font-medium">
+            Suchen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KI Bot Banner -->
+<section class="container mx-auto px-4 -mt-8 relative z-10">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl shadow-2xl p-6 md:p-8 text-white flex flex-col md:flex-row items-center gap-6">
+      <div class="flex-shrink-0">
+        <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+          <Bot class="w-10 h-10 text-white" />
+        </div>
+      </div>
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-2xl font-bold mb-2">Fragen Sie unseren KI-Assistenten</h2>
+        <p class="text-white/90 mb-4">
+          Sofortige Antworten auf Ihre Fragen zu Zahngesundheit und elmex Produkten – 24/7 verfügbar.
+        </p>
+      </div>
+      <button id="open-chatbot" class="flex-shrink-0 bg-white text-teal-600 px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-colors">
+        Chat starten
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Category Navigation -->
+<section class="container mx-auto px-4 py-8">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-2xl font-bold text-neutral-900 mb-6 text-center">Kategorien durchsuchen</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <button class="faq-category-filter category-active px-4 py-3 rounded-xl font-medium transition-all bg-primary text-white shadow-lg" data-category="all">
+        Alle Fragen
+      </button>
+      <button class="faq-category-filter px-4 py-3 rounded-xl font-medium transition-all bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200" data-category="produkte">
+        Produkte
+      </button>
+      <button class="faq-category-filter px-4 py-3 rounded-xl font-medium transition-all bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200" data-category="zahngesundheit">
+        Zahngesundheit
+      </button>
+      <button class="faq-category-filter px-4 py-3 rounded-xl font-medium transition-all bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200" data-category="fluorid">
+        Fluorid
+      </button>
+      <button class="faq-category-filter px-4 py-3 rounded-xl font-medium transition-all bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200" data-category="kinder">
+        Kinderzähne
+      </button>
+      <button class="faq-category-filter px-4 py-3 rounded-xl font-medium transition-all bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200" data-category="anwendung">
+        Anwendung
+      </button>
+      <button class="faq-category-filter px-4 py-3 rounded-xl font-medium transition-all bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200" data-category="wissenschaft">
+        Wissenschaft
+      </button>
+      <button class="faq-category-filter px-4 py-3 rounded-xl font-medium transition-all bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200" data-category="technisch">
+        Website & App
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Accordion -->
+<section class="container mx-auto px-4 py-8">
+  <div class="max-w-4xl mx-auto">
+    <div id="faq-container" class="space-y-3">
+
+      <!-- Allgemeine Zahnpflege -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit anwendung">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wie oft sollte ich meine Zähne putzen?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Mindestens zweimal täglich, morgens und abends, für jeweils zwei Minuten. Optimal ist es, nach jeder Hauptmahlzeit die Zähne zu putzen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Aminfluorid -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="produkte fluorid wissenschaft">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Was ist Aminfluorid?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Ein spezielles Fluorid, das sich schnell an den Zahnschmelz anlagert und ihn härtet. Aminfluorid remineralisiert den Zahnschmelz 3x schneller als herkömmliche Fluoride.
+          </div>
+        </div>
+      </div>
+
+      <!-- Kinderzahnpasta -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="kinder produkte">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Ab welchem Alter kann mein Kind elmex verwenden?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Ab dem Durchbruch des ersten Milchzahns sollte einmal täglich mit einer reiskorngroßen Menge elmex Kinder-Zahnpasta geputzt werden. Ab 2 Jahren zweimal täglich mit einer erbsengroßen Menge.
+          </div>
+        </div>
+      </div>
+
+      <!-- Empfindliche Zähne -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit produkte">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Was hilft bei empfindlichen Zähnen?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            elmex SENSITIVE Zahnpasta enthält spezielles Aminfluorid, das die offenen Dentinkanälchen verschließt und so Schmerzempfindlichkeit reduziert. Vermeiden Sie zu hartes Putzen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Zahnfleischbluten -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Was tun bei Zahnfleischbluten?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Leichtes Zahnfleischbluten ist oft ein Zeichen für Zahnfleischentzündung. Putzen Sie regelmäßig mit elmex Zahnfleisch-Schutz und verwenden Sie täglich Zahnseide. Bei anhaltendem Bluten konsultieren Sie Ihren Zahnarzt.
+          </div>
+        </div>
+      </div>
+
+      <!-- Fluorid Sicherheit -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="fluorid wissenschaft">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Ist Fluorid sicher?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Ja, Fluorid ist in den empfohlenen Konzentrationen absolut sicher und der wissenschaftlich belegt effektivste Schutz vor Karies. Die WHO und alle internationalen Zahnmedizin-Organisationen empfehlen fluoridhaltige Zahnpasta.
+          </div>
+        </div>
+      </div>
+
+      <!-- Karies Vorbeugung -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wie verhindere ich Karies?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            <ul class="list-disc ml-5 space-y-2">
+              <li>2x täglich Zähne putzen mit fluoridhaltiger Zahnpasta</li>
+              <li>Zuckerkonsum reduzieren, besonders zwischen den Mahlzeiten</li>
+              <li>Zahnseide verwenden</li>
+              <li>Regelmäßige zahnärztliche Kontrollen (2x jährlich)</li>
+              <li>Fluoridhaltige Mundspülung verwenden</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produkt Wahl -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="produkte">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Welche elmex Zahnpasta ist die richtige für mich?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Nutzen Sie unseren <a href="/beratung/produktfinder" class="text-primary hover:underline font-medium">Produktfinder</a> für eine personalisierte Empfehlung. Allgemein: elmex Kariesschutz für täglichen Schutz, SENSITIVE bei empfindlichen Zähnen, INTENSIVREINIGUNG für sanfte Aufhellung.
+          </div>
+        </div>
+      </div>
+
+      <!-- Ernährung -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Welche Lebensmittel sind schlecht für die Zähne?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Zuckerhaltige Speisen und Getränke, säurehaltige Lebensmittel (Zitrusfrüchte), klebrige Snacks (Trockenfrüchte, Karamell). Wichtig: Die Häufigkeit des Konsums ist entscheidender als die Menge.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wissenschaft -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="wissenschaft">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Welche Studien belegen die Wirksamkeit von elmex?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Über 500 klinische Studien belegen die Wirksamkeit von Aminfluorid. Alle Studien sind in wissenschaftlichen Fachzeitschriften publiziert. Besuchen Sie unsere <a href="/wissen" class="text-primary hover:underline font-medium">Wissen-Seite</a> für Details.
+          </div>
+        </div>
+      </div>
+
+      <!-- Schwangerschaft -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Zahnpflege in der Schwangerschaft?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Schwangere haben erhöhtes Risiko für Zahnfleischentzündungen. Verwenden Sie elmex Zahnfleisch-Schutz, spülen Sie bei Morgenübelkeit mit Wasser und putzen Sie nach 30 Min. Regelmäßige zahnärztliche Kontrollen sind wichtig.
+          </div>
+        </div>
+      </div>
+
+      <!-- Made in Germany -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="produkte">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wo werden elmex Produkte hergestellt?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            elmex Produkte werden in Deutschland am Forschungsstandort in Lörrach entwickelt und produziert. Made in Germany steht für höchste Qualitätsstandards.
+          </div>
+        </div>
+      </div>
+
+      <!-- Produktfinder -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="technisch">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wie funktioniert der Produktfinder?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Unser Produktfinder analysiert Ihre Symptome und Bedürfnisse und empfiehlt basierend auf wissenschaftlichen Kriterien die passenden elmex Produkte für Ihre individuelle Situation.
+          </div>
+        </div>
+      </div>
+
+      <!-- Datenschutz -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="technisch">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Werden meine Daten gespeichert?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Ihr Zahngesundheitsprofil wird ausschließlich lokal in Ihrem Browser gespeichert (localStorage). Wir übertragen keine persönlichen Gesundheitsdaten an unsere Server.
+          </div>
+        </div>
+      </div>
+
+      <!-- Zahnbürste Wechsel -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="anwendung">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wie oft sollte ich meine Zahnbürste wechseln?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Wechseln Sie Ihre Zahnbürste oder den Bürstenkopf alle 3 Monate oder früher, wenn die Borsten ausgefranst sind. Nach einer Erkältung sollten Sie die Bürste ebenfalls austauschen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Putztechnik -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="anwendung">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Was ist die richtige Putztechnik?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Setzen Sie die Zahnbürste im 45-Grad-Winkel am Zahnfleischrand an. Führen Sie kreisende, sanfte Bewegungen aus. Putzen Sie systematisch alle Zahnflächen: Außenseiten, Innenseiten und Kauflächen. Vergessen Sie nicht die Zahnzwischenräume und die Zunge.
+          </div>
+        </div>
+      </div>
+
+      <!-- Elektrisch vs Manuell -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="anwendung">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Ist elektrische oder manuelle Zahnbürste besser?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Beide können bei richtiger Anwendung effektiv sein. Elektrische Zahnbürsten können jedoch die Putztechnik erleichtern und oft gründlicher reinigen, besonders bei eingeschränkter Handbeweglichkeit. Wichtig ist die Putzdauer von mindestens 2 Minuten.
+          </div>
+        </div>
+      </div>
+
+      <!-- Parodontitis Anzeichen -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Was sind Anzeichen für Parodontitis?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            <ul class="list-disc ml-5 space-y-1">
+              <li>Anhaltend gerötetes, geschwollenes Zahnfleisch</li>
+              <li>Zahnfleischbluten beim Putzen</li>
+              <li>Mundgeruch</li>
+              <li>Zurückgehendes Zahnfleisch</li>
+              <li>Lockere Zähne</li>
+            </ul>
+            <p class="mt-2">Bei diesen Symptomen sollten Sie umgehend einen Zahnarzt aufsuchen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mundgeruch -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Warum habe ich Mundgeruch?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Mundgeruch entsteht meist durch Bakterien im Mundraum. Hauptursachen: Mangelnde Mundhygiene, Zungenbelag (reinigen Sie die Zunge mit!), Zahnfleischerkrankungen, Karies, bestimmte Lebensmittel. Gründliche Mundhygiene inklusive Zungenreinigung und regelmäßige Zahnarztbesuche helfen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Fluorid Dosierung -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="fluorid kinder">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wie viel Fluorid sollte meine Zahnpasta enthalten?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            <ul class="list-disc ml-5 space-y-1">
+              <li>Kinder 0-6 Jahre: 1000 ppm Fluorid</li>
+              <li>Kinder ab 6 Jahre und Erwachsene: 1400-1500 ppm Fluorid</li>
+              <li>Bei erhöhtem Kariesrisiko: bis zu 5000 ppm (nur nach zahnärztlicher Empfehlung)</li>
+            </ul>
+            <p class="mt-2">elmex Produkte sind präzise auf die verschiedenen Altersgruppen abgestimmt.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fluorid Überdosierung -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="fluorid kinder">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Kann man zu viel Fluorid verwenden?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Bei bestimmungsgemäßer Verwendung von Zahnpasta besteht keine Gefahr einer Fluoridüberdosierung. Achten Sie bei Kleinkindern darauf, dass sie nur eine erbsengroße Menge verwenden und nicht herunterschlucken. Eine Fluorose (Zahnverfärbung) tritt nur bei chronischer Überdosierung während der Zahnentwicklung auf.
+          </div>
+        </div>
+      </div>
+
+      <!-- Gute Lebensmittel -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Welche Lebensmittel sind gut für die Zähne?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            <ul class="list-disc ml-5 space-y-1">
+              <li>Rohkost (regt Speichelfluss an)</li>
+              <li>Milchprodukte (Kalzium stärkt Zähne)</li>
+              <li>Nüsse (enthalten Mineralien)</li>
+              <li>Grüner Tee (antibakteriell)</li>
+              <li>Wasser (spült Säuren weg)</li>
+              <li>Zuckerfreie Kaugummis (regen Speichelfluss an)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nach dem Essen putzen -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="anwendung zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Sollte ich nach dem Essen sofort Zähne putzen?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Nach säurehaltigen Speisen und Getränken sollten Sie etwa 30 Minuten warten, da die Säure den Zahnschmelz vorübergehend aufweicht. Nach normalen Mahlzeiten können Sie sofort putzen. Alternativ: Mund mit Wasser ausspülen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Demineralisation -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="wissenschaft">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Was ist Demineralisation und Remineralisation?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Demineralisation ist der Verlust von Mineralien aus dem Zahnschmelz durch Säuren. Remineralisation ist der umgekehrte Prozess, bei dem Mineralien (Kalzium, Phosphat) wieder in den Zahnschmelz eingelagert werden. Fluorid fördert die Remineralisation und macht den Schmelz widerstandsfähiger.
+          </div>
+        </div>
+      </div>
+
+      <!-- Aminfluorid Funktion -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="wissenschaft fluorid">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wie funktioniert Kariesschutz mit Aminfluorid?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            <ol class="list-decimal ml-5 space-y-1">
+              <li>Aminfluorid lagert sich schnell am Zahnschmelz an</li>
+              <li>Es bildet eine Schutzschicht aus Kalziumfluorid</li>
+              <li>Diese Schicht dient als Fluoriddepot</li>
+              <li>Bei Säureangriffen wird Fluorid freigesetzt</li>
+              <li>Fluorid fördert die Remineralisation und härtet den Schmelz</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zahnspange Pflege -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="kinder anwendung">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Zahnpflege mit Zahnspange?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Mit fester Zahnspange ist besonders gründliche Pflege wichtig:
+            <ul class="list-disc ml-5 space-y-1 mt-2">
+              <li>Spezielle Interdentalbürsten für Brackets verwenden</li>
+              <li>Nach jeder Mahlzeit Mund ausspülen</li>
+              <li>elmex Zahnspülung verwenden</li>
+              <li>Eventuell elektrische Zahnbürste nutzen</li>
+              <li>Regelmäßige professionelle Zahnreinigung</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diabetes -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Zahnpflege bei Diabetes?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Diabetiker haben ein erhöhtes Risiko für Zahnfleischerkrankungen:
+            <ul class="list-disc ml-5 space-y-1 mt-2">
+              <li>Besonders gründliche Mundhygiene</li>
+              <li>Blutzucker gut einstellen</li>
+              <li>Häufigere zahnärztliche Kontrollen (3-4x jährlich)</li>
+              <li>Bei Zahnfleischproblemen: elmex Zahnfleisch-Schutz</li>
+              <li>Zahnarzt über Diabetes informieren</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Im Alter -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="zahngesundheit">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Zahnpflege im Alter?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Im Alter können besondere Herausforderungen auftreten:
+            <ul class="list-disc ml-5 space-y-1 mt-2">
+              <li>Bei Arthritis: Elektrische Zahnbürste nutzen</li>
+              <li>Bei Mundtrockenheit: Viel Wasser trinken, spezieller Speichelersatz</li>
+              <li>Bei freiliegenden Zahnhälsen: elmex SENSITIVE verwenden</li>
+              <li>Bei Zahnersatz: Spezielle Pflege beachten</li>
+              <li>Regelmäßige zahnärztliche Kontrollen besonders wichtig</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vegan -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="produkte">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Sind elmex Produkte vegan?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Die meisten elmex Zahnpasten sind vegan. Einige Varianten können jedoch tierische Inhaltsstoffe enthalten. Prüfen Sie die Produktbeschreibung auf der Verpackung oder kontaktieren Sie unseren Kundenservice für spezifische Informationen.
+          </div>
+        </div>
+      </div>
+
+      <!-- Wo kaufen -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="produkte">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wo kann ich elmex Produkte kaufen?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            elmex Produkte sind erhältlich in:
+            <ul class="list-disc ml-5 space-y-1 mt-2">
+              <li>Apotheken</li>
+              <li>Drogeriemärkten (dm, Rossmann, Müller)</li>
+              <li>Supermärkten</li>
+              <li>Online-Shops</li>
+            </ul>
+            <p class="mt-2">Nutzen Sie unseren <a href="/beratung/wo-kaufen" class="text-primary hover:underline font-medium">Shop-Finder</a> für Händler in Ihrer Nähe.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Beratung -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="technisch">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Bietet elmex Video-Beratung an?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Ja, in unserem <a href="/beratung" class="text-primary hover:underline font-medium">Beratungsbereich</a> können Sie Video-Consulting-Termine mit Zahngesundheitsexperten buchen. Diese beraten Sie individuell zu Ihren Zahnpflegefragen und erstellen personalisierte Pflegepläne.
+          </div>
+        </div>
+      </div>
+
+      <!-- Foto Scan -->
+      <div class="faq-item bg-white rounded-xl border border-neutral-200 overflow-hidden" data-category="technisch">
+        <button class="faq-toggle w-full flex justify-between items-center p-5 text-left hover:bg-neutral-50 transition-colors">
+          <span class="font-semibold text-neutral-900 pr-8">Wie funktioniert der KI Foto-Scan?</span>
+          <ChevronDown class="faq-chevron w-5 h-5 text-neutral-400 transition-transform duration-300 flex-shrink-0" />
+        </button>
+        <div class="faq-answer max-h-0 transition-all duration-300">
+          <div class="px-5 pb-5 text-neutral-600 border-t border-neutral-100 pt-4">
+            Der KI Foto-Scan ist aktuell in der Beta-Phase. Er nutzt künstliche Intelligenz zur Analyse von Zahnfotos und kann erste Hinweise auf potenzielle Probleme geben. Er ersetzt keine zahnärztliche Untersuchung, kann aber helfen, Auffälligkeiten frühzeitig zu erkennen. <a href="/beratung/foto-analyse" class="text-primary hover:underline font-medium">Mehr erfahren</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- No Results Message -->
+    <div id="no-results" class="hidden text-center py-12">
+      <MessageCircle class="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+      <h3 class="text-xl font-bold text-neutral-900 mb-2">Keine passenden Fragen gefunden</h3>
+      <p class="text-neutral-600 mb-6">
+        Versuchen Sie einen anderen Suchbegriff oder fragen Sie unseren KI-Assistenten.
+      </p>
+      <button id="open-chatbot-noresults" class="px-6 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary-dark transition-colors">
+        Mit KI-Assistenten chatten
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="bg-neutral-50 py-16">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-4 text-center">
+        Noch Fragen?
+      </h2>
+      <p class="text-lg text-neutral-600 mb-12 text-center">
+        Unser Kundenservice hilft Ihnen gerne weiter
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Mail class="w-7 h-7 text-primary" />
+          </div>
+          <h3 class="font-bold text-neutral-900 mb-2">E-Mail Support</h3>
+          <p class="text-sm text-neutral-600 mb-4">Antwort innerhalb von 24 Stunden</p>
+          <a href="mailto:service@elmex.de" class="text-primary font-semibold hover:underline">
+            service@elmex.de
+          </a>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Phone class="w-7 h-7 text-primary" />
+          </div>
+          <h3 class="font-bold text-neutral-900 mb-2">Telefon</h3>
+          <p class="text-sm text-neutral-600 mb-4">Mo-Fr 9:00 - 17:00 Uhr</p>
+          <a href="tel:+498001234567" class="text-primary font-semibold hover:underline">
+            0800 - 123 4567
+          </a>
+          <p class="text-xs text-neutral-500 mt-1">(kostenlos)</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Clock class="w-7 h-7 text-primary" />
+          </div>
+          <h3 class="font-bold text-neutral-900 mb-2">KI-Assistent</h3>
+          <p class="text-sm text-neutral-600 mb-4">24/7 verfügbar</p>
+          <button class="text-primary font-semibold hover:underline">
+            Chat starten
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // FAQ Toggle Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const faqItem = toggle.closest('.faq-item');
+        const answer = faqItem?.querySelector('.faq-answer') as HTMLElement;
+        const chevron = faqItem?.querySelector('.faq-chevron') as HTMLElement;
+        const isActive = faqItem?.classList.contains('active');
+
+        if (isActive) {
+          faqItem?.classList.remove('active');
+          if (answer) answer.style.maxHeight = '0';
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        } else {
+          faqItem?.classList.add('active');
+          if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // Category Filter Logic
+    const categoryFilters = document.querySelectorAll('.faq-category-filter');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const noResults = document.getElementById('no-results');
+
+    categoryFilters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        const category = filter.getAttribute('data-category');
+
+        // Update active state
+        categoryFilters.forEach(f => {
+          f.classList.remove('category-active', 'bg-primary', 'text-white', 'shadow-lg');
+          f.classList.add('bg-white', 'text-neutral-700', 'border', 'border-neutral-200');
+        });
+        filter.classList.add('category-active', 'bg-primary', 'text-white', 'shadow-lg');
+        filter.classList.remove('bg-white', 'text-neutral-700', 'border', 'border-neutral-200');
+
+        // Filter items
+        let hasResults = false;
+        faqItems.forEach(item => {
+          const itemCategories = item.getAttribute('data-category') || '';
+          if (category === 'all' || itemCategories.includes(category)) {
+            (item as HTMLElement).style.display = 'block';
+            hasResults = true;
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+
+        // Toggle no results message
+        if (noResults) {
+          if (hasResults) {
+            noResults.classList.add('hidden');
+          } else {
+            noResults.classList.remove('hidden');
+          }
+        }
+      });
+    });
+
+    // Search Logic
+    const searchInput = document.getElementById('faq-search') as HTMLInputElement;
+    const searchBtn = document.getElementById('faq-search-btn');
+
+    function performSearch() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+
+      if (!searchTerm) {
+        faqItems.forEach(item => {
+          (item as HTMLElement).style.display = 'block';
+        });
+        if (noResults) noResults.classList.add('hidden');
+        return;
+      }
+
+      let hasResults = false;
+      faqItems.forEach(item => {
+        const question = item.querySelector('.font-semibold')?.textContent?.toLowerCase() || '';
+        const answer = item.querySelector('.faq-answer .px-5')?.textContent?.toLowerCase() || '';
+
+        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+          (item as HTMLElement).style.display = 'block';
+          hasResults = true;
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+
+      if (noResults) {
+        if (hasResults) {
+          noResults.classList.add('hidden');
+        } else {
+          noResults.classList.remove('hidden');
+        }
+      }
+    }
+
+    searchBtn?.addEventListener('click', performSearch);
+    searchInput?.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    // Real-time search with debounce
+    let searchTimeout: NodeJS.Timeout;
+    searchInput?.addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(performSearch, 300);
+    });
+
+    // Chatbot triggers (dummy)
+    const chatbotButtons = [
+      document.getElementById('open-chatbot'),
+      document.getElementById('open-chatbot-noresults')
+    ];
+
+    chatbotButtons.forEach(btn => {
+      btn?.addEventListener('click', () => {
+        alert('KI-Assistent (Demo): Diese Funktion ist in Entwicklung. Nutzen Sie vorerst die FAQ-Suche oder kontaktieren Sie unseren Kundenservice.');
+      });
+    });
+  });
+</script>
+
+</Layout>
