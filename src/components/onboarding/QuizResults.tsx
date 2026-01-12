@@ -60,7 +60,7 @@ export default function QuizResults({ answers }: QuizResultsProps) {
         benefits: ['Kariesschutz', 'Remineralisierung'],
         ingredients: ['Aminfluorid'],
         price: 3.99,
-        imageUrl: '/products/kariesschutz.png'
+        imageUrl: '../../assets/products/elmexkariesschutzzahnpasta/elmexkariesschutzzahnpasta_1.png'
       },
       {
         id: '2',
@@ -71,18 +71,18 @@ export default function QuizResults({ answers }: QuizResultsProps) {
         benefits: ['Schmerzlinderung', 'Sanfter Schutz'],
         ingredients: ['Aminfluorid', 'Kaliumnitrat'],
         price: 4.49,
-        imageUrl: '/products/sensitive.png'
+        imageUrl: '../../assets/products/elmexsensitivezahnpasta/elmexsensitivezahnpasta_1.png'
       },
       {
         id: '3',
-        name: 'elmex ZAHNFLEISCH',
+        name: 'elmex OPTI-SCHMELZ',
         category: 'toothpaste',
-        productLine: 'zahnfleisch',
+        productLine: 'optischmelz',
         description: 'Stärkt das Zahnfleisch und beugt Entzündungen vor',
         benefits: ['Zahnfleischpflege', 'Entzündungsschutz'],
         ingredients: ['Aminfluorid', 'Zink'],
         price: 4.29,
-        imageUrl: '/products/zahnfleisch.png'
+        imageUrl: '../../assets/products/elmexoptischmelzzahnpasta/elmexoptischmelzzahnpasta_1.png'
       }
     ];
 

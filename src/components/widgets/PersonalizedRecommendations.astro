@@ -1,6 +1,184 @@
 ---
-// Personalized Recommendations Widget
-// Uses localStorage data from quiz, browsing history, and user interactions
+import { getImage } from "astro:assets";
+
+// 1. Import all product images using Vite's glob import
+// Note: The path pattern must match your actual folder structure
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/products/**/*.{png,jpg,jpeg,webp}');
+
+// 2. Define the database here (Server-Side) so we can process images
+const rawProducts = [
+  {
+    key: 'elmexgelee',
+    name: 'elmex gelée',
+    slug: 'elmexgelee',
+    description: 'Intensive Fluoridierung zur Kariesvorbeugung',
+    url: '/produkte/elmexgelee',
+    // We construct the path string to match the glob above
+    imagePath: '/src/assets/products/elmexgelee/elmexgelee_1.png',
+    category: 'cavity',
+    icon: 'shield'
+  },
+  {
+    key: 'elmexwhite',
+    name: 'elmex White',
+    slug: 'elmexwhite',
+    description: 'Wirksamer Schutz vor neuen Verfärbungen',
+    url: '/produkte/elmexwhite',
+    imagePath: '/src/assets/products/elmexwhite/elmexwhite_1.png',
+    category: 'whitening',
+    icon: 'sparkles'
+  },
+  {
+    key: 'elmexzahnhoelzer',
+    name: 'elmex Zahnhölzer',
+    slug: 'elmexzahnhoelzer',
+    description: 'Sanfte Reinigung für gesunde Zähne',
+    url: '/produkte/elmexzahnhoelzer',
+    imagePath: '/src/assets/products/elmexzahnhoelzer/elmexzahnhoelzer_1.png',
+    category: 'cavity',
+    icon: 'leaf'
+  },
+  {
+    key: 'elmexkariesschutzzahnpasta',
+    name: 'elmex KARIESSCHUTZ Zahnpasta',
+    slug: 'elmexkariesschutzzahnpasta',
+    description: 'Ergänzender Schutz für schwer erreichbare Stellen',
+    url: '/produkte/elmexkariesschutzzahnpasta',
+    imagePath: '/src/assets/products/elmexkariesschutzzahnpasta/elmexkariesschutzzahnpasta_1.png',
+    category: 'cavity',
+    icon: 'shield'
+  },
+  {
+    key: 'elmexkariesschutzzahnbuerste',
+    name: 'elmex Expert Präzision Zahnbürste',
+    slug: 'elmexkariesschutzzahnbuerste',
+    description: 'Effektive Reinigung für gesunde Zähne',
+    url: '/produkte/elmexkariesschutzzahnbuerste',
+    imagePath: '/src/assets/products/elmexkariesschutzzahnbuerste/elmexkariesschutzzahnbuerste_1.png',
+    category: 'cavity',
+    icon: 'brush'
+  },
+  {
+    key: 'elmexsensitivespuelung',
+    name: 'elmex SENSITIVE Mundspülung',
+    slug: 'elmexsensitivespuelung',
+    description: 'Sanfte Pflege für empfindliche Zähne',
+    url: '/produkte/elmexsensitivespuelung',
+    imagePath: '/src/assets/products/elmexsensitivespuelung/elmexsensitivespuelung_1.png',
+    category: 'sensitivity',
+    icon: 'droplet'
+  },
+  {
+    key: 'elmexsensitiveprofessional',
+    name: 'elmex SENSITIVE PROFESSIONAL',
+    slug: 'elmexsensitiveprofessional',
+    description: 'Sofortige und langanhaltende Schmerzlinderung',
+    url: '/produkte/elmexsensitiveprofessional',
+    imagePath: '/src/assets/products/elmexsensitiveprofessional/elmexsensitiveprofessional_1.png',
+    category: 'sensitivity',
+    icon: 'sparkles'
+  },
+  {
+    key: 'elmexsensitivezahnpasta',
+    name: 'elmex SENSITIVE Zahnpasta',
+    slug: 'elmexsensitivezahnpasta',
+    description: 'Sofortige und langanhaltende Schmerzlinderung',
+    url: '/produkte/elmexsensitivezahnpasta',
+    imagePath: '/src/assets/products/elmexsensitivezahnpasta/elmexsensitivezahnpasta_1.png',
+    category: 'sensitivity',
+    icon: 'sparkles'
+  },
+  {
+    key: 'elmexsensitivezahnbuerste',
+    name: 'elmex SENSITIVE Zahnbürste',
+    slug: 'elmexsensitivezahnbuerste',
+    description: 'Besonders weiche Borsten für empfindliche Zähne',
+    url: '/produkte/elmexsensitivezahnbuerste',
+    imagePath: '/src/assets/products/elmexsensitivezahnbuerste/elmexsensitivezahnbuerste_1.png',
+    category: 'sensitivity',
+    icon: 'brush'
+  },
+  {
+    key: 'elmexoptischmelzspuelung',
+    name: 'elmex OPTI-SCHMELZ Mundspülung',
+    slug: 'elmexoptischmelzspuelung',
+    description: 'Sanfte Pflege für empfindliche Zähne',
+    url: '/produkte/elmexoptischmelzspuelung',
+    imagePath: '/src/assets/products/elmexoptischmelzspuelung/elmexoptischmelzspuelung_1.png',
+    category: 'enamel',
+    icon: 'droplet'
+  },
+  {
+    key: 'elmexoptischmelzzahnbuerste',
+    name: 'elmex OPTI-SCHMELZ Zahnbürste',
+    slug: 'elmexoptischmelzzahnbuerste',
+    description: 'Effektive Reinigung für gesunde Zähne',
+    url: '/produkte/elmexoptischmelzzahnbuerste',
+    imagePath: '/src/assets/products/elmexoptischmelzzahnbuerste/elmexoptischmelzzahnbuerste_1.png',
+    category: 'enamel',
+    icon: 'brush'
+  },
+  {
+    key: 'elmexoptischmelzzahnpasta',
+    name: 'elmex OPTI-SCHMELZ Zahnpasta',
+    slug: 'elmexoptischmelzzahnpasta',
+    description: 'Intensive Fluoridierung zur Kariesvorbeugung',
+    url: '/produkte/elmexoptischmelzzahnpasta',
+    imagePath: '/src/assets/products/elmexoptischmelzzahnpasta/elmexoptischmelzzahnpasta_1.png',
+    category: 'enamel',
+    icon: 'shield'
+  },
+  {
+    key: 'elmexjuniorzahnpasta',
+    name: 'elmex JUNIOR Zahnpasta',
+    slug: 'elmexjuniorzahnpasta',
+    description: 'Die erste Zahnpasta für Kinder ab 6 Jahren',
+    url: '/produkte/elmexjuniorzahnpasta',
+    imagePath: '/src/assets/products/elmexjuniorzahnpasta/elmexjuniorzahnpasta_1.png',
+    category: 'junior',
+    icon: 'baby'
+  },
+  {
+    key: 'elmexjuniorspuelung',
+    name: 'elmex JUNIOR Mundspülung',
+    slug: 'elmexjuniorspuelung',
+    description: 'Die erste Mundspülung für Kinder ab 6 Jahren',
+    url: '/produkte/elmexjuniorspuelung',
+    imagePath: '/src/assets/products/elmexjuniorspuelung/elmexjuniorspuelung_1.png',
+    category: 'junior',
+    icon: 'droplet'
+  }
+];
+
+// 3. Process images: Resolve paths to optimized URLs
+const processedProducts = await Promise.all(rawProducts.map(async (product) => {
+  const imageLoader = imageFiles[product.imagePath];
+  
+  if (!imageLoader) {
+    console.warn(`[Recommendations] Image not found for ${product.name}: ${product.imagePath}`);
+    return { ...product, image: '' }; // Fallback or empty string
+  }
+
+  const imageModule = await imageLoader();
+  // Optimize image (resize to 300x300 or similar for widget)
+  const optimizedImage = await getImage({
+    src: imageModule.default,
+    width: 300,
+    height: 300,
+    format: 'webp'
+  });
+
+  return {
+    ...product,
+    image: optimizedImage.src // This is now a clean URL string
+  };
+}));
+
+// Convert array back to object map for the script to use
+const productDatabase = processedProducts.reduce((acc, curr) => {
+  acc[curr.key] = curr;
+  return acc;
+}, {});
 ---
 
 <div id="personalized-widget" class="hidden relative bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 my-12 border border-primary/20">
@@ -21,87 +199,44 @@
         Basierend auf Ihren bisherigen Besuchen
       </p>
     </div>
-    <button
-      id="dismiss-recommendations"
-      class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600 transition-colors"
-      aria-label="Empfehlungen ausblenden"
-    >
+    <button id="dismiss-recommendations" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600 transition-colors" aria-label="Empfehlungen ausblenden">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </div>
-<div class="mx-auto">
-<div id="recommendations-container" class="mx-auto max-w-max flex flex-col md:flex-row md:flex-wrap justify-center gap-6 px-4 md:px-0">
-    <!-- Dynamically populated -->
+  <div class="mx-auto">
+    <div id="recommendations-container" class="mx-auto max-w-max flex flex-col md:flex-row md:flex-wrap justify-center gap-6 px-4 md:px-0">
+      </div>
   </div>
-  </div>
-
-  <!-- Discount promotion and code -->
   <div class="mt-8 text-center">
     <p class="text-sm text-neutral-600 mb-4 italic">
       Damit Sie das neue Produkt ausprobieren können, erhalten Sie 10% Rabatt auf Ihre erste Bestellung.
     </p>
     <div class="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full border-2 border-primary shadow-md">
       <span class="text-sm text-neutral-600">Ihr Rabattcode:</span>
-      <code id="discount-code" class="text-lg font-bold text-primary bg-primary/10 px-4 py-1 rounded-lg">
-        <!-- Dynamically populated -->
-      </code>
-      <button
-        id="copy-discount-code"
-        class="px-4 py-1 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-lg transition-colors"
-        title="Code kopieren"
-      >
+      <code id="discount-code" class="text-lg font-bold text-primary bg-primary/10 px-4 py-1 rounded-lg"></code>
+      <button id="copy-discount-code" class="px-4 py-1 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-lg transition-colors" title="Code kopieren">
         Kopieren
       </button>
     </div>
-    <p class="text-xs text-neutral-500 mt-2">
-      Einlösbar bei teilnehmenden Händlern
-    </p>
+    <p class="text-xs text-neutral-500 mt-2">Einlösbar bei teilnehmenden Händlern</p>
   </div>
-
   <div class="mt-6 text-center">
-    <a
-      href="/beratung/produktfinder"
-      class="inline-flex items-center text-sm text-primary hover:text-primary-dark hover:underline transition-colors"
-    >
+    <a href="/beratung/produktfinder" class="inline-flex items-center text-sm text-primary hover:text-primary-dark hover:underline transition-colors">
       Neue Empfehlung erhalten →
     </a>
   </div>
 </div>
 
-<script>
-  interface VisitedProduct {
-    name: string;
-    url: string;
-    timestamp: number;
-  }
+<script define:vars={{ productDatabase }}>
+  // NOTE: productDatabase is now available here as a global variable injected by Astro!
 
-  interface QuizResult {
-    timestamp: number;
-    answers: {
-      ageGroup?: string;
-      concern?: string;
-      productTypes: string[];
-    };
-    recommendation: {
-      primary: any;
-      complementary: any[];
-    };
-  }
-
-  interface UserProfile {
-    visitCount: number;
-    firstVisit: number;
-    lastVisit: number;
-    viewedProducts: VisitedProduct[];
-    quizCompleted: boolean;
-    quizResult?: QuizResult;
-    preferredCategory?: string;
-  }
-
+  // --- Type Declarations ---
+  // (We don't need to declare ProductMap here anymore since the data is injected)
+  
   // Icon library
-  const icons: Record<string, string> = {
+  const icons = {
     'shield': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>',
     'sparkles': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>',
     'heart': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>',
@@ -111,151 +246,6 @@
     'brush': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>',
     'flower': '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>'
   };
-
-  // --- 1. Product Database (Your Updated Version) ---
-  const productDatabase = {
-    // --- Gelee ---
-    'elmexgelee': {
-      name: 'elmex gelée',
-      slug: 'elmexgelee',
-      description: 'Intensive Fluoridierung zur Kariesvorbeugung',
-      url: '/produkte/elmexgelee',
-      image: '../src/assets/products/elmexgelee/elmexgelee_1.png',
-      category: 'cavity',
-      icon: 'shield'
-    },
-
-    // --- White ---
-    'elmexwhite': {
-      name: 'elmex White',
-      slug: 'elmexwhite',
-      description: 'Wirksamer Schutz vor neuen Verfärbungen',
-      url: '/produkte/elmexwhite',
-      image: '../src/assets/products/elmexwhite/elmexwhite_1.png',
-      category: 'whitening',
-      icon: 'sparkles'
-    },
-
-    // --- Zahnhölzer ---
-    'elmexzahnhoelzer': {
-      name: 'elmex Zahnhölzer',
-      slug: 'elmexzahnhoelzer',
-      description: 'Sanfte Reinigung für gesunde Zähne',
-      url: '/produkte/elmexzahnhoelzer',
-      image: '../src/assets/products/elmexzahnhoelzer/elmexzahnhoelzer_1.png',
-      category: 'cavity',
-      icon: 'leaf'
-    },
-
-    // --- Kariesschutz ---
-    'elmexkariesschutzzahnpasta': {
-      name: 'elmex KARIESSCHUTZ Zahnpasta',
-      slug: 'elmexkariesschutzzahnpasta',
-      description: 'Ergänzender Schutz für schwer erreichbare Stellen',
-      url: '/produkte/elmexkariesschutzzahnpasta',
-      image: '../src/assets/products/elmexkariesschutzzahnpasta/elmexkariesschutzzahnpasta_1.png',
-      category: 'cavity',
-      icon: 'shield'
-    },
-    'elmexkariesschutzzahnbuerste': {
-      name: 'elmex Expert Präzision Zahnbürste',
-      slug: 'elmexkariesschutzzahnbuerste',
-      description: 'Effektive Reinigung für gesunde Zähne',
-      url: '/produkte/elmexkariesschutzzahnbuerste',
-      image: '../src/assets/products/elmexkariesschutzzahnbuerste/elmexkariesschutzzahnbuerste_1.png',
-      category: 'cavity',
-      icon: 'brush'
-    },
-
-    // --- Sensitive ---
-    'elmexsensitivespuelung': {
-      name: 'elmex SENSITIVE Mundspülung',
-      slug: 'elmexsensitivespuelung',
-      description: 'Sanfte Pflege für empfindliche Zähne',
-      url: '/produkte/elmexsensitivespuelung',
-      image: '../src/assets/products/elmexsensitivespuelung/elmexsensitivespuelung_1.png',
-      category: 'sensitivity',
-      icon: 'droplet'
-    },
-    'elmexsensitiveprofessional': {
-      name: 'elmex SENSITIVE PROFESSIONAL',
-      slug: 'elmexsensitiveprofessional',
-      description: 'Sofortige und langanhaltende Schmerzlinderung',
-      url: '/produkte/elmexsensitiveprofessional',
-      image: '../src/assets/products/elmexsensitiveprofessional/elmexsensitiveprofessional_1.png',
-      category: 'sensitivity',
-      icon: 'sparkles'
-    },
-    'elmexsensitivezahnpasta': {
-      name: 'elmex SENSITIVE Zahnpasta',
-      slug: 'elmexsensitivezahnpasta',
-      description: 'Sofortige und langanhaltende Schmerzlinderung',
-      url: '/produkte/elmexsensitivezahnpasta',
-      image: '../src/assets/products/elmexsensitivezahnpasta/elmexsensitivezahnpasta_1.png',
-      category: 'sensitivity',
-      icon: 'sparkles'
-    },
-    'elmexsensitivezahnbuerste': {
-      name: 'elmex SENSITIVE Zahnbürste',
-      slug: 'elmexsensitivezahnbuerste',
-      description: 'Besonders weiche Borsten für empfindliche Zähne',
-      url: '/produkte/elmexsensitivezahnbuerste',
-      image: '../src/assets/products/elmexsensitivezahnbuerste/elmexsensitivezahnbuerste_1.png',
-      category: 'sensitivity',
-      icon: 'brush'
-    },
-
-    // --- Opti-schmelz ---
-    'elmexoptischmelzspuelung': {
-      name: 'elmex OPTI-SCHMELZ Mundspülung',
-      slug: 'elmexoptischmelzspuelung',
-      description: 'Sanfte Pflege für empfindliche Zähne',
-      url: '/produkte/elmexoptischmelzspuelung',
-      image: '../src/assets/products/elmexoptischmelzspuelung/elmexoptischmelzspuelung_1.png',
-      category: 'enamel',
-      icon: 'droplet'
-    },
-    'elmexoptischmelzzahnbuerste': {
-      name: 'elmex OPTI-SCHMELZ Zahnbürste',
-      slug: 'elmexoptischmelzzahnbuerste',
-      description: 'Effektive Reinigung für gesunde Zähne',
-      url: '/produkte/elmexoptischmelzzahnbuerste',
-      image: '../src/assets/products/elmexoptischmelzzahnbuerste/elmexoptischmelzzahnbuerste_1.png',
-      category: 'enamel',
-      icon: 'brush'
-    },
-    'elmexoptischmelzzahnpasta': {
-      name: 'elmex OPTI-SCHMELZ Zahnpasta',
-      slug: 'elmexoptischmelzzahnpasta',
-      description: 'Intensive Fluoridierung zur Kariesvorbeugung',
-      url: '/produkte/elmexoptischmelzzahnpasta',
-      image: '../src/assets/products/elmexoptischmelzzahnpasta/elmexoptischmelzzahnpasta_1.png',
-      category: 'enamel',
-      icon: 'shield'
-    },
-
-    // --- Junior ---
-    'elmexjuniorzahnpasta': {
-      name: 'elmex JUNIOR Zahnpasta',
-      slug: 'elmexjuniorzahnpasta',
-      description: 'Die erste Zahnpasta für Kinder ab 6 Jahren',
-      url: '/produkte/elmexjuniorzahnpasta',
-      image: '../src/assets/products/elmexjuniorzahnpasta/elmexjuniorzahnpasta_1.png',
-      category: 'junior',
-      icon: 'baby'
-    },
-    'elmexjuniorspuelung': {
-      name: 'elmex JUNIOR Mundspülung',
-      slug: 'elmexjuniorspuelung',
-      description: 'Die erste Mundspülung für Kinder ab 6 Jahren',
-      url: '/produkte/elmexjuniorspuelung',
-      image: '../src/assets/products/elmexjuniorspuelung/elmexjuniorspuelung_1.png',
-      category: 'junior',
-      icon: 'droplet'
-    }
-  };
-
-  // --- 2. Logic Functions ---
 
   function getUserProfile() {
     const visitCount = parseInt(localStorage.getItem('elmex_visit_count') || '0');
@@ -275,13 +265,20 @@
     };
   }
 
-  // UPDATED: This function uses the correct keys from the new database
   function getRecommendations(profile) {
     const recommendations = [];
 
+    // Helper to safely add product if it exists in database
+    const addProduct = (key) => {
+      // productDatabase is now passed via define:vars
+      const product = productDatabase[key];
+      if (product) {
+        recommendations.push(product);
+      }
+    };
+
     // Strategy 1: Quiz-based recommendations
     if (profile.quizCompleted && profile.quizResult) {
-      // Parse answers array into map
       const answersMap = {};
       if (Array.isArray(profile.quizResult.answers)) {
         profile.quizResult.answers.forEach((item) => {
@@ -294,24 +291,24 @@
         const concerns = Array.isArray(answersMap.dentalConcerns) ? answersMap.dentalConcerns : [answersMap.dentalConcerns];
 
         if (concerns.includes('sensitive-teeth')) {
-          recommendations.push(productDatabase['elmexsensitiveprofessional']);
-          recommendations.push(productDatabase['elmexsensitivespuelung']);
+          addProduct('elmexsensitiveprofessional');
+          addProduct('elmexsensitivespuelung');
         } else if (concerns.includes('cavity-protection')) {
-          recommendations.push(productDatabase['elmexkariesschutzzahnpasta']);
-          recommendations.push(productDatabase['elmexgelee']);
+          addProduct('elmexkariesschutzzahnpasta');
+          addProduct('elmexgelee');
         } else if (concerns.includes('gum-health')) {
-          recommendations.push(productDatabase['elmexkariesschutzzahnpasta']);
-          recommendations.push(productDatabase['elmexkariesschutzzahnbuerste']);
+          addProduct('elmexkariesschutzzahnpasta');
+          addProduct('elmexkariesschutzzahnbuerste');
         } else if (concerns.includes('whitening')) {
-          recommendations.push(productDatabase['elmexwhite']);
-          recommendations.push(productDatabase['elmexzahnhoelzer']);
+          addProduct('elmexwhite');
+          addProduct('elmexzahnhoelzer');
         }
       }
 
       // Recommend for children
       if (answersMap.childAge || answersMap.start === 'child') {
-        recommendations.push(productDatabase['elmexjuniorzahnpasta']);
-        recommendations.push(productDatabase['elmexjuniorspuelung']);
+        addProduct('elmexjuniorzahnpasta');
+        addProduct('elmexjuniorspuelung');
       }
 
       // Recommend based on symptoms
@@ -319,34 +316,30 @@
         const symptoms = Array.isArray(answersMap.symptoms) ? answersMap.symptoms : [answersMap.symptoms];
 
         if (symptoms.includes('sensitivity')) {
-          recommendations.push(productDatabase['elmexsensitiveprofessional']);
+          addProduct('elmexsensitiveprofessional');
         } else if (symptoms.includes('bleeding') || symptoms.includes('inflammation')) {
-          recommendations.push(productDatabase['elmexkariesschutzzahnpasta']);
+          addProduct('elmexkariesschutzzahnpasta');
         }
       }
     }
 
     // Strategy 2: Browsing history-based
     if (recommendations.length < 3 && profile.viewedProducts.length > 0) {
-      // Add complementary products
       Object.values(productDatabase).forEach(product => {
-        // Simple check to ensure we don't add duplicates
-        if (!recommendations.some(r => r && r.name === product.name) && recommendations.length < 3) {
+        if (product && !recommendations.some(r => r.name === product.name) && recommendations.length < 3) {
           recommendations.push(product);
         }
       });
     }
 
-    // Strategy 3: Popular products (default) - always show if no quiz
-    // FIX: Used the new keys here
+    // Strategy 3: Popular products (default)
     if (recommendations.length === 0) {
-      if(productDatabase['elmexsensitiveprofessional']) recommendations.push(productDatabase['elmexsensitiveprofessional']);
-      if(productDatabase['elmexkariesschutzzahnpasta']) recommendations.push(productDatabase['elmexkariesschutzzahnpasta']);
-      if(productDatabase['elmexwhite']) recommendations.push(productDatabase['elmexwhite']);
+      addProduct('elmexsensitiveprofessional');
+      addProduct('elmexkariesschutzzahnpasta');
+      addProduct('elmexwhite');
     }
 
-    // Filter out any undefined entries (safety check) and return max 4
-    return recommendations.filter(Boolean).slice(0, 4);
+    return recommendations.slice(0, 4);
   }
 
   function renderRecommendations(recommendations, profile) {
@@ -355,8 +348,6 @@
     const reason = document.getElementById('personalization-reason');
 
     if (!container || !widget || !reason) return;
-
-    // Safety check: if no recommendations found, stop
     if (recommendations.length === 0) return;
 
     // Determine personalization reason
@@ -368,7 +359,6 @@
     }
     reason.textContent = reasonText;
 
-    // Render product cards with real images and discount badges
     container.innerHTML = recommendations.map(product => `
       <a
         href="${product.url}"
@@ -403,7 +393,6 @@
       </a>
     `).join('');
 
-    // Show widget with animation
     widget.classList.remove('hidden');
     setTimeout(() => {
       widget.style.opacity = '0';
@@ -418,48 +407,36 @@
 
   function trackProductView(productName, productUrl) {
     const viewedProducts = JSON.parse(localStorage.getItem('elmex_viewed_products') || '[]');
-
-    // Add new view (max 10 recent products)
     viewedProducts.push({
       name: productName,
       url: productUrl,
       timestamp: Date.now()
     });
-
-    // Keep only last 10
     const recentViews = viewedProducts.slice(-10);
     localStorage.setItem('elmex_viewed_products', JSON.stringify(recentViews));
   }
 
-  // Initialize on page load
+  // --- Initialization ---
   document.addEventListener('DOMContentLoaded', () => {
-    // Update visit tracking
     const currentVisits = parseInt(localStorage.getItem('elmex_visit_count') || '0');
-    const newVisitCount = currentVisits + 1;
-    localStorage.setItem('elmex_visit_count', newVisitCount.toString());
+    localStorage.setItem('elmex_visit_count', (currentVisits + 1).toString());
     localStorage.setItem('elmex_last_visit', Date.now().toString());
-
     if (!localStorage.getItem('elmex_first_visit')) {
       localStorage.setItem('elmex_first_visit', Date.now().toString());
     }
 
-    // Track current page if it's a product page
     const currentPath = window.location.pathname;
     if (currentPath.includes('/produkte/')) {
       const productName = document.querySelector('h1')?.textContent || 'Produkt';
       trackProductView(productName, currentPath);
     }
 
-    // Always show recommendations (default products for first-time visitors, personalized for returning)
     const profile = getUserProfile();
     const recommendations = getRecommendations(profile);
     renderRecommendations(recommendations, profile);
 
-    // Generate and display discount code
     const generateDiscountCode = (profile) => {
-      // Generate code based on user's quiz results or default
       let concern = 'ELMEX';
-
       if (profile.quizCompleted && profile.quizResult) {
         const answersMap = {};
         if (Array.isArray(profile.quizResult.answers)) {
@@ -467,81 +444,57 @@
             answersMap[item.questionId] = item.answer;
           });
         }
-
         if (answersMap.dentalConcerns) {
           const concerns = Array.isArray(answersMap.dentalConcerns) ? answersMap.dentalConcerns : [answersMap.dentalConcerns];
-
-          if (concerns.includes('sensitive-teeth')) {
-            concern = 'SENSITIVE';
-          } else if (concerns.includes('cavity-protection')) {
-            concern = 'KARIES';
-          } else if (concerns.includes('gum-health')) {
-            concern = 'ZAHNFLEISCH';
-          } else if (concerns.includes('whitening')) {
-            concern = 'WHITE';
-          }
+          if (concerns.includes('sensitive-teeth')) concern = 'SENSITIVE';
+          else if (concerns.includes('cavity-protection')) concern = 'KARIES';
+          else if (concerns.includes('gum-health')) concern = 'ZAHNFLEISCH';
+          else if (concerns.includes('whitening')) concern = 'WHITE';
         }
-
         if (answersMap.childAge || answersMap.start === 'child') {
           concern = 'JUNIOR';
         }
       }
-
       return `ELMEX${concern}10`;
     };
 
     const discountCode = generateDiscountCode(profile);
     const discountCodeEl = document.getElementById('discount-code');
-    if (discountCodeEl) {
-      discountCodeEl.textContent = discountCode;
-    }
+    if (discountCodeEl) discountCodeEl.textContent = discountCode;
 
-    // Copy discount code functionality
     const copyBtn = document.getElementById('copy-discount-code');
     copyBtn?.addEventListener('click', (e) => {
       e.preventDefault();
-
       navigator.clipboard.writeText(discountCode).then(() => {
-        // Visual feedback
         const originalText = copyBtn.textContent;
         copyBtn.textContent = 'Kopiert!';
         copyBtn.classList.add('bg-green-600');
         copyBtn.classList.remove('bg-primary', 'hover:bg-primary-dark');
-
         setTimeout(() => {
           copyBtn.textContent = originalText;
           copyBtn.classList.remove('bg-green-600');
           copyBtn.classList.add('bg-primary', 'hover:bg-primary-dark');
         }, 2000);
-      }).catch(() => {
-        alert('Fehler beim Kopieren. Bitte manuell kopieren: ' + discountCode);
       });
     });
 
-    // Dismiss button
     const dismissBtn = document.getElementById('dismiss-recommendations');
     dismissBtn?.addEventListener('click', () => {
       const widget = document.getElementById('personalized-widget');
       if (widget) {
         widget.style.opacity = '0';
         widget.style.transform = 'translateY(-20px)';
-        setTimeout(() => {
-          widget.classList.add('hidden');
-        }, 300);
+        setTimeout(() => { widget.classList.add('hidden'); }, 300);
       }
-
-      // Remember dismissal for this session
       sessionStorage.setItem('elmex_recommendations_dismissed', 'true');
     });
 
-    // Don't show if dismissed this session
     if (sessionStorage.getItem('elmex_recommendations_dismissed')) {
       const widget = document.getElementById('personalized-widget');
       widget?.classList.add('hidden');
     }
   });
 
-  // Export tracking function for use in other pages
   window.trackElmexProductView = trackProductView;
 </script>
 
