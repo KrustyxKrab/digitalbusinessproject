@@ -115,8 +115,8 @@
 
 /* Add typography styles */
 @layer components {
-  .font-brand{
-    font-weight: 400!important;
+  .font-brand {
+    font-family: var(--font-brand);
   }
   .prose {
     max-width: 65ch;

@@ -37,9 +37,8 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
     <div class="relative z-10 container mx-auto px-4 sm:px-6 mt-12 sm:mt-16">
       <div class="max-w-4xl">
 
-        <h1 data-personalized="headline" class="font-brand font-bold text-white mb-4 sm:mb-8 leading-tight will-animate animate-fade-in drop-shadow-2xl tracking-tight max-w-3xl">
-          <span class="block sm:hidden text-4xl">Schutz für gesunde Zähne.</span>
-          <span class="hidden sm:block sm:text-4xl md:text-6xl lg:text-7xl">Wissenschaftlich fundierter Schutz für dauerhafte Zahngesundheit.</span>
+        <h1 data-personalized="headline" class="font-brand font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white! mb-4 sm:mb-8 leading-tight will-animate animate-fade-in drop-shadow-2xl tracking-tight max-w-3xl">
+          Wissenschaftlich fundierter Schutz für dauerhafte Zahngesundheit.
         </h1>
 
         <p data-personalized="subheadline" class="text-neutral-50 mb-6 sm:mb-12 max-w-3xl font-light leading-relaxed will-animate animate-fade-in drop-shadow-lg" style="animation-delay: 0.2s;">
@@ -652,27 +651,6 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
     skipBtn?.addEventListener('click', () => {
       modal?.classList.add('hidden');
       sessionStorage.setItem('elmex-session-visited', 'true');
-    });
-
-    // Chatbot Logic
-    const chatbotToggle = document.getElementById('chatbot-toggle');
-    const chatbotWindow = document.getElementById('chatbot-window');
-    const chatbotClose = document.getElementById('chatbot-close');
-
-    chatbotToggle?.addEventListener('click', () => {
-      chatbotWindow?.classList.toggle('hidden');
-    });
-
-    chatbotClose?.addEventListener('click', () => {
-      chatbotWindow?.classList.add('hidden');
-    });
-
-    // Close chatbot when clicking outside
-    document.addEventListener('click', (e) => {
-      const chatbotWidget = document.getElementById('chatbot-widget');
-      if (chatbotWidget && !chatbotWidget.contains(e.target as Node)) {
-        chatbotWindow?.classList.add('hidden');
-      }
     });
   });
 </script>

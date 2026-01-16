@@ -1,32 +1,19 @@
 <div
   id="chatbot-widget"
-  class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] transition-transform duration-300 ease-in-out group"
+  class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999]"
 >
-  <!-- Mobile Backdrop -->
-  <div
-    id="chatbot-backdrop"
-    class="fixed inset-0 bg-black/40 backdrop-blur-sm sm:hidden opacity-0 invisible transition-opacity duration-300 pointer-events-none"
-  ></div>
-
   <div
     id="chatbot-window"
     class="
-      fixed sm:absolute
-      inset-x-0 bottom-0 sm:inset-auto sm:bottom-16 sm:right-0
-      w-full sm:w-96 sm:max-w-[calc(100vw-2rem)]
-      bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden
-      origin-bottom sm:origin-bottom-right transition-all duration-300 ease-out
-
-      /* Standard-Zustand: Unsichtbar & nicht klickbar */
-      opacity-0 invisible translate-y-full sm:translate-y-4 sm:scale-95 pointer-events-none
+      absolute bottom-16 right-0
+      w-[calc(100vw-2rem)] sm:w-96
+      max-w-[400px]
+      bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden
+      transition-all duration-300 ease-out
+      opacity-0 invisible translate-y-4 scale-95 pointer-events-none
     "
   >
-    <!-- Mobile Drag Handle -->
-    <div class="sm:hidden flex justify-center pt-3 pb-1 bg-primary">
-      <div class="w-10 h-1 bg-white/30 rounded-full"></div>
-    </div>
-
-    <div class="bg-primary text-white p-4 pt-2 sm:pt-4 flex justify-between items-center">
+    <div class="bg-primary text-white p-4 flex justify-between items-center">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,7 +32,7 @@
       </button>
     </div>
 
-    <div class="p-4 h-[50vh] sm:h-80 overflow-y-auto bg-neutral-50">
+    <div class="p-4 h-80 overflow-y-auto bg-neutral-50">
       <div class="space-y-3">
         <div class="bg-white p-4 rounded-lg shadow-sm border border-neutral-100">
           <p class="text-sm text-neutral-700 mb-3">
@@ -66,146 +53,106 @@
       </div>
     </div>
 
-    <div class="p-3 sm:p-3 pb-safe bg-white border-t border-neutral-200">
+    <div class="p-3 bg-white border-t border-neutral-200">
       <div class="flex gap-2">
         <input
           type="text"
           id="chatbot-input"
           placeholder="Ihre Frage eingeben..."
-          class="flex-1 px-4 py-3 sm:py-2 border border-neutral-200 rounded-xl sm:rounded-lg text-base sm:text-sm bg-neutral-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+          class="flex-1 px-4 py-2 border border-neutral-200 rounded-lg text-sm bg-neutral-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
         />
-        <button id="chatbot-send" class="bg-primary hover:bg-primary-dark text-white p-3 sm:p-2 rounded-xl sm:rounded-lg transition-colors active:scale-95">
+        <button id="chatbot-send" class="bg-primary hover:bg-primary-dark text-white p-2 rounded-lg transition-colors active:scale-95">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
         </button>
       </div>
-      <p class="text-[10px] text-neutral-400 text-center mt-2 hidden sm:block">Demo-Modus – Eingaben werden nicht verarbeitet</p>
+      <p class="text-[10px] text-neutral-400 text-center mt-2">Demo-Modus – Eingaben werden nicht verarbeitet</p>
     </div>
   </div>
 
   <button
     id="chatbot-toggle"
     type="button"
-    class="flex items-center gap-3 bg-primary text-white h-12 px-5 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 relative z-50 cursor-pointer"
+    class="flex items-center gap-3 bg-primary text-white h-12 px-5 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 cursor-pointer"
   >
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
     </svg>
     <span class="font-semibold text-sm">Hilfe</span>
   </button>
-
 </div>
 
 <style>
-  /* Logik: Wenn der Container (#chatbot-widget) die Klasse 'is-open' hat,
-   ändern wir die Eigenschaften des inneren Fensters (#chatbot-window).
-  */
   #chatbot-widget.is-open #chatbot-window {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
   }
-
-  /* Mobile: Backdrop Animation */
-  #chatbot-widget.is-open #chatbot-backdrop {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* Mobile: Sheet Animation von unten */
-  @media (max-width: 639px) {
-    #chatbot-widget.is-open #chatbot-window {
-      transform: translateY(0);
-    }
-
-    /* Verstecke Toggle-Button wenn offen */
-    #chatbot-widget.is-open #chatbot-toggle {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-
-  /* Safe area für iPhone Home-Indicator */
-  .pb-safe {
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-  }
-
-  /* Support für den ToTop Button Shift */
-  :global(#chatbot-widget.shift-left) {
-    transform: translateX(-4rem);
-  }
 </style>
 
-<script>
-  let cleanupFn;
+<script is:inline>
+  (function() {
+    function init() {
+      const widget = document.getElementById('chatbot-widget');
+      const toggle = document.getElementById('chatbot-toggle');
+      const closeBtn = document.getElementById('chatbot-close');
 
-  function initChatbot() {
-    // 1. Aufräumen
-    if (cleanupFn) {
-      cleanupFn();
-      cleanupFn = null;
+      if (!widget || !toggle) return;
+
+      // Clone um alte Listener zu entfernen
+      const newToggle = toggle.cloneNode(true);
+      toggle.parentNode.replaceChild(newToggle, toggle);
+
+      const newClose = closeBtn ? closeBtn.cloneNode(true) : null;
+      if (closeBtn && newClose) {
+        closeBtn.parentNode.replaceChild(newClose, closeBtn);
+      }
+
+      function openChat() {
+        widget.classList.add('is-open');
+      }
+
+      function closeChat() {
+        widget.classList.remove('is-open');
+      }
+
+      newToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (widget.classList.contains('is-open')) {
+          closeChat();
+        } else {
+          openChat();
+        }
+      });
+
+      if (newClose) {
+        newClose.addEventListener('click', function(e) {
+          e.stopPropagation();
+          closeChat();
+        });
+      }
+
+      // Klick außerhalb schließt
+      document.addEventListener('click', function(e) {
+        if (widget.classList.contains('is-open') && !widget.contains(e.target)) {
+          closeChat();
+        }
+      });
+
+      // ESC zum Schließen
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && widget.classList.contains('is-open')) {
+          closeChat();
+        }
+      });
     }
 
-    const widgetEl = document.getElementById('chatbot-widget');
-    const toggleBtn = document.getElementById('chatbot-toggle');
-    const closeBtn = document.getElementById('chatbot-close');
-    const windowEl = document.getElementById('chatbot-window');
-    const backdropEl = document.getElementById('chatbot-backdrop');
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
 
-    if (!widgetEl || !toggleBtn) return;
-
-    // 2. Funktionen
-    const openChat = () => {
-      widgetEl.classList.add('is-open');
-      // Kleiner Timeout, damit der aktuelle Klick nicht sofort als "Klick außerhalb" gewertet wird
-      setTimeout(() => {
-        document.addEventListener('click', handleOutsideClick);
-      }, 10);
-    };
-
-    const closeChat = () => {
-      widgetEl.classList.remove('is-open');
-      document.removeEventListener('click', handleOutsideClick);
-    };
-
-    const toggleChat = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const isOpen = widgetEl.classList.contains('is-open');
-      if (isOpen) {
-        closeChat();
-      } else {
-        openChat();
-      }
-    };
-
-    const handleOutsideClick = (e) => {
-      // Wenn Klick NICHT im Widget ist, schließen
-      if (!widgetEl.contains(e.target)) {
-        closeChat();
-      }
-    };
-
-    // 3. Listener registrieren
-    toggleBtn.addEventListener('click', toggleChat);
-    if (closeBtn) closeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeChat();
-    });
-    if (backdropEl) backdropEl.addEventListener('click', closeChat);
-
-    // 4. Cleanup definieren
-    cleanupFn = () => {
-      toggleBtn.removeEventListener('click', toggleChat);
-      document.removeEventListener('click', handleOutsideClick);
-      // Optional: Close Button Listener müsste man auch entfernen, 
-      // aber bei Astro Page Swap werden eh die Elemente gelöscht.
-    };
-  }
-
-  // Starten
-  initChatbot();
-  document.addEventListener('astro:page-load', initChatbot);
+    document.addEventListener('astro:page-load', init);
+  })();
 </script>
