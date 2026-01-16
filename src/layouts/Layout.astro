@@ -6,6 +6,7 @@ import Footer from "@/components/sections/Footer.astro";
 import Header from "@/components/sections/Header.astro";
 import TrackGa from "@/components/widgets/TrackGa.astro";
 import CookieConsent from "@/components/widgets/CookieConsent.astro";
+import ChatBot from "@/components/widgets/ChatBot.astro";
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
@@ -48,6 +49,7 @@ import '../styles/article-enhancements.css';
       <slot />
     </main>
     <Footer />
+    <ChatBot />
     <CookieConsent />
     <!-- <script src="../assets/js/main.js"></script> -->
   </body>
