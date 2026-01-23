@@ -196,9 +196,9 @@ const faqs = [
 
         const tags = product.benefits?.slice(0, 2) || [product.productLine, 'Klinisch geprüft'];
 
-        const imgPath1 = `../src/assets/products/${product.slug}/${product.slug}_1.png`;
-        const imgPath2 = `../src/assets/products/${product.slug}/${product.slug}_2.png`;
-        const imgPath3 = `../src/assets/products/${product.slug}/${product.slug}_3.png`;
+        const imgPath1 = `/src/assets/products/${product.slug}/${product.slug}_1.png`;
+        const imgPath2 = `/src/assets/products/${product.slug}/${product.slug}_2.png`;
+        const imgPath3 = `/src/assets/products/${product.slug}/${product.slug}_3.png`;
 
 
         const mainImageSrc = imageFiles[imgPath1] ? imageFiles[imgPath1] : null;

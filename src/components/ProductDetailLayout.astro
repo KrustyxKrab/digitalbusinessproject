@@ -1,6 +1,7 @@
 ---
 import { Eye, Code } from '@lucide/astro';
 import type { ProductDetail } from '@/types/models';
+import { Image } from 'astro:assets';
 
 interface Props {
   product: ProductDetail;
@@ -8,6 +9,21 @@ interface Props {
 }
 
 const { product } = Astro.props;
+
+// --- BILDER LOGIK (NEU) ---
+// 1. Alle Produktbilder im Build-Prozess registrieren
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/products/**/*.{png,jpg,jpeg,webp}');
+
+// 2. Pfade für dieses spezifische Produkt definieren
+const imgPath1 = `/src/assets/products/${product.slug}/${product.slug}_1.png`;
+const imgPath2 = `/src/assets/products/${product.slug}/${product.slug}_2.png`;
+const imgPath3 = `/src/assets/products/${product.slug}/${product.slug}_3.png`;
+
+// 3. Die korrekten Import-Funktionen aus der Map holen
+const image1 = imageFiles[imgPath1];
+const image2 = imageFiles[imgPath2];
+const image3 = imageFiles[imgPath3];
+// --------------------------
 
 // Generate Schema.org structured data
 const schemaProduct = {
@@ -31,7 +47,6 @@ const schemaProduct = {
 };
 ---
 
-<!-- Vision Switch -->
 <div class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 py-4 transition-all">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-center gap-4">
@@ -56,12 +71,9 @@ const schemaProduct = {
   </div>
 </div>
 
-<!-- HUMAN FOCUS MODE -->
 <div id="human-mode" class="transition-all">
-  <!-- Product Header Section -->
   <section class="bg-white py-12">
     <div class="container mx-auto px-4">
-      <!-- Product Name -->
       <div class="mb-8">
         <h1 class="text-4xl md:text-5xl font-brand font-bold text-neutral-900 mb-2">
           {product.name}
@@ -71,39 +83,53 @@ const schemaProduct = {
         )}
       </div>
 
-      <!-- 3 Product Images Above Fold -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <!-- Main Image (Large, Left) -->
         <div class="md:col-span-2">
-          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50">
-            <img
-              src={`../src/assets/products/${product.slug}/${product.slug}_1.png`}
-              alt={`${product.name} - Hauptbild`}
-              class="w-full h-full object-cover"
-            />
+          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50 flex items-center justify-center">
+            {image1 ? (
+              <Image
+                src={image1()}
+                alt={`${product.name} - Hauptbild`}
+                class="w-full h-full object-cover"
+                width={800}
+                height={600}
+              />
+            ) : (
+              <span class="text-neutral-400">Bild nicht verfügbar</span>
+            )}
           </div>
         </div>
 
-        <!-- Images 2 & 3 (Stacked Vertically, Right) -->
         <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50">
-            <img
-              src={`../src/assets/products/${product.slug}/${product.slug}_2.png`}
-              alt={`${product.name} - Bild 2`}
-              class="w-full h-full object-cover"
-            />
+          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50 flex items-center justify-center">
+             {image2 ? (
+              <Image
+                src={image2()}
+                alt={`${product.name} - Bild 2`}
+                class="w-full h-full object-cover"
+                width={400}
+                height={300}
+              />
+            ) : (
+              <span class="text-neutral-400 text-sm">Bild 2 fehlt</span>
+            )}
           </div>
-          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50">
-            <img
-              src={`../src/assets/products/${product.slug}/${product.slug}_3.png`}
-              alt={`${product.name} - Bild 3`}
-              class="w-full h-full object-cover"
-            />
+          <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-50 flex items-center justify-center">
+            {image3 ? (
+              <Image
+                src={image3()}
+                alt={`${product.name} - Bild 3`}
+                class="w-full h-full object-cover"
+                width={400}
+                height={300}
+              />
+            ) : (
+              <span class="text-neutral-400 text-sm">Bild 3 fehlt</span>
+            )}
           </div>
         </div>
       </div>
 
-      <!-- Button Group -->
       <div class="flex flex-wrap gap-3 mb-8">
         <a
           href={`/beratung/wo-kaufen?product=${product.slug}`}
@@ -133,13 +159,11 @@ const schemaProduct = {
         </button>
       </div>
 
-      <!-- Product Description -->
       <div class="mb-8">
         <p class="text-lg text-neutral-700 leading-relaxed mb-6">
           {product.description}
         </p>
 
-        <!-- Badge -->
         {product.badge && (
           <div class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold">
             <span class="flex items-center gap-2">
@@ -150,7 +174,6 @@ const schemaProduct = {
         )}
       </div>
 
-      <!-- Benefits -->
       {product.benefits && product.benefits.length > 0 && (
         <div class="mb-8">
           <h2 class="text-2xl font-brand font-bold text-neutral-900 mb-4">
@@ -169,7 +192,6 @@ const schemaProduct = {
         </div>
       )}
 
-      <!-- AI Matching Score -->
       {product.matchingScore && (
         <div class="p-6 bg-gradient-to-r from-primary/5 to-orange-50 rounded-2xl border border-primary/20 mb-8">
           <div class="flex items-center justify-between mb-3">
@@ -188,7 +210,6 @@ const schemaProduct = {
         </div>
       )}
 
-      <!-- Online Retailers Section -->
       <div id="online-retailers" class="mb-8">
         <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-6">
           Online kaufen
@@ -249,7 +270,6 @@ const schemaProduct = {
         </div>
       </div>
 
-      <!-- Detailed Ingredients Section -->
       {product.ingredients && typeof product.ingredients === 'object' && 'active' in product.ingredients && (
         <section class="my-12">
           <h2 class="text-3xl font-brand font-bold text-neutral-900 mb-6">
@@ -287,7 +307,6 @@ const schemaProduct = {
     </div>
   </section>
 
-  <!-- Subscription Modal -->
   <div id="subscription-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
     <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
       <h3 class="text-2xl font-brand font-bold text-neutral-900 mb-4">
@@ -319,7 +338,6 @@ const schemaProduct = {
     </div>
   </div>
 
-  <!-- Scrollytelling Section -->
   <section class="py-24 bg-neutral-900 text-white relative overflow-hidden">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto text-center mb-16">
@@ -331,27 +349,23 @@ const schemaProduct = {
         </p>
       </div>
 
-      <!-- Animation Container -->
       <div class="relative h-[600px] flex items-center justify-center">
         <div id="tooth-animation" class="relative w-full max-w-2xl">
           <div class="relative aspect-square bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-3xl p-12">
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="relative">
-                <!-- Tooth Icon -->
                 <div class="text-white filter drop-shadow-2xl">
                   <svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                   </svg>
                 </div>
 
-                <!-- Protection Layer Animation -->
                 <div class="absolute inset-0 animate-pulse-ring">
                   <div class="absolute inset-0 border-4 border-primary rounded-full opacity-50"></div>
                 </div>
               </div>
             </div>
 
-            <!-- Info Labels -->
             {product.howItWorks.steps.map((step, index) => (
               <div
                 class={`absolute glass-dark p-4 rounded-xl animate-fade-in ${
@@ -371,7 +385,6 @@ const schemaProduct = {
     </div>
   </section>
 
-  <!-- Expert Video Section -->
   <section class="py-24 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
@@ -413,11 +426,9 @@ const schemaProduct = {
   </section>
 </div>
 
-<!-- CRAWLER FOCUS MODE -->
 <div id="crawler-mode" class="hidden transition-all">
   <div class="min-h-screen bg-gradient-to-br text-gray-500 font-mono p-8">
     <div class="max-w-6xl mx-auto">
-      <!-- Terminal Header -->
       <div class="mb-8 pb-4 border-b border-gray-400/30">
         <pre class="text-xs text-gray-500">
 elmex.de/produkte/{product.slug}
@@ -425,7 +436,6 @@ Last crawled: {new Date().toISOString()}
         </pre>
       </div>
 
-      <!-- Structured Data -->
       <section class="mb-12">
         <h1 class="text-2xl mb-4 text-gray-500">&lt;STRUCTURED DATA&gt;</h1>
         <pre class="bg-neutral-900 p-6 rounded-lg text-xs overflow-x-auto text-gray-500 leading-relaxed border border-gray-400/20">
@@ -433,7 +443,6 @@ Last crawled: {new Date().toISOString()}
         </pre>
       </section>
 
-      <!-- HTML Structure -->
       <section class="mb-12">
         <h1 class="text-2xl mb-4 text-gray-500">&lt;HTML HIERARCHY&gt;</h1>
         <div class="space-y-2 text-sm">
@@ -447,7 +456,6 @@ Last crawled: {new Date().toISOString()}
         </div>
       </section>
 
-      <!-- Benefits & Features -->
       <section class="mb-12">
         <h1 class="text-2xl mb-4 text-gray-500">&lt;KEY FEATURES&gt;</h1>
         <div class="space-y-3 text-sm">
@@ -460,7 +468,6 @@ Last crawled: {new Date().toISOString()}
         </div>
       </section>
 
-      <!-- Performance Metrics -->
       <section>
         <h1 class="text-2xl mb-4 text-gray-500">&lt;PERFORMANCE METRICS&gt;</h1>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -488,7 +495,6 @@ Last crawled: {new Date().toISOString()}
   </div>
 </div>
 
-<!-- Hidden Structured Data for Search Engines -->
 <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaProduct)} />
 
 <style>
