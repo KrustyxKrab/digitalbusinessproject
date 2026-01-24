@@ -341,7 +341,7 @@ const schemaProduct = {
   <section class="py-24 bg-neutral-900 text-white relative overflow-hidden">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-brand font-bold mb-6">
+        <h2 class="text-4xl md:text-5xl font-brand font-bold mb-6 text-white">
           {product.howItWorks.title}
         </h2>
         <p class="text-xl text-neutral-300">
@@ -349,29 +349,24 @@ const schemaProduct = {
         </p>
       </div>
 
-      <div class="relative h-[600px] flex items-center justify-center">
-        <div id="tooth-animation" class="relative w-full max-w-2xl">
-          <div class="relative aspect-square bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-3xl p-12">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="relative">
-                <div class="text-white filter drop-shadow-2xl">
-                  <svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                  </svg>
-                </div>
+      <div class="relative flex items-center justify-center">
+        <div id="tooth-animation" class="relative w-full max-w-4xl">
+          <div class="relative rounded-3xl overflow-hidden">
+            <!-- Molar Detail Bild -->
+            <img
+              src="/models/molar_detail.png"
+              alt="Zahnschmelz-Detailansicht - Wirkungsweise"
+              class="w-full h-auto object-contain"
+            />
 
-                <div class="absolute inset-0 animate-pulse-ring">
-                  <div class="absolute inset-0 border-4 border-primary rounded-full opacity-50"></div>
-                </div>
-              </div>
-            </div>
-
+            <!-- Wirkungsschritte als Overlay -->
             {product.howItWorks.steps.map((step, index) => (
               <div
                 class={`absolute glass-dark p-4 rounded-xl animate-fade-in ${
                   index === 0 ? 'top-8 left-8' :
                   index === 1 ? 'bottom-8 right-8' :
-                  'top-1/2 right-8'
+                  index === 2 ? 'top-1/2 right-8 -translate-y-1/2' :
+                  'bottom-8 left-8'
                 }`}
                 style={`animation-delay: ${index * 0.3}s`}
               >
@@ -427,70 +422,175 @@ const schemaProduct = {
 </div>
 
 <div id="crawler-mode" class="hidden transition-all">
-  <div class="min-h-screen bg-gradient-to-br text-gray-500 font-mono p-8">
+  <div class="min-h-screen bg-neutral-900 text-white font-mono p-8">
     <div class="max-w-6xl mx-auto">
-      <div class="mb-8 pb-4 border-b border-gray-400/30">
-        <pre class="text-xs text-gray-500">
-elmex.de/produkte/{product.slug}
-Last crawled: {new Date().toISOString()}
-        </pre>
+
+      <!-- Header -->
+      <div class="mb-8 pb-4 border-b border-neutral-700">
+        <h1 class="text-xl font-bold text-white mb-2">AI Crawler View</h1>
+        <p class="text-neutral-400 text-sm">So sieht eine KI/Crawler diese Produktseite - optimiert für Generative Engine Optimization (GEO)</p>
       </div>
 
-      <section class="mb-12">
-        <h1 class="text-2xl mb-4 text-gray-500">&lt;STRUCTURED DATA&gt;</h1>
-        <pre class="bg-neutral-900 p-6 rounded-lg text-xs overflow-x-auto text-gray-500 leading-relaxed border border-gray-400/20">
-{JSON.stringify(schemaProduct, null, 2)}
-        </pre>
-      </section>
+      <!-- Complete Product Page HTML -->
+      <section class="mb-10">
+        <h2 class="text-lg font-bold text-white mb-2">Produktseite HTML-Struktur</h2>
+        <p class="text-neutral-400 text-sm mb-4">Der vollständige Code dieser Produktseite mit JSON-LD Schema und semantischem HTML</p>
+        <div class="bg-neutral-950 rounded-xl overflow-hidden border border-neutral-800">
+          <div class="flex items-center gap-2 px-4 py-2 bg-neutral-800 border-b border-neutral-700">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <span class="text-neutral-400 text-xs ml-2">produkte/{product.slug}.html</span>
+          </div>
+          <pre class="p-5 text-sm overflow-x-auto leading-relaxed"><code class="text-white"><span class="text-neutral-500">&lt;!-- JSON-LD Structured Data --&gt;</span>
+<span class="text-red-400">&lt;script</span> <span class="text-orange-300">type</span>=<span class="text-green-300">"application/ld+json"</span><span class="text-red-400">&gt;</span>
+{`{`}
+  <span class="text-blue-300">"@context"</span>: <span class="text-green-300">"https://schema.org/"</span>,
+  <span class="text-blue-300">"@type"</span>: <span class="text-green-300">"Product"</span>,
+  <span class="text-blue-300">"name"</span>: <span class="text-green-300">"{product.name}"</span>,
+  <span class="text-blue-300">"description"</span>: <span class="text-green-300">"{product.description}"</span>,
+  <span class="text-blue-300">"brand"</span>: {`{`}
+    <span class="text-blue-300">"@type"</span>: <span class="text-green-300">"Brand"</span>,
+    <span class="text-blue-300">"name"</span>: <span class="text-green-300">"elmex"</span>
+  {`}`},
+  <span class="text-blue-300">"sku"</span>: <span class="text-green-300">"{product.sku}"</span>,
+  <span class="text-blue-300">"offers"</span>: {`{`}
+    <span class="text-blue-300">"@type"</span>: <span class="text-green-300">"Offer"</span>,
+    <span class="text-blue-300">"price"</span>: <span class="text-yellow-200">{product.price.toFixed(2)}</span>,
+    <span class="text-blue-300">"priceCurrency"</span>: <span class="text-green-300">"EUR"</span>,
+    <span class="text-blue-300">"availability"</span>: <span class="text-green-300">"{product.availability}"</span>
+  {`}`},
+  <span class="text-blue-300">"aggregateRating"</span>: {`{`}
+    <span class="text-blue-300">"@type"</span>: <span class="text-green-300">"AggregateRating"</span>,
+    <span class="text-blue-300">"ratingValue"</span>: <span class="text-yellow-200">{product.rating.value}</span>,
+    <span class="text-blue-300">"reviewCount"</span>: <span class="text-yellow-200">{product.rating.count}</span>
+  {`}`}
+{`}`}
+<span class="text-red-400">&lt;/script&gt;</span>
 
-      <section class="mb-12">
-        <h1 class="text-2xl mb-4 text-gray-500">&lt;HTML HIERARCHY&gt;</h1>
-        <div class="space-y-2 text-sm">
-          <div class="pl-0">&lt;h1&gt; {product.name} &lt;/h1&gt;</div>
-          <div class="pl-4">&lt;h2&gt; {product.howItWorks.title} &lt;/h2&gt;</div>
-          {product.howItWorks.steps.map((step) => (
-            <div class="pl-8">&lt;h3&gt; {step.title} &lt;/h3&gt;</div>
-          ))}
-          <div class="pl-4">&lt;h2&gt; {product.usage.title} &lt;/h2&gt;</div>
-          <div class="pl-4">&lt;h2&gt; Inhaltsstoffe &lt;/h2&gt;</div>
+<span class="text-neutral-500">&lt;!-- Semantic HTML5 Structure --&gt;</span>
+<span class="text-red-400">&lt;article</span> <span class="text-orange-300">itemscope</span> <span class="text-orange-300">itemtype</span>=<span class="text-green-300">"https://schema.org/Product"</span><span class="text-red-400">&gt;</span>
+
+  <span class="text-neutral-500">&lt;!-- Product Header --&gt;</span>
+  <span class="text-red-400">&lt;header&gt;</span>
+    <span class="text-red-400">&lt;h1</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"name"</span><span class="text-red-400">&gt;</span><span class="text-white">{product.name}</span><span class="text-red-400">&lt;/h1&gt;</span>
+    {product.subtitle && <><span class="text-red-400">&lt;p</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"alternateName"</span><span class="text-red-400">&gt;</span><span class="text-white">{product.subtitle}</span><span class="text-red-400">&lt;/p&gt;</span></>}
+  <span class="text-red-400">&lt;/header&gt;</span>
+
+  <span class="text-neutral-500">&lt;!-- Product Description --&gt;</span>
+  <span class="text-red-400">&lt;section</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"description"</span><span class="text-red-400">&gt;</span>
+    <span class="text-white">{product.description}</span>
+  <span class="text-red-400">&lt;/section&gt;</span>
+
+  <span class="text-neutral-500">&lt;!-- Brand Entity --&gt;</span>
+  <span class="text-red-400">&lt;div</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"brand"</span> <span class="text-orange-300">itemscope</span> <span class="text-orange-300">itemtype</span>=<span class="text-green-300">"https://schema.org/Brand"</span><span class="text-red-400">&gt;</span>
+    <span class="text-red-400">&lt;meta</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"name"</span> <span class="text-orange-300">content</span>=<span class="text-green-300">"elmex"</span> <span class="text-red-400">/&gt;</span>
+  <span class="text-red-400">&lt;/div&gt;</span>
+
+  <span class="text-neutral-500">&lt;!-- Price and Availability --&gt;</span>
+  <span class="text-red-400">&lt;div</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"offers"</span> <span class="text-orange-300">itemscope</span> <span class="text-orange-300">itemtype</span>=<span class="text-green-300">"https://schema.org/Offer"</span><span class="text-red-400">&gt;</span>
+    <span class="text-red-400">&lt;meta</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"price"</span> <span class="text-orange-300">content</span>=<span class="text-green-300">"{product.price.toFixed(2)}"</span> <span class="text-red-400">/&gt;</span>
+    <span class="text-red-400">&lt;meta</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"priceCurrency"</span> <span class="text-orange-300">content</span>=<span class="text-green-300">"EUR"</span> <span class="text-red-400">/&gt;</span>
+    <span class="text-red-400">&lt;link</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"availability"</span> <span class="text-orange-300">href</span>=<span class="text-green-300">"{product.availability}"</span> <span class="text-red-400">/&gt;</span>
+  <span class="text-red-400">&lt;/div&gt;</span>
+
+  <span class="text-neutral-500">&lt;!-- Rating --&gt;</span>
+  <span class="text-red-400">&lt;div</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"aggregateRating"</span> <span class="text-orange-300">itemscope</span> <span class="text-orange-300">itemtype</span>=<span class="text-green-300">"https://schema.org/AggregateRating"</span><span class="text-red-400">&gt;</span>
+    <span class="text-red-400">&lt;meta</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"ratingValue"</span> <span class="text-orange-300">content</span>=<span class="text-green-300">"{product.rating.value}"</span> <span class="text-red-400">/&gt;</span>
+    <span class="text-red-400">&lt;meta</span> <span class="text-orange-300">itemprop</span>=<span class="text-green-300">"reviewCount"</span> <span class="text-orange-300">content</span>=<span class="text-green-300">"{product.rating.count}"</span> <span class="text-red-400">/&gt;</span>
+  <span class="text-red-400">&lt;/div&gt;</span>
+
+  <span class="text-neutral-500">&lt;!-- Product Benefits --&gt;</span>
+  {product.benefits && product.benefits.length > 0 && (<>
+  <span class="text-red-400">&lt;section</span> <span class="text-orange-300">aria-labelledby</span>=<span class="text-green-300">"benefits"</span><span class="text-red-400">&gt;</span>
+    <span class="text-red-400">&lt;h2</span> <span class="text-orange-300">id</span>=<span class="text-green-300">"benefits"</span><span class="text-red-400">&gt;</span><span class="text-white">Vorteile</span><span class="text-red-400">&lt;/h2&gt;</span>
+    <span class="text-red-400">&lt;ul&gt;</span>
+{product.benefits.map((benefit) => (
+      <span class="text-red-400">&lt;li&gt;</span><span class="text-white">{benefit}</span><span class="text-red-400">&lt;/li&gt;</span>
+))}
+    <span class="text-red-400">&lt;/ul&gt;</span>
+  <span class="text-red-400">&lt;/section&gt;</span>
+  </>)}
+
+  <span class="text-neutral-500">&lt;!-- Ingredients --&gt;</span>
+  {product.ingredients && typeof product.ingredients === 'object' && 'active' in product.ingredients && (<>
+  <span class="text-red-400">&lt;section</span> <span class="text-orange-300">aria-labelledby</span>=<span class="text-green-300">"ingredients"</span><span class="text-red-400">&gt;</span>
+    <span class="text-red-400">&lt;h2</span> <span class="text-orange-300">id</span>=<span class="text-green-300">"ingredients"</span><span class="text-red-400">&gt;</span><span class="text-white">Inhaltsstoffe</span><span class="text-red-400">&lt;/h2&gt;</span>
+    <span class="text-red-400">&lt;h3&gt;</span><span class="text-white">Wirkstoffe</span><span class="text-red-400">&lt;/h3&gt;</span>
+    <span class="text-red-400">&lt;ul&gt;</span>
+{product.ingredients.active.map((ingredient: any) => (
+      <span class="text-red-400">&lt;li&gt;</span><span class="text-red-400">&lt;strong&gt;</span><span class="text-white">{ingredient.name}</span><span class="text-red-400">&lt;/strong&gt;</span><span class="text-white">{ingredient.description}</span><span class="text-red-400">&lt;/li&gt;</span>
+))}
+    <span class="text-red-400">&lt;/ul&gt;</span>
+    <span class="text-red-400">&lt;p&gt;</span><span class="text-white">{product.ingredients.other}</span><span class="text-red-400">&lt;/p&gt;</span>
+  <span class="text-red-400">&lt;/section&gt;</span>
+  </>)}
+
+<span class="text-red-400">&lt;/article&gt;</span></code></pre>
         </div>
       </section>
 
-      <section class="mb-12">
-        <h1 class="text-2xl mb-4 text-gray-500">&lt;KEY FEATURES&gt;</h1>
-        <div class="space-y-3 text-sm">
-          {product.benefits.map((benefit, index) => (
-            <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
-              <span class="text-gray-300">[BENEFIT_{index + 1}]</span>
-              <p class="text-gray-400/80 mt-2">{benefit}</p>
+      <!-- Extracted Data Summary -->
+      <section class="mb-10">
+        <h2 class="text-lg font-bold text-white mb-2">Extrahierte Produktdaten</h2>
+        <p class="text-neutral-400 text-sm mb-4">Diese Daten kann eine KI aus der Seite extrahieren und zitieren</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-neutral-950 rounded-xl p-5 border border-neutral-800">
+            <h3 class="text-white text-sm font-semibold mb-3 uppercase tracking-wide">Produkt</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between"><span class="text-neutral-400">Name:</span><span class="text-white">{product.name}</span></div>
+              <div class="flex justify-between"><span class="text-neutral-400">SKU:</span><span class="text-white">{product.sku}</span></div>
+              <div class="flex justify-between"><span class="text-neutral-400">Preis:</span><span class="text-white">{product.price.toFixed(2)} EUR</span></div>
+              <div class="flex justify-between"><span class="text-neutral-400">Bewertung:</span><span class="text-white">{product.rating.value}/5 ({product.rating.count} Reviews)</span></div>
+              <div class="flex justify-between"><span class="text-neutral-400">Verfügbarkeit:</span><span class="text-white">{product.availability}</span></div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h1 class="text-2xl mb-4 text-gray-500">&lt;PERFORMANCE METRICS&gt;</h1>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
-            <div class="text-xs text-gray-500 mb-1">Load Time</div>
-            <div class="text-2xl font-bold">0.3s</div>
           </div>
-          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
-            <div class="text-xs text-gray-500 mb-1">DOM Elements</div>
-            <div class="text-2xl font-bold">127</div>
-          </div>
-          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
-            <div class="text-xs text-gray-500 mb-1">Page Weight</div>
-            <div class="text-2xl font-bold">24KB</div>
-          </div>
-          <div class="p-4 bg-neutral-900 rounded border border-gray-400/20">
-            <div class="text-xs text-gray-500 mb-1">Carbon</div>
-            <div class="text-2xl font-bold">0.1g</div>
-            <div class="text-xs text-gray-500 mt-1">CO₂</div>
+          <div class="bg-neutral-950 rounded-xl p-5 border border-neutral-800">
+            <h3 class="text-white text-sm font-semibold mb-3 uppercase tracking-wide">Marke & Kategorie</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between"><span class="text-neutral-400">Brand:</span><span class="text-white">elmex</span></div>
+              <div class="flex justify-between"><span class="text-neutral-400">Kategorie:</span><span class="text-white">Zahnpflege</span></div>
+              <div class="flex justify-between"><span class="text-neutral-400">URL:</span><span class="text-white">/produkte/{product.slug}</span></div>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Benefits -->
+      {product.benefits && product.benefits.length > 0 && (
+      <section class="mb-10">
+        <h2 class="text-lg font-bold text-white mb-2">Produktvorteile</h2>
+        <p class="text-neutral-400 text-sm mb-4">Strukturierte Benefits die eine KI zitieren kann</p>
+        <div class="bg-neutral-950 rounded-xl p-5 border border-neutral-800">
+          <ul class="space-y-2 text-sm">
+            {product.benefits.map((benefit, index) => (
+              <li class="flex items-start gap-3 text-white">
+                <span class="text-neutral-500">{index + 1}.</span>
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      )}
+
+      <!-- Ingredients -->
+      {product.ingredients && typeof product.ingredients === 'object' && 'active' in product.ingredients && (
+      <section class="mb-10">
+        <h2 class="text-lg font-bold text-white mb-2">Inhaltsstoffe</h2>
+        <p class="text-neutral-400 text-sm mb-4">Wirkstoffe und weitere Inhaltsstoffe</p>
+        <div class="bg-neutral-950 rounded-xl p-5 border border-neutral-800">
+          <h3 class="text-white text-sm font-semibold mb-3">Wirkstoffe</h3>
+          <ul class="space-y-2 text-sm mb-4">
+            {product.ingredients.active.map((ingredient: any) => (
+              <li class="text-white"><span class="font-semibold">{ingredient.name}</span><span class="text-neutral-400"> - {ingredient.description}</span></li>
+            ))}
+          </ul>
+          <h3 class="text-white text-sm font-semibold mb-2">Weitere Inhaltsstoffe</h3>
+          <p class="text-neutral-400 text-sm">{product.ingredients.other}</p>
+        </div>
+      </section>
+      )}
     </div>
   </div>
 </div>
@@ -498,6 +598,16 @@ Last crawled: {new Date().toISOString()}
 <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaProduct)} />
 
 <style>
+  /* Override global h1, h2, h3 color for dark sections */
+  #crawler-mode h1,
+  #crawler-mode h2,
+  #crawler-mode h3,
+  .bg-neutral-900 h1,
+  .bg-neutral-900 h2,
+  .bg-neutral-900 h3 {
+    color: white;
+  }
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0px);
