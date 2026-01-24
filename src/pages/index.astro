@@ -27,10 +27,17 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
 
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/90 via-neutral-900/60 to-neutral-900/40 sm:bg-neutral-900/70 sm:mix-blend-multiply"></div>
+      <!-- Mobile Hero Image -->
+      <img
+        src="/products/hero_toothpaste.jpeg"
+        alt="Elmex Zahnpasta"
+        class="w-full h-full object-cover opacity-80 object-center sm:hidden"
+      />
+      <!-- Desktop Hero Image -->
       <img
         src="assets/experts/expert-landscape-3.png"
         alt="Elmex Labor und Forschung"
-        class="w-full h-full object-cover opacity-80 object-[75%_top] sm:object-center"
+        class="w-full h-full object-cover opacity-80 object-center hidden sm:block"
       />
     </div>
 
@@ -46,9 +53,9 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
           <span class="hidden sm:block sm:text-xl md:text-2xl">Profitieren Sie von jahrzehntelanger zahnmedizinischer Forschung. Nutzen Sie unsere digitalen Tools für eine präzise Analyse Ihres individuellen Bedarfs.</span>
         </p>
 
-        <div class="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3 will-animate animate-fade-in" style="animation-delay: 0.4s;">
-          
-          <a href="/beratung/produktfinder" class="group relative bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white hover:border-white rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 hover:shadow-2xl text-left overflow-hidden flex items-center gap-4 sm:block">
+        <div class="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3 will-animate animate-fade-in mt-8 sm:mt-0" style="animation-delay: 0.4s;">
+
+          <a href="/beratung/produktfinder" class="group relative bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white hover:border-white rounded-xl sm:rounded-2xl p-5 sm:p-6 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 hover:shadow-2xl text-left overflow-hidden flex items-center gap-4 sm:block">
             <div class="hidden sm:block absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
               <ArrowRight class="w-5 h-5 text-white group-hover:text-primary" />
             </div>
@@ -64,7 +71,7 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
             <ArrowRight class="w-5 h-5 text-white/60 flex-shrink-0 sm:hidden" />
           </a>
 
-          <a href="/onboarding" class="group relative bg-primary/90 backdrop-blur-md border border-primary/50 hover:bg-primary-dark rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 hover:shadow-2xl text-left flex items-center gap-4 sm:block">
+          <a href="/onboarding" class="group relative bg-primary/90 backdrop-blur-md border border-primary/50 hover:bg-primary-dark rounded-xl sm:rounded-2xl p-5 sm:p-6 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 hover:shadow-2xl text-left flex items-center gap-4 sm:block">
             <div class="absolute top-2 right-2 sm:top-0 sm:right-0 sm:p-4">
                <span class="flex h-2.5 w-2.5 sm:h-3 sm:w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -83,7 +90,7 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
             <ArrowRight class="w-5 h-5 text-white/60 flex-shrink-0 sm:hidden" />
           </a>
 
-          <a href="/beratung/foto-analyse" class="group relative bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white hover:border-white rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 hover:shadow-2xl text-left overflow-hidden flex items-center gap-4 sm:block">
+          <a href="/beratung/foto-analyse" class="group relative bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white hover:border-white rounded-xl sm:rounded-2xl p-5 sm:p-6 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 hover:shadow-2xl text-left overflow-hidden flex items-center gap-4 sm:block">
              <div class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-teal-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full uppercase tracking-wider">
                Neu
              </div>

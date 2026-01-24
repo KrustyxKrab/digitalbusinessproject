@@ -8,8 +8,8 @@
   .back-to-top {
     position: fixed;
     /* Aligned with Chatbot default position */
-    bottom: 1.5rem; 
-    right: 1.5rem;
+    bottom: 1rem;
+    right: 1rem;
     
     /* Fixed Dimensions to match Chatbot height */
     width: 3rem;  /* h-12 equivalent */
@@ -41,6 +41,13 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+  }
+
+  @media (min-width: 640px) {
+    .back-to-top {
+      bottom: 1.5rem;
+      right: 1.5rem;
+    }
   }
 </style>
 

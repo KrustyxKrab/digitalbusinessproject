@@ -88,6 +88,21 @@
     transform: translateY(0) scale(1);
     pointer-events: auto;
   }
+
+  /* Shift left when ToTop button is visible */
+  #chatbot-widget.shift-left {
+    right: calc(1rem + 3rem + 0.75rem); /* right-4 + ToTop width + gap */
+  }
+
+  @media (min-width: 640px) {
+    #chatbot-widget.shift-left {
+      right: calc(1.5rem + 3rem + 0.75rem); /* right-6 + ToTop width + gap */
+    }
+  }
+
+  #chatbot-widget {
+    transition: right 0.3s ease;
+  }
 </style>
 
 <script is:inline>
