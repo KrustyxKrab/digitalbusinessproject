@@ -73,7 +73,7 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
       <div class="grid md:grid-cols-2 gap-0">
         <div class="p-8 md:p-12 flex flex-col justify-center text-white">
           
-          <h2 class="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
+          <h2 id="text-white" class="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
             Featured Article
           </h2>
 
@@ -81,7 +81,7 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <Award class="w-3 h-3" />
             Neue Studie 2025
           </div>
-          <h2 class="text-3xl md:text-4xl font-brand font-bold mb-4 text-white">
+          <h2 id="text-white" class="text-3xl md:text-4xl font-brand font-bold mb-4 text-white">
             Wie Aminfluorid den Zahnschmelz remineralisiert
           </h2>
           <p class="text-neutral-300 mb-6 text-lg leading-relaxed">
@@ -618,4 +618,10 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
   });
 </script>
 
-</Layout>
+<style>
+  #text-white {
+    color: #ffffff;
+  }
+</style>
+
+</Layout> 
