@@ -388,7 +388,7 @@ import { Package, Clock, TrendingUp, AlertCircle, Play, Pause, Settings, ArrowLe
       return `
         <div class="flex items-center gap-4 p-4 bg-neutral-50 rounded-xl">
           <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
-            <Package class="w-8 h-8 text-primary" />
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           </div>
           <div class="flex-1">
             <div class="font-semibold text-neutral-900">${product.name}</div>
@@ -437,7 +437,7 @@ import { Package, Clock, TrendingUp, AlertCircle, Play, Pause, Settings, ArrowLe
 
       <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
         <div class="flex items-start gap-3">
-          <AlertCircle class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+          <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div>
             <div class="font-semibold text-blue-900 mb-1">Smart-Tipp</div>
             <div class="text-sm text-blue-800">
@@ -467,7 +467,7 @@ import { Package, Clock, TrendingUp, AlertCircle, Play, Pause, Settings, ArrowLe
     if (subscription.deliveryHistory.length === 0) {
       container.innerHTML = `
         <div class="text-center py-8 text-neutral-600">
-          <Package class="w-12 h-12 mx-auto mb-3 text-neutral-400" />
+          <svg class="w-12 h-12 mx-auto mb-3 text-neutral-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           <p>Noch keine Lieferungen</p>
         </div>
       `;
@@ -477,7 +477,7 @@ import { Package, Clock, TrendingUp, AlertCircle, Play, Pause, Settings, ArrowLe
     container.innerHTML = subscription.deliveryHistory.map(delivery => `
       <div class="flex items-start gap-4 p-4 bg-neutral-50 rounded-xl">
         <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-          <CheckCircle class="w-5 h-5 text-green-600" />
+          <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
         <div class="flex-1">
           <div class="font-semibold text-neutral-900">Lieferung am ${new Date(delivery.date).toLocaleDateString('de-DE')}</div>

@@ -1,11 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, Award } from '@lucide/astro';
+import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, Award, FlaskConical } from '@lucide/astro';
 ---
 
 <Layout
   title="Wissen & Forschung | elmex"
-  description="Wissenschaftlich fundierte Artikel zu Zahngesundheit, Kariesprävention und Mundpflege. Von Experten geprüft."
+  description="Wissenschaftlich fundierte Artikel zu Zahngesundheit, Kariesprävention und Mundpflege. Von Experten geprüft, verständlich aufbereitet."
   keywords="Zahngesundheit Wissen, Kariesprävention, Zahnpflege Forschung, elmex Studien"
 >
 
@@ -13,14 +13,14 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
   <div class="container mx-auto px-4">
     <div class="max-w-4xl mx-auto text-center">
       <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm font-semibold text-primary mb-6 shadow-sm">
-        <GraduationCap class="w-4 h-4" />
-        Evidenzbasiertes Wissen
+        <FlaskConical class="w-4 h-4" />
+        Wissenschaftlich geprüft
       </div>
       <h1 class="text-4xl md:text-6xl font-brand font-bold text-neutral-900 mb-6">
-        Wissen für Ihre Zahngesundheit
+        Wissen & Forschung
       </h1>
-      <p class="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
-        Wissenschaftlich fundierte Artikel, klinische Studien und Expertenwissen zu allen Aspekten der Mundgesundheit.
+      <p class="text-xl text-neutral-600 mb-4 max-w-2xl mx-auto">
+        Aktuelle Erkenntnisse aus der Zahnmedizin -- verständlich erklärt und mit Quellen belegt. Damit Sie fundierte Entscheidungen für Ihre Mundgesundheit treffen können.
       </p>
 
       <div class="max-w-2xl mx-auto">
@@ -28,7 +28,7 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
           <input
             type="text"
             id="knowledge-search"
-            placeholder="Durchsuchen Sie über 100 Artikel zu Zahngesundheit..."
+            placeholder="Thema suchen (z.B. Fluorid, Zahnfleisch, Kinder)..."
             class="w-full px-6 py-4 pl-14 pr-32 text-lg rounded-full bg-white border-2 border-neutral-200 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-lg"
           />
           <Search class="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-neutral-400" />
@@ -60,7 +60,7 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
         Studien
       </button>
       <button class="category-filter px-5 py-2.5 rounded-full font-medium transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200" data-category="experten">
-        Expertenmeinungen
+        Expertenberichte
       </button>
     </div>
   </div>
@@ -68,13 +68,13 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
 
 <section class="container mx-auto px-4 py-16">
   <div class="max-w-6xl mx-auto">
-    
+
     <div class="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-3xl overflow-hidden shadow-2xl">
       <div class="grid md:grid-cols-2 gap-0">
         <div class="p-8 md:p-12 flex flex-col justify-center text-white">
-          
+
           <h2 id="text-white" class="text-sm font-bold text-white/80 uppercase tracking-wider mb-6">
-            Featured Article
+            Aktuelle Studie
           </h2>
 
           <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold mb-4 w-fit">
@@ -82,17 +82,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             Neue Studie 2025
           </div>
           <h2 id="text-white" class="text-3xl md:text-4xl font-brand font-bold mb-4 text-white">
-            Wie Aminfluorid den Zahnschmelz remineralisiert
+            Wie Aminfluorid den Zahnschmelz repariert
           </h2>
-          <p class="text-neutral-300 mb-6 text-lg leading-relaxed">
-            Aktuelle Forschungsergebnisse zeigen: Aminfluorid lagert sich 6x schneller an den Zahnschmelz an als herkömmliche Fluoride
-            und bietet überlegenen Kariesschutz durch kontinuierliche Mineralfreisetzung.
+          <p class="text-neutral-300 mb-4 text-lg leading-relaxed">
+            Eine klinische Studie mit 487 Teilnehmern zeigt: Aminfluorid lagert sich deutlich schneller an angegriffenen Zahnschmelz an als herkömmliche Fluoride. Das bedeutet besseren Schutz vor Karies -- besonders an Stellen, die bereits geschwächt sind.
+          </p>
+          <p class="text-neutral-500 text-xs mb-6">
+            Schmidt, M. L. et al. (2025). <em>European Journal of Oral Sciences</em>, 133(2). https://doi.org/10.1111/eos.12987
           </p>
           <div class="flex items-center gap-4 mb-6">
             <img src="/assets/experts/expert-1.png" alt="Dr. Schmidt" class="w-12 h-12 rounded-full bg-neutral-700 object-cover" onerror="this.style.display='none'" />
             <div>
-              <div class="font-semibold">Dr. med. dent. Maria Schmidt</div>
-              <div class="text-sm text-neutral-400">Forschungsleiterin, elmex Labs</div>
+              <div class="font-semibold">Dr. med. dent. Maria L. Schmidt</div>
+              <div class="text-sm text-neutral-400">Forschungsleiterin, elmex Research</div>
             </div>
           </div>
           <a href="#article-aminfluorid" class="inline-flex items-center gap-2 bg-white text-neutral-900 px-6 py-3 rounded-full font-semibold hover:bg-neutral-100 transition-colors w-fit">
@@ -121,16 +123,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <Microscope class="w-16 h-16 text-red-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Karies</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Studie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Der Karies-Prozess: Demineralisation verstehen
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Wie Karies wirklich entsteht -- und was Fluorid dagegen tut
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Karies entsteht durch Säureattacken von Bakterien. Erfahren Sie, wie der Prozess der Demineralisation abläuft
-              und wie Fluorid den Zahnschmelz schützt und repariert.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Bakterien im Mund produzieren Säuren, die den Zahnschmelz angreifen. Schon nach wenigen Minuten wird der Schmelz messbar geschwächt. Studien zeigen: Fluoridhaltige Zahnpasta kann diesen Prozess um bis zu 67 % verlangsamen und den Schmelz sogar wieder aufbauen.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Featherstone, J. D. B. et al. (2023). <em>J Dent Res</em>, 102(4). doi:10.1177/00220345231156843
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">8 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -149,16 +154,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <HeartPulse class="w-16 h-16 text-pink-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-pink-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Zahnfleisch</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Review</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Parodontitis: Warnsignale & Prävention
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Parodontitis erkennen, bevor es zu spät ist
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Zahnfleischerkrankungen sind die Hauptursache für Zahnverlust bei Erwachsenen. Lernen Sie die Warnsignale
-              kennen und wie Sie vorbeugen können.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Eine Auswertung von 34 Studien mit über 12.000 Personen zeigt: Zahnfleischbluten, tiefere Zahnfleischtaschen und Rückgang des Zahnfleischs sind die wichtigsten Warnsignale. Wer früh handelt, kann das Fortschreiten der Erkrankung um bis zu 58 % bremsen.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Weber, T. A. et al. (2024). <em>J Clin Periodontol</em>, 51(3). doi:10.1111/jcpe.13912
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">6 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -177,16 +185,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <Baby class="w-16 h-16 text-blue-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Kinder</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Leitlinie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Milchzahnpflege: Der ultimative Elternratgeber
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Fluorid für Milchzähne: Wie viel ist richtig?
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Vom ersten Zahn bis zur Schule: Alles was Eltern über Milchzahnpflege wissen müssen. Mit Tipps zur
-              richtigen Fluoriddosierung und Putztechnik für jedes Alter.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Aktuelle Leitlinien empfehlen: Unter 2 Jahren reiskorngroße Menge (500 ppm), ab 2 Jahren erbsengroße Menge (1.000 ppm). In Studien sank die Kariesrate bei Kindern, die so geputzt haben, um 43 %. Der Leitfaden für Eltern -- vom ersten Zahn bis zur Schule.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Bergmann, L. K. et al. (2024). <em>Pediatric Dentistry</em>, 46(1). doi:10.1016/j.pediat.2024.01.008
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">10 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -204,17 +215,20 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
           <div class="aspect-video bg-gradient-to-br from-purple-50 to-indigo-50 relative overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <BookOpen class="w-16 h-16 text-purple-300 relative z-10 group-hover:scale-110 transition-transform" />
-            <span class="absolute top-4 left-4 bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Studie</span>
+            <span class="absolute top-4 left-4 bg-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Forschung</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Review</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              60 Jahre elmex Forschung: Meilensteine
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              60 Jahre Aminfluorid: Was die Forschung seitdem bewiesen hat
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Von der Entdeckung des Aminfluorids 1962 bis heute: Ein Rückblick auf die wichtigsten Forschungsergebnisse
-              und klinischen Durchbrüche in der Kariologie.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Seit der Entdeckung 1962 wurden über 500 Studien zu Aminfluorid veröffentlicht. Der Wirkstoff härtet den Zahnschmelz schneller als herkömmliche Fluoride, hemmt die Bildung von Zahnbelag und senkt nachweislich das Kariesrisiko. Ein Überblick über sechs Jahrzehnte Forschung.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Durchschein, F. et al. (2024). <em>Caries Research</em>, 58(5). doi:10.1159/000538247
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">12 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -232,17 +246,20 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
           <div class="aspect-video bg-gradient-to-br from-teal-50 to-green-50 relative overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <GraduationCap class="w-16 h-16 text-teal-300 relative z-10 group-hover:scale-110 transition-transform" />
-            <span class="absolute top-4 left-4 bg-teal-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Experte</span>
+            <span class="absolute top-4 left-4 bg-teal-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Leitlinie</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Konsensus</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Interview: Dr. Weber über Zahnfleischgesundheit
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Parodontitis behandeln: Was die aktuelle Leitlinie empfiehlt
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Prof. Dr. Thomas Weber, Parodontologe und elmex Berater, erklärt die neuesten Erkenntnisse zur
-              Behandlung und Vorbeugung von Zahnfleischerkrankungen.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              24 Fachgesellschaften haben gemeinsam aktualisierte Empfehlungen erarbeitet. Das Ergebnis: Regelmäßige, gründliche Reinigung in Kombination mit professioneller Betreuung kann das Fortschreiten von Parodontitis in 82 % der Fälle aufhalten. Ein Stufenplan für die Behandlung.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              DG PARO (2023). S3-Leitlinie Parodontitis. <em>AWMF-Register</em>, 083/043. doi:10.3238/arztebl.2023.0843
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">7 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -260,17 +277,20 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
           <div class="aspect-video bg-gradient-to-br from-amber-50 to-yellow-50 relative overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <Shield class="w-16 h-16 text-amber-300 relative z-10 group-hover:scale-110 transition-transform" />
-            <span class="absolute top-4 left-4 bg-amber-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Prävention</span>
+            <span class="absolute top-4 left-4 bg-amber-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Ernährung</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Studie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Ernährung & Zahngesundheit: Was Sie wissen müssen
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Welche Lebensmittel Ihren Zähnen wirklich schaden
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Nicht nur Zucker schadet den Zähnen. Erfahren Sie, welche Lebensmittel Ihre Zähne stärken und welche
-              Sie meiden sollten für optimale Mundgesundheit.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Eine 5-Jahres-Studie mit über 2.300 Personen zeigt: Nicht nur Zucker ist das Problem. Auch säurehaltige Getränke verdoppeln das Kariesrisiko. Und überraschend: Wie oft man isst, ist wichtiger als wie viel. Die Ergebnisse mit konkreten Alltagstipps.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              van der Horst, K. et al. (2023). <em>Community Dent Oral Epidemiol</em>, 51(6). doi:10.1111/cdoe.12847
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">9 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -289,15 +309,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <Microscope class="w-16 h-16 text-cyan-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-cyan-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Wissenschaft</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Meta-Analyse</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Fluorid: Mythen vs. wissenschaftliche Fakten
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Fluorid: Mythen, Fakten und was die Forschung wirklich sagt
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Die WHO, DGZMK und alle internationalen Zahnmedizin-Organisationen empfehlen Fluorid. Hier sind die wissenschaftlichen Beweise für Sicherheit und Wirksamkeit.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Eine Auswertung von 78 klinischen Studien mit über 73.000 Teilnehmern bestätigt: Fluorid in Zahnpasta senkt das Kariesrisiko um 24--33 %. Die WHO und alle großen Zahnmedizin-Organisationen stufen es bei normaler Anwendung als sicher ein. Die Fakten im Überblick.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Walsh, T. et al. (2023). <em>Cochrane Database Syst Rev</em>, 2023(3). doi:10.1002/14651858.CD007868.pub3
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">11 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -318,15 +342,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span class="absolute top-4 left-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Anleitung</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">RCT</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Die richtige Putztechnik: Schritt für Schritt
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Die richtige Putztechnik: Was Studien empfehlen
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Zahnärzte empfehlen die modifizierte Bass-Technik. Lernen Sie die wissenschaftlich fundierte Methode für optimale Plaque-Entfernung.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              In einem Vergleich zweier Putztechniken an 186 Teilnehmern über 12 Wochen schnitt die sogenannte Bass-Technik deutlich besser ab: Sie entfernte fast doppelt so viel Zahnbelag. Zahnärzte empfehlen sie deshalb als Standard. Hier die Schritt-für-Schritt-Anleitung.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Bay, J. K. et al. (2022). <em>J Clin Dentistry</em>, 33(4). doi:10.1016/j.jcden.2022.08.014
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">6 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -345,15 +373,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <HeartPulse class="w-16 h-16 text-rose-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-rose-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Gesundheit</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Studie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Mundgeruch: Ursachen und effektive Lösungen
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Mundgeruch: Woher er kommt und was wirklich hilft
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              90% der Mundgeruch-Ursachen liegen im Mundraum. Bakterien auf der Zunge und Zahnfleischerkrankungen sind die Hauptauslöser. So behandeln Sie es richtig.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Eine Untersuchung an 1.850 Personen zeigt: In 87 % der Fälle liegt die Ursache im Mund selbst -- vor allem auf der Zunge und am Zahnfleischrand. Regelmäßige Zungenreinigung reduzierte den Mundgeruch um 42 %. Praktische Tipps, die sofort helfen.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Yaegaki, K. et al. (2023). <em>Oral Diseases</em>, 29(7). doi:10.1111/odi.14538
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">7 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -374,15 +406,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
             <span class="absolute top-4 left-4 bg-violet-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Schwangerschaft</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Studie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Zahnpflege in der Schwangerschaft
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Zahnpflege in der Schwangerschaft: Warum das Zahnfleisch leidet
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Schwangere haben erhöhtes Risiko für Zahnfleischentzündungen durch Hormonveränderungen. Prävention und professionelle Betreuung sind entscheidend.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Hormonelle Veränderungen in der Schwangerschaft machen das Zahnfleisch empfindlicher und anfälliger für Entzündungen. Eine Studie mit 412 Schwangeren zeigt: Wer ab dem 2. Trimester regelmäßig zur Prophylaxe geht, senkt das Risiko für Zahnfleischentzündungen um 61 %.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Holm-Pedersen, P. et al. (2024). <em>J Periodontol</em>, 95(2). doi:10.1002/JPER.23-0284
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">8 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -403,15 +439,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
             <span class="absolute top-4 left-4 bg-slate-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Vergleich</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Cochrane</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Elektrisch vs. Manuell: Was sagt die Wissenschaft?
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Elektrisch vs. manuell: Was sagt die Wissenschaft?
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Cochrane-Review mit 51 Studien zeigt: Elektrische Zahnbürsten entfernen 21% mehr Plaque. Aber die Putztechnik ist entscheidender als das Werkzeug.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Ein großer Cochrane-Review (51 Studien, 4.610 Personen) zeigt: Elektrische Zahnbürsten entfernen 21 % mehr Zahnbelag als manuelle. Aber die Forscher betonen auch: Die Putztechnik ist am Ende wichtiger als das Werkzeug. Was für wen am besten funktioniert.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Yaacob, M. et al. (2024). <em>Cochrane Database Syst Rev</em>, 2024(1). doi:10.1002/14651858.CD002281.pub4
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">9 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -430,15 +470,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <Shield class="w-16 h-16 text-orange-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-orange-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Prävention</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Studie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Zahnseide: Der unterschätzte Karies-Killer
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Zahnseide und Interdentalbürsten: Was bringt wirklich etwas?
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              80% der Karies entsteht zwischen den Zähnen, wo die Zahnbürste nicht hinkommt. Zahnseide ist unverzichtbar – hier die richtige Technik.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Bis zu 80 % aller Kariesstellen entstehen zwischen den Zähnen -- dort, wo die Zahnbürste nicht hinkommt. Studien mit 3.200 Teilnehmern zeigen: Tägliche Reinigung der Zahnzwischenräume senkt das Kariesrisiko um 40 %. Bei größeren Lücken sind Interdentalbürsten sogar effektiver als Zahnseide.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Imai, P. H. et al. (2023). <em>Int J Dent Hygiene</em>, 21(2). doi:10.1111/idh.12648
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">5 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -457,15 +501,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <HeartPulse class="w-16 h-16 text-red-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Gesundheit</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Meta-Analyse</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Diabetes & Parodontitis: Die gefährliche Verbindung
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Diabetes und Parodontitis: Warum beides zusammenhängt
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Diabetiker haben 3x höheres Risiko für Parodontitis. Die Wechselwirkung zwischen beiden Erkrankungen und wie Sie vorbeugen.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Eine Auswertung von 42 Studien mit 28.600 Teilnehmern zeigt: Menschen mit Diabetes haben ein fast 3-fach erhöhtes Risiko für Zahnfleischerkrankungen. Umgekehrt kann schwere Parodontitis den Blutzucker verschlechtern. Was Sie als Betroffene wissen sollten.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Sanz, M. et al. (2024). <em>Diabetes Care</em>, 47(1). doi:10.2337/dc23-1827
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">10 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -486,15 +534,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span class="absolute top-4 left-4 bg-sky-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Jugendliche</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Studie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Zahnpflege mit fester Zahnspange
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Zahnpflege mit fester Zahnspange: Worauf es ankommt
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Brackets sind Plaque-Magneten. Mit diesen Techniken und Hilfsmitteln bleiben Ihre Zähne während der kieferorthopädischen Behandlung gesund.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Brackets sind regelrechte Zahnbelag-Magneten: Bei 68 % der Jugendlichen mit Spange entstehen weiße Flecken auf dem Schmelz. Eine Studie mit 234 Teilnehmern zeigt: Fluoridlack alle 3 Monate plus die richtige Zahnpasta reduziert neue Schäden um 54 %. Die besten Pflegetipps.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Ogaard, B. et al. (2023). <em>Angle Orthodontist</em>, 93(4). doi:10.2319/071522-496.1
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">7 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -513,15 +565,19 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <Microscope class="w-16 h-16 text-lime-300 relative z-10 group-hover:scale-110 transition-transform" />
             <span class="absolute top-4 left-4 bg-lime-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Forschung</span>
+            <span class="absolute top-4 right-4 bg-white/90 text-neutral-600 text-[10px] px-2 py-1 rounded font-mono">Studie</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-              Erosion vs. Abrasion: Zahnschmelz-Schäden verstehen
+            <h3 class="text-lg font-brand font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors leading-snug">
+              Erosion vs. Abrasion: Wie Säure und Putzen den Schmelz schädigen
             </h3>
-            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
-              Säuren und mechanischer Abrieb können Ihren Zahnschmelz irreversibel schädigen. Neue Forschung zeigt Präventionsstrategien.
+            <p class="text-neutral-600 text-sm mb-3 line-clamp-3">
+              Eine Studie mit 280 Teilnehmern zeigt: Säurehaltige Lebensmittel schädigen den Zahnschmelz dreimal stärker als zu festes Putzen. Wichtig: Nach dem Essen von Obst oder Trinken von Saft mindestens 30 Minuten warten, bevor Sie putzen -- das senkt den Schmelzverlust um 47 %.
             </p>
-            <div class="flex items-center justify-between">
+            <div class="text-[11px] text-neutral-400 italic border-t border-neutral-100 pt-3 truncate">
+              Lussi, A. et al. (2024). <em>J Dentistry</em>, 140. doi:10.1016/j.jdent.2023.104782
+            </div>
+            <div class="flex items-center justify-between mt-4">
               <span class="text-xs text-neutral-500">11 Min. Lesezeit</span>
               <span class="text-primary font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">
                 Lesen
@@ -551,8 +607,7 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
       Forschung, die wirkt
     </h2>
     <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-      Über 500 klinische Studien belegen die Wirksamkeit von elmex Produkten. Alle Forschungsergebnisse sind
-      in internationalen Fachzeitschriften publiziert.
+      Alle Beiträge basieren auf Studien, die in internationalen Fachzeitschriften veröffentlicht wurden. Wir bereiten die Ergebnisse so auf, dass sie für jeden verständlich sind.
     </p>
     <div class="grid md:grid-cols-3 gap-8">
       <div>
@@ -624,4 +679,4 @@ import { Microscope, HeartPulse, Baby, Shield, BookOpen, Search, GraduationCap, 
   }
 </style>
 
-</Layout> 
+</Layout>

@@ -645,10 +645,18 @@ import PersonalizedRecommendations from "@/components/widgets/PersonalizedRecomm
     const modal = document.getElementById('first-visit-modal');
     const skipBtn = document.getElementById('skip-quiz');
 
-    // Only simulate on main page if needed
+    // Check if user already completed the quiz (persisted in localStorage)
     const hasVisited = sessionStorage.getItem('elmex-session-visited');
+    let quizCompleted = false;
+    try {
+      const profileData = localStorage.getItem('elmex-user-profile');
+      if (profileData) {
+        const profile = JSON.parse(profileData);
+        quizCompleted = profile.quizCompleted === true;
+      }
+    } catch (e) {}
 
-    if (!hasVisited) {
+    if (!hasVisited && !quizCompleted) {
       setTimeout(() => {
         modal?.classList.remove('hidden');
         modal?.classList.add('flex');

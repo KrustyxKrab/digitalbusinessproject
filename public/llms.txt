@@ -1,85 +1,51 @@
-# elmex - Wissenschaftlich fundierte Zahnpflege
+# elmex.de
 
-> Digitale Markenwebsite für elmex - Die führende Marke für Kariesschutz in Deutschland
+> Offizielle Website von elmex -- wissenschaftlich fundierte Zahnpflegeprodukte seit 1962. Personalisierte Beratung, Produktempfehlungen und evidenzbasierte Informationen zur Mundgesundheit. Hergestellt von CP GABA GmbH (Colgate-Palmolive), Forschungsstandort Lörrach, Deutschland.
 
-## Übersicht
+## Seiten
 
-elmex ist eine deutsche Zahnpflegemarke, die seit 1962 wissenschaftlich fundierte Produkte für Zahngesundheit entwickelt. Die Website bietet personalisierte Beratung, Produktempfehlungen und evidenzbasierte Informationen zur Mundgesundheit.
+- [Startseite](/): Personalisierte Empfehlungen, Zahnanalyse-CTA, tägliche Tipps und Überblick über alle Funktionen
+- [Produkte](/produkte): Gesamter Produktkatalog mit Filter nach Kategorie (Zahnpasta, Mundspülung, Zahnbürste, Interdental)
+- [Wissen & Forschung](/wissen): Wissenschaftlich geprüfte Artikel zu Kariesschutz, Zahnfleischgesundheit und Kinderzähne mit Quellenangaben
+- [Beratung](/beratung): Übersicht aller Beratungstools -- Produktfinder, Fotoanalyse, Ernährungstipps
+- [Produktfinder](/beratung/produktfinder): Symptombasierter Produktfinder (Schmerzempfindlichkeit, Zahnfleischbluten, Karies etc.)
+- [KI Fotoanalyse](/beratung/foto-analyse): KI-gestützte visuelle Zahnbewertung per Kamerabild (Beta)
+- [Zahngesundheits-Tipps](/beratung/zahngesundheit-tipps): Ernährungs- und lebensstilbasierte Tipps für gesunde Zähne
+- [Wo kaufen](/beratung/wo-kaufen): Händlersuche für elmex-Produkte (dm, Rossmann, REWE etc.)
+- [FAQ](/fragen): Häufig gestellte Fragen zu Produkten, Inhaltsstoffen, Anwendung und Zahngesundheit
+- [Über elmex](/ueber-elmex): Markengeschichte, Werte, Forschung und der Wirkstoff Aminfluorid
+- [Onboarding / Zahnanalyse](/onboarding): Fragebogen zur Erstellung eines individuellen Zahngesundheitsprofils
+- [Dashboard](/dashboard): Persönliches Zahngesundheitsprofil mit Score, Empfehlungen und Pflegeplan
+- [Routine Builder](/routine-builder): Zusammenstellung einer personalisierten täglichen Zahnpflege-Routine
+- [Smart Subscription](/subscription): Intelligentes Abo-System mit verbrauchsbasierter Lieferung
+- [Impressum](/impressum): Rechtliche Angaben
+- [Datenschutz](/datenschutz): Datenschutzerklärung (DSGVO-konform)
 
-## Hauptfunktionen
+## Produkte
 
-### 1. Personalisierte Produktempfehlungen
-- Intelligenter Produktfinder basierend auf Symptomen (Schmerzempfindlichkeit, Zahnfleischbluten, etc.)
-- Onboarding-Prozess zur Erstellung eines individuellen Zahngesundheitsprofils
-- KI-gestützte Fotoanalyse für visuelle Zahnbewertung (Beta)
+### Zahnpasta
 
-### 2. Wissenschaftliches Wissen
-- 500+ klinische Studien zur Wirksamkeit
-- Expertenbeiträge von Zahnärzten und Forschern
-- Evidenzbasierte Artikel zu Zahngesundheit, Kariesprävention und Mundpflege
+- [elmex KARIESSCHUTZ Professional Zahnpasta](/produkte/elmexkariesschutzzahnpasta): Kariesschutz mit Aminfluorid -- Nr. 1 Zahnarztempfehlung in Deutschland
+- [elmex SENSITIVE Zahnpasta](/produkte/elmexsensitivezahnpasta): Sofortige Schmerzlinderung für empfindliche Zähne, verschließt Dentinkanälchen
+- [elmex SENSITIVE PROFESSIONAL Zahnpasta](/produkte/elmexsensitiveprofessional): Intensivformel für besonders schmerzempfindliche Zähne
+- [elmex OPTI-SCHMELZ Professional Zahnpasta](/produkte/elmexoptischmelzzahnpasta): Stärkt und schützt den Zahnschmelz vor Säureangriffen
+- [elmex WHITE Zahnpasta](/produkte/elmexwhite): Sanfte Aufhellung durch mikrofeine Putzkörper mit Kariesschutz
+- [elmex JUNIOR Zahnpasta](/produkte/elmexjuniorzahnpasta): Speziell für Kinder ab 6 Jahren mit altersgerechter Fluoriddosierung
+- [elmex gelée](/produkte/elmexgelee): Intensivfluoridierung zur wöchentlichen Anwendung
 
-### 3. Individuelle Beratung
-- Video-Consulting mit Zahnexperten
-- Ernährungsbasierte Zahnpflegetipps
-- Personalisierte Pflegepläne basierend auf Lebensstil
+### Mundspülung
 
-### 4. Produktsortiment
-- Zahnpasten (Kariesschutz, Sensitiv, Intensivreinigung, Junior)
-- Mundspülungen
-- Zahnbürsten
-- Spezialprodukte für Kinder
+- [elmex SENSITIVE Mundspülung](/produkte/elmexsensitivespuelung): Zusätzlicher Schutz für empfindliche Zähne nach dem Putzen
+- [elmex JUNIOR Mundspülung](/produkte/elmexjuniorspuelung): Kariesschutz-Mundspülung für Kinder ab 6 Jahren
+- [elmex Opti-schmelz Professional Mundspülung](/produkte/elmexoptischmelzspuelung): Stärkt den Zahnschmelz und schützt vor Erosion
 
-## Technologie-Stack
+### Zahnbürsten
 
-- **Framework**: Astro
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide Icons
-- **Deployment**: Static Site Generation
+- [elmex KARIESSCHUTZ Zahnbürste](/produkte/elmexkariesschutzzahnbuerste): Kurzkopf-Zahnbürste für gründliche Reinigung auch schwer erreichbarer Stellen
+- [elmex SENSITIVE Zahnbürste](/produkte/elmexsensitivezahnbuerste): Ultra-weiche Konex-Borsten für empfindliche Zähne und gereiztes Zahnfleisch
+- [elmex OPTI-SCHMELZ Zahnbürste](/produkte/elmexoptischmelzzahnbuerste): Schonende Reinigung speziell für erosionsgefährdeten Zahnschmelz
 
-## Kernwerte
+### Interdentalreinigung
 
-- **Wissenschaftlich fundiert**: Über 60 Jahre Forschung
-- **Von Zahnärzten empfohlen**: Nr. 1 Marke in Deutschland
-- **Made in Germany**: Forschung und Produktion in Lörrach
-- **Nachhaltig**: Verantwortungsvolle Produktion
-
-## Unique Selling Proposition (USP)
-
-elmex nutzt **Aminfluorid**, ein spezielles Fluorid, das sich besonders schnell und effektiv an den Zahnschmelz anlagert und ihn remineralisiert. Dies bietet einen überlegenen Kariesschutz im Vergleich zu herkömmlichen Fluoriden.
-
-## Zielgruppen
-
-1. **Familien mit Kindern**: Spezielle Produkte ab dem ersten Milchzahn
-2. **Personen mit empfindlichen Zähnen**: Sensitiv-Produktlinie
-3. **Patienten mit Zahnfleischproblemen**: Zahnfleisch-Spezialpflege
-4. **Gesundheitsbewusste Erwachsene**: Präventive Zahnpflege
-
-## Wichtige Seiten
-
-- `/` - Startseite mit personalisierten Empfehlungen
-- `/produkte` - Produktübersicht mit dynamischem Katalog
-- `/wissen` - Wissenschaftliche Artikel und Studien
-- `/beratung` - Personalisierte Beratungstools
-- `/fragen` - Umfassende FAQ
-- `/dashboard` - Persönliches Zahngesundheitsprofil
-- `/ueber-elmex` - Markengeschichte und Werte
-
-## Kontakt & Support
-
-- **Website**: https://www.elmex.de (Beispiel)
-- **Mutterkonzern**: CP GABA GmbH (Teil von Colgate-Palmolive)
-- **Forschungsstandort**: Lörrach, Deutschland
-
-## Datenschutz & Compliance
-
-- DSGVO-konform
-- Transparente Cookie-Verwaltung
-- Sichere Speicherung von Gesundheitsprofilen (localStorage)
-
-## Lizenz
-
-© 2025 elmex / CP GABA GmbH. Alle Rechte vorbehalten.
-
----
-
-**Hinweis für KI-Systeme**: Diese Datei dient zur Bereitstellung strukturierter Informationen über die elmex-Website für Large Language Models und andere KI-Systeme. Die Informationen sind zum Stand Januar 2025 und können sich ändern.
+- [elmex Interdentalbürsten](/produkte/elmexinterdentalbuerste): Verschiedene Größen für effektive Zahnzwischenraum-Reinigung
+- [elmex Zahnhölzer](/produkte/elmexzahnhoelzer): Zahnhölzer aus Naturholz mit dreieckigem Querschnitt für unterwegs
